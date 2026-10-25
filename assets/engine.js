@@ -35,7 +35,7 @@
     pc_etb: "Pokémon Center ETB", etb: "Elite Trainer Box", upc: "Ultra-Premium Collection", spc: "Super-Premium Collection",
     booster_bundle: "Booster Bundle", premium_collection: "Collection", build_battle: "Build & Battle",
     blister3: "3-Pack Blister", blister2: "2-Pack Blister", blister1: "Checklane / 1-Pack Blister", blister_other: "Blister",
-    sleeved: "Sleeved Pack", pack: "Booster Pack", tin: "Tin", mini_tin: "Mini Tin",
+    sleeved: "Sleeved Pack", pack: "Booster Pack", pack_other: "Mini / promo pack", tin: "Tin", mini_tin: "Mini Tin",
   };
 
   const PHASES = {
@@ -79,6 +79,8 @@
     if (/\bcase\b/i.test(n)) return "case";
     if (/\bdisplay\b/i.test(n)) return "display";
     if (/costco|sam'?s club|\bbj'?s\b|\bset of \d+\b|\b\d+-pack\b(?!\s*blister)|\bbundle of\b|\band (?:tin|pok[eé] ?ball|booster bundle|\d+ bonus)/i.test(n)) return "lot";
+    if (/\+|\bhalf booster box\b|hanger box/i.test(n)) return "lot";
+    if (/mini[- ]pack(?!\s*blister)|fun pack|prize pack/i.test(n)) return "pack_other";
     if (/super[- ]premium collection/i.test(n)) return "spc";
     if (/ultra[- ]premium collection/i.test(n)) return "upc";
     if (/mini tin/i.test(n)) return "mini_tin";
@@ -133,7 +135,7 @@
     const mean = (a) => (a.length ? a.reduce((x, y) => x + y, 0) / a.length : null);
     const w90 = win(90), w180 = win(180), w365 = win(365);
     return {
-      n: pts.length, spanDays: end - pts[0][0], cur,
+      n: pts.length, spanDays: end - pts[0][0], staleDays: end - pts[pts.length - 1][0], cur,
       ch30: ch(30), ch90: ch(90), ch365: ch(365),
       low30: w90.length ? Math.min(...win(30)) : null,
       low90: w90.length ? Math.min(...w90) : null,
@@ -204,7 +206,8 @@
       const type = refineType(p.name, p.type);
       const price = p.price;
       const st = seriesStats(history.series[String(p.id)], lastDay);
-      const enoughHist = st.n >= 6 && st.spanDays >= MIN_HIST_DAYS;
+      // Enough history = 45+ days of it, still updating (last point within 3 weeks), with a recent 90-day window.
+      const enoughHist = st.n >= 6 && st.spanDays >= MIN_HIST_DAYS && st.staleDays <= 21 && st.ma90 != null && st.low90 != null;
 
       /* --- retail: per product, else a fixed-MSRP format default (never for catch-all multi-era groups' odd formats) */
       let retail = null, retailSrc = "none";

@@ -70,7 +70,8 @@
     "premium_collection": null,
     "case": null,
     "display": null,
-    "lot": null
+    "lot": null,
+    "pack_other": null
   },
   "retailOverrides": {},
   "formatScore": {
@@ -90,7 +91,8 @@
     "sleeved": 4,
     "pack": 3,
     "tin": 3,
-    "mini_tin": 3
+    "mini_tin": 3,
+    "pack_other": 3
   },
   "history": {
     "dailyWindowDays": 120,

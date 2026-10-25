@@ -22,7 +22,8 @@
   function settings() {
     const s = store.get(LS.settings, {});
     const c = state.config;
-    const fresh = (s.v || 1) >= SETTINGS_V;
+    // Saved retail prices only apply while config.json's retail list is the one they were saved against.
+    const fresh = (s.v || 1) >= SETTINGS_V && s.cfgRetail === JSON.stringify(c.retailReference);
     return {
       chasePokemon: s.chasePokemon || c.chasePokemon,
       retailReference: { ...c.retailReference, ...(fresh ? s.retailReference || {} : {}) },
@@ -285,8 +286,12 @@
     document.querySelectorAll("[data-risk]").forEach((b) => b.onclick = () => { risk = b.dataset.risk; document.querySelectorAll("[data-risk]").forEach((x) => x.setAttribute("aria-pressed", x === b)); });
     $("#save").onclick = () => {
       const chasePokemon = $("#chase").value.split("\n").map((l) => l.trim()).filter(Boolean).map((l) => { const [n, w] = l.split(","); return { name: n.trim(), weight: Math.max(0, Math.min(1, parseFloat(w) || 1)) }; });
-      const retailReference = {}; document.querySelectorAll("[data-retail]").forEach((i) => { retailReference[i.dataset.retail] = i.value === "" ? null : parseFloat(i.value); });
-      store.set(LS.settings, { ...store.get(LS.settings, {}), v: SETTINGS_V, chasePokemon, retailReference, risk });
+      // Only keep the retail prices you actually changed from config.json.
+      const retailReference = {}; document.querySelectorAll("[data-retail]").forEach((i) => {
+        const v = i.value === "" ? null : parseFloat(i.value); const d = state.config.retailReference[i.dataset.retail] ?? null;
+        if (v !== d) retailReference[i.dataset.retail] = v;
+      });
+      store.set(LS.settings, { ...store.get(LS.settings, {}), v: SETTINGS_V, cfgRetail: JSON.stringify(state.config.retailReference), chasePokemon, retailReference, risk });
       recompute(); toast("Settings saved. Signals updated.");
     };
     $("#reset").onclick = () => { store.set(LS.settings, {}); recompute(); renderSettings(); toast("Settings reset."); };
