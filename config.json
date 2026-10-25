@@ -1,0 +1,58 @@
+{
+  "_comment": "Edit this file to change what gets tracked. The web app's Settings tab can override chase list, retail prices and risk profile per-browser.",
+  "categoryId": 3,
+  "chasePokemon": [
+    { "name": "Charizard", "weight": 1.0 },
+    { "name": "Umbreon",   "weight": 1.0 },
+    { "name": "Pikachu",   "weight": 0.95 },
+    { "name": "Lugia",     "weight": 0.9 },
+    { "name": "Rayquaza",  "weight": 0.9 },
+    { "name": "Mew",       "weight": 0.85 },
+    { "name": "Mewtwo",    "weight": 0.8 },
+    { "name": "Gengar",    "weight": 0.8 },
+    { "name": "Eevee",     "weight": 0.75 },
+    { "name": "Sylveon",   "weight": 0.75 }
+  ],
+  "tracking": {
+    "minChaseCardPrice": 25,
+    "minSealedPrice": 8,
+    "topSinglesPerSet": 15,
+    "alwaysIncludeGroupIds": [],
+    "excludeGroupIds": []
+  },
+  "retailReference": {
+    "_comment": "US reference retail (MSRP-style) prices used for 'x retail' math. Edit to match current retail.",
+    "booster_box": 161.64,
+    "etb": 49.99,
+    "pc_etb": 59.99,
+    "booster_bundle": 26.94,
+    "upc": 119.99,
+    "blister3": 14.99,
+    "sleeved": 4.99,
+    "pack": 4.49,
+    "build_battle": 24.99,
+    "tin": 26.99,
+    "premium_collection": null,
+    "case": null
+  },
+  "retailOverrides": {},
+  "formatScore": {
+    "_comment": "0-10. How well this format has historically held and grown value as a long-term sealed hold.",
+    "booster_box": 10,
+    "case": 10,
+    "pc_etb": 9,
+    "upc": 8,
+    "etb": 8,
+    "booster_bundle": 7,
+    "premium_collection": 5,
+    "build_battle": 5,
+    "blister3": 5,
+    "sleeved": 4,
+    "pack": 3,
+    "tin": 3
+  },
+  "history": {
+    "dailyWindowDays": 120,
+    "olderBucketDays": 7
+  }
+}
