@@ -1,0 +1,39 @@
+name: Daily price sync
+
+on:
+  schedule:
+    # tcgcsv.com refreshes around 20:00 UTC; run a bit after.
+    - cron: "37 21 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Run even if the source hasn't changed"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: price-data
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Pull prices
+        run: python scripts/sync.py ${{ inputs.force && '--force' || '' }}
+      - name: Commit data
+        run: |
+          git config user.name "price-bot"
+          git config user.email "price-bot@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "Prices for $(date -u +%F)"
+          git push
