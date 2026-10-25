@@ -127,9 +127,14 @@ def main():
         has_chase = any(c["price"] >= tr["minChaseCardPrice"] for c in cs["iconic"])
         if not (has_chase or gid in always):
             continue
+        release = parse_ts(g.get("publishedOn"))
+        if release and release == price_date:
+            # Old catch-all groups (Miscellaneous, POP Series…) come back stamped with today's
+            # date. That isn't a release date; the app treats it as unknown.
+            release = None
         sets_out[gid] = {
             "id": gid, "name": g["name"], "abbr": g.get("abbreviation"),
-            "release": parse_ts(g.get("publishedOn")),
+            "release": release,
             "topSingles": [{k: s[k] for k in ("id", "name", "price", "number", "rarity", "img", "url")} for s in top],
             "singlesIndex": round(sum(s["price"] for s in top[:5]), 2),
             "chaseScore": cs["score"],

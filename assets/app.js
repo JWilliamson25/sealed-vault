@@ -18,13 +18,16 @@
     range: "1y",
   };
 
+  const SETTINGS_V = 2; // v2: retail prices saved before the data fix are ignored (they carried the wrong defaults)
   function settings() {
     const s = store.get(LS.settings, {});
     const c = state.config;
+    const fresh = (s.v || 1) >= SETTINGS_V;
     return {
       chasePokemon: s.chasePokemon || c.chasePokemon,
-      retailReference: { ...c.retailReference, ...(s.retailReference || {}) },
-      retailOverrides: { ...(c.retailOverrides || {}), ...(s.retailOverrides || {}) },
+      retailReference: { ...c.retailReference, ...(fresh ? s.retailReference || {} : {}) },
+      retailOverrides: { ...(c.retailOverrides || {}), ...(fresh ? s.retailOverrides || {} : {}) },
+      productOverrides: c.productOverrides || {},
       formatScore: c.formatScore,
       risk: s.risk || "balanced",
     };
@@ -32,6 +35,7 @@
 
   function toast(msg) { const t = $("#toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove("show"), 2600); }
   const sigPill = (k) => `<span class="sig sig-${k}"><i aria-hidden="true">${E.SIGNALS[k].icon}</i>${E.SIGNALS[k].label}</span>`;
+  const confPill = (r) => `<span class="conf conf-${r.confidence}" title="${esc(r.checks.filter((c) => !c.ok).map((c) => c.label).join("; ") || "All data checks pass")}">${E.CONFIDENCE[r.confidence].label}</span>`;
   const pct = (v) => (v == null ? '<span class="muted">—</span>' : `<span class="${v > 0.5 ? "up" : v < -0.5 ? "down" : ""}">${fmtPct(v)}</span>`);
   const thumb = (r) => (r.img ? `<img class="thumb" src="${esc(r.img)}" alt="" loading="lazy">` : `<div class="thumb">${esc(E.TYPE_LABEL[r.type] || "")}</div>`);
   const seriesPts = (id, sinceDays) => {
@@ -56,7 +60,9 @@
     }
     const d = new Date(state.meta.priceDate + "T00:00:00Z").toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
     $("#asof").textContent = `TCGplayer market prices as of ${d}`;
+    const hd = E.historyDays(state.meta, state.history);
     if (state.meta.demo) $("#banner").innerHTML = `<div class="banner"><p><strong>Demo data.</strong> These are fictional sets with simulated prices so you can try the app. Real TCGplayer prices replace them after the first daily sync runs.</p></div>`;
+    else if (hd < E.MIN_HIST_DAYS) $("#banner").innerHTML = `<div class="banner"><p><strong>${hd} day${hd === 1 ? "" : "s"} of price history so far.</strong> Until there are about ${E.MIN_HIST_DAYS}, the only calls the app makes are against a known retail price, and most products show “Not enough data.” Nothing is a Strong buy until then.</p></div>`;
     recompute();
     window.addEventListener("hashchange", route);
     route();
@@ -100,7 +106,7 @@
         </div>
       </div>
       <p class="slab-why">${esc(r.headline)}</p>
-      <div class="slab-foot"><span>${esc(E.PHASES[r.phase].label)}</span><span class="foot-trend">30d ${pct(r.stats.ch30)} ${Charts.sparkline(pts)}</span></div>
+      <div class="slab-foot"><span>${confPill(r)}</span><span class="foot-trend">30d ${pct(r.stats.ch30)} ${Charts.sparkline(pts)}</span></div>
     </button>`;
   }
 
@@ -110,7 +116,8 @@
     const acc = rows.filter((r) => r.signal === "accumulate").sort((a, b) => b.score - a.score).slice(0, 6);
     const hot = rows.filter((r) => r.signal === "overheated" || r.signal === "falling").sort((a, b) => b.score - a.score);
     const watched = rows.filter((r) => state.watch.has(String(r.id)));
-    const near = watched.filter((r) => r.price <= r.target * 1.03);
+    const noCall = rows.filter((r) => r.signal === "no_call").length;
+    const near = watched.filter((r) => r.target != null && r.price <= r.target * 1.03);
     $("#main").innerHTML = `
       <h1>Today's desk</h1>
       <p class="lede">Sealed products from sets carried by ${esc(settings().chasePokemon.slice(0, 4).map((c) => c.name).join(", "))} and the rest of your chase list, scored for a 4+ year hold. “Buy under” is the price I'd be happy paying today.</p>
@@ -118,7 +125,7 @@
       ${near.length ? `<section class="section"><div class="section-head"><h2>Your watchlist hit its targets</h2></div><div class="slabs">${near.map(slab).join("")}</div></section>` : ""}
       <section class="section">
         <div class="section-head"><h2>Buy now</h2><span class="muted small">${buys.length} products at or under target</span></div>
-        ${buys.length ? `<div class="slabs">${buys.map(slab).join("")}</div>` : `<div class="empty">Nothing is under its target today. That's normal — patience is most of this game. Check the accumulate list below or your watchlist.</div>`}
+        ${buys.length ? `<div class="slabs">${buys.map(slab).join("")}</div>` : `<div class="empty">Nothing is a buy today${noCall ? ` — and ${noCall} products don't have enough data for a call yet` : ""}. That's normal — patience is most of this game.</div>`}
       </section>
       ${acc.length ? `<section class="section"><div class="section-head"><h2>Worth accumulating slowly</h2><span class="muted small">Strong sets a little above target — buy a piece, not the position</span></div><div class="slabs">${acc.map(slab).join("")}</div></section>` : ""}
       ${hot.length ? `<section class="section"><div class="section-head"><h2>Hold off</h2><span class="muted small">Spiking or still sliding — wait for these to settle</span></div><div class="slabs">${hot.map(slab).join("")}</div></section>` : ""}`;
@@ -126,9 +133,9 @@
   }
 
   function deskBrief(buys, acc, hot) {
-    const line = (r) => `- ${r.name} (${r.set.name}, ${Math.round(r.set.ageMonths)} mo): ${fmt$(r.price)}, target ${fmt$(r.target)}, 30d ${fmtPct(r.stats.ch30)}, 1y ${fmtPct(r.stats.ch365)}, ${E.SIGNALS[r.signal].label}`;
+    const line = (r) => `- ${r.name} (${r.set.name}, ${r.ageMonths != null ? Math.round(r.ageMonths) + " mo" : "release unknown"}): ${fmt$(r.price)}${r.retail ? ` (retail ${fmt$(r.retail)})` : ""}, target ${fmt$(r.target)}, 30d ${fmtPct(r.stats.ch30)}, 1y ${fmtPct(r.stats.ch365)}, ${E.SIGNALS[r.signal].label}, ${E.CONFIDENCE[r.confidence].label.toLowerCase()}`;
     return [
-      `Act as a veteran sealed Pokémon TCG investor. I hold sealed product 4+ years. My tracker (TCGplayer market prices, ${state.meta.priceDate}) flagged the items below. Search the web for any recent reprint or restock news on these sets, then tell me which 3 you'd actually buy, which you'd skip, and why. Give a max price for each.`,
+      `Act as a veteran sealed Pokémon TCG investor. I hold sealed product 4+ years. My tracker (TCGplayer market prices, ${state.meta.priceDate}) flagged the items below. It only has ${E.historyDays(state.meta, state.history)} day(s) of price history, so check MSRPs and release dates yourself. Search the web for any recent reprint or restock news on these sets, then tell me which 3 you'd actually buy, which you'd skip, and why. Give a max price for each.`,
       "", "Buy now:", ...buys.slice(0, 12).map(line), "", "Accumulate slowly:", ...acc.map(line), "", "Hold off:", ...hot.slice(0, 6).map(line),
     ].join("\n");
   }
@@ -163,7 +170,7 @@
     { k: "name", label: "Product", get: (r) => r.name },
     { k: "price", label: "Market", num: true, get: (r) => r.price },
     { k: "target", label: "Buy under", num: true, get: (r) => r.target },
-    { k: "gap", label: "vs target", num: true, get: (r) => r.gap },
+    { k: "gap", label: "vs target", num: true, get: (r) => r.gap ?? 999 },
     { k: "ch30", label: "30d", num: true, get: (r) => r.stats.ch30 ?? -999 },
     { k: "ch365", label: "1y", num: true, get: (r) => r.stats.ch365 ?? -999 },
     { k: "mult", label: "× retail", num: true, get: (r) => r.mult ?? 0 },
@@ -175,7 +182,7 @@
     const f = state.filters; const q = f.q.trim().toLowerCase();
     let rows = state.rows.filter((r) =>
       (!q || (r.name + " " + r.set.name).toLowerCase().includes(q)) && (!f.type || r.type === f.type) && (!f.signal || r.signal === f.signal) &&
-      (!f.pokemon || r.set.chase.iconic.some((c) => c.pokemon === f.pokemon)));
+      (!f.pokemon || (r.chaseInfo.iconic || []).some((c) => c.pokemon === f.pokemon) || r.chaseInfo.pokemon === f.pokemon));
     const col = COLS.find((c) => c.k === f.sort) || COLS[7];
     rows.sort((a, b) => { const x = col.get(a), y = col.get(b); return (typeof x === "string" ? x.localeCompare(y) : x - y) * f.dir; });
     return rows;
@@ -188,11 +195,11 @@
         <td><div class="pname">${esc(r.name)}</div><div class="pset">${esc(r.set.name)} · ${esc(E.TYPE_LABEL[r.type])}</div></td>
         <td class="num">${fmt$(r.price)}</td><td class="num">${fmt$(r.target)}</td><td class="num">${pct(r.gap)}</td>
         <td class="num">${pct(r.stats.ch30)}</td><td class="num">${pct(r.stats.ch365)}</td><td class="num">${r.mult ? r.mult.toFixed(2) + "×" : "—"}</td>
-        <td>${sigPill(r.signal)}</td><td class="num">${r.score}<span class="score-bar"><span style="width:${r.score}%"></span></span></td></tr>`).join("");
+        <td>${sigPill(r.signal)}<div>${confPill(r)}</div></td><td class="num">${r.score}<span class="score-bar"><span style="width:${r.score}%"></span></span></td></tr>`).join("");
     const list = rows.map((r) => `<div class="list-item" data-open="${r.id}" role="button" tabindex="0">
         <div><div class="pname">${esc(r.name)}</div><div class="pset">${esc(r.set.name)}</div></div>
         <div style="text-align:right"><strong class="price">${fmt$(r.price)}</strong><div class="small muted">under ${fmt$(r.target)}</div></div>
-        <div>${sigPill(r.signal)}</div><div class="small" style="text-align:right">30d ${pct(r.stats.ch30)}</div></div>`).join("");
+        <div>${sigPill(r.signal)} ${confPill(r)}</div><div class="small" style="text-align:right">30d ${pct(r.stats.ch30)}</div></div>`).join("");
     $("#ptable").innerHTML = rows.length
       ? `<div class="table-wrap collapsible"><table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div><div class="list list-wrap">${list}</div>`
       : `<div class="empty">No products match those filters.</div>`;
@@ -211,9 +218,9 @@
       <div class="table-wrap" style="margin-top:16px"><table>
         <thead><tr><th>Set</th><th>Released</th><th>Phase</th><th class="num">Chase score</th><th>Top chase cards</th><th class="num">Chase singles 90d</th><th>Best sealed call</th></tr></thead>
         <tbody>${list.map((s) => { const b = best(s); return `<tr ${b ? `data-open="${b.id}"` : ""}>
-          <td class="pname">${esc(s.name)}</td><td style="white-space:nowrap">${esc(s.release || "—")}</td><td>${esc(E.PHASES[s.phase].label)}</td>
-          <td class="num">${s.chase.score.toFixed(0)} <span class="muted small">${s.chase.tier}</span></td>
-          <td class="small">${s.chase.iconic.slice(0, 3).map((c) => `${esc(c.name)} <span class="muted">${fmt$(c.price)}</span>`).join("<br>") || '<span class="muted">none from your list</span>'}</td>
+          <td class="pname">${esc(s.name)}${s.kind === "catchall" ? '<div class="small muted">Catch-all group, not a set — products are scored one by one</div>' : ""}</td><td style="white-space:nowrap">${esc(s.release || "—")}</td><td>${s.kind === "catchall" ? '<span class="muted">—</span>' : esc(E.PHASES[s.phase].label)}</td>
+          <td class="num">${s.kind === "catchall" ? '<span class="muted">—</span>' : `${s.chase.score.toFixed(0)} <span class="muted small">${s.chase.tier}</span>`}</td>
+          <td class="small">${s.kind === "catchall" ? '<span class="muted">Not one set\'s cards</span>' : s.chase.iconic.slice(0, 3).map((c) => `${esc(c.name)} <span class="muted">${fmt$(c.price)}</span>`).join("<br>") || '<span class="muted">none from your list</span>'}</td>
           <td class="num">${pct(s.singlesStats.ch90)}</td><td>${b ? `${sigPill(b.signal)}<div class="small muted">${esc(E.TYPE_LABEL[b.type])}</div>` : ""}</td></tr>`; }).join("")}</tbody>
       </table></div>`;
   }
@@ -270,7 +277,7 @@
         <p class="small muted">Conservative sets buy targets 5% lower; aggressive 5% higher.</p>
       </div>
       <div class="card" style="margin-top:16px"><h3>Retail reference prices</h3>
-        <p class="small muted">Used for the “× retail” math and early-life targets. Leave blank if a format has no fixed retail.</p>
+        <p class="small muted">Used for the “× retail” math and early-life targets. Only fill in formats with one fixed MSRP; leave the rest blank and set them per product in config.json → productOverrides. If unsure, a lower number is safer — a retail price that's too high creates fake buys.</p>
         <div class="form-grid">${types.map((t) => `<label class="field">${E.TYPE_LABEL[t] || t}<input type="number" step="0.01" min="0" data-retail="${t}" value="${s.retailReference[t] ?? ""}"></label>`).join("")}</div>
       </div>
       <div class="controls"><button class="btn primary" id="save">Save settings</button><button class="btn" id="reset">Reset to defaults</button></div>`;
@@ -279,7 +286,7 @@
     $("#save").onclick = () => {
       const chasePokemon = $("#chase").value.split("\n").map((l) => l.trim()).filter(Boolean).map((l) => { const [n, w] = l.split(","); return { name: n.trim(), weight: Math.max(0, Math.min(1, parseFloat(w) || 1)) }; });
       const retailReference = {}; document.querySelectorAll("[data-retail]").forEach((i) => { retailReference[i.dataset.retail] = i.value === "" ? null : parseFloat(i.value); });
-      store.set(LS.settings, { ...store.get(LS.settings, {}), chasePokemon, retailReference, risk });
+      store.set(LS.settings, { ...store.get(LS.settings, {}), v: SETTINGS_V, chasePokemon, retailReference, risk });
       recompute(); toast("Settings saved. Signals updated.");
     };
     $("#reset").onclick = () => { store.set(LS.settings, {}); recompute(); renderSettings(); toast("Settings reset."); };
@@ -301,6 +308,7 @@
         <li><strong>Format (15%).</strong> Booster boxes and cases hold value best, then Pokémon Center ETBs and premium collections, then ETBs and bundles. Loose packs and tins trail.</li>
       </ul>
       <h2>How the buy-under target is set</h2>
+      <p>A target is never worked out from today's price. It comes from a known retail price early in a product's life, or from at least ${E.MIN_HIST_DAYS} days of price history after that. With neither, the product shows “Not enough data.”</p>
       <ul class="reasons">
         <li>Brand new (under 2 months): around retail — let the release premium bleed out.</li>
         <li>Still printing (2–12 months): retail to 15% over retail, depending on chase strength.</li>
@@ -315,9 +323,12 @@
         <li>${sigPill("accumulate")} A strong chase set slightly above target. Buy a piece, not the whole position.</li>
         <li>${sigPill("wait")} Good product, wrong price. Watch it.</li>
         <li>${sigPill("overheated")} Jumped over 25% in a month. Spikes usually give some back.</li>
-        <li>${sigPill("falling")} Sliding more than 10% a month while still in print.</li>
+        <li>${sigPill("falling")} Sliding more than 10% a month while still in print, or still sliding after a 15%+ drop over 90 days.</li>
         <li>${sigPill("pass")} Weak chase or weak format for a 4+ year hold.</li>
+        <li>${sigPill("no_call")} No known retail price and not enough price history, or no chase cards to judge it by. No call is better than a guess.</li>
       </ul>
+      <h2>Confidence</h2>
+      <p>Every call checks four things: enough price history, a real release date, a known retail price, and chase cards from the product's own set. <strong>Strong buy</strong> needs all four. With thin history, the only calls made are against a known retail price, and they top out at Buy. Products in TCGplayer's catch-all groups (Miscellaneous, promos, POP series) aren't treated as part of a set; add their MSRP and release date under <code>productOverrides</code> in config.json.</p>
       <h2>What it can't see</h2>
       <p>Reprint announcements, Pokémon Center restocks, print-run sizes, and sales volume. Use “Ask Claude” on any product for a second opinion that checks current news. This isn't financial advice; prices can and do fall.</p>
       <p class="small muted">Data: TCGplayer prices via the free tcgcsv.com daily mirror. Not affiliated with TCGplayer, Nintendo, or The Pokémon Company.</p>
@@ -340,7 +351,10 @@
       <div class="sheet-body">
         <div class="card verdict">
           <div><span class="big grade g-${r.signal}" style="text-align:left"><b>${E.SIGNALS[r.signal].label}</b></span>
-          <p style="margin-top:8px">Buy under <strong>${fmt$(r.target)}</strong> — ${esc(r.targetWhy)}. Market is ${fmt$(r.price)} (${Math.abs(Math.round(r.gap)) === 0 ? "right at" : Math.abs(Math.round(r.gap)) + "% " + (r.gap > 0 ? "over" : "under")} target).</p></div>
+          <p style="margin-top:8px">${r.target != null
+            ? `Buy under <strong>${fmt$(r.target)}</strong> — ${esc(r.targetWhy)}. Market is ${fmt$(r.price)} (${Math.abs(Math.round(r.gap)) === 0 ? "right at" : Math.abs(Math.round(r.gap)) + "% " + (r.gap > 0 ? "over" : "under")} target).`
+            : `No buy-under price yet — ${esc(r.targetWhy)}. Market is ${fmt$(r.price)}.`}</p>
+          <p class="small" style="margin:6px 0 0">${confPill(r)}</p></div>
           ${thumb(r)}
         </div>
         <div class="card">
@@ -349,20 +363,23 @@
           <div id="chart"></div>
           <div class="legend"><span>Market price</span><span class="l-target">Buy under</span>${r.retail ? '<span class="l-retail">Retail</span>' : ""}</div>
         </div>
+        <div class="card"><h3>Data checks</h3><ul class="checks">${r.checks.map((c) => `<li class="${c.ok ? "ok" : "miss"}"><span aria-hidden="true">${c.ok ? "✓" : "✕"}</span> ${esc(c.label)}</li>`).join("")}</ul>
+          ${r.checks.some((c) => !c.ok && (c.k === "retail" || c.k === "release")) ? `<p class="small muted" style="margin:10px 0 0">Know the MSRP or release date? Add it under <code>productOverrides</code> in config.json with id <code>${r.id}</code>.</p>` : ""}
+        </div>
         <div class="card"><h3>Why</h3><ul class="reasons">${r.reasons.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
-          ${r.benchmark ? `<p class="small muted" style="margin:12px 0 0">For a 4+ year view: ${esc(E.TYPE_LABEL[r.type])}s from other ${r.set.chase.tier.toLowerCase()}-chase sets that are 4–6 years old now trade at a median ${r.benchmark.median.toFixed(1)}× retail (${r.benchmark.n} products). Past sets aren't a promise.</p>` : ""}
+          ${r.benchmark ? `<p class="small muted" style="margin:12px 0 0">For a 4+ year view: ${esc(E.TYPE_LABEL[r.type])}s from other ${r.chaseInfo.tier.toLowerCase()}-chase sets that are 4–6 years old now trade at a median ${r.benchmark.median.toFixed(1)}× retail (${r.benchmark.n} products). Past sets aren't a promise.</p>` : ""}
         </div>
         <div class="card"><h3>Numbers</h3><div class="kv">
           <div>Market<strong>${fmt$(r.price)}</strong></div><div>TCGplayer low<strong>${fmt$(r.low)}</strong></div>
           <div>× retail<strong>${r.mult ? r.mult.toFixed(2) + "×" : "—"}</strong></div>
           <div>30 days<strong>${pct(st.ch30)}</strong></div><div>90 days<strong>${pct(st.ch90)}</strong></div><div>1 year<strong>${pct(st.ch365)}</strong></div>
           <div>90-day low<strong>${fmt$(st.low90)}</strong></div><div>1-year high<strong>${fmt$(st.high365)}</strong></div>
-          <div>Score<strong>${r.score}/100</strong></div><div>Chase score<strong>${r.set.chase.score.toFixed(0)} ${r.set.chase.tier}</strong></div>
-          <div>Phase<strong>${esc(E.PHASES[r.phase].label)}</strong></div><div>Confidence<strong>${r.confidence}</strong></div>
+          <div>Score<strong>${r.score}/100</strong></div><div>Chase score<strong>${r.chase.toFixed(0)} ${esc(r.chaseInfo.tier)}</strong></div>
+          <div>Phase<strong>${esc(E.PHASES[r.phase].label)}</strong></div><div>Retail<strong>${fmt$(r.retail)}</strong></div>
         </div></div>
-        <div class="card"><h3>What's carrying the set</h3>
+        ${r.chaseSrc === "set" ? `<div class="card"><h3>What's carrying the set</h3>
           <table><tbody>${r.set.topSingles.slice(0, 8).map((c) => `<tr><td>${c.url ? `<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.name)}</a>` : esc(c.name)} <span class="muted small">${esc(c.number || "")}</span></td><td class="num">${fmt$(c.price)}</td></tr>`).join("")}</tbody></table>
-        </div>
+        </div>` : ""}
         <div class="card"><h3>Holdings</h3>
           ${lots.length ? `<p class="small">${lots.map((l, i) => `${l.qty} × ${fmt$(l.cost)} <button class="btn ghost small" data-rmlot="${i}">Remove</button>`).join("<br>")}</p>` : ""}
           <div class="form-grid"><label class="field">Quantity<input type="number" id="hq" min="1" value="1"></label><label class="field">Paid each<input type="number" id="hc" min="0" step="0.01" value="${r.price.toFixed(2)}"></label></div>
@@ -375,7 +392,7 @@
       </div>`;
     const draw = () => {
       const days = { "3m": 90, "1y": 365, all: null }[state.range];
-      const refs = [{ value: r.target, label: "Buy " + fmt$(r.target), cls: "series-target" }];
+      const refs = r.target != null ? [{ value: r.target, label: "Buy " + fmt$(r.target), cls: "series-target" }] : [];
       if (r.retail) refs.push({ value: r.retail, label: "Retail", cls: "series-retail" });
       Charts.priceChart($("#chart"), seriesPts(r.id, days), refs);
     };
