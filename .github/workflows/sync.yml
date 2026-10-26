@@ -2,8 +2,11 @@ name: Daily price sync
 
 on:
   schedule:
-    # tcgcsv.com refreshes around 20:00 UTC; run a bit after.
-    - cron: "37 21 * * *"
+    # tcgcsv.com refreshes once a day, around 20:00 UTC. The evening run picks that up;
+    # the morning run is a retry in case it was late or the evening run failed.
+    # If nothing new has arrived, the sync skips without committing.
+    - cron: "37 21 * * *"   # 4:37 pm Central (CDT) / 3:37 pm (CST)
+    - cron: "17 11 * * *"   # 6:17 am Central (CDT) / 5:17 am (CST)
   workflow_dispatch:
     inputs:
       force:
