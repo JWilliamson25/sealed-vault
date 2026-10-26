@@ -1,0 +1,22 @@
+{
+ "started": "2026-10-26T00:20:31+00:00",
+ "fetched": [],
+ "missing": [],
+ "refused": {
+  "date": "2026-10-24",
+  "url": "https://tcgcsv.com/archive/tcgplayer/prices-2026-10-24.ppmd.7z",
+  "code": 403,
+  "headers": {
+   "Server": "CloudFront",
+   "Content-Type": "text/plain",
+   "X-Cache": "Error from cloudfront"
+  },
+  "body": "The price archive has been temporarily removed due to rising server costs and its growing moderation burden. Prices are still being archived behind-the-scenes. My goal is to share the price archive once I can get further clarification from TCGplayer, and standup a reliable way to cover my operating costs.\n\nIf you were previously relying on the price archive to pull daily pricing, please instead process categories, groups, and prices by making multiple requests. This will primarily help by reducing overall bandwidth. Separately, avoid requesting the same price file more than once in a 24 hour p"
+ },
+ "error": null,
+ "productPricesAdded": 0,
+ "planned": 150,
+ "status": "refused",
+ "finished": "2026-10-26T00:20:32+00:00",
+ "backfilledTotal": 0
+}
