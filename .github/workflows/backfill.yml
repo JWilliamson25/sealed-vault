@@ -1,14 +1,20 @@
-name: Backfill price history (run once)
+name: Backfill price history
 
 on:
   workflow_dispatch:
     inputs:
-      step:
-        description: "Days between samples (7 = weekly)"
+      recent_days:
+        description: "How far back to sample closely (days)"
+        default: "120"
+      recent_step:
+        description: "Days between samples in that recent window"
+        default: "3"
+      old_step:
+        description: "Days between samples before that, back to Feb 2024"
         default: "7"
-      since:
-        description: "Start date (archives begin 2024-02-08)"
-        default: "2024-02-08"
+      max:
+        description: "Most archives to download this run (already-fetched dates are skipped)"
+        default: "150"
 
 permissions:
   contents: write
@@ -20,7 +26,7 @@ concurrency:
 jobs:
   backfill:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -31,12 +37,17 @@ jobs:
       - name: Make sure today's data exists
         run: test -f data/meta.json && grep -q '"demo":false' data/meta.json || python scripts/sync.py --force
       - name: Backfill
-        run: python scripts/backfill.py --step ${{ inputs.step }} --since ${{ inputs.since }}
-      - name: Commit data
+        run: >
+          python scripts/backfill.py
+          --recent-days ${{ inputs.recent_days }} --recent-step ${{ inputs.recent_step }}
+          --old-step ${{ inputs.old_step }} --max ${{ inputs.max }}
+      - name: Commit data (also after a refusal, so nothing fetched is lost)
+        if: always()
         run: |
           git config user.name "price-bot"
           git config user.email "price-bot@users.noreply.github.com"
           git add data
           git diff --cached --quiet && echo "No changes" && exit 0
           git commit -m "Backfill price history"
+          git pull --rebase origin main
           git push
