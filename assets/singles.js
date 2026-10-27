@@ -23,7 +23,9 @@
     alt:     { label: "Alternate Art",              demand: 100 },
     ir:      { label: "Illustration / Gallery",     demand: 82 },
     vintage: { label: "Vintage holo & rare",        demand: 72 },
-    secret:  { label: "Secret / Hyper Rare",        demand: 62 },
+    rainbow: { label: "Rainbow Rare",               demand: 60 },
+    secret:  { label: "Secret Rare",                demand: 55 },
+    gold:    { label: "Gold / Hyper Rare",          demand: 50 },
     shiny:   { label: "Shiny",                      demand: 62 },
     ultra:   { label: "Ultra Rare / Full Art",      demand: 55 },
     other:   { label: "Special rare",               demand: 48 },
@@ -34,6 +36,31 @@
   const ERAS = { sv: "Scarlet & Violet / Mega era", swsh: "Sword & Shield era", smxy: "Sun & Moon / XY era", classic: "2003–2013", wotc: "WotC era", unknown: "era unknown" };
 
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+  const median = (a) => { if (!a.length) return null; const v = a.slice().sort((x, y) => x - y); const n = v.length; return n % 2 ? v[n >> 1] : (v[n / 2 - 1] + v[n / 2]) / 2; };
+  const monthYear = (day) => E.dayToDate(day).toLocaleDateString(undefined, { month: "short", year: "numeric", timeZone: "UTC" });
+
+  /** PSA 10 price that ignores a sudden jump that then freezes (one odd sale or listing stuck in the average). */
+  function robustPsa(series, lastDay, saved) {
+    const pts = (series || []).slice().sort((a, b) => a[0] - b[0]);
+    if (!pts.length) return { price: saved ?? null };
+    const v = pts[pts.length - 1][1];
+    let i = pts.length - 1;
+    while (i > 0 && Math.abs(pts[i - 1][1] / v - 1) <= 0.03) i--; // start of the current flat run
+    const start = pts[i][0];
+    const before = pts.filter(([d]) => d < start && d >= start - 90).map((p) => p[1]);
+    const mBefore = median(before);
+    if (before.length >= 5 && mBefore && v > 2 * mBefore) {
+      return { price: mBefore, jump: { to: v, since: start, from: mBefore } };
+    }
+    // Scrydex sometimes reports two PSA 10 prices for one card (e.g. a normal copy and a signed or
+    // "perfect" one). Keep values within 2x of the lower quartile, then take the median.
+    let recent = pts.filter(([d]) => d >= lastDay - 60).map((p) => p[1]);
+    if (!recent.length) recent = [v];
+    const q1 = recent.slice().sort((a, b) => a - b)[Math.floor(recent.length / 4)];
+    const kept = recent.filter((x) => x <= q1 * 2);
+    const mixed = kept.length < recent.length;
+    return { price: median(kept), ...(mixed ? { jump: { to: Math.max(...recent), from: median(kept), since: pts.find(([, x]) => x > q1 * 2)?.[0] ?? start, mixed: true } } : {}) };
+  }
   const geo = (pairs) => { // weighted geometric mean of [value, weight]
     let s = 0, w = 0;
     for (const [v, n] of pairs) if (v > 0 && n > 0) { s += Math.log(v) * n; w += n; }
@@ -93,7 +120,8 @@
       const price = c.price;
       const st = E.seriesStats(history.series[String(c.id)], lastDay);
       const g = E.seriesStats(history.series["g:" + c.id], lastDay);
-      const psaNow = psa[c.id]?.price ?? (g.n ? g.cur : null);
+      const psaR = robustPsa(history.series["g:" + c.id], lastDay, psa[c.id]?.price);
+      const psaNow = psaR.price;
       const ageMonths = c.release ? (nowMs - Date.parse(c.release + "T00:00:00Z")) / DAY / 30.44 : null;
       const phase = (() => { if (ageMonths == null) return "unknown"; if (ageMonths < 2) return "hype"; if (ageMonths < 12) return "trough"; if (ageMonths < 24) return "transition"; if (ageMonths < 48) return "established"; return "vintage"; })();
       const enoughHist = st.n >= 6 && st.spanDays >= E.MIN_HIST_DAYS && st.staleDays <= 21 && st.ma90 != null && st.low90 != null;
@@ -102,9 +130,21 @@
 
       /* --- buy-under target (never derived from today's price) --- */
       let target = null, targetWhy;
+      const ser = (history.series[String(c.id)] || []).filter(([d]) => d >= lastDay - 365);
+      const histStart = ser.length ? ser[0][0] : null;
+      const vals = ser.map((p) => p[1]);
+      const lowAll = vals.length ? Math.min(...vals) : null, highAll = vals.length ? Math.max(...vals) : null;
+      const lowDay = ser.find((p) => p[1] === lowAll)?.[0];
+      const runup = enoughHist && highAll / lowAll >= 1.5 && price > lowAll * 1.1;
       if (enoughHist) {
-        target = Math.min(st.ma90 * 0.95, st.low90 * 1.08);
-        targetWhy = "just under its 90-day average, near its 90-day low";
+        // From where it has actually traded, not from today's price: the lowest of 95% of the 90-day average,
+        // 5% over the 90-day low, and 95% of its median price across all the history here.
+        target = Math.min(st.ma90 * 0.95, st.low90 * 1.05, median(vals) * 0.95);
+        targetWhy = "below its 90-day average and its typical price, close to its 90-day low";
+        if (runup) {
+          target = Math.min(target, lowAll * 1.15);
+          targetWhy = `no more than 15% over where it traded before its run-up (${E.fmt$(lowAll)} in ${monthYear(lowDay)})`;
+        }
       } else targetWhy = `it needs ${E.MIN_HIST_DAYS}+ days of price history first (the Scrydex import or a few weeks of daily syncs)`;
       if (target != null && phase === "hype") { target *= 0.85; targetWhy += ", minus 15% because new-set singles usually keep falling"; }
       if (target != null) target = Math.round(Math.min(target, b.budgetMax) * { conservative: 0.95, balanced: 1, aggressive: 1.05 }[settings.risk || "balanced"] * 100) / 100;
@@ -123,13 +163,14 @@
         else if (st.ch30 < -15) { momentum = 22; flags.push("falling"); }
         // A slow slide: down 12%+ over 90 days, still dropping this month, sitting at its low.
         else if (st.ch90 != null && st.ch90 <= -12 && st.ch30 <= -4 && st.low90 != null && price <= st.low90 * 1.03) { momentum = 25; flags.push("falling"); flags.push("slow_slide"); }
-        else if (dd != null && dd >= 0.25 && st.ch30 > -5) { momentum = 88; flags.push("pullback"); }
+        else if (dd != null && dd >= 0.25 && st.ch30 > -5 && !runup) { momentum = 88; flags.push("pullback"); }
         else if (st.ch90 != null && st.ch90 >= 5 && st.ch90 <= 30 && st.ch30 < 12) { momentum = 66; flags.push("steady"); }
       }
       const lag = setSealed90[c.setId] != null && st.ch90 != null ? st.ch90 - setSealed90[c.setId] : null;
       if (lag != null && lag < -15) { momentum = Math.min(100, momentum + 10); flags.push("lagging_set"); }
       const budgetFit = price <= b.sweetSpotMax ? 100 : price <= b.budgetMax ? 65 : 0;
-      const score = Math.round(0.3 * value + 0.25 * demand + 0.2 * momentum + 0.15 * timing + 0.1 * budgetFit);
+      // Similar-card value is a hint (groups mix strong and weak cards), so it carries less weight than demand and momentum.
+      const score = Math.round(0.2 * value + 0.3 * demand + 0.25 * momentum + 0.15 * timing + 0.1 * budgetFit);
 
       /* --- confidence & signal --- */
       const realSpan = st.spanDays;
@@ -139,9 +180,9 @@
       else if (demand < 45) signal = "pass";
       else if (flags.includes("spike") && price > target) signal = "overheated";
       else if (flags.includes("falling")) signal = "falling";
-      else if (price <= target && score >= 66 && confidence !== "low") signal = "strong_buy";
-      else if (price <= target * 1.05 && score >= 55) signal = "buy";
-      else if (price <= target * 1.12 && ratio != null && ratio >= 1.15) signal = "accumulate";
+      else if (price <= target && score >= 68 && confidence !== "low") signal = "strong_buy";
+      else if (price <= target && score >= 55) signal = "buy";
+      else if (price <= target * 1.08 && score >= 60) signal = "accumulate";
       else signal = "wait";
       if (signal === "strong_buy" && !enoughHist) signal = "buy"; // no Strong buy without real history
       if (price > b.budgetMax && ["strong_buy", "buy", "accumulate"].includes(signal)) signal = "wait"; // over your max
@@ -161,6 +202,7 @@
       } else R.push("Too few similar cards to compare its price with.");
       R.push(`${TIERS[c.tier].label} of ${c.pokemon}: ${demand >= 75 ? "the kind of card collectors keep chasing for years" : demand >= 55 ? "solid demand, not a top-tier chase" : "weak long-term demand — fine to collect, not a strong hold"}.`);
       if (phase !== "unknown") R.push(`${E.PHASES[phase].label} (${Math.max(0, ageMonths).toFixed(0)} mo): ${phase === "hype" ? "new-set singles usually fall for months as more packs get opened." : phase === "trough" ? "still being printed — singles usually bottom in this window." : phase === "transition" ? "printing has likely ended; good cards tend to recover from here." : "an older card; moves are slower and driven by demand, not supply."}`);
+      if (runup) R.push(`Still ${Math.round((price / lowAll - 1) * 100)}% above where it traded before its run-up (${E.fmt$(lowAll)} in ${monthYear(lowDay)}; peak ${E.fmt$(highAll)}). A drop from a hype peak isn't a discount — the buy-under price is set near the pre-run-up level.`);
       if (flags.includes("pullback")) R.push(`Down ${Math.round(dd * 100)}% from its 1-year high (${E.fmt$(high)}) and flat this month — a pullback that's settling.`);
       if (flags.includes("spike")) R.push(`Up ${E.fmtPct(st.ch30)} in 30 days. Spikes usually give some back — wait for ${E.fmt$(target)}.`);
       if (flags.includes("still_dropping")) R.push(`At its buy-under price, but down ${E.fmtPct(st.ch30)} in the last 30 days — wait for it to flatten before buying.`);
@@ -168,6 +210,8 @@
       else if (flags.includes("falling")) R.push(`Down ${E.fmtPct(st.ch30)} in 30 days and still sliding — let it settle.`);
       if (flags.includes("steady")) R.push(`Steady climb (${E.fmtPct(st.ch90)} over 90 days) without a blow-off.`);
       if (flags.includes("lagging_set")) R.push(`Lagging its set: ${E.fmtPct(st.ch90)} over 90 days vs ${E.fmtPct(setSealed90[c.setId])} for the set's sealed product.`);
+      if (psaR.jump?.mixed) R.push(`Scrydex mixes two PSA 10 prices for this card (about ${E.fmt$(psaR.jump.from)} and ${E.fmt$(psaR.jump.to)} — probably a normal copy and a signed or special one). Using ${E.fmt$(psaR.price)}; check recent sold listings.`);
+      else if (psaR.jump) R.push(`Scrydex's PSA 10 price jumped from about ${E.fmt$(psaR.jump.from)} to ${E.fmt$(psaR.jump.to)} on ${E.dayToDate(psaR.jump.since).toISOString().slice(0, 10)} and froze there — likely one odd sale or listing. Using ${E.fmt$(psaR.price)}; check recent sold listings before relying on it.`);
       if (psaNow) {
         const m = psaNow / price;
         if (psaNow <= b.budgetMax) R.push(`A PSA 10 copy runs about ${E.fmt$(psaNow)} — within your budget, and graded copies skip the condition risk of raw.`);
@@ -176,16 +220,18 @@
       }
       if (price > b.budgetMax) R.push(`Now above your ${E.fmt$(b.budgetMax)} max; kept in the list so its history continues.`);
       if (!enoughHist) R.push(`Only ${st.n} day${st.n === 1 ? "" : "s"} of price history so far — treat this call as provisional.`);
+      else if (histStart != null && lastDay - histStart < 330) R.push(`Price history here only goes back to ${monthYear(histStart)}, so older prices (like where it sat before any hype) aren't visible. TCGplayer's market price can also run above actual sold prices — check recent sales.`);
 
       const checks = [
         { k: "history", ok: enoughHist, label: enoughHist ? `${st.spanDays} days of price history` : `Only ${st.spanDays} days of price history (needs ${E.MIN_HIST_DAYS})` },
         { k: "peers", ok: !!fair, label: fair ? `Compared with ${fair.n} similar cards` : "Too few similar cards to compare with" },
         { k: "release", ok: !!c.release, label: c.release ? `Released ${c.release}` : "Release date unknown (promo or catch-all group)" },
-        { k: "psa", ok: !!psaNow, label: psaNow ? "PSA 10 price known" : "No PSA 10 price" },
+        { k: "psa", ok: !!psaNow && !psaR.jump, label: psaR.jump ? "PSA 10 price had a suspicious jump (using the earlier level)" : psaNow ? "PSA 10 price known" : "No PSA 10 price" },
       ];
       // One short line for the card face; the full reasons are in the detail view.
       const short = flags.includes("spike") ? `Up ${E.fmtPct(st.ch30)} in 30 days — wait for it to cool`
         : flags.includes("still_dropping") ? `At target but down ${E.fmtPct(st.ch30)} this month — let it flatten`
+        : runup && price > (target ?? 0) ? `Still ${Math.round((price / lowAll - 1) * 100)}% above its pre-run-up price (${E.fmt$(lowAll)})`
         : flags.includes("slow_slide") ? `Down ${E.fmtPct(st.ch90)} in 90 days, still making new lows`
         : flags.includes("falling") ? `Down ${E.fmtPct(st.ch30)} in 30 days and still sliding`
         : ratio != null && ratio >= 2 ? `Well under similar cards (${E.fmt$(fair.value)}) — look closer`
@@ -195,7 +241,7 @@
         : flags.includes("lagging_set") ? "Lagging its own set's sealed product"
         : ratio != null ? `In line with similar cards (${E.fmt$(fair.value)})` : "Too few similar cards to compare";
       out.push({
-        ...c, kind: "single", checks, short, set: { id: c.setId, name: c.setName }, stats: st, psa: { price: psaNow, stats: g },
+        ...c, kind: "single", checks, short, histStart, runup, lowAll, psaJump: psaR.jump || null, set: { id: c.setId, name: c.setName }, stats: st, psa: { price: psaNow, stats: g },
         ageMonths, phase, fair, ratio, target, targetWhy, gap: target != null ? (price / target - 1) * 100 : null,
         demand, value, momentum, timing, budgetFit, score, confidence, signal, flags, reasons: R,
         headline: R[0], tierLabel: TIERS[c.tier].label, eraLabel: ERAS[c.era],
@@ -210,7 +256,8 @@
       "",
       `Card: ${r.name} — ${r.setName}${r.number ? ` #${r.number}` : ""} (${r.tierLabel}${r.sub ? `, ${r.sub}` : ""}), released ${r.release || "unknown"}`,
       `TCGplayer market (raw, ${priceDate}): ${E.fmt$(r.price)}; 30d ${E.fmtPct(r.stats.ch30)}, 90d ${E.fmtPct(r.stats.ch90)}, 1y high ${E.fmt$(r.stats.high365)}`,
-      r.psa.price ? `PSA 10: about ${E.fmt$(r.psa.price)}` : "PSA 10: unknown",
+      r.psa.price ? `PSA 10: about ${E.fmt$(r.psa.price)} (Scrydex)${r.psaJump ? ` — note: Scrydex jumped to ${E.fmt$(r.psaJump.to)} recently, which looked like an outlier` : ""}` : "PSA 10: unknown",
+      r.histStart != null ? `My price history only starts ${E.dayToDate(r.histStart).toISOString().slice(0, 10)}${r.runup ? `; it ran up from ${E.fmt$(r.lowAll)} since then` : ""}.` : "",
       r.fair ? `Similar cards: ${r.fair.how}, median ${E.fmt$(r.fair.value)}` : "",
       `My tracker says: ${E.SIGNALS[r.signal].label}, buy under ${E.fmt$(r.target)}, score ${r.score}/100.`,
       "",

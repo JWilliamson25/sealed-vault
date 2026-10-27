@@ -226,13 +226,15 @@ SINGLE_EXCLUDE_RE = re.compile(
 
 TIER_LABEL = {
     "sir": "Special Illustration Rare", "alt": "Alternate Art", "ir": "Illustration / Gallery",
-    "secret": "Secret / Hyper Rare", "shiny": "Shiny", "ultra": "Ultra Rare / Full Art",
+    "secret": "Secret Rare", "gold": "Gold / Hyper Rare", "rainbow": "Rainbow Rare",
+    "shiny": "Shiny", "ultra": "Ultra Rare / Full Art",
     "vintage": "Vintage holo & rare", "promo": "Promo", "classic": "Classic Collection reprint",
     "base": "Regular rare", "other": "Special rare",
 }
 
 
-def card_tier(name: str, rarity: str | None, number: str | None, release: str | None) -> str:
+def card_tier(name: str, rarity: str | None, number: str | None, release: str | None,
+              srarity: str | None = None) -> str:
     """Bucket a single into a rarity tier that long-term buyers treat alike."""
     n, r, num = name or "", (rarity or "").lower(), (number or "").upper()
     year = int(release[:4]) if release else None
@@ -245,6 +247,13 @@ def card_tier(name: str, rarity: str | None, number: str | None, release: str | 
     if r.startswith("classic collection"):
         return "classic"
     if re.search(r"secret|rainbow|hyper|gold|futuristic", r) or re.search(r"\((secret|gold|rainbow)\)", n, re.I):
+        # Gold and rainbow secrets sell very differently, but TCGplayer often labels both "Secret Rare".
+        # Scrydex's rarity (saved by the singles import) tells them apart.
+        sr = (srarity or "").lower()
+        if "rainbow" in r or "rainbow" in sr or "(rainbow)" in n.lower():
+            return "rainbow"
+        if re.search(r"hyper|gold", r) or re.search(r"secret|gold|hyper", sr) or "(gold)" in n.lower():
+            return "gold"
         return "secret"
     if "shiny" in r or re.match(r"SV\d", num) or "shining" in n.lower():
         return "shiny"

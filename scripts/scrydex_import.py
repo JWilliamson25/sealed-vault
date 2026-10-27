@@ -462,6 +462,7 @@ def trends_import(api: Api, matches: list, sealed: list, meta: dict, report: dic
 # ------------------------------------------------------------------- singles ---
 
 SINGLES_REPORT = DATA / "scrydex_singles_report.json"
+REFRESH = "--refresh" in sys.argv  # re-download history even for cards already imported
 
 
 def num_key(n) -> str:
@@ -476,6 +477,11 @@ def variant_key(v) -> str:
     return v
 
 
+def plain_flags(p: dict) -> bool:
+    """True if a price is for a signed, error or 'perfect' (Black Label-style) copy — not a normal one."""
+    return bool(p.get("is_signed") or p.get("is_error") or p.get("is_perfect"))
+
+
 def card_prices(card: dict):
     """[(variant, kind, value)] where kind is 'raw' (NM) or 'psa10'."""
     out = []
@@ -485,7 +491,8 @@ def card_prices(card: dict):
                 continue
             if p.get("type", "raw") == "raw" and (p.get("condition") or "NM") == "NM":
                 out.append((v.get("name"), "raw", float(p["market"])))
-            elif p.get("type") == "graded" and str(p.get("company", "")).upper() == "PSA" and str(p.get("grade", "")).strip() in ("10", "10.0"):
+            elif (p.get("type") == "graded" and str(p.get("company", "")).upper() == "PSA"
+                  and str(p.get("grade", "")).strip() in ("10", "10.0") and not plain_flags(p)):
                 out.append((v.get("name"), "psa10", float(p["market"])))
     return out
 
@@ -558,7 +565,8 @@ def match_singles(cards: list[dict], scry: list[dict]):
               [val for v, k, val in card_prices(c) if k == "psa10"]
         matched.append({"id": t["id"], "card": t["name"], "scrydexId": c["id"], "scrydex": c.get("name"),
                         "scrydexSet": (c.get("expansion") or {}).get("name"), "variant": var, "via": via,
-                        "priceRatio": round(ratio, 3), "psa10": max(psa) if psa else None})
+                        "priceRatio": round(ratio, 3), "psa10": sorted(psa)[len(psa) // 2] if psa else None,
+                        "rarity": c.get("rarity")})
     return matched, skipped
 
 
@@ -574,9 +582,10 @@ def card_history(api: Api, cid: str, variant, start: date, end: date):
             if not x.get("market"):
                 continue
             same = x.get("variant") == variant
-            if x.get("type", "raw") == "raw" and x.get("condition") == "NM" and same:
+            if x.get("type", "raw") == "raw" and x.get("condition") == "NM" and same and not plain_flags(x):
                 raw[d] = float(x["market"])
-            elif x.get("type") == "graded" and str(x.get("company", "")).upper() == "PSA" and str(x.get("grade", "")).strip() in ("10", "10.0"):
+            elif (x.get("type") == "graded" and str(x.get("company", "")).upper() == "PSA"
+                  and str(x.get("grade", "")).strip() in ("10", "10.0") and not plain_flags(x)):
                 if same or d not in psa:
                     psa[d] = float(x["market"])
     return raw, psa
@@ -605,6 +614,7 @@ def singles_import(api: Api, dry_run: bool):
     psa_now = {str(m["id"]): {"price": m["psa10"], "date": sj["priceDate"]} for m in matched if m["psa10"]}
     sj["psa10"] = psa_now  # replace, so rejected matches don't leave stale prices
     sj["psa10Date"] = sj["priceDate"]
+    sj["srarity"] = {str(m["id"]): m["rarity"] for m in matched if m.get("rarity")}
     write_json(SINGLES_PATH, sj)
     if dry_run:
         report["creditsUsed"] = api.used
@@ -627,7 +637,7 @@ def singles_import(api: Api, dry_run: bool):
             t = byid[m["id"]]
             key = str(t["id"])
             existing = hist["series"].get(key, [])
-            if f"g:{key}" in hist["series"] and len(existing) > 20:
+            if f"g:{key}" in hist["series"] and len(existing) > 20 and not REFRESH:
                 continue  # already imported (re-run)
             first_day = min((p[0] for p in existing), default=today)
             rel = t.get("release")
@@ -649,7 +659,7 @@ def singles_import(api: Api, dry_run: bool):
                 else:
                     note.append(f"raw skipped (sources {scale:.2f}x apart)")
             if psa:
-                g = hist["series"].get(f"g:{key}", [])
+                g = [] if REFRESH else hist["series"].get(f"g:{key}", [])
                 have = {p[0] for p in g}
                 hist["series"][f"g:{key}"] = sorted(g + [[d, round(v, 2)] for d, v in psa.items() if d not in have],
                                                     key=lambda p: p[0])
@@ -680,6 +690,7 @@ def main():
                     help="rebuild a few past price points from Scrydex's percent-change trends (~30 credits)")
     ap.add_argument("--singles", action="store_true",
                     help="import raw + PSA 10 price history for tracked singles (combine with --dry-run to match only)")
+    ap.add_argument("--refresh", action="store_true", help="with --singles: re-download history for every card")
     ap.add_argument("--max-credits", type=int, default=40000)
     args = ap.parse_args()
 

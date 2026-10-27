@@ -204,6 +204,7 @@ def sync_singles(cfg, groups, parent_of, singles, old_singles, price_date, today
     rx = chase_regexes(cfg["chasePokemon"])
     gby = {g["groupId"]: g for g in groups}
     was_tracked = {c["id"] for c in old_singles.get("cards", [])}
+    srarity = old_singles.get("srarity") or {}  # Scrydex rarity per card, from the singles import
 
     cards, peers_raw = [], {}
     for pgid, lst in singles.items():
@@ -215,7 +216,7 @@ def sync_singles(cfg, groups, parent_of, singles, old_singles, price_date, today
             mon = next((nm for nm, _w, r in rx if r.search(c["name"])), None)
             if not mon:
                 continue
-            tier = card_tier(c["name"], c.get("rarity"), c.get("number"), release)
+            tier = card_tier(c["name"], c.get("rarity"), c.get("number"), release, srarity.get(str(c["id"])))
             era = card_era(release)
             price = c["sprice"]
             if price and price >= 3:  # peers use every price, so the band doesn't skew them
@@ -246,7 +247,7 @@ def sync_singles(cfg, groups, parent_of, singles, old_singles, price_date, today
     h = cfg["history"]
     compact_history(hist, today, h["dailyWindowDays"], h["olderBucketDays"], keep)
     hist["lastDay"] = today
-    out = {**{k: v for k, v in old_singles.items() if k in ("psa10", "psa10Date", "scrydex")},
+    out = {**{k: v for k, v in old_singles.items() if k in ("psa10", "psa10Date", "scrydex", "srarity")},
            "priceDate": price_date, "cards": cards, "peers": peers}
     write_json(SINGLES_PATH, out)
     write_json(SINGLES_HISTORY_PATH, hist)
