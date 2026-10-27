@@ -155,12 +155,13 @@
     return "vintage";
   }
 
-  /** Days of real price history the app has (longest product series). */
+  /** Days of price history the app has: the longest span any product's history covers. */
   function historyDays(meta, history) {
     let best = 0;
+    const last = history.lastDay;
     for (const p of meta.products) {
       const s = history.series[String(p.id)];
-      if (s && s.length) best = Math.max(best, s.length);
+      if (s && s.length) best = Math.max(best, (last ?? s[s.length - 1][0]) - Math.min(...s.map((x) => x[0])) + 1);
     }
     return best;
   }
