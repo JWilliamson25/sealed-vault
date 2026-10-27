@@ -121,6 +121,8 @@
       if (st.ch30 != null) {
         if (st.ch30 > 25) { momentum = 12; flags.push("spike"); }
         else if (st.ch30 < -15) { momentum = 22; flags.push("falling"); }
+        // A slow slide: down 12%+ over 90 days, still dropping this month, sitting at its low.
+        else if (st.ch90 != null && st.ch90 <= -12 && st.ch30 <= -4 && st.low90 != null && price <= st.low90 * 1.03) { momentum = 25; flags.push("falling"); flags.push("slow_slide"); }
         else if (dd != null && dd >= 0.25 && st.ch30 > -5) { momentum = 88; flags.push("pullback"); }
         else if (st.ch90 != null && st.ch90 >= 5 && st.ch90 <= 30 && st.ch30 < 12) { momentum = 66; flags.push("steady"); }
       }
@@ -143,6 +145,11 @@
       else signal = "wait";
       if (signal === "strong_buy" && !enoughHist) signal = "buy"; // no Strong buy without real history
       if (price > b.budgetMax && ["strong_buy", "buy", "accumulate"].includes(signal)) signal = "wait"; // over your max
+      // Wait for a falling card to flatten: no Strong buy while it's still dropping, nothing at all if it's dropping fast.
+      if (st.ch30 != null && ["strong_buy", "buy", "accumulate"].includes(signal)) {
+        if (st.ch30 <= -10) { signal = "falling"; flags.push("still_dropping"); }
+        else if (st.ch30 <= -5 && signal === "strong_buy") signal = "buy";
+      }
 
       /* --- reasons --- */
       const R = [];
@@ -156,7 +163,9 @@
       if (phase !== "unknown") R.push(`${E.PHASES[phase].label} (${Math.max(0, ageMonths).toFixed(0)} mo): ${phase === "hype" ? "new-set singles usually fall for months as more packs get opened." : phase === "trough" ? "still being printed — singles usually bottom in this window." : phase === "transition" ? "printing has likely ended; good cards tend to recover from here." : "an older card; moves are slower and driven by demand, not supply."}`);
       if (flags.includes("pullback")) R.push(`Down ${Math.round(dd * 100)}% from its 1-year high (${E.fmt$(high)}) and flat this month — a pullback that's settling.`);
       if (flags.includes("spike")) R.push(`Up ${E.fmtPct(st.ch30)} in 30 days. Spikes usually give some back — wait for ${E.fmt$(target)}.`);
-      if (flags.includes("falling")) R.push(`Down ${E.fmtPct(st.ch30)} in 30 days and still sliding — let it settle.`);
+      if (flags.includes("still_dropping")) R.push(`At its buy-under price, but down ${E.fmtPct(st.ch30)} in the last 30 days — wait for it to flatten before buying.`);
+      if (flags.includes("slow_slide")) R.push(`Down ${E.fmtPct(st.ch90)} over 90 days and still making new lows (${E.fmtPct(st.ch30)} this month). Its buy-under price follows it down, so wait until it flattens for a few weeks.`);
+      else if (flags.includes("falling")) R.push(`Down ${E.fmtPct(st.ch30)} in 30 days and still sliding — let it settle.`);
       if (flags.includes("steady")) R.push(`Steady climb (${E.fmtPct(st.ch90)} over 90 days) without a blow-off.`);
       if (flags.includes("lagging_set")) R.push(`Lagging its set: ${E.fmtPct(st.ch90)} over 90 days vs ${E.fmtPct(setSealed90[c.setId])} for the set's sealed product.`);
       if (psaNow) {
@@ -176,6 +185,8 @@
       ];
       // One short line for the card face; the full reasons are in the detail view.
       const short = flags.includes("spike") ? `Up ${E.fmtPct(st.ch30)} in 30 days — wait for it to cool`
+        : flags.includes("still_dropping") ? `At target but down ${E.fmtPct(st.ch30)} this month — let it flatten`
+        : flags.includes("slow_slide") ? `Down ${E.fmtPct(st.ch90)} in 90 days, still making new lows`
         : flags.includes("falling") ? `Down ${E.fmtPct(st.ch30)} in 30 days and still sliding`
         : ratio != null && ratio >= 2 ? `Well under similar cards (${E.fmt$(fair.value)}) — look closer`
         : ratio != null && ratio >= 1.3 ? `${Math.round((1 - 1 / ratio) * 100)}% under similar cards (${E.fmt$(fair.value)})`
