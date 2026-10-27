@@ -213,6 +213,9 @@ def pick(p: dict, cands: list[dict], strip_set: str | None, need_pc_variant: boo
     runner = scored[1] if len(scored) > 1 else None
     if ratio is None:
         return None, "Scrydex has no current price to confirm the match"
+    pc = lambda n: bool(re.search(r"pok[eé]mon center", n, re.I))
+    if pc(p["name"]) != (pc(c["name"]) or is_pc_variant(best_px[0])):
+        return None, f"Pokémon Center vs regular mismatch ('{c['name']}')"
     if not (0.6 <= ratio <= 1.67):
         return None, f"prices disagree (Scrydex '{c['name']}' {best_px[2]:.2f} vs TCGplayer {p['price']:.2f})"
     if strip_set is None and s_name < 0.75:
