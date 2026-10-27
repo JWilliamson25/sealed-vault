@@ -453,17 +453,6 @@
    "confidence": 1.0
   },
   {
-   "tcgplayerId": 722832,
-   "tcgplayer": "30th Celebration ex Box [Set of 2]",
-   "scrydexId": "me55-s5",
-   "scrydex": "30th Celebration Tech Sticker Collection [Set of 2]",
-   "scrydexSet": "30th Celebration",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.611,
-   "confidence": 0.48
-  },
-  {
    "tcgplayerId": 666906,
    "tcgplayer": "Mega Evolution: Ascended Heroes Collection - Erika (3-Tab)",
    "scrydexId": "me2pt5-s14",
@@ -750,61 +739,6 @@
    "confidence": 1.0
   },
   {
-   "tcgplayerId": 691923,
-   "tcgplayer": "Mega Evolution: Ascended Heroes Collection [Set of 2]",
-   "scrydexId": "me2pt5-s4",
-   "scrydex": "Ascended Heroes First Partners Deluxe Pin Collection",
-   "scrydexSet": "Ascended Heroes",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.163,
-   "confidence": 0.33
-  },
-  {
-   "tcgplayerId": 702500,
-   "tcgplayer": "Ascended Heroes Tin [Set of 3]",
-   "scrydexId": "me2pt5-s13",
-   "scrydex": "Ascended Heroes Mini Tins 5-Pack",
-   "scrydexSet": "Ascended Heroes",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.081,
-   "confidence": 0.37
-  },
-  {
-   "tcgplayerId": 702501,
-   "tcgplayer": "Ascended Heroes Tin Case",
-   "scrydexId": "me2pt5-s24",
-   "scrydex": "Ascended Heroes Mega ex Boxes Case",
-   "scrydexSet": "Ascended Heroes",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.282,
-   "confidence": 0.41
-  },
-  {
-   "tcgplayerId": 709095,
-   "tcgplayer": "Mega Evolution: Ascended Heroes Collection - Erika (1-Tab)",
-   "scrydexId": "me2pt5-s14",
-   "scrydex": "Mega Evolution: Ascended Heroes Collection - Erika",
-   "scrydexSet": "Ascended Heroes",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.253,
-   "confidence": 0.9
-  },
-  {
-   "tcgplayerId": 709097,
-   "tcgplayer": "Mega Evolution: Ascended Heroes Collection - Larry (1-Tab)",
-   "scrydexId": "me2pt5-s15",
-   "scrydex": "Ascended Heroes Collection - Larry",
-   "scrydexSet": "Ascended Heroes",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.242,
-   "confidence": 0.9
-  },
-  {
    "tcgplayerId": 654135,
    "tcgplayer": "Phantasmal Flames Pokemon Center Elite Trainer Box (Exclusive)",
    "scrydexId": "me2-s5",
@@ -967,7 +901,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 655282,
@@ -979,17 +913,6 @@
    "condition": "U",
    "priceRatio": 1.0,
    "confidence": 1.0
-  },
-  {
-   "tcgplayerId": 685215,
-   "tcgplayer": "Phantasmal Flames 3-Pack Blister Case",
-   "scrydexId": "me2-s14",
-   "scrydex": "Phantasmal Flames Elite Trainer Box Case",
-   "scrydexSet": "Phantasmal Flames",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.04,
-   "confidence": 0.58
   },
   {
    "tcgplayerId": 624675,
@@ -1231,7 +1154,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.007,
-   "confidence": 0.7
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 649711,
@@ -1242,7 +1165,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 593294,
@@ -1495,7 +1418,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 600518,
@@ -1542,17 +1465,6 @@
    "confidence": 1.0
   },
   {
-   "tcgplayerId": 614356,
-   "tcgplayer": "Prismatic Evolutions Mini Tin Display Case",
-   "scrydexId": "sv8pt5-s11",
-   "scrydex": "Prismatic Evolutions Elite Trainer Box Case",
-   "scrydexSet": "Prismatic Evolutions",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.281,
-   "confidence": 0.44
-  },
-  {
    "tcgplayerId": 615027,
    "tcgplayer": "Prismatic Evolutions Booster Bundle Case",
    "scrydexId": "sv8pt5-s25",
@@ -1573,39 +1485,6 @@
    "condition": "U",
    "priceRatio": 1.002,
    "confidence": 1.0
-  },
-  {
-   "tcgplayerId": 638058,
-   "tcgplayer": "Prismatic Evolutions Super-Premium Collection Case",
-   "scrydexId": "sv8pt5-s11",
-   "scrydex": "Prismatic Evolutions Elite Trainer Box Case",
-   "scrydexSet": "Prismatic Evolutions",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.256,
-   "confidence": 0.5
-  },
-  {
-   "tcgplayerId": 650804,
-   "tcgplayer": "Prismatic Evolutions Premium Figure Collection Case",
-   "scrydexId": "sv8pt5-s11",
-   "scrydex": "Prismatic Evolutions Elite Trainer Box Case",
-   "scrydexSet": "Prismatic Evolutions",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.013,
-   "confidence": 0.59
-  },
-  {
-   "tcgplayerId": 670607,
-   "tcgplayer": "Prismatic Evolutions Elite Trainer Box (Dollar General Exclusive)",
-   "scrydexId": "sv8pt5-s4",
-   "scrydex": "Prismatic Evolutions Elite Trainer Box",
-   "scrydexSet": "Prismatic Evolutions",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.616,
-   "confidence": 0.85
   },
   {
    "tcgplayerId": 565599,
@@ -1649,7 +1528,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 0.998,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 565604,
@@ -1671,7 +1550,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 0.996,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 565606,
@@ -1682,17 +1561,6 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 0.997,
-   "confidence": 1.0
-  },
-  {
-   "tcgplayerId": 565629,
-   "tcgplayer": "Surging Sparks Booster Bundle (LGS)",
-   "scrydexId": "sv8-s5",
-   "scrydex": "Surging Sparks Booster Bundle",
-   "scrydexSet": "Surging Sparks",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.0,
    "confidence": 1.0
   },
   {
@@ -1826,17 +1694,6 @@
    "condition": "U",
    "priceRatio": 1.0,
    "confidence": 1.0
-  },
-  {
-   "tcgplayerId": 646039,
-   "tcgplayer": "Surging Sparks Half Booster Box",
-   "scrydexId": "sv8-s2",
-   "scrydex": "Surging Sparks Booster Box",
-   "scrydexSet": "Surging Sparks",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.518,
-   "confidence": 0.19
   },
   {
    "tcgplayerId": 679564,
@@ -2023,7 +1880,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 549489,
@@ -2056,7 +1913,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 593672,
@@ -2123,6 +1980,17 @@
    "condition": "U",
    "priceRatio": 1.0,
    "confidence": 0.8
+  },
+  {
+   "tcgplayerId": 532849,
+   "tcgplayer": "Temporal Forces Elite Trainer Box [Set of 2]",
+   "scrydexId": "sv5-s9",
+   "scrydex": "Temporal Forces Elite Trainer Box (Set of 2)",
+   "scrydexSet": "Temporal Forces",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 532853,
@@ -2224,17 +2092,6 @@
    "confidence": 1.0
   },
   {
-   "tcgplayerId": 537418,
-   "tcgplayer": "Temporal Forces Elite Trainer Box Case",
-   "scrydexId": "sv5-s7",
-   "scrydex": "Temporal Forces Booster Box Case",
-   "scrydexSet": "Temporal Forces",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.196,
-   "confidence": 0.92
-  },
-  {
    "tcgplayerId": 538775,
    "tcgplayer": "Temporal Forces Pokemon Center Elite Trainer Box (Exclusive) [Walking Wake]",
    "scrydexId": "sv5-s3",
@@ -2254,7 +2111,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 538787,
@@ -2276,7 +2133,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 538807,
@@ -2287,7 +2144,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 541017,
@@ -2309,7 +2166,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 0.988,
-   "confidence": 0.85
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 544687,
@@ -2540,7 +2397,18 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
+   "confidence": 1.0
+  },
+  {
+   "tcgplayerId": 528228,
+   "tcgplayer": "Paldean Fates Tins [Set of 3]",
+   "scrydexId": "sv4pt5-s22",
+   "scrydex": "Paldean Fates Tins (Set of 3)",
+   "scrydexSet": "Paldean Fates",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 528229,
@@ -2551,7 +2419,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.76
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 528324,
@@ -2562,7 +2430,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 528771,
@@ -2584,7 +2452,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.003,
-   "confidence": 0.7
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 530700,
@@ -2618,17 +2486,6 @@
    "condition": "U",
    "priceRatio": 1.0,
    "confidence": 1.0
-  },
-  {
-   "tcgplayerId": 693612,
-   "tcgplayer": "Paldean Fates Mini Tin Display Case",
-   "scrydexId": "sv4pt5-s11",
-   "scrydex": "Paldean Fates Elite Trainer Box Case",
-   "scrydexSet": "Paldean Fates",
-   "variant": "pokemonCenter",
-   "condition": "U",
-   "priceRatio": 1.358,
-   "confidence": 0.41
   },
   {
    "tcgplayerId": 501999,
@@ -3112,7 +2969,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 514193,
@@ -3134,7 +2991,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 534087,
@@ -3258,17 +3115,6 @@
    "confidence": 0.99
   },
   {
-   "tcgplayerId": 453488,
-   "tcgplayer": "Crown Zenith Mini Tin [Marnie & Morpeko]",
-   "scrydexId": "swsh12pt5-s26",
-   "scrydex": "Crown Zenith Mini Tin - Leon & Charizard",
-   "scrydexSet": "Crown Zenith",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.87,
-   "confidence": 0.55
-  },
-  {
    "tcgplayerId": 453489,
    "tcgplayer": "Crown Zenith Mini Tin [Leon & Charizard]",
    "scrydexId": "swsh12pt5-s26",
@@ -3280,39 +3126,6 @@
    "confidence": 1.0
   },
   {
-   "tcgplayerId": 453490,
-   "tcgplayer": "Crown Zenith Mini Tin [Hop & Wooloo]",
-   "scrydexId": "swsh12pt5-s26",
-   "scrydex": "Crown Zenith Mini Tin - Leon & Charizard",
-   "scrydexSet": "Crown Zenith",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.892,
-   "confidence": 0.56
-  },
-  {
-   "tcgplayerId": 453491,
-   "tcgplayer": "Crown Zenith Mini Tin [Bede & Hatenna]",
-   "scrydexId": "swsh12pt5-s26",
-   "scrydex": "Crown Zenith Mini Tin - Leon & Charizard",
-   "scrydexSet": "Crown Zenith",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.854,
-   "confidence": 0.54
-  },
-  {
-   "tcgplayerId": 453492,
-   "tcgplayer": "Crown Zenith Mini Tin [Sonia & Yamper]",
-   "scrydexId": "swsh12pt5-s26",
-   "scrydex": "Crown Zenith Mini Tin - Leon & Charizard",
-   "scrydexSet": "Crown Zenith",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.952,
-   "confidence": 0.58
-  },
-  {
    "tcgplayerId": 453493,
    "tcgplayer": "Crown Zenith Mini Tin Display",
    "scrydexId": "swsh12pt5-s23",
@@ -3322,17 +3135,6 @@
    "condition": "U",
    "priceRatio": 1.0,
    "confidence": 1.0
-  },
-  {
-   "tcgplayerId": 453494,
-   "tcgplayer": "Crown Zenith Mini Tin [Set of 5]",
-   "scrydexId": "swsh12pt5-s30",
-   "scrydex": "Crown Zenith Tin (Set of 3) (International Version)",
-   "scrydexSet": "Crown Zenith",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.326,
-   "confidence": 0.42
   },
   {
    "tcgplayerId": 454246,
@@ -3431,7 +3233,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 475646,
@@ -3464,7 +3266,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 505916,
@@ -3476,17 +3278,6 @@
    "condition": "U",
    "priceRatio": 1.0,
    "confidence": 1.0
-  },
-  {
-   "tcgplayerId": 516939,
-   "tcgplayer": "Morpeko V-UNION Premium Treasures Collection",
-   "scrydexId": "swsh12pt5-s11",
-   "scrydex": "Crown Zenith Morpeko VPremium Treasures Collection",
-   "scrydexSet": "Crown Zenith",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.0,
-   "confidence": 0.6
   },
   {
    "tcgplayerId": 527562,
@@ -3520,50 +3311,6 @@
    "condition": "U",
    "priceRatio": 0.994,
    "confidence": 1.0
-  },
-  {
-   "tcgplayerId": 609238,
-   "tcgplayer": "Crown Zenith Booster Bundle Case",
-   "scrydexId": "swsh12pt5-s19",
-   "scrydex": "Crown Zenith Elite Trainer Box Case",
-   "scrydexSet": "Crown Zenith",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.667,
-   "confidence": 0.87
-  },
-  {
-   "tcgplayerId": 631791,
-   "tcgplayer": "Crown Zenith Mini Tin Display Case",
-   "scrydexId": "swsh12pt5-s6",
-   "scrydex": "Crown Zenith Elite Trainer Box Plus Case",
-   "scrydexSet": "Crown Zenith",
-   "variant": "pokemonCenter",
-   "condition": "U",
-   "priceRatio": 1.25,
-   "confidence": 0.42
-  },
-  {
-   "tcgplayerId": 664978,
-   "tcgplayer": "Crown Zenith Premium Figure Collection Case",
-   "scrydexId": "swsh12pt5-s6",
-   "scrydex": "Crown Zenith Elite Trainer Box Plus Case",
-   "scrydexSet": "Crown Zenith",
-   "variant": "pokemonCenter",
-   "condition": "U",
-   "priceRatio": 1.251,
-   "confidence": 0.45
-  },
-  {
-   "tcgplayerId": 693210,
-   "tcgplayer": "Morpeko V-UNION Premium Treasures Collection Case",
-   "scrydexId": "swsh12pt5-s6",
-   "scrydex": "Crown Zenith Elite Trainer Box Plus Case",
-   "scrydexSet": "Crown Zenith",
-   "variant": "pokemonCenter",
-   "condition": "U",
-   "priceRatio": 1.515,
-   "confidence": 0.28
   },
   {
    "tcgplayerId": 482138,
@@ -3723,7 +3470,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 283401,
@@ -3800,7 +3547,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 285779,
@@ -3811,7 +3558,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 285780,
@@ -3877,7 +3624,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 550837,
@@ -3889,17 +3636,6 @@
    "condition": "U",
    "priceRatio": 1.0,
    "confidence": 1.0
-  },
-  {
-   "tcgplayerId": 562366,
-   "tcgplayer": "Silver Tempest Booster Bundle Case",
-   "scrydexId": "swsh12-s5",
-   "scrydex": "Silver Tempest Booster Box Case",
-   "scrydexSet": "Silver Tempest",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.091,
-   "confidence": 0.96
   },
   {
    "tcgplayerId": 277324,
@@ -4064,7 +3800,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 278795,
@@ -4097,17 +3833,6 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
-  },
-  {
-   "tcgplayerId": 278819,
-   "tcgplayer": "Lost Origin Booster Bundle",
-   "scrydexId": "swsh11-s13",
-   "scrydex": "Lost Origin Booster Bundle (Set of 6)",
-   "scrydexSet": "Lost Origin",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.012,
    "confidence": 1.0
   },
   {
@@ -4141,7 +3866,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.83
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 282401,
@@ -4230,50 +3955,6 @@
    "condition": "U",
    "priceRatio": 1.013,
    "confidence": 0.79
-  },
-  {
-   "tcgplayerId": 496131,
-   "tcgplayer": "Lost Origin Sleeved Booster Pack Case",
-   "scrydexId": "swsh11-s19",
-   "scrydex": "Lost Origin Elite Trainer Box Case",
-   "scrydexSet": "Lost Origin",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.697,
-   "confidence": 0.58
-  },
-  {
-   "tcgplayerId": 637417,
-   "tcgplayer": "Hisuian Zoroark VSTAR Premium Collection (International Version)",
-   "scrydexId": "swsh11-s7",
-   "scrydex": "Lost Origin Hisuian Zoroark VSTAR Premium Collection",
-   "scrydexSet": "Lost Origin",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.625,
-   "confidence": 0.75
-  },
-  {
-   "tcgplayerId": 648474,
-   "tcgplayer": "Lost Origin Build & Battle Stadium Case",
-   "scrydexId": "swsh11-s19",
-   "scrydex": "Lost Origin Elite Trainer Box Case",
-   "scrydexSet": "Lost Origin",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.332,
-   "confidence": 0.42
-  },
-  {
-   "tcgplayerId": 652759,
-   "tcgplayer": "Lost Origin Pokemon Center Elite Trainer Box Case (Exclusive)",
-   "scrydexId": "swsh11-s8",
-   "scrydex": "Lost Origin Booster Box Case",
-   "scrydexSet": "Lost Origin",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.913,
-   "confidence": 0.97
   },
   {
    "tcgplayerId": 270708,
@@ -4375,28 +4056,6 @@
    "confidence": 1.0
   },
   {
-   "tcgplayerId": 270728,
-   "tcgplayer": "Pokemon GO Mini Tin [Magikarp]",
-   "scrydexId": "pgo-s9",
-   "scrydex": "Pokemon Go Tin - Blissey",
-   "scrydexSet": "Pok\u00e9mon GO",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.991,
-   "confidence": 0.55
-  },
-  {
-   "tcgplayerId": 270732,
-   "tcgplayer": "Pokemon GO Mini Tin [Snorlax]",
-   "scrydexId": "pgo-s8",
-   "scrydex": "Pokemon Go Tin - Snorlax",
-   "scrydexSet": "Pok\u00e9mon GO",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.256,
-   "confidence": 0.7
-  },
-  {
    "tcgplayerId": 270733,
    "tcgplayer": "Pokemon GO Poke Ball Tin - Great Ball",
    "scrydexId": "pgo-s25",
@@ -4427,7 +4086,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 271502,
@@ -4438,7 +4097,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 271503,
@@ -4449,7 +4108,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 271504,
@@ -4460,7 +4119,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 0.997,
-   "confidence": 0.83
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 271511,
@@ -4559,18 +4218,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
-  },
-  {
-   "tcgplayerId": 630089,
-   "tcgplayer": "Pokemon Go Pokemon Center Elite Trainer Box Plus Case (Exclusive)",
-   "scrydexId": "pgo-s21",
-   "scrydex": "Pokemon GO Elite Trainer Box Case",
-   "scrydexSet": "Pok\u00e9mon GO",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.056,
-   "confidence": 0.68
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 256124,
@@ -4647,7 +4295,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 256135,
@@ -4658,7 +4306,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 256136,
@@ -4669,7 +4317,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.55
+   "confidence": 0.85
   },
   {
    "tcgplayerId": 256137,
@@ -4779,7 +4427,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.8
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 264269,
@@ -4834,7 +4482,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 247654,
@@ -4878,7 +4526,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 247658,
@@ -4889,7 +4537,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 0.8
   },
   {
    "tcgplayerId": 247659,
@@ -4999,7 +4647,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.76
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 253454,
@@ -5354,28 +5002,6 @@
    "confidence": 1.0
   },
   {
-   "tcgplayerId": 252740,
-   "tcgplayer": "Pokemon Celebrations Tin [Set of 2]",
-   "scrydexId": "cel25-s11",
-   "scrydex": "Celebrations Mini Tin Display",
-   "scrydexSet": "Celebrations",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.084,
-   "confidence": 0.49
-  },
-  {
-   "tcgplayerId": 256970,
-   "tcgplayer": "Celebrations Deluxe Pin Collection Case [Zacian LV. X]",
-   "scrydexId": "cel25-s13",
-   "scrydex": "Celebrations Elite Trainer Box Case",
-   "scrydexSet": "Celebrations",
-   "variant": "pokemonCenter",
-   "condition": "U",
-   "priceRatio": 1.56,
-   "confidence": 0.28
-  },
-  {
    "tcgplayerId": 261802,
    "tcgplayer": "Celebrations Pokemon Center Elite Trainer Box Case (Exclusive)",
    "scrydexId": "cel25-s13",
@@ -5385,17 +5011,6 @@
    "condition": "U",
    "priceRatio": 1.0,
    "confidence": 1.0
-  },
-  {
-   "tcgplayerId": 282156,
-   "tcgplayer": "Celebrations Collector Chest Case",
-   "scrydexId": "cel25-s13",
-   "scrydex": "Celebrations Elite Trainer Box Case",
-   "scrydexSet": "Celebrations",
-   "variant": "pokemonCenter",
-   "condition": "U",
-   "priceRatio": 1.234,
-   "confidence": 0.51
   },
   {
    "tcgplayerId": 518638,
@@ -5582,7 +5197,7 @@
    "variant": "pokemonCenter",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.4
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 245877,
@@ -5626,7 +5241,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 0.8
   },
   {
    "tcgplayerId": 247497,
@@ -5637,7 +5252,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 247498,
@@ -5648,18 +5263,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
-  },
-  {
-   "tcgplayerId": 247604,
-   "tcgplayer": "Evolving Skies Single Pack Blister [Octillery]",
-   "scrydexId": "swsh7-s15",
-   "scrydex": "Evolving Skies Single Pack Blister - Eevee",
-   "scrydexSet": "Evolving Skies",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.868,
-   "confidence": 0.65
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 248124,
@@ -5890,7 +5494,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.76
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 240190,
@@ -5934,7 +5538,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 266962,
@@ -5978,7 +5582,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 221312,
@@ -6143,7 +5747,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 278642,
@@ -6165,18 +5769,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
-  },
-  {
-   "tcgplayerId": 653200,
-   "tcgplayer": "Vivid Voltage Sleeved Booster Case",
-   "scrydexId": "swsh4-s25",
-   "scrydex": "Vivid Voltage Elite Trainer Box Case",
-   "scrydexSet": "Vivid Voltage",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.987,
-   "confidence": 0.69
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 218789,
@@ -6341,7 +5934,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 216852,
@@ -6465,17 +6058,6 @@
    "confidence": 1.0
   },
   {
-   "tcgplayerId": 218840,
-   "tcgplayer": "True Steel Premium Collection [Zamazenta]",
-   "scrydexId": "swsh3-s9",
-   "scrydex": "Darkness Ablaze True Steel Premium Collection - Zacian",
-   "scrydexSet": "Darkness Ablaze",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.839,
-   "confidence": 0.7
-  },
-  {
    "tcgplayerId": 220277,
    "tcgplayer": "Eternatus VMAX Premium Collection",
    "scrydexId": "swsh3-s5",
@@ -6517,7 +6099,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 266951,
@@ -6539,7 +6121,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 199261,
@@ -6605,7 +6187,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 276587,
@@ -6616,7 +6198,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 546609,
@@ -6649,6 +6231,17 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 0.994,
+   "confidence": 1.0
+  },
+  {
+   "tcgplayerId": 193438,
+   "tcgplayer": "Hidden Fates Tin [Raichu GX]",
+   "scrydexId": "sm115-s7",
+   "scrydex": "Hidden Fates Tin (Raichu GX)",
+   "scrydexSet": "Hidden Fates",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
    "confidence": 1.0
   },
   {
@@ -6729,6 +6322,17 @@
    "confidence": 1.0
   },
   {
+   "tcgplayerId": 205159,
+   "tcgplayer": "Hidden Fates Collection [Charizard GX]",
+   "scrydexId": "sm115-s8",
+   "scrydex": "Hidden Fates Collection (Charizard GX)",
+   "scrydexSet": "Hidden Fates",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0
+  },
+  {
    "tcgplayerId": 205160,
    "tcgplayer": "Hidden Fates Collection [Gyarados GX]",
    "scrydexId": "sm115-s10",
@@ -6770,7 +6374,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 545766,
@@ -6781,7 +6385,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 648466,
@@ -6891,7 +6495,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.76
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 232313,
@@ -6913,7 +6517,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 185717,
@@ -7122,7 +6726,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 524330,
@@ -7331,7 +6935,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 146995,
@@ -7430,7 +7034,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 145847,
@@ -7606,7 +7210,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 550677,
@@ -7741,17 +7345,6 @@
    "confidence": 1.0
   },
   {
-   "tcgplayerId": 184341,
-   "tcgplayer": "Guardians Rising Single Pack Blister [Lurantis]",
-   "scrydexId": "sm2-s25",
-   "scrydex": "Guardians Rising Single Pack Blister - Tsareena",
-   "scrydexSet": "Guardians Rising",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.987,
-   "confidence": 0.69
-  },
-  {
    "tcgplayerId": 184342,
    "tcgplayer": "Guardians Rising Single Pack Blister [Tsareena]",
    "scrydexId": "sm2-s25",
@@ -7771,7 +7364,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 276578,
@@ -7782,7 +7375,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 616825,
@@ -7914,7 +7507,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
+   "confidence": 0.8
   },
   {
    "tcgplayerId": 267958,
@@ -8079,7 +7672,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 603423,
@@ -8145,7 +7738,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 504697,
@@ -8387,7 +7980,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.6
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 100490,
@@ -8445,17 +8038,6 @@
    "confidence": 1.0
   },
   {
-   "tcgplayerId": 100497,
-   "tcgplayer": "Hoenn Power Tin [Blaziken]",
-   "scrydexId": "xy6-s12",
-   "scrydex": "Roaring Skies Hoenn Power Tin - Sceptile",
-   "scrydexSet": "Roaring Skies",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.97,
-   "confidence": 0.75
-  },
-  {
    "tcgplayerId": 129906,
    "tcgplayer": "Roaring Skies Booster Pack",
    "scrydexId": "xy6-s1",
@@ -8475,7 +8057,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 0.989,
-   "confidence": 0.7
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 94622,
@@ -8552,7 +8134,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.7
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 550673,
@@ -8819,17 +8401,6 @@
    "confidence": 1.0
   },
   {
-   "tcgplayerId": 98519,
-   "tcgplayer": "EX Dragon Booster Pack",
-   "scrydexId": "ex3-s1",
-   "scrydex": "EX Dragon Booster Pack",
-   "scrydexSet": "Dragon",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.0,
-   "confidence": 0.4
-  },
-  {
    "tcgplayerId": 98558,
    "tcgplayer": "Ruby and Sapphire Booster Pack",
    "scrydexId": "ex1-s1",
@@ -8860,7 +8431,7 @@
    "variant": "firstEdition",
    "condition": "U",
    "priceRatio": 1.233,
-   "confidence": 0.31
+   "confidence": 0.91
   },
   {
    "tcgplayerId": 138139,
@@ -8871,7 +8442,7 @@
    "variant": "unlimited",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.4
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 138140,
@@ -8882,7 +8453,7 @@
    "variant": "firstEdition",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.4
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 138137,
@@ -8893,7 +8464,7 @@
    "variant": "firstEdition",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.4
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 138138,
@@ -8904,7 +8475,7 @@
    "variant": "unlimited",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.4
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 138135,
@@ -8915,7 +8486,7 @@
    "variant": "unlimited",
    "condition": "U",
    "priceRatio": 0.985,
-   "confidence": 0.39
+   "confidence": 0.99
   },
   {
    "tcgplayerId": 138136,
@@ -8926,7 +8497,7 @@
    "variant": "firstEdition",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.4
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 138149,
@@ -8948,7 +8519,7 @@
    "variant": "firstEdition",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.4
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 138134,
@@ -8959,29 +8530,7 @@
    "variant": "unlimited",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.4
-  },
-  {
-   "tcgplayerId": 138130,
-   "tcgplayer": "Base Set Booster Pack [Revised Unlimited Edition]",
-   "scrydexId": "base1-s1",
-   "scrydex": "Base Set Booster Pack",
-   "scrydexSet": "Base",
-   "variant": "unlimited",
-   "condition": "U",
-   "priceRatio": 1.0,
-   "confidence": 0.4
-  },
-  {
-   "tcgplayerId": 138132,
-   "tcgplayer": "Pokemon Base Set (Shadowless) [1st Edition] Booster Pack",
-   "scrydexId": "base1-s1",
-   "scrydex": "Base Set Booster Pack",
-   "scrydexSet": "Base",
-   "variant": "firstEdition",
-   "condition": "U",
-   "priceRatio": 1.0,
-   "confidence": 0.4
+   "confidence": 1.0
   },
   {
    "tcgplayerId": 141227,
@@ -9040,10 +8589,202 @@
    "via": "name-only"
   },
   {
+   "tcgplayerId": 181267,
+   "tcgplayer": "Pokemon - Poke Ball Tin - Poke Ball",
+   "scrydexId": "miscp-s471",
+   "scrydex": "Pok\u00e9mon - Pok\u00e9 Ball Tin - Pok\u00e9 Ball",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.007,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
    "tcgplayerId": 181268,
    "tcgplayer": "Pokemon - Poke Ball Tin - Quick Ball",
    "scrydexId": "miscp-s469",
    "scrydex": "Pok\u00e9mon - Pok\u00e9 Ball Tin - Quick Ball",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 185261,
+   "tcgplayer": "Kanto Friends Mini Tin [Bulbasaur]",
+   "scrydexId": "miscp-s612",
+   "scrydex": "Kanto Friends Mini Tin (Bulbasaur)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 185262,
+   "tcgplayer": "Kanto Friends Mini Tin [Pikachu]",
+   "scrydexId": "miscp-s613",
+   "scrydex": "Kanto Friends Mini Tin (Pikachu)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 185263,
+   "tcgplayer": "Kanto Friends Mini Tin [Eevee]",
+   "scrydexId": "miscp-s611",
+   "scrydex": "Kanto Friends Mini Tin (Eevee)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 185264,
+   "tcgplayer": "Kanto Friends Mini Tin [Charmander]",
+   "scrydexId": "miscp-s610",
+   "scrydex": "Kanto Friends Mini Tin (Charmander)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 185265,
+   "tcgplayer": "Kanto Friends Mini Tin [Squirtle]",
+   "scrydexId": "miscp-s614",
+   "scrydex": "Kanto Friends Mini Tin (Squirtle)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 186984,
+   "tcgplayer": "Knock Out Collection [Tyranitar, Shiftry, and Vivillon]",
+   "scrydexId": "miscp-s608",
+   "scrydex": "Knock Out Collection (Tyranitar, Shiftry, and Vivillon)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 186994,
+   "tcgplayer": "Knock Out Collection [Lucario, Bisharp, and Zoroark]",
+   "scrydexId": "miscp-s609",
+   "scrydex": "Knock Out Collection (Lucario, Bisharp, and Zoroark)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 190359,
+   "tcgplayer": "General Mills Promo Booster Pack [Kanto]",
+   "scrydexId": "miscp-s605",
+   "scrydex": "General Mills Promo Booster Pack (Kanto)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 190360,
+   "tcgplayer": "General Mills Promo Booster Pack [Sun & Moon]",
+   "scrydexId": "miscp-s604",
+   "scrydex": "General Mills Promo Booster Pack (Sun & Moon)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 198431,
+   "tcgplayer": "Kanto Power Mini Tin [Charizard]",
+   "scrydexId": "miscp-s600",
+   "scrydex": "Kanto Power Mini Tin (Charizard)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 198434,
+   "tcgplayer": "Kanto Power Mini Tin [Dragonite]",
+   "scrydexId": "miscp-s599",
+   "scrydex": "Kanto Power Mini Tin (Dragonite)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 198437,
+   "tcgplayer": "Kanto Power Mini Tin [Mew]",
+   "scrydexId": "miscp-s603",
+   "scrydex": "Kanto Power Mini Tin (Mew)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 198438,
+   "tcgplayer": "Kanto Power Mini Tin [Mewtwo]",
+   "scrydexId": "miscp-s602",
+   "scrydex": "Kanto Power Mini Tin (Mewtwo)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 198439,
+   "tcgplayer": "Kanto Power Mini Tin [Vulpix]",
+   "scrydexId": "miscp-s601",
+   "scrydex": "Kanto Power Mini Tin (Vulpix)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 198519,
+   "tcgplayer": "Pokemon - Poke Ball Tin - Great Ball",
+   "scrydexId": "miscp-s473",
+   "scrydex": "Pok\u00e9mon - Pok\u00e9 Ball Tin - Great Ball",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
@@ -9064,10 +8805,118 @@
    "via": "name-only"
   },
   {
+   "tcgplayerId": 198522,
+   "tcgplayer": "Pokemon - Poke Ball Tin - Premier Ball",
+   "scrydexId": "miscp-s470",
+   "scrydex": "Pok\u00e9mon - Pok\u00e9 Ball Tin - Premier Ball",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 199787,
+   "tcgplayer": "Elemental Power Tin [Flareon GX]",
+   "scrydexId": "miscp-s592",
+   "scrydex": "Elemental Power Tin (Flareon GX)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 199788,
+   "tcgplayer": "Elemental Power Tin [Vaporeon GX]",
+   "scrydexId": "miscp-s593",
+   "scrydex": "Elemental Power Tin (Vaporeon GX)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 199789,
+   "tcgplayer": "Elemental Power Tin [Jolteon GX]",
+   "scrydexId": "miscp-s591",
+   "scrydex": "Elemental Power Tin (Jolteon GX)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
    "tcgplayerId": 200172,
    "tcgplayer": "TAG TEAM Generations Premium Collection",
    "scrydexId": "miscp-s584",
    "scrydex": "TAG TEAM Generations Premium Collection",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 207986,
+   "tcgplayer": "Galar Pal Mini Tin [Galarian Ponyta]",
+   "scrydexId": "miscp-s562",
+   "scrydex": "Galar Pal Mini Tin (Galarian Ponyta)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 207987,
+   "tcgplayer": "Galar Pal Mini Tin [Grookey & Wooloo]",
+   "scrydexId": "miscp-s489",
+   "scrydex": "Galar Pal Mini Tin (Grookey & Wooloo)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 207988,
+   "tcgplayer": "Galar Pal Mini Tin [Scorbunny & Pikachu]",
+   "scrydexId": "miscp-s488",
+   "scrydex": "Galar Pal Mini Tin (Scorbunny & Pikachu)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 207989,
+   "tcgplayer": "Galar Pal Mini Tin [Sobble & Rookidee]",
+   "scrydexId": "miscp-s486",
+   "scrydex": "Galar Pal Mini Tin (Sobble & Rookidee)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 207990,
+   "tcgplayer": "Galar Pal Mini Tin [Yamper & Morpeko]",
+   "scrydexId": "miscp-s485",
+   "scrydex": "Galar Pal Mini Tin (Yamper & Morpeko)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
@@ -9084,7 +8933,43 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.8,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 209532,
+   "tcgplayer": "TAG TEAM Powers Collection [Espeon & Deoxys GX]",
+   "scrydexId": "miscp-s563",
+   "scrydex": "TAG TEAM Powers Collection (Espeon & Deoxys GX)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.045,
+   "confidence": 0.98,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 209533,
+   "tcgplayer": "TAG TEAM Powers Collection [Umbreon & Darkrai GX]",
+   "scrydexId": "miscp-s564",
+   "scrydex": "TAG TEAM Powers Collection (Umbreon & Darkrai GX)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 210169,
+   "tcgplayer": "Pokemon - Poke Ball Tin - Ultra Ball",
+   "scrydexId": "miscp-s532",
+   "scrydex": "Pok\u00e9mon - Pok\u00e9 Ball Tin - Ultra Ball",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -9148,6 +9033,66 @@
    "via": "name-only"
   },
   {
+   "tcgplayerId": 218854,
+   "tcgplayer": "Galar Power Mini Tin [Dragapult]",
+   "scrydexId": "miscp-s382",
+   "scrydex": "Galar Power Mini Tin (Dragapult)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 218855,
+   "tcgplayer": "Galar Power Mini Tin [Galarian Sirfetch'd]",
+   "scrydexId": "miscp-s548",
+   "scrydex": "Galar Power Mini Tin (Galarian Sirfetch'd)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 218856,
+   "tcgplayer": "Galar Power Mini Tin [Galarian Rapidash]",
+   "scrydexId": "miscp-s549",
+   "scrydex": "Galar Power Mini Tin (Galarian Rapidash)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 218857,
+   "tcgplayer": "Galar Power Mini Tin [Galarian Obstagoon]",
+   "scrydexId": "miscp-s547",
+   "scrydex": "Galar Power Mini Tin (Galarian Obstagoon)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 218858,
+   "tcgplayer": "Galar Power Mini Tin [Toxtricity]",
+   "scrydexId": "miscp-s550",
+   "scrydex": "Galar Power Mini Tin (Toxtricity)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
    "tcgplayerId": 220291,
    "tcgplayer": "Galar Challengers Tin [Toxtricity V]",
    "scrydexId": "miscp-s555",
@@ -9156,31 +9101,43 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.76,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
    "tcgplayerId": 220308,
    "tcgplayer": "V Powers Tin [Pikachu V]",
-   "scrydexId": "miscp-s483",
-   "scrydex": "V Powers Tin [Pikachu V] (International Version)",
+   "scrydexId": "miscp-s551",
+   "scrydex": "V Powers Tin (Pikachu V)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
-   "priceRatio": 0.707,
-   "confidence": 0.88,
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 220310,
+   "tcgplayer": "V Powers Tin [Eevee V]",
+   "scrydexId": "miscp-s554",
+   "scrydex": "V Powers Tin (Eevee V)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
    "tcgplayerId": 220311,
    "tcgplayer": "V Powers Tin [Eternatus V]",
-   "scrydexId": "miscp-s481",
-   "scrydex": "V Powers Tin [Eternatus V] (International Version)",
+   "scrydexId": "miscp-s553",
+   "scrydex": "V Powers Tin (Eternatus V)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
-   "priceRatio": 0.675,
-   "confidence": 0.87,
+   "priceRatio": 1.0,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -9256,6 +9213,78 @@
    "via": "name-only"
   },
   {
+   "tcgplayerId": 229747,
+   "tcgplayer": "Strong Bonds Tin [Gardevoir]",
+   "scrydexId": "miscp-s542",
+   "scrydex": "Strong Bonds Tin (Gardevoir)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 229748,
+   "tcgplayer": "Strong Bonds Tin [Blissey]",
+   "scrydexId": "miscp-s541",
+   "scrydex": "Strong Bonds Tin (Blissey)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 230400,
+   "tcgplayer": "V Forces Tin [Galarian Slowbro V]",
+   "scrydexId": "miscp-s538",
+   "scrydex": "V Forces Tin (Galarian Slowbro V)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 230401,
+   "tcgplayer": "V Forces Tin [Lucario V]",
+   "scrydexId": "miscp-s537",
+   "scrydex": "V Forces Tin (Lucario V)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 230402,
+   "tcgplayer": "V Forces Tin [Mew V]",
+   "scrydexId": "miscp-s536",
+   "scrydex": "V Forces Tin (Mew V)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 230403,
+   "tcgplayer": "V Forces Tin [Set of 3]",
+   "scrydexId": "miscp-s540",
+   "scrydex": "V Forces Tin (Set of 3)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
    "tcgplayerId": 231292,
    "tcgplayer": "Pokemon - Poke Ball Tin - Level Ball",
    "scrydexId": "miscp-s535",
@@ -9288,19 +9317,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.88,
-   "via": "name-only"
-  },
-  {
-   "tcgplayerId": 237106,
-   "tcgplayer": "Checklane 2 Mini-Pack Blister [Machamp]",
-   "scrydexId": "miscp-s523",
-   "scrydex": "Checklane 2 Mini-Pack Blister (Dragonite)",
-   "scrydexSet": "Miscellaneous",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.0,
-   "confidence": 0.88,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -9312,7 +9329,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.83,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -9324,7 +9341,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.83,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -9384,7 +9401,19 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.83,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 247818,
+   "tcgplayer": "Mighty Mysterious Tin [Mimikyu]",
+   "scrydexId": "miscp-s399",
+   "scrydex": "Mighty Mysterious Tin (Mimikyu)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -9396,7 +9425,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.85,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -9408,7 +9437,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.85,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -9420,7 +9449,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.88,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -9444,6 +9473,18 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 0.996,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 248714,
+   "tcgplayer": "2 Pack Blister [Snorlax, Morpeko & Applin Cards]",
+   "scrydexId": "miscp-s255",
+   "scrydex": "2 Pack Blister (Snorlax, Morpeko & Applin Cards)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
    "confidence": 1.0,
    "via": "name-only"
   },
@@ -9492,7 +9533,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.8,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -9592,15 +9633,15 @@
    "via": "name-only"
   },
   {
-   "tcgplayerId": 257717,
-   "tcgplayer": "Poke Ball Tin Display (Q1 2021)",
-   "scrydexId": "miscp-s421",
-   "scrydex": "Pok\u00e9 Ball Tin Display (Q1 2019)",
+   "tcgplayerId": 257718,
+   "tcgplayer": "Poke Ball Tin Display (Q4 2021)",
+   "scrydexId": "miscp-s415",
+   "scrydex": "Pok\u00e9 Ball Tin Display (Q4 2021)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
-   "priceRatio": 0.625,
-   "confidence": 0.85,
+   "priceRatio": 0.7,
+   "confidence": 0.88,
    "via": "name-only"
   },
   {
@@ -9640,6 +9681,18 @@
    "via": "name-only"
   },
   {
+   "tcgplayerId": 260869,
+   "tcgplayer": "Pokemon Stacking Tins [Set of 3]",
+   "scrydexId": "miscp-s458",
+   "scrydex": "Pok\u00e9mon Stacking Tins (Set of 3)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
    "tcgplayerId": 262637,
    "tcgplayer": "Lucario VSTAR Premium Collection",
    "scrydexId": "miscp-s436",
@@ -9660,7 +9713,43 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.88,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 262639,
+   "tcgplayer": "Sinnoh Star Mini Tin [Riolu]",
+   "scrydexId": "miscp-s442",
+   "scrydex": "Sinnoh Star Mini Tin (Riolu)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 262640,
+   "tcgplayer": "Sinnoh Star Mini Tin [Turtwig]",
+   "scrydexId": "miscp-s438",
+   "scrydex": "Sinnoh Star Mini Tin (Turtwig)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 262641,
+   "tcgplayer": "Sinnoh Star Mini Tin [Chimchar]",
+   "scrydexId": "miscp-s439",
+   "scrydex": "Sinnoh Star Mini Tin (Chimchar)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -9676,39 +9765,39 @@
    "via": "name-only"
   },
   {
-   "tcgplayerId": 262969,
-   "tcgplayer": "V Heroes Tin [Espeon V]",
-   "scrydexId": "miscp-s432",
-   "scrydex": "V Heroes Tin [Espeon V] (International Version)",
+   "tcgplayerId": 262970,
+   "tcgplayer": "V Heroes Tin [Sylveon V]",
+   "scrydexId": "miscp-s429",
+   "scrydex": "V Heroes Tin (Sylveon V)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
-   "priceRatio": 0.842,
-   "confidence": 0.94,
+   "priceRatio": 1.0,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
-   "tcgplayerId": 262970,
-   "tcgplayer": "V Heroes Tin [Sylveon V]",
-   "scrydexId": "miscp-s428",
-   "scrydex": "V Heroes Tin [Sylveon V] (International Version)",
+   "tcgplayerId": 262971,
+   "tcgplayer": "V Heroes Tin [Umbreon V]",
+   "scrydexId": "miscp-s427",
+   "scrydex": "V Heroes Tin (Umbreon V)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
-   "priceRatio": 0.72,
-   "confidence": 0.89,
+   "priceRatio": 0.991,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
    "tcgplayerId": 262972,
    "tcgplayer": "V Heroes Tin [Set of 3]",
-   "scrydexId": "miscp-s430",
-   "scrydex": "V Heroes Tin [Set of 3] (International Version)",
+   "scrydexId": "miscp-s431",
+   "scrydex": "V Heroes Tin (Set of 3)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
-   "priceRatio": 0.656,
-   "confidence": 0.86,
+   "priceRatio": 1.0,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -9756,7 +9845,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.8,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -9764,6 +9853,30 @@
    "tcgplayer": "Sinnoh Star Mini Tin Display",
    "scrydexId": "miscp-s181",
    "scrydex": "Sinnoh Star Mini Tin Display",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 264416,
+   "tcgplayer": "Knock Out Collection [Toxtricity, Duraludon, Sandaconda]",
+   "scrydexId": "miscp-s315",
+   "scrydex": "Knock Out Collection (Toxtricity, Duraludon, Sandaconda)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 264422,
+   "tcgplayer": "Knock Out Collection [Boltund, Eiscue, Galarian Sirfetch'd]",
+   "scrydexId": "miscp-s406",
+   "scrydex": "Knock Out Collection (Boltund, Eiscue, Galarian Sirfetch'd)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
@@ -9780,19 +9893,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.83,
-   "via": "name-only"
-  },
-  {
-   "tcgplayerId": 265250,
-   "tcgplayer": "Poke Ball Tin Display (Q2 2022)",
-   "scrydexId": "miscp-s421",
-   "scrydex": "Pok\u00e9 Ball Tin Display (Q1 2019)",
-   "scrydexSet": "Miscellaneous",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.626,
-   "confidence": 0.85,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -9844,18 +9945,6 @@
    "via": "name-only"
   },
   {
-   "tcgplayerId": 270153,
-   "tcgplayer": "V Heroes Tin [Espeon V] (International Version)",
-   "scrydexId": "miscp-s432",
-   "scrydex": "V Heroes Tin [Espeon V] (International Version)",
-   "scrydexSet": "Miscellaneous",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.983,
-   "confidence": 0.99,
-   "via": "name-only"
-  },
-  {
    "tcgplayerId": 270154,
    "tcgplayer": "V Heroes Tin [Set of 3] (International Version)",
    "scrydexId": "miscp-s430",
@@ -9882,13 +9971,37 @@
   {
    "tcgplayerId": 271939,
    "tcgplayer": "Divergent Powers Tin [Hisuian Samurott V]",
-   "scrydexId": "miscp-s413",
-   "scrydex": "Divergent Powers Tin [Hisuian Samurott V] (International Version)",
+   "scrydexId": "miscp-s411",
+   "scrydex": "Divergent Powers Tin (Hisuian Samurott V)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
-   "priceRatio": 0.69,
-   "confidence": 0.88,
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 271940,
+   "tcgplayer": "Divergent Powers Tin [Hisuian Typhlosion V]",
+   "scrydexId": "miscp-s409",
+   "scrydex": "Divergent Powers Tin (Hisuian Typhlosion V)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 271941,
+   "tcgplayer": "Divergent Powers Tin [Hisuian Decidueye V]",
+   "scrydexId": "miscp-s408",
+   "scrydex": "Divergent Powers Tin (Hisuian Decidueye V)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -9936,7 +10049,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.88,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -9948,7 +10061,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.76,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -9976,6 +10089,18 @@
    "via": "name-only"
   },
   {
+   "tcgplayerId": 279606,
+   "tcgplayer": "Enhanced 2-Pack Blister Pack [Galarian Articuno, Galarian Zapdos, & Galarian Moltres]",
+   "scrydexId": "miscp-s388",
+   "scrydex": "Enhanced 2-Pack Blister Pack (Galarian Articuno, Galarian Zapdos, & Galarian Moltres)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
    "tcgplayerId": 280859,
    "tcgplayer": "Deoxys V / Zeraora V Battle Decks [Set of 2]",
    "scrydexId": "miscp-s364",
@@ -9984,7 +10109,31 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 0.988,
-   "confidence": 0.82,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 281981,
+   "tcgplayer": "Hidden Potential Tin [Rotom V]",
+   "scrydexId": "miscp-s375",
+   "scrydex": "Hidden Potential Tin (Rotom V)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 281982,
+   "tcgplayer": "Hidden Potential Tin [Gallade V]",
+   "scrydexId": "miscp-s369",
+   "scrydex": "Hidden Potential Tin (Gallade V)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -9996,7 +10145,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.76,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -10008,7 +10157,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.76,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -10020,7 +10169,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.83,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -10072,6 +10221,78 @@
    "via": "name-only"
   },
   {
+   "tcgplayerId": 451118,
+   "tcgplayer": "Paldea Collection [Sprigatito/Miraidon ex]",
+   "scrydexId": "miscp-s354",
+   "scrydex": "Paldea Collection (Sprigatito/Miraidon ex)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 451119,
+   "tcgplayer": "Paldea Collection [Fuecoco/Koraidon ex]",
+   "scrydexId": "miscp-s349",
+   "scrydex": "Paldea Collection (Fuecoco/Koraidon ex)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 451120,
+   "tcgplayer": "Paldea Collection [Quaxly/Miraidon ex]",
+   "scrydexId": "miscp-s356",
+   "scrydex": "Paldea Collection (Quaxly/Miraidon ex)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 477170,
+   "tcgplayer": "Paldea Collection [Fuecoco/Miraidon ex]",
+   "scrydexId": "miscp-s350",
+   "scrydex": "Paldea Collection (Fuecoco/Miraidon ex)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 477171,
+   "tcgplayer": "Paldea Collection [Quaxly/Koraidon ex]",
+   "scrydexId": "miscp-s355",
+   "scrydex": "Paldea Collection (Quaxly/Koraidon ex)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 477172,
+   "tcgplayer": "Paldea Collection [Sprigatito/Koraidon ex]",
+   "scrydexId": "miscp-s353",
+   "scrydex": "Paldea Collection (Sprigatito/Koraidon ex)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
    "tcgplayerId": 477284,
    "tcgplayer": "Klara Premium Tournament Collection Box",
    "scrydexId": "miscp-s339",
@@ -10104,7 +10325,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.8,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -10112,6 +10333,90 @@
    "tcgplayer": "Cyrus/Klara Premium Tournament Collection Display",
    "scrydexId": "miscp-s337",
    "scrydex": "Cyrus/Klara Premium Tournament Collection Display",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 477475,
+   "tcgplayer": "Knock Out Collection [Galarian Slowking, Galarian Obstagoon, and Dragapult]",
+   "scrydexId": "miscp-s347",
+   "scrydex": "Knock Out Collection (Galarian Slowking, Galarian Obstagoon, and Dragapult)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 482320,
+   "tcgplayer": "2-Pack Blister Pack [Meganium, Typhlosion & Feraligatr]",
+   "scrydexId": "miscp-s344",
+   "scrydex": "2-Pack Blister Pack (Meganium, Typhlosion & Feraligatr)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 484357,
+   "tcgplayer": "Paldea Friends Mini Tin [Fuecoco & Smoliv]",
+   "scrydexId": "miscp-s328",
+   "scrydex": "Paldea Friends Mini Tin (Fuecoco & Smoliv)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 484358,
+   "tcgplayer": "Paldea Friends Mini Tin [Pikachu & Capsakid]",
+   "scrydexId": "miscp-s334",
+   "scrydex": "Paldea Friends Mini Tin (Pikachu & Capsakid)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 484359,
+   "tcgplayer": "Paldea Friends Mini Tin [Quaxly & Smoliv]",
+   "scrydexId": "miscp-s333",
+   "scrydex": "Paldea Friends Mini Tin (Quaxly & Smoliv)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 484360,
+   "tcgplayer": "Paldea Friends Mini Tin [Sprigatito & Fidough]",
+   "scrydexId": "miscp-s332",
+   "scrydex": "Paldea Friends Mini Tin (Sprigatito & Fidough)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 484362,
+   "tcgplayer": "Paldea Friends Mini Tin [Pawmi & Lechonk]",
+   "scrydexId": "miscp-s331",
+   "scrydex": "Paldea Friends Mini Tin (Pawmi & Lechonk)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
@@ -10128,14 +10433,14 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.8,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
-   "tcgplayerId": 496018,
-   "tcgplayer": "Paldea Friends Mini Tin Display",
-   "scrydexId": "miscp-s179",
-   "scrydex": "Paldea Friends Mini Tin Display",
+   "tcgplayerId": 484384,
+   "tcgplayer": "ex Battle Deck [Set of 2]",
+   "scrydexId": "miscp-s336",
+   "scrydex": "ex Battle Deck (Set of 2)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
@@ -10144,10 +10449,22 @@
    "via": "name-only"
   },
   {
-   "tcgplayerId": 497387,
-   "tcgplayer": "Paldea Legends Tin [Koraidon ex] (International Version)",
-   "scrydexId": "miscp-s324",
-   "scrydex": "Paldea Legends Tin [Koraidon ex] (International Version)",
+   "tcgplayerId": 489343,
+   "tcgplayer": "Enhanced 2-Pack Blister Pack [Articuno, Zapdos, & Moltres]",
+   "scrydexId": "miscp-s174",
+   "scrydex": "Enhanced 2-Pack Blister Pack (Articuno, Zapdos, & Moltres)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 496018,
+   "tcgplayer": "Paldea Friends Mini Tin Display",
+   "scrydexId": "miscp-s179",
+   "scrydex": "Paldea Friends Mini Tin Display",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
@@ -10170,25 +10487,13 @@
   {
    "tcgplayerId": 497389,
    "tcgplayer": "Paldea Legends Tin [Miraidon ex]",
-   "scrydexId": "miscp-s323",
-   "scrydex": "Paldea Legends Tin [Miraidon ex] (International Version)",
+   "scrydexId": "miscp-s283",
+   "scrydex": "Paldea Legends Tin (Miraidon ex)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
-   "priceRatio": 1.369,
-   "confidence": 0.85,
-   "via": "name-only"
-  },
-  {
-   "tcgplayerId": 497390,
-   "tcgplayer": "Paldea Legends Tin [Koraidon ex]",
-   "scrydexId": "miscp-s324",
-   "scrydex": "Paldea Legends Tin [Koraidon ex] (International Version)",
-   "scrydexSet": "Miscellaneous",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.189,
-   "confidence": 0.92,
+   "priceRatio": 1.0,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -10216,10 +10521,46 @@
    "via": "name-only"
   },
   {
+   "tcgplayerId": 497853,
+   "tcgplayer": "Pokemon TCG: Back to School Eraser Blister [Lechonk]",
+   "scrydexId": "miscp-s313",
+   "scrydex": "Pok\u00e9mon TCG: Back to School Eraser Blister (Lechonk)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 497856,
+   "tcgplayer": "Pokemon TCG: Back to School Eraser Blister [Smoliv]",
+   "scrydexId": "miscp-s312",
+   "scrydex": "Pok\u00e9mon TCG: Back to School Eraser Blister (Smoliv)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
    "tcgplayerId": 497870,
    "tcgplayer": "Summer 2023 Collector's Chest Tin",
    "scrydexId": "miscp-s311",
    "scrydex": "Summer 2023 Collector's Chest Tin",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 497967,
+   "tcgplayer": "ex Battle Deck (Chien-Pao/Tinkaton] [Set of 2]",
+   "scrydexId": "miscp-s317",
+   "scrydex": "ex Battle Deck (Chien-Pao/Tinkaton] (Set of 2)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
@@ -10236,55 +10577,19 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.85,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
-   "tcgplayerId": 504330,
-   "tcgplayer": "Paldea Partners Tin [Meowscarada ex]",
-   "scrydexId": "miscp-s305",
-   "scrydex": "Paldea Partners Tin [Meowscarada ex] (International Edition)",
-   "scrydexSet": "Miscellaneous",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.973,
-   "confidence": 0.99,
-   "via": "name-only"
-  },
-  {
-   "tcgplayerId": 504332,
-   "tcgplayer": "Paldea Partners Tin [Meowscarada ex] [International Edition]",
-   "scrydexId": "miscp-s305",
-   "scrydex": "Paldea Partners Tin [Meowscarada ex] (International Edition)",
+   "tcgplayerId": 504431,
+   "tcgplayer": "Paldea Partners Tin [Skeledirge ex]",
+   "scrydexId": "miscp-s302",
+   "scrydex": "Paldea Partners Tin (Skeledirge ex)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.83,
-   "via": "name-only"
-  },
-  {
-   "tcgplayerId": 504438,
-   "tcgplayer": "Paldea Partners Tin [Quaquaval ex]",
-   "scrydexId": "miscp-s303",
-   "scrydex": "Paldea Partners Tin [Quaquaval ex] (International)",
-   "scrydexSet": "Miscellaneous",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.142,
-   "confidence": 0.94,
-   "via": "name-only"
-  },
-  {
-   "tcgplayerId": 504442,
-   "tcgplayer": "Paldea Partners Tin [Quaquaval ex] [International]",
-   "scrydexId": "miscp-s303",
-   "scrydex": "Paldea Partners Tin [Quaquaval ex] (International)",
-   "scrydexSet": "Miscellaneous",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.0,
-   "confidence": 0.9,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -10344,7 +10649,31 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 0.991,
-   "confidence": 0.76,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 517119,
+   "tcgplayer": "Mythical 2-Pack Blister [Celebi]",
+   "scrydexId": "miscp-s299",
+   "scrydex": "Mythical 2-Pack Blister (Celebi)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 517120,
+   "tcgplayer": "Mythical 2-Pack Blister [Jirachi]",
+   "scrydexId": "miscp-s298",
+   "scrydex": "Mythical 2-Pack Blister (Jirachi)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -10516,14 +10845,26 @@
    "via": "name-only"
   },
   {
-   "tcgplayerId": 543171,
-   "tcgplayer": "Paldea Legends Tins [Bundle of 2] (International Version)",
-   "scrydexId": "miscp-s272",
-   "scrydex": "Paldea Legends Tins [Bundle of 2] (International Version)",
+   "tcgplayerId": 544239,
+   "tcgplayer": "Paradox Clash Tin [Walking Wake ex]",
+   "scrydexId": "miscp-s254",
+   "scrydex": "Paradox Clash Tin (Walking Wake ex)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 544241,
+   "tcgplayer": "Paradox Clash Tin [Iron Leaves ex]",
+   "scrydexId": "miscp-s253",
+   "scrydex": "Paradox Clash Tin (Iron Leaves ex)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 0.997,
    "confidence": 1.0,
    "via": "name-only"
   },
@@ -10572,7 +10913,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.85,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -10584,7 +10925,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.91,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -10596,7 +10937,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 0.972,
-   "confidence": 0.9,
+   "confidence": 0.99,
    "via": "name-only"
   },
   {
@@ -10620,7 +10961,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.8,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -10628,6 +10969,66 @@
    "tcgplayer": "Vibrant Paldea Mini Tin Collection Display",
    "scrydexId": "miscp-s246",
    "scrydex": "Vibrant Paldea Mini Tin Collection Display",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 554179,
+   "tcgplayer": "Vibrant Paldea Mini Tin [Dachsbun]",
+   "scrydexId": "miscp-s247",
+   "scrydex": "Vibrant Paldea Mini Tin (Dachsbun)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 554180,
+   "tcgplayer": "Vibrant Paldea Mini Tin [Espathra]",
+   "scrydexId": "miscp-s248",
+   "scrydex": "Vibrant Paldea Mini Tin (Espathra)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 554181,
+   "tcgplayer": "Vibrant Paldea Mini Tin [Arboliva]",
+   "scrydexId": "miscp-s249",
+   "scrydex": "Vibrant Paldea Mini Tin (Arboliva)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 554182,
+   "tcgplayer": "Vibrant Paldea Mini Tin [Palafin]",
+   "scrydexId": "miscp-s250",
+   "scrydex": "Vibrant Paldea Mini Tin (Palafin)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 0.657,
+   "confidence": 0.86,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 554183,
+   "tcgplayer": "Vibrant Paldea Mini Tin [Ceruledge]",
+   "scrydexId": "miscp-s252",
+   "scrydex": "Vibrant Paldea Mini Tin (Ceruledge)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
@@ -10660,6 +11061,54 @@
    "via": "name-only"
   },
   {
+   "tcgplayerId": 562354,
+   "tcgplayer": "Paradox Destinies Tin [Iron Crown ex]",
+   "scrydexId": "miscp-s230",
+   "scrydex": "Paradox Destinies Tin (Iron Crown ex)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 562356,
+   "tcgplayer": "Paradox Destinies Tin [Iron Boulder ex]",
+   "scrydexId": "miscp-s229",
+   "scrydex": "Paradox Destinies Tin (Iron Boulder ex)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 562357,
+   "tcgplayer": "Paradox Destinies Tin [Raging Bolt ex]",
+   "scrydexId": "miscp-s228",
+   "scrydex": "Paradox Destinies Tin (Raging Bolt ex)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 562358,
+   "tcgplayer": "Paradox Destinies Tin [Gouging Fire ex]",
+   "scrydexId": "miscp-s227",
+   "scrydex": "Paradox Destinies Tin (Gouging Fire ex)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
    "tcgplayerId": 562360,
    "tcgplayer": "Paradox Destinies Tin [Set of 4]",
    "scrydexId": "miscp-s226",
@@ -10668,7 +11117,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 0.981,
-   "confidence": 0.75,
+   "confidence": 0.99,
    "via": "name-only"
   },
   {
@@ -10676,6 +11125,18 @@
    "tcgplayer": "Tera Brawlers Premium Collection",
    "scrydexId": "miscp-s237",
    "scrydex": "Tera Brawlers Premium Collection",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 564280,
+   "tcgplayer": "Poke Ball Tin Display (Q4 2024)",
+   "scrydexId": "miscp-s213",
+   "scrydex": "Pok\u00e9 Ball Tin Display (Q4 2024)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
@@ -10744,6 +11205,90 @@
    "via": "name-only"
   },
   {
+   "tcgplayerId": 587365,
+   "tcgplayer": "Pokemon - Poke Ball Tin - Poke Ball (Q4 2024)",
+   "scrydexId": "miscp-s219",
+   "scrydex": "Pok\u00e9mon - Pok\u00e9 Ball Tin - Pok\u00e9 Ball (Q4 2024)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 587366,
+   "tcgplayer": "Pokemon - Poke Ball Tin - Great Ball (Q4 2024)",
+   "scrydexId": "miscp-s218",
+   "scrydex": "Pok\u00e9mon - Pok\u00e9 Ball Tin - Great Ball (Q4 2024)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 587367,
+   "tcgplayer": "Pokemon - Poke Ball Tin - Premier Ball (Q4 2024)",
+   "scrydexId": "miscp-s217",
+   "scrydex": "Pok\u00e9mon - Pok\u00e9 Ball Tin - Premier Ball (Q4 2024)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 587368,
+   "tcgplayer": "Pokemon - Poke Ball Tin - Ultra Ball (Q4 2024)",
+   "scrydexId": "miscp-s216",
+   "scrydex": "Pok\u00e9mon - Pok\u00e9 Ball Tin - Ultra Ball (Q4 2024)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 587369,
+   "tcgplayer": "Pokemon - Poke Ball Tin - Moon Ball (Q4 2024)",
+   "scrydexId": "miscp-s215",
+   "scrydex": "Pok\u00e9mon - Pok\u00e9 Ball Tin - Moon Ball (Q4 2024)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 587746,
+   "tcgplayer": "Costco Pokemon Scarlet & Violet 151 Mini Tin 5-pack (Meowth)",
+   "scrydexId": "miscp-s202",
+   "scrydex": "Costco Pok\u00e9mon Scarlet & Violet 151 Mini Tin 5-pack (Meowth)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 587747,
+   "tcgplayer": "Costco Pokemon Scarlet & Violet 151 Mini Tin 5-pack (Magneton)",
+   "scrydexId": "miscp-s203",
+   "scrydex": "Costco Pok\u00e9mon Scarlet & Violet 151 Mini Tin 5-pack (Magneton)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 0.999,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
    "tcgplayerId": 587750,
    "tcgplayer": "Costco Pokemon Collector 3-Pack: Scarlet & Violet 151 ETB + Paldea Legends Tins",
    "scrydexId": "miscp-s210",
@@ -10752,6 +11297,42 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.009,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 591145,
+   "tcgplayer": "Triple Whammy Tin [Tyranitar]",
+   "scrydexId": "miscp-s208",
+   "scrydex": "Triple Whammy Tin (Tyranitar)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 0.997,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 591146,
+   "tcgplayer": "Triple Whammy Tin [Darkrai]",
+   "scrydexId": "miscp-s207",
+   "scrydex": "Triple Whammy Tin (Darkrai)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 591147,
+   "tcgplayer": "Triple Whammy Tin [Slaking]",
+   "scrydexId": "miscp-s206",
+   "scrydex": "Triple Whammy Tin (Slaking)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
    "confidence": 1.0,
    "via": "name-only"
   },
@@ -10828,6 +11409,18 @@
    "via": "name-only"
   },
   {
+   "tcgplayerId": 603323,
+   "tcgplayer": "Knock Out Collection [Iron Jugulis]",
+   "scrydexId": "miscp-s191",
+   "scrydex": "Knock Out Collection (Iron Jugulis)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
    "tcgplayerId": 604240,
    "tcgplayer": "Eevee Evolution VMAX Premium Collection Case",
    "scrydexId": "miscp-s148",
@@ -10864,39 +11457,15 @@
    "via": "name-only"
   },
   {
-   "tcgplayerId": 616291,
-   "tcgplayer": "Azure Legends Tin [Dialga ex]",
-   "scrydexId": "miscp-s145",
-   "scrydex": "Azure Legends Tin [Dialga ex] (International Version)",
-   "scrydexSet": "Miscellaneous",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.832,
-   "confidence": 0.93,
-   "via": "name-only"
-  },
-  {
    "tcgplayerId": 616292,
    "tcgplayer": "Azure Legends Tin [Kyogre ex]",
-   "scrydexId": "miscp-s137",
-   "scrydex": "Azure Legends Tin [Kyogre ex] (International Version)",
+   "scrydexId": "miscp-s169",
+   "scrydex": "Azure Legends Tin (Kyogre ex)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
-   "priceRatio": 0.768,
-   "confidence": 0.91,
-   "via": "name-only"
-  },
-  {
-   "tcgplayerId": 616293,
-   "tcgplayer": "Azure Legends Tin [Xerneas ex]",
-   "scrydexId": "miscp-s136",
-   "scrydex": "Azure Legends Tin [Xerneas ex] (International Version)",
-   "scrydexSet": "Miscellaneous",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.85,
-   "confidence": 0.94,
+   "priceRatio": 1.0,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -10944,7 +11513,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.85,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -10984,27 +11553,51 @@
    "via": "name-only"
   },
   {
-   "tcgplayerId": 619075,
-   "tcgplayer": "Azure Legends Tins [Set of 3]",
-   "scrydexId": "miscp-s135",
-   "scrydex": "Azure Legends Tins [Set of 3] (International Version)",
+   "tcgplayerId": 616951,
+   "tcgplayer": "Enhanced 2-Pack Blister Pack [Latios, Zekrom & Palkia]",
+   "scrydexId": "miscp-s176",
+   "scrydex": "Enhanced 2-Pack Blister Pack (Latios, Zekrom & Palkia)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
-   "priceRatio": 0.89,
-   "confidence": 0.96,
+   "priceRatio": 1.0,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
-   "tcgplayerId": 621096,
-   "tcgplayer": "Paradox Powers ex Special Collection",
-   "scrydexId": "miscp-s232",
-   "scrydex": "Dark Powers ex Special Collection",
+   "tcgplayerId": 616953,
+   "tcgplayer": "Enhanced 2-Pack Blister Pack [Armarouge, Revavroom & Houndstone]",
+   "scrydexId": "miscp-s175",
+   "scrydex": "Enhanced 2-Pack Blister Pack (Armarouge, Revavroom & Houndstone)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
-   "priceRatio": 1.095,
-   "confidence": 0.72,
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 623647,
+   "tcgplayer": "Slashing Legends Tin [Koraidon ex]",
+   "scrydexId": "miscp-s161",
+   "scrydex": "Slashing Legends Tin (Koraidon ex)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 623648,
+   "tcgplayer": "Slashing Legends Tin [Zacian ex]",
+   "scrydexId": "miscp-s160",
+   "scrydex": "Slashing Legends Tin (Zacian ex)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -11044,6 +11637,30 @@
    "via": "name-only"
   },
   {
+   "tcgplayerId": 628493,
+   "tcgplayer": "Knock Out Collection [Alakazam]",
+   "scrydexId": "miscp-s144",
+   "scrydex": "Knock Out Collection (Alakazam)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 0.987,
+   "confidence": 0.99,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 628494,
+   "tcgplayer": "Knock Out Collection [Chien-Pao]",
+   "scrydexId": "miscp-s143",
+   "scrydex": "Knock Out Collection (Chien-Pao)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
    "tcgplayerId": 629647,
    "tcgplayer": "Masks of Ogerpon Premium Collection",
    "scrydexId": "miscp-s123",
@@ -11068,34 +11685,22 @@
    "via": "name-only"
   },
   {
-   "tcgplayerId": 633083,
-   "tcgplayer": "Azure Legends Tin [Xerneas ex] (International Version)",
-   "scrydexId": "miscp-s136",
-   "scrydex": "Azure Legends Tin [Xerneas ex] (International Version)",
-   "scrydexSet": "Miscellaneous",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.0,
-   "confidence": 1.0,
-   "via": "name-only"
-  },
-  {
-   "tcgplayerId": 633084,
-   "tcgplayer": "Azure Legends Tins [Set of 3] (International Version)",
-   "scrydexId": "miscp-s135",
-   "scrydex": "Azure Legends Tins [Set of 3] (International Version)",
-   "scrydexSet": "Miscellaneous",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.0,
-   "confidence": 1.0,
-   "via": "name-only"
-  },
-  {
    "tcgplayerId": 633085,
    "tcgplayer": "Paldea Friends Mini Tins 5-Pack",
    "scrydexId": "miscp-s122",
    "scrydex": "Paldea Friends Mini Tins 5-Pack",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 634329,
+   "tcgplayer": "2 Pack Blister [Tornadus, Thundurus & Landorus]",
+   "scrydexId": "miscp-s92",
+   "scrydex": "2 Pack Blister (Tornadus, Thundurus & Landorus)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
@@ -11184,7 +11789,43 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.76,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 649193,
+   "tcgplayer": "Team Rocket Tin [Team Rocket's Mewtwo ex]",
+   "scrydexId": "miscp-s106",
+   "scrydex": "Team Rocket Tin (Team Rocket's Mewtwo ex)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 649194,
+   "tcgplayer": "Team Rocket Tin [Team Rocket's Nidoking ex]",
+   "scrydexId": "miscp-s108",
+   "scrydex": "Team Rocket Tin (Team Rocket's Nidoking ex)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 649195,
+   "tcgplayer": "Team Rocket Tin [Team Rocket's Persian ex]",
+   "scrydexId": "miscp-s109",
+   "scrydex": "Team Rocket Tin (Team Rocket's Persian ex)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -11244,7 +11885,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.76,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -11320,6 +11961,18 @@
    "via": "name-only"
   },
   {
+   "tcgplayerId": 654590,
+   "tcgplayer": "Poke Ball Tin Display (Q4 2025)",
+   "scrydexId": "miscp-s60",
+   "scrydex": "Pok\u00e9 Ball Tin Display (Q4 2025)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
    "tcgplayerId": 654593,
    "tcgplayer": "Fall 2025 Collector Chest",
    "scrydexId": "miscp-s61",
@@ -11380,6 +12033,18 @@
    "via": "name-only"
   },
   {
+   "tcgplayerId": 656995,
+   "tcgplayer": "2-Pack Blister Pack [Team Rocket's Articuno, Zapdos & Tyranitar]",
+   "scrydexId": "miscp-s94",
+   "scrydex": "2-Pack Blister Pack (Team Rocket's Articuno, Zapdos & Tyranitar)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
    "tcgplayerId": 656997,
    "tcgplayer": "Team Rocket\u2019s Moltres ex Ultra-Premium Collection",
    "scrydexId": "miscp-s46",
@@ -11412,7 +12077,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.85,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -11488,6 +12153,18 @@
    "via": "name-only"
   },
   {
+   "tcgplayerId": 668648,
+   "tcgplayer": "Pokemon - Poke Ball Tin - Repeat Ball",
+   "scrydexId": "miscp-s56",
+   "scrydex": "Pok\u00e9mon - Pok\u00e9 Ball Tin - Repeat Ball",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
    "tcgplayerId": 670267,
    "tcgplayer": "Reshiram & Archaludon ex Box [Set of 2]",
    "scrydexId": "miscp-s53",
@@ -11496,7 +12173,79 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.76,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 670782,
+   "tcgplayer": "Knock Out Collection [Kyogre]",
+   "scrydexId": "miscp-s52",
+   "scrydex": "Knock Out Collection (Kyogre)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.009,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 670783,
+   "tcgplayer": "Knock Out Collection [Suicune]",
+   "scrydexId": "miscp-s51",
+   "scrydex": "Knock Out Collection (Suicune)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 671249,
+   "tcgplayer": "Mega Charizard Tin (Mega Charizard Y)",
+   "scrydexId": "miscp-s41",
+   "scrydex": "Mega Charizard Tin (Mega Charizard Y)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 0.998,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 671250,
+   "tcgplayer": "Mega Charizard Tin (Mega Charizard X)",
+   "scrydexId": "miscp-s40",
+   "scrydex": "Mega Charizard Tin (Mega Charizard X)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 671271,
+   "tcgplayer": "2-Pack Blister [Raikou] (3-tab)",
+   "scrydexId": "miscp-s48",
+   "scrydex": "2-Pack Blister [Raikou] (3-tab)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 671274,
+   "tcgplayer": "2-Pack Blister [Raikou] (1-tab)",
+   "scrydexId": "miscp-s47",
+   "scrydex": "2-Pack Blister [Raikou] (1-tab)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -11536,10 +12285,94 @@
    "via": "name-only"
   },
   {
+   "tcgplayerId": 683264,
+   "tcgplayer": "2-Pack Blister Pack [Oddish, Gloom, & Vileplume]",
+   "scrydexId": "miscp-s36",
+   "scrydex": "2-Pack Blister Pack (Oddish, Gloom, & Vileplume)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 684107,
+   "tcgplayer": "League Battle Deck Case [Mega Lucario ex]",
+   "scrydexId": "miscp-s15",
+   "scrydex": "League Battle Deck Case (Mega Lucario ex)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
    "tcgplayerId": 685574,
    "tcgplayer": "Lumiose City Mini Tin Display",
    "scrydexId": "miscp-s9",
    "scrydex": "Lumiose City Mini Tin Display",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 685575,
+   "tcgplayer": "Lumiose City Mini Tin [Salamence & Litleo]",
+   "scrydexId": "miscp-s8",
+   "scrydex": "Lumiose City Mini Tin (Salamence & Litleo)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 685576,
+   "tcgplayer": "Lumiose City Mini Tin [Meganium & Meowstic]",
+   "scrydexId": "miscp-s11",
+   "scrydex": "Lumiose City Mini Tin (Meganium & Meowstic)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 685577,
+   "tcgplayer": "Lumiose City Mini Tin [Emboar & Inkay]",
+   "scrydexId": "miscp-s12",
+   "scrydex": "Lumiose City Mini Tin (Emboar & Inkay)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 685578,
+   "tcgplayer": "Lumiose City Mini Tin [Feraligatr & Budew]",
+   "scrydexId": "miscp-s13",
+   "scrydex": "Lumiose City Mini Tin (Feraligatr & Budew)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 0.994,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 685579,
+   "tcgplayer": "Lumiose City Mini Tin [Gallade & Goomy]",
+   "scrydexId": "miscp-s3",
+   "scrydex": "Lumiose City Mini Tin (Gallade & Goomy)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
@@ -11556,7 +12389,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.0,
-   "confidence": 0.8,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -11592,7 +12425,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 0.992,
-   "confidence": 0.76,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -11604,7 +12437,7 @@
    "variant": "normal",
    "condition": "U",
    "priceRatio": 1.004,
-   "confidence": 0.76,
+   "confidence": 1.0,
    "via": "name-only"
   },
   {
@@ -11612,6 +12445,66 @@
    "tcgplayer": "Mega Moonlit Tin Case",
    "scrydexId": "miscp-s10",
    "scrydex": "Mega Moonlit Tin Case",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 688964,
+   "tcgplayer": "Pokemon - Poke Ball Tin - Poke Ball (Q4 2025)",
+   "scrydexId": "miscp-s29",
+   "scrydex": "Pok\u00e9mon - Pok\u00e9 Ball Tin - Pok\u00e9 Ball (Q4 2025)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 688965,
+   "tcgplayer": "Pokemon - Poke Ball Tin - Ultra Ball (Q4 2025)",
+   "scrydexId": "miscp-s28",
+   "scrydex": "Pok\u00e9mon - Pok\u00e9 Ball Tin - Ultra Ball (Q4 2025)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 688966,
+   "tcgplayer": "Pokemon - Poke Ball Tin - Great Ball (Q4 2025)",
+   "scrydexId": "miscp-s27",
+   "scrydex": "Pok\u00e9mon - Pok\u00e9 Ball Tin - Great Ball (Q4 2025)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 688967,
+   "tcgplayer": "Pokemon - Poke Ball Tin - Premier Ball (Q4 2025)",
+   "scrydexId": "miscp-s26",
+   "scrydex": "Pok\u00e9mon - Pok\u00e9 Ball Tin - Premier Ball (Q4 2025)",
+   "scrydexSet": "Miscellaneous",
+   "variant": "normal",
+   "condition": "U",
+   "priceRatio": 1.0,
+   "confidence": 1.0,
+   "via": "name-only"
+  },
+  {
+   "tcgplayerId": 688968,
+   "tcgplayer": "Pokemon - Poke Ball Tin - Repeat Ball (Q4 2025)",
+   "scrydexId": "miscp-s25",
+   "scrydex": "Pok\u00e9mon - Pok\u00e9 Ball Tin - Repeat Ball (Q4 2025)",
    "scrydexSet": "Miscellaneous",
    "variant": "normal",
    "condition": "U",
@@ -11641,30 +12534,6 @@
    "condition": "U",
    "priceRatio": 1.0,
    "confidence": 1.0,
-   "via": "name-only"
-  },
-  {
-   "tcgplayerId": 719650,
-   "tcgplayer": "Costco Ascended Heroes Mini Tins 5-Pack",
-   "scrydexId": "me2pt5-s13",
-   "scrydex": "Ascended Heroes Mini Tins 5-Pack",
-   "scrydexSet": "Ascended Heroes",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 1.442,
-   "confidence": 0.72,
-   "via": "name-only"
-  },
-  {
-   "tcgplayerId": 723301,
-   "tcgplayer": "Ascended Heroes Elite Trainer Box and Pokeball (Sam's Club)",
-   "scrydexId": "me2pt5-s3",
-   "scrydex": "Ascended Heroes Elite Trainer Box",
-   "scrydexSet": "Ascended Heroes",
-   "variant": "normal",
-   "condition": "U",
-   "priceRatio": 0.896,
-   "confidence": 0.76,
    "via": "name-only"
   }
  ],
@@ -11700,6 +12569,16 @@
    "why": "ambiguous between '30th Celebration ex Tin [Set of 2] (Retail Version)' and '30th Celebration ex Tin [Set of 2] (International Version)'"
   },
   {
+   "tcgplayer": "30th Celebration ex Box [Set of 2]",
+   "set": "ME: 30th Celebration",
+   "why": "no close name match in set (best: '30th Celebration Tech Sticker Collection [Set of 2]')"
+  },
+  {
+   "tcgplayer": "Mega Evolution: Ascended Heroes Collection [Set of 2]",
+   "set": "ME: Ascended Heroes",
+   "why": "no close name match in set (best: 'Ascended Heroes First Partners Deluxe Pin Collection')"
+  },
+  {
    "tcgplayer": "Ascended Heroes Booster Bundle Display",
    "set": "ME: Ascended Heroes",
    "why": "prices disagree (Scrydex 'Ascended Heroes Booster Bundle' 74.77 vs TCGplayer 2254.99)"
@@ -11707,22 +12586,42 @@
   {
    "tcgplayer": "Ascended Heroes Tin [Mega Emboar ex]",
    "set": "ME: Ascended Heroes",
-   "why": "ambiguous between 'Ascended Heroes Mini Tin - Togepi & Totodile' and 'Ascended Heroes Mini Tin - Clefairy & Chikorita'"
+   "why": "no close name match in set (best: 'Ascended Heroes Mini Tin - Togepi & Totodile')"
   },
   {
    "tcgplayer": "Ascended Heroes Tin [Mega Feraligatr ex]",
    "set": "ME: Ascended Heroes",
-   "why": "ambiguous between 'Ascended Heroes Mini Tin - Togepi & Totodile' and 'Ascended Heroes Mini Tin - Clefairy & Chikorita'"
+   "why": "no close name match in set (best: 'Ascended Heroes Mini Tin - Togepi & Totodile')"
   },
   {
    "tcgplayer": "Ascended Heroes Tin [Mega Meganium ex]",
    "set": "ME: Ascended Heroes",
-   "why": "ambiguous between 'Ascended Heroes Mini Tin - Togepi & Totodile' and 'Ascended Heroes Mini Tin - Clefairy & Chikorita'"
+   "why": "no close name match in set (best: 'Ascended Heroes Mini Tin - Togepi & Totodile')"
+  },
+  {
+   "tcgplayer": "Ascended Heroes Tin [Set of 3]",
+   "set": "ME: Ascended Heroes",
+   "why": "no close name match in set (best: 'Ascended Heroes Mini Tins 5-Pack')"
+  },
+  {
+   "tcgplayer": "Ascended Heroes Tin Case",
+   "set": "ME: Ascended Heroes",
+   "why": "no close name match in set (best: 'Ascended Heroes Mega ex Boxes Case')"
   },
   {
    "tcgplayer": "Ascended Heroes Focused Fighters Premium Collection (Sam's Club)",
    "set": "ME: Ascended Heroes",
-   "why": "ambiguous between 'Ascended Heroes Premium Poster Collection - Mega Lucario' and 'Ascended Heroes Premium Poster Collection - Mega Gardevoir'"
+   "why": "no close name match in set (best: 'Ascended Heroes Premium Poster Collection - Mega Lucario')"
+  },
+  {
+   "tcgplayer": "Mega Evolution: Ascended Heroes Collection - Erika (1-Tab)",
+   "set": "ME: Ascended Heroes",
+   "why": "no close name match in set (best: 'Mega Evolution: Ascended Heroes Collection - Erika')"
+  },
+  {
+   "tcgplayer": "Mega Evolution: Ascended Heroes Collection - Larry (1-Tab)",
+   "set": "ME: Ascended Heroes",
+   "why": "no close name match in set (best: 'Ascended Heroes Collection - Larry')"
   },
   {
    "tcgplayer": "Phantasmal Flames Booster Bundle Case",
@@ -11747,12 +12646,17 @@
   {
    "tcgplayer": "Phantasmal Flames Premium Checklane Blister [Arven's Greedent]",
    "set": "ME02: Phantasmal Flames",
-   "why": "ambiguous between 'Phantasmal Flames Single Pack Blister - Whimsicott' and 'Phantasmal Flames Single Pack Blister - Cottonee'"
+   "why": "no close name match in set (best: 'Phantasmal Flames Single Pack Blister - Whimsicott')"
   },
   {
    "tcgplayer": "Phantasmal Flames Premium Checklane Blister [Ethan's Magcargo]",
    "set": "ME02: Phantasmal Flames",
-   "why": "ambiguous between 'Phantasmal Flames Single Pack Blister - Whimsicott' and 'Phantasmal Flames Single Pack Blister - Cottonee'"
+   "why": "no close name match in set (best: 'Phantasmal Flames Single Pack Blister - Whimsicott')"
+  },
+  {
+   "tcgplayer": "Phantasmal Flames 3-Pack Blister Case",
+   "set": "ME02: Phantasmal Flames",
+   "why": "no close name match in set (best: 'Phantasmal Flames Elite Trainer Box Case')"
   },
   {
    "tcgplayer": "Destined Rivals 3 Pack Blister [Set of 2]",
@@ -11763,6 +12667,11 @@
    "tcgplayer": "Prismatic Evolutions Pokemon Center Elite Trainer Box (Exclusive) Case",
    "set": "SV: Prismatic Evolutions",
    "why": "ambiguous between 'Prismatic Evolutions Elite Trainer Box Case' and 'Prismatic Evolutions Booster Bundle Case'"
+  },
+  {
+   "tcgplayer": "Prismatic Evolutions Mini Tin Display Case",
+   "set": "SV: Prismatic Evolutions",
+   "why": "no close name match in set (best: 'Prismatic Evolutions Elite Trainer Box Case')"
   },
   {
    "tcgplayer": "Prismatic Evolutions Sleeved Booster Pack Art Bundle [Set of 4]",
@@ -11786,17 +12695,17 @@
   {
    "tcgplayer": "Prismatic Evolutions Booster Pack Art Bundle [Set of 4]",
    "set": "SV: Prismatic Evolutions",
-   "why": "ambiguous between 'Prismatic Evolutions Surprise Box' and 'Prismatic Evolutions Tech Sticker Collection - Sylveon'"
+   "why": "no close name match in set (best: 'Prismatic Evolutions Surprise Box')"
   },
   {
    "tcgplayer": "Prismatic Evolutions 2-Pack Blister Case",
    "set": "SV: Prismatic Evolutions",
-   "why": "ambiguous between 'Prismatic Evolutions Tech Sticker Collection Case' and 'Prismatic Evolutions Surprise Box Case'"
+   "why": "no close name match in set (best: 'Prismatic Evolutions Tech Sticker Collection Case')"
   },
   {
    "tcgplayer": "Prismatic Evolutions Accessory Pouch Special Collection Case",
    "set": "SV: Prismatic Evolutions",
-   "why": "ambiguous between 'Prismatic Evolutions Tech Sticker Collection Case' and 'Prismatic Evolutions Surprise Box Case'"
+   "why": "no close name match in set (best: 'Prismatic Evolutions Tech Sticker Collection Case')"
   },
   {
    "tcgplayer": "Prismatic Evolution Booster Bundle Display Case",
@@ -11804,9 +12713,19 @@
    "why": "prices disagree (Scrydex 'Prismatic Evolutions Elite Trainer Box Case' 2705.57 vs TCGplayer 13000.00)"
   },
   {
+   "tcgplayer": "Prismatic Evolutions Super-Premium Collection Case",
+   "set": "SV: Prismatic Evolutions",
+   "why": "no close name match in set (best: 'Prismatic Evolutions Elite Trainer Box Case')"
+  },
+  {
    "tcgplayer": "Prismatic Evolutions Premium Figure Collection",
    "set": "SV: Prismatic Evolutions",
-   "why": "ambiguous between 'Prismatic Evolutions Tech Sticker Collection (Set of 3)' and 'Prismatic Evolutions Binder Collection'"
+   "why": "no close name match in set (best: 'Prismatic Evolutions Tech Sticker Collection (Set of 3)')"
+  },
+  {
+   "tcgplayer": "Prismatic Evolutions Premium Figure Collection Case",
+   "set": "SV: Prismatic Evolutions",
+   "why": "no close name match in set (best: 'Prismatic Evolutions Elite Trainer Box Case')"
   },
   {
    "tcgplayer": "Prismatic Evolutions Elite Trainer Box Case (Dollar General Exclusive)",
@@ -11817,6 +12736,11 @@
    "tcgplayer": "Prismatic Evolutions Booster Bundle + Surprise Box Bundle (Sam's Club)",
    "set": "SV: Prismatic Evolutions",
    "why": "prices disagree (Scrydex 'Prismatic Evolutions Booster Bundle' 84.02 vs TCGplayer 148.78)"
+  },
+  {
+   "tcgplayer": "Surging Sparks Booster Bundle (LGS)",
+   "set": "SV08: Surging Sparks",
+   "why": "no close name match in set (best: 'Surging Sparks Booster Bundle')"
   },
   {
    "tcgplayer": "Surging Sparks Elite Trainer Box Case",
@@ -11834,9 +12758,14 @@
    "why": "ambiguous between 'Surging Sparks Elite Trainer Box Case' and 'Surging Sparks Booster Bundle Case'"
   },
   {
+   "tcgplayer": "Surging Sparks Half Booster Box",
+   "set": "SV08: Surging Sparks",
+   "why": "no close name match in set (best: 'Surging Sparks Booster Box')"
+  },
+  {
    "tcgplayer": "Surging Sparks 3 Pack Blisters Case",
    "set": "SV08: Surging Sparks",
-   "why": "ambiguous between 'Surging Sparks Elite Trainer Box Case' and 'Surging Sparks Sleeved Booster Pack Case'"
+   "why": "no close name match in set (best: 'Surging Sparks Elite Trainer Box Case')"
   },
   {
    "tcgplayer": "Twilight Masquerade Premium Checklane Blister [Steelix]",
@@ -11847,11 +12776,6 @@
    "tcgplayer": "Twilight Masqueade Half Booster Box",
    "set": "SV06: Twilight Masquerade",
    "why": "prices disagree (Scrydex 'Twilight Masquerade Booster Box' 333.94 vs TCGplayer 199.75)"
-  },
-  {
-   "tcgplayer": "Temporal Forces Elite Trainer Box [Set of 2]",
-   "set": "SV05: Temporal Forces",
-   "why": "ambiguous between 'Temporal Forces Elite Trainer Box (Set of 2)' and 'Temporal Forces Elite Trainer Box - Walking Wake'"
   },
   {
    "tcgplayer": "Temporal Forces Pokemon Center Elite Trainer Box Case (Exclusive) [Iron Leaves]",
@@ -11871,32 +12795,27 @@
   {
    "tcgplayer": "Paldean Fates Mini Tin [Smoliv]",
    "set": "SV: Paldean Fates",
-   "why": "prices disagree (Scrydex 'Paldean Fates Mini Tin (Set of 5)' 261.42 vs TCGplayer 64.56)"
+   "why": "prices disagree (Scrydex 'Paldean Fates Mini Tin Display' 529.39 vs TCGplayer 64.56)"
   },
   {
    "tcgplayer": "Paldean Fates Mini Tin [Flamigo]",
    "set": "SV: Paldean Fates",
-   "why": "prices disagree (Scrydex 'Paldean Fates Mini Tin (Set of 5)' 261.42 vs TCGplayer 52.72)"
+   "why": "prices disagree (Scrydex 'Paldean Fates Mini Tin Display' 529.39 vs TCGplayer 52.72)"
   },
   {
    "tcgplayer": "Paldean Fates Mini Tin [Maushold]",
    "set": "SV: Paldean Fates",
-   "why": "prices disagree (Scrydex 'Paldean Fates Mini Tin (Set of 5)' 261.42 vs TCGplayer 88.40)"
+   "why": "no close name match in set (best: 'Paldean Fates International Tin - Great Tusk ex')"
   },
   {
    "tcgplayer": "Paldean Fates Mini Tin [Tinkatink]",
    "set": "SV: Paldean Fates",
-   "why": "prices disagree (Scrydex 'Paldean Fates Mini Tin (Set of 5)' 261.42 vs TCGplayer 50.87)"
+   "why": "prices disagree (Scrydex 'Paldean Fates Mini Tin Display' 529.39 vs TCGplayer 50.87)"
   },
   {
    "tcgplayer": "Paldean Fates Mini Tin [Finizen]",
    "set": "SV: Paldean Fates",
-   "why": "prices disagree (Scrydex 'Paldean Fates Mini Tin (Set of 5)' 261.42 vs TCGplayer 51.59)"
-  },
-  {
-   "tcgplayer": "Paldean Fates Tins [Set of 3]",
-   "set": "SV: Paldean Fates",
-   "why": "ambiguous between 'Paldean Fates Tins (Set of 3)' and 'Paldean Fates International Tins (Set of 3)'"
+   "why": "prices disagree (Scrydex 'Paldean Fates Mini Tin Display' 529.39 vs TCGplayer 51.59)"
   },
   {
    "tcgplayer": "Paldean Fates Booster Bundle Display Case",
@@ -11911,17 +12830,22 @@
   {
    "tcgplayer": "Paldean Fates Great Tusk ex & Iron Treads ex Premium Collection",
    "set": "SV: Paldean Fates",
-   "why": "ambiguous between 'Paldean Fates Premium Collection - Meowscarada ex' and 'Paldean Fates Premium Collection - Skeledirge ex'"
+   "why": "no close name match in set (best: 'Paldean Fates Premium Collection - Meowscarada ex')"
   },
   {
    "tcgplayer": "Paldean Fates Booster Pack Art Bundle [Set of 4]",
    "set": "SV: Paldean Fates",
-   "why": "ambiguous between 'Paldean Fates Tech Sticker Collection - Fidough' and 'Paldean Fates Tech Sticker Collection - Greavard'"
+   "why": "no close name match in set (best: 'Paldean Fates Tech Sticker Collection - Fidough')"
   },
   {
    "tcgplayer": "Paldean Fates Tin Case",
    "set": "SV: Paldean Fates",
    "why": "prices disagree (Scrydex 'Paldean Fates Elite Trainer Box Case' 2715.00 vs TCGplayer 1612.48)"
+  },
+  {
+   "tcgplayer": "Paldean Fates Mini Tin Display Case",
+   "set": "SV: Paldean Fates",
+   "why": "no close name match in set (best: 'Paldean Fates Elite Trainer Box Case')"
   },
   {
    "tcgplayer": "151 Booster Bundle Display Case",
@@ -11941,7 +12865,7 @@
   {
    "tcgplayer": "Obsidian Flames 3 Pack Blister [Set of 2]",
    "set": "SV03: Obsidian Flames",
-   "why": "ambiguous between 'Obsidian Flames 3-Pack Blister - Eevee' and 'Obsidian Flames 3-Pack Blister - Houndstone'"
+   "why": "no close name match in set (best: 'Obsidian Flames 3-Pack Blister - Eevee')"
   },
   {
    "tcgplayer": "Obsidian Flames Pokemon Center Elite Trainer Box Case (Exclusive)",
@@ -11951,12 +12875,37 @@
   {
    "tcgplayer": "Crown Zenith Collection [Set of 2]",
    "set": "SWSH: Crown Zenith",
-   "why": "ambiguous between 'Crown Zenith Morpeko VPremium Treasures Collection' and 'Crown Zenith Pikachu VMAX Premium Collection'"
+   "why": "no close name match in set (best: 'Crown Zenith Morpeko VPremium Treasures Collection')"
+  },
+  {
+   "tcgplayer": "Crown Zenith Mini Tin [Marnie & Morpeko]",
+   "set": "SWSH: Crown Zenith",
+   "why": "no close name match in set (best: 'Crown Zenith Mini Tin - Leon & Charizard')"
+  },
+  {
+   "tcgplayer": "Crown Zenith Mini Tin [Hop & Wooloo]",
+   "set": "SWSH: Crown Zenith",
+   "why": "no close name match in set (best: 'Crown Zenith Mini Tin - Leon & Charizard')"
+  },
+  {
+   "tcgplayer": "Crown Zenith Mini Tin [Bede & Hatenna]",
+   "set": "SWSH: Crown Zenith",
+   "why": "no close name match in set (best: 'Crown Zenith Mini Tin - Leon & Charizard')"
+  },
+  {
+   "tcgplayer": "Crown Zenith Mini Tin [Sonia & Yamper]",
+   "set": "SWSH: Crown Zenith",
+   "why": "no close name match in set (best: 'Crown Zenith Mini Tin - Leon & Charizard')"
+  },
+  {
+   "tcgplayer": "Crown Zenith Mini Tin [Set of 5]",
+   "set": "SWSH: Crown Zenith",
+   "why": "no close name match in set (best: 'Crown Zenith Tin (Set of 3) (International Version)')"
   },
   {
    "tcgplayer": "Crown Zenith Pin Collection [Set of 3]",
    "set": "SWSH: Crown Zenith",
-   "why": "ambiguous between 'Crown Zenith Morpeko VPremium Treasures Collection' and 'Crown Zenith Pikachu VMAX Premium Collection'"
+   "why": "no close name match in set (best: 'Crown Zenith Morpeko VPremium Treasures Collection')"
   },
   {
    "tcgplayer": "Crown Zenith Tin [Galarian Moltres]",
@@ -11989,9 +12938,29 @@
    "why": "prices disagree (Scrydex 'Crown Zenith Elite Trainer Box Plus Case' 2499.99 vs TCGplayer 1470.83)"
   },
   {
+   "tcgplayer": "Morpeko V-UNION Premium Treasures Collection",
+   "set": "SWSH: Crown Zenith",
+   "why": "no close name match in set (best: 'Crown Zenith Morpeko VPremium Treasures Collection')"
+  },
+  {
    "tcgplayer": "Crown Zenith Tin Case",
    "set": "SWSH: Crown Zenith",
    "why": "prices disagree (Scrydex 'Crown Zenith Elite Trainer Box Case' 3699.59 vs TCGplayer 1028.14)"
+  },
+  {
+   "tcgplayer": "Crown Zenith Mini Tin Display Case",
+   "set": "SWSH: Crown Zenith",
+   "why": "no close name match in set (best: 'Crown Zenith Elite Trainer Box Plus Case')"
+  },
+  {
+   "tcgplayer": "Crown Zenith Premium Figure Collection Case",
+   "set": "SWSH: Crown Zenith",
+   "why": "no close name match in set (best: 'Crown Zenith Elite Trainer Box Plus Case')"
+  },
+  {
+   "tcgplayer": "Morpeko V-UNION Premium Treasures Collection Case",
+   "set": "SWSH: Crown Zenith",
+   "why": "no close name match in set (best: 'Crown Zenith Elite Trainer Box Plus Case')"
   },
   {
    "tcgplayer": "Crown Zenith Pin Collection Case",
@@ -12001,12 +12970,12 @@
   {
    "tcgplayer": "Play! Pokemon Prize Pack Series Nine",
    "set": "Prize Pack Series Cards",
-   "why": "set not found on Scrydex; ambiguous between 'Play! Pok\u00e9mon Prize Pack Series Six' and 'Play! Pok\u00e9mon Prize Pack Series Four'"
+   "why": "set not found on Scrydex; no close name match (best: 'Play! Pok\u00e9mon Prize Pack Series Six')"
   },
   {
    "tcgplayer": "Silver Tempest Single Pack Blister [Set of 2]",
    "set": "SWSH12: Silver Tempest",
-   "why": "ambiguous between 'Silver Tempest 3-Pack Blister - Manaphy' and 'Silver Tempest 3-Pack Blister - Togetic'"
+   "why": "prices disagree (Scrydex 'Silver Tempest Single Pack Blister (Set of 2)' 20.00 vs TCGplayer 48.98)"
   },
   {
    "tcgplayer": "Lost Origin 3 Pack Blister [Set of 2]",
@@ -12024,6 +12993,11 @@
    "why": "prices disagree (Scrydex 'Lost Origin Sleeved Booster Pack Art Bundle (Set of 4)' 85.37 vs TCGplayer 154.71)"
   },
   {
+   "tcgplayer": "Lost Origin Booster Bundle",
+   "set": "SWSH11: Lost Origin",
+   "why": "no close name match in set (best: 'Lost Origin Booster Bundle (Set of 6)')"
+  },
+  {
    "tcgplayer": "Pokemon Stacking Tins: Fighting-Fire-Darkness [Set of 3]",
    "set": "SWSH11: Lost Origin",
    "why": "prices disagree (Scrydex 'Lost Origin Pokemon Stacking Tin: Fighting' 56.63 vs TCGplayer 140.00)"
@@ -12037,6 +13011,11 @@
    "tcgplayer": "Lost Origin Booster Bundle Case",
    "set": "SWSH11: Lost Origin",
    "why": "prices disagree (Scrydex 'Lost Origin Booster Box Case' 4565.98 vs TCGplayer 20998.95)"
+  },
+  {
+   "tcgplayer": "Lost Origin Build & Battle Stadium Case",
+   "set": "SWSH11: Lost Origin",
+   "why": "no close name match in set (best: 'Lost Origin Elite Trainer Box Case')"
   },
   {
    "tcgplayer": "Pokemon GO Pokemon Center Elite Trainer Box Plus (Exclusive)",
@@ -12058,6 +13037,11 @@
    ]
   },
   {
+   "tcgplayer": "Pokemon GO Mini Tin [Magikarp]",
+   "set": "Pokemon GO",
+   "why": "no close name match in set (best: 'Pokemon Go Tin - Blissey')"
+  },
+  {
    "tcgplayer": "Pokemon GO Mini Tin [Blissey]",
    "set": "Pokemon GO",
    "why": "ambiguous between 'Pokemon Go Tin - Blissey' and 'Pokemon Go Poke Ball Tin - Ultra Ball'"
@@ -12065,12 +13049,12 @@
   {
    "tcgplayer": "Pokemon GO Mini Tin [Pikachu]",
    "set": "Pokemon GO",
-   "why": "ambiguous between 'Pokemon Go Poke Ball Tin - Poke Ball' and 'Pokemon Go Poke Ball Tin - Great Ball'"
+   "why": "no close name match in set (best: 'Pokemon Go Poke Ball Tin - Poke Ball')"
   },
   {
    "tcgplayer": "Pokemon GO Mini Tin [Eevee]",
    "set": "Pokemon GO",
-   "why": "ambiguous between 'Pokemon Go Poke Ball Tin - Poke Ball' and 'Pokemon Go Poke Ball Tin - Great Ball'"
+   "why": "no close name match in set (best: 'Pokemon Go Poke Ball Tin - Poke Ball')"
   },
   {
    "tcgplayer": "Pokemon GO Poke Ball Tin - Ultra Ball",
@@ -12118,6 +13102,21 @@
    "why": "prices disagree (Scrydex 'Pokemon Celebrations International Tin - Dark Sylveon V' 127.85 vs TCGplayer 250.58)"
   },
   {
+   "tcgplayer": "Pokemon Celebrations Tin [Set of 2]",
+   "set": "Celebrations",
+   "why": "no close name match in set (best: 'Celebrations Mini Tin Display')"
+  },
+  {
+   "tcgplayer": "Celebrations Deluxe Pin Collection Case [Zacian LV. X]",
+   "set": "Celebrations",
+   "why": "no close name match in set (best: 'Celebrations Elite Trainer Box Case')"
+  },
+  {
+   "tcgplayer": "Celebrations Collector Chest Case",
+   "set": "Celebrations",
+   "why": "no close name match in set (best: 'Celebrations Elite Trainer Box Case')"
+  },
+  {
    "tcgplayer": "Celebrations Collection Case",
    "set": "Celebrations",
    "why": "prices disagree (Scrydex 'Celebrations Elite Trainer Box Case' 2340.00 vs TCGplayer 899.98)"
@@ -12130,7 +13129,7 @@
   {
    "tcgplayer": "Evolving Skies Elite Trainer Box [Set of 2]",
    "set": "SWSH07: Evolving Skies",
-   "why": "ambiguous between 'Evolving Skies Elite Trainer Box' and 'Evolving Skies Elite Trainer Box - Jolteon/Flareon/Umbreon/Leafeon'"
+   "why": "prices disagree (Scrydex 'Evolving Skies Elite Trainer Box (Set of 2)' 2271.94 vs TCGplayer 1104.08)"
   },
   {
    "tcgplayer": "Evolving Skies Pokemon Center Elite Trainer Box Case [Glaceon/Vaporeon/Sylveon/Espeon] (Exclusive)",
@@ -12182,19 +13181,9 @@
    ]
   },
   {
-   "tcgplayer": "Hidden Fates Tin [Raichu GX]",
-   "set": "Hidden Fates",
-   "why": "ambiguous between 'Hidden Fates Tin - Charizard GX' and 'Hidden Fates Tin - Gyarados GX'"
-  },
-  {
    "tcgplayer": "Hidden Fates Poke Ball Collection [Set of 2]",
    "set": "Hidden Fates",
    "why": "prices disagree (Scrydex 'Hidden Fates Poke Ball Collection (Set of 2)' 899.00 vs TCGplayer 4000.00)"
-  },
-  {
-   "tcgplayer": "Hidden Fates Collection [Charizard GX]",
-   "set": "Hidden Fates",
-   "why": "ambiguous between 'Hidden Fates Collection - Raichu GX' and 'Hidden Fates Collection - Gyarados GX'"
   },
   {
    "tcgplayer": "Unified Minds 3 Pack Blister [Stakataka]",
@@ -12297,12 +13286,12 @@
   {
    "tcgplayer": "2022 World Championship Deck [Set of 4]",
    "set": "World Championship Decks",
-   "why": "set not found on Scrydex; no close name match (best: 'Pokemon GO Premier Deck Holder Collection - Dragonite VSTAR')"
+   "why": "set not found on Scrydex; no close name match (best: 'Champion's Path Booster Pack Art Bundle (Set of 4)')"
   },
   {
    "tcgplayer": "2023 World Championship Deck [Set of 4]",
    "set": "World Championship Decks",
-   "why": "set not found on Scrydex; no close name match (best: 'Mega Battle Deck: Mega Gengar ex/Mega Diancie ex (Set of 2)')"
+   "why": "set not found on Scrydex; no close name match (best: 'Champion's Path Booster Pack Art Bundle (Set of 4)')"
   },
   {
    "tcgplayer": "Shining Legends Super-Premium Collection [Ho-Oh GX]",
@@ -12376,7 +13365,7 @@
   {
    "tcgplayer": "Guardians Rising Single Pack Blister [Alolan Persian]",
    "set": "SM - Guardians Rising",
-   "why": "ambiguous between 'Guardians Rising 3-Pack Blister - Turtonator' and 'Guardians Rising Single Pack Blister - Tsareena'"
+   "why": "no close name match in set (best: 'Guardians Rising 3-Pack Blister - Turtonator')"
   },
   {
    "tcgplayer": "Mega Camerupt EX Premium Collection",
@@ -12588,6 +13577,11 @@
    "why": "Scrydex has no current price to confirm the match"
   },
   {
+   "tcgplayer": "EX Dragon Booster Pack",
+   "set": "EX Dragon",
+   "why": "no close name match in set (best: 'EX Dragon Booster Pack')"
+  },
+  {
    "tcgplayer": "Expedition Booster Pack",
    "set": "Expedition",
    "why": "set not found on Scrydex; Scrydex has no current price to confirm the match"
@@ -12623,6 +13617,11 @@
    "why": "set not found on Scrydex; prices disagree (Scrydex 'Scan-Tastic Spectacular Promo Pack' 149.96 vs TCGplayer 399.00)"
   },
   {
+   "tcgplayer": "Base Set Booster Pack [Revised Unlimited Edition]",
+   "set": "Base Set",
+   "why": "no close name match in set (best: 'Base Set Booster Pack')"
+  },
+  {
    "tcgplayer": "Base Set Booster Box [Revised Unlimited Edition]",
    "set": "Base Set",
    "why": "prices disagree (Scrydex 'Base Set Booster Box' 499.99 vs TCGplayer 100000.00)"
@@ -12633,109 +13632,14 @@
    "why": "prices disagree (Scrydex 'Base Set Booster Pack' 1149.99 vs TCGplayer 5000.00)"
   },
   {
+   "tcgplayer": "Pokemon Base Set (Shadowless) [1st Edition] Booster Pack",
+   "set": "Base Set (Shadowless)",
+   "why": "no close name match in set (best: 'Base Set Booster Pack')"
+  },
+  {
    "tcgplayer": "Premium Trainer's XY Collection",
    "set": "Alternate Art Promos",
    "why": "set not found on Scrydex; no close name match (best: 'Red & Blue Collection - Pikachu EX')"
-  },
-  {
-   "tcgplayer": "Pokemon - Poke Ball Tin - Poke Ball",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Pok\u00e9 Ball (Q4 2024)' and 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Pok\u00e9 Ball'"
-  },
-  {
-   "tcgplayer": "Kanto Friends Mini Tin [Bulbasaur]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Kanto Friends Mini Tin (Bulbasaur)' and 'Kanto Friends Mini Tin (Squirtle)'"
-  },
-  {
-   "tcgplayer": "Kanto Friends Mini Tin [Pikachu]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Kanto Friends Mini Tin (Pikachu)' and 'Kanto Friends Mini Tin (Eevee)'"
-  },
-  {
-   "tcgplayer": "Kanto Friends Mini Tin [Eevee]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Kanto Friends Mini Tin (Eevee)' and 'Kanto Friends Mini Tin (Charmander)'"
-  },
-  {
-   "tcgplayer": "Kanto Friends Mini Tin [Charmander]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Kanto Friends Mini Tin (Charmander)' and 'Kanto Friends Mini Tin (Eevee)'"
-  },
-  {
-   "tcgplayer": "Kanto Friends Mini Tin [Squirtle]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Kanto Friends Mini Tin (Squirtle)' and 'Kanto Friends Mini Tin (Bulbasaur)'"
-  },
-  {
-   "tcgplayer": "Knock Out Collection [Tyranitar, Shiftry, and Vivillon]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Knock Out Collection (Tyranitar, Shiftry, and Vivillon)')"
-  },
-  {
-   "tcgplayer": "Knock Out Collection [Lucario, Bisharp, and Zoroark]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Knock Out Collection (Lucario, Bisharp, and Zoroark)')"
-  },
-  {
-   "tcgplayer": "General Mills Promo Booster Pack [Kanto]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'General Mills Promo Booster Pack (Kanto)' and 'General Mills Promo Booster Pack (Sun & Moon)'"
-  },
-  {
-   "tcgplayer": "General Mills Promo Booster Pack [Sun & Moon]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'General Mills Promo Booster Pack (Sun & Moon)' and 'General Mills Promo Booster Pack (Kanto)'"
-  },
-  {
-   "tcgplayer": "Kanto Power Mini Tin [Charizard]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Kanto Power Mini Tin (Charizard)' and 'Kanto Power Mini Tin (Mew)'"
-  },
-  {
-   "tcgplayer": "Kanto Power Mini Tin [Dragonite]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Kanto Power Mini Tin (Dragonite)' and 'Kanto Power Mini Tin (Charizard)'"
-  },
-  {
-   "tcgplayer": "Kanto Power Mini Tin [Mew]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Kanto Power Mini Tin (Mew)' and 'Kanto Power Mini Tin (Charizard)'"
-  },
-  {
-   "tcgplayer": "Kanto Power Mini Tin [Mewtwo]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Kanto Power Mini Tin (Mewtwo)' and 'Kanto Power Mini Tin (Vulpix)'"
-  },
-  {
-   "tcgplayer": "Kanto Power Mini Tin [Vulpix]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Kanto Power Mini Tin (Vulpix)' and 'Kanto Power Mini Tin (Mewtwo)'"
-  },
-  {
-   "tcgplayer": "Pokemon - Poke Ball Tin - Great Ball",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Great Ball' and 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Great Ball (Q4 2025)'"
-  },
-  {
-   "tcgplayer": "Pokemon - Poke Ball Tin - Premier Ball",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Premier Ball' and 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Premier Ball (Q4 2024)'"
-  },
-  {
-   "tcgplayer": "Elemental Power Tin [Flareon GX]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Elemental Power Tin (Flareon GX)' and 'Elemental Power Tin (Jolteon GX)'"
-  },
-  {
-   "tcgplayer": "Elemental Power Tin [Vaporeon GX]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Elemental Power Tin (Vaporeon GX)' and 'Elemental Power Tin (Flareon GX)'"
-  },
-  {
-   "tcgplayer": "Elemental Power Tin [Jolteon GX]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Elemental Power Tin (Jolteon GX)' and 'Elemental Power Tin (Flareon GX)'"
   },
   {
    "tcgplayer": "Premium Checklane Blister [Gallade]",
@@ -12748,49 +13652,9 @@
    "why": "set not found on Scrydex; ambiguous between 'Meowth VMAX Special Collection' and 'Meowth VMAX Special Collection (International Version)'"
   },
   {
-   "tcgplayer": "Galar Pal Mini Tin [Galarian Ponyta]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Galar Pal Mini Tin (Galarian Ponyta)' and 'Galar Pal Mini Tin (Yamper & Morpeko)'"
-  },
-  {
-   "tcgplayer": "Galar Pal Mini Tin [Grookey & Wooloo]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Galar Pal Mini Tin (Grookey & Wooloo)' and 'Galar Pal Mini Tin (Scorbunny & Pikachu)'"
-  },
-  {
-   "tcgplayer": "Galar Pal Mini Tin [Scorbunny & Pikachu]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Galar Pal Mini Tin (Scorbunny & Pikachu)' and 'Galar Pal Mini Tin (Grookey & Wooloo)'"
-  },
-  {
-   "tcgplayer": "Galar Pal Mini Tin [Sobble & Rookidee]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Galar Pal Mini Tin (Sobble & Rookidee)' and 'Galar Pal Mini Tin (Scorbunny & Pikachu)'"
-  },
-  {
-   "tcgplayer": "Galar Pal Mini Tin [Yamper & Morpeko]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Galar Pal Mini Tin (Yamper & Morpeko)' and 'Galar Pal Mini Tin (Galarian Ponyta)'"
-  },
-  {
    "tcgplayer": "Galar Pal Mini Tin Display",
    "set": "Miscellaneous Cards & Products",
    "why": "set not found on Scrydex; no close name match (best: '151 Mini Tin Display')"
-  },
-  {
-   "tcgplayer": "TAG TEAM Powers Collection [Espeon & Deoxys GX]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'TAG TEAM Powers Collection (Umbreon & Darkrai GX)')"
-  },
-  {
-   "tcgplayer": "TAG TEAM Powers Collection [Umbreon & Darkrai GX]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'TAG TEAM Powers Collection (Umbreon & Darkrai GX)')"
-  },
-  {
-   "tcgplayer": "Pokemon - Poke Ball Tin - Ultra Ball",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Ultra Ball' and 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Ultra Ball (Q4 2025)'"
   },
   {
    "tcgplayer": "League Battle Decks [Set of 2]",
@@ -12798,74 +13662,19 @@
    "why": "set not found on Scrydex; prices disagree (Scrydex 'League Battle Decks (Set of 2)' 289.99 vs TCGplayer 735.00)"
   },
   {
-   "tcgplayer": "Galar Power Mini Tin [Dragapult]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Galar Power Mini Tin (Dragapult)' and 'Galar Power Mini Tin (Galarian Rapidash)'"
-  },
-  {
-   "tcgplayer": "Galar Power Mini Tin [Galarian Sirfetch'd]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Galar Power Mini Tin (Galarian Sirfetch'd)')"
-  },
-  {
-   "tcgplayer": "Galar Power Mini Tin [Galarian Rapidash]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Galar Power Mini Tin (Galarian Rapidash)' and 'Galar Power Mini Tin (Dragapult)'"
-  },
-  {
-   "tcgplayer": "Galar Power Mini Tin [Galarian Obstagoon]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Galar Power Mini Tin (Galarian Obstagoon)' and 'Galar Power Mini Tin (Toxtricity)'"
-  },
-  {
-   "tcgplayer": "Galar Power Mini Tin [Toxtricity]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Galar Power Mini Tin (Toxtricity)' and 'Galar Power Mini Tin (Galarian Sirfetch'd)'"
-  },
-  {
-   "tcgplayer": "V Powers Tin [Eevee V]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'V Powers Tin (Eevee V)' and 'V Powers Tin [Eevee V] (International Version)'"
-  },
-  {
-   "tcgplayer": "Strong Bonds Tin [Gardevoir]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Strong Bonds Tin (Gardevoir)' and 'Strong Bonds Tin (Blissey)'"
-  },
-  {
-   "tcgplayer": "Strong Bonds Tin [Blissey]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Strong Bonds Tin (Blissey)' and 'Strong Bonds Tin (Gardevoir)'"
-  },
-  {
-   "tcgplayer": "V Forces Tin [Galarian Slowbro V]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'V Forces Tin (Galarian Slowbro V)' and 'V Forces Tin (Mew V)'"
-  },
-  {
-   "tcgplayer": "V Forces Tin [Lucario V]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'V Forces Tin (Lucario V)' and 'V Forces Tin (Mew V)'"
-  },
-  {
-   "tcgplayer": "V Forces Tin [Mew V]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'V Forces Tin (Mew V)' and 'V Forces Tin (Galarian Slowbro V)'"
-  },
-  {
-   "tcgplayer": "V Forces Tin [Set of 3]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'V Heroes Tin [Set of 3] (International Version)' and 'V Forces Tin (Set of 3)'"
-  },
-  {
    "tcgplayer": "Meowth VMAX Special Collection (International Version)",
    "set": "Miscellaneous Cards & Products",
    "why": "set not found on Scrydex; ambiguous between 'Meowth VMAX Special Collection (International Version)' and 'Meowth VMAX Special Collection'"
   },
   {
+   "tcgplayer": "Checklane 2 Mini-Pack Blister [Machamp]",
+   "set": "Miscellaneous Cards & Products",
+   "why": "set not found on Scrydex; no close name match (best: 'Checklane 2 Mini-Pack Blister (Dragonite)')"
+  },
+  {
    "tcgplayer": "Eevee Evolutions Tin [Vaporeon V]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Evolving Skies Eevee Evolutions Tin - Vaporeon V' and 'Eevee Evolutions Tin - Flareon V'"
+   "why": "set not found on Scrydex; no close name match (best: 'Evolving Skies Eevee Evolutions Tin - Vaporeon V')"
   },
   {
    "tcgplayer": "Eevee Evolutions Tin [Set of 3]",
@@ -12898,54 +13707,24 @@
    "why": "set not found on Scrydex; Scrydex has no current price to confirm the match"
   },
   {
-   "tcgplayer": "Mighty Mysterious Tin [Mimikyu]",
+   "tcgplayer": "Poke Ball Tin Display (Q1 2021)",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Mighty Mysterious Tin (Mimikyu)' and 'Mighty Mysterious Tin (Snorlax)'"
-  },
-  {
-   "tcgplayer": "2 Pack Blister [Snorlax, Morpeko & Applin Cards]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: '2 Pack Blister (Snorlax, Morpeko & Applin Cards)')"
-  },
-  {
-   "tcgplayer": "Poke Ball Tin Display (Q4 2021)",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9 Ball Tin Display (Q1 2019)' and 'Pok\u00e9 Ball Tin Display (Q4 2021)'"
+   "why": "set not found on Scrydex; no close name match (best: 'Pok\u00e9 Ball Tin Display (Q1 2019)')"
   },
   {
    "tcgplayer": "Pokemon Stacking Tins [Set of 6]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Paldean Fates Tins (Set of 3)')"
-  },
-  {
-   "tcgplayer": "Pokemon Stacking Tins [Set of 3]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; prices disagree (Scrydex 'Pok\u00e9mon Stacking Tins [Set of 3] (Psychic, Metal, and Dragon)' 93.07 vs TCGplayer 160.23)"
-  },
-  {
-   "tcgplayer": "Sinnoh Star Mini Tin [Riolu]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Sinnoh Star Mini Tin (Riolu)' and 'Sinnoh Star Mini Tin (Chimchar)'"
-  },
-  {
-   "tcgplayer": "Sinnoh Star Mini Tin [Turtwig]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Sinnoh Star Mini Tin (Turtwig)' and 'Sinnoh Star Mini Tin (Chimchar)'"
-  },
-  {
-   "tcgplayer": "Sinnoh Star Mini Tin [Chimchar]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Sinnoh Star Mini Tin (Chimchar)' and 'Sinnoh Star Mini Tin (Turtwig)'"
+   "why": "set not found on Scrydex; Scrydex has no current price to confirm the match"
   },
   {
    "tcgplayer": "Sinnoh Star Mini Tin [Munchlax]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; prices disagree (Scrydex 'Sinnoh Star Mini Tin (Piplup)' 53.00 vs TCGplayer 97.00)"
+   "why": "set not found on Scrydex; prices disagree (Scrydex 'Sinnoh Star Mini Tin (Munchlax)' 26.99 vs TCGplayer 97.00)"
   },
   {
-   "tcgplayer": "V Heroes Tin [Umbreon V]",
+   "tcgplayer": "V Heroes Tin [Espeon V]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'V Heroes Tin (Umbreon V)' and 'V Heroes Tin [Umbreon V] (International Version)'"
+   "why": "set not found on Scrydex; ambiguous between 'V Heroes Tin (Espeon V)' and 'V Heroes Tin [Espeon V] (International Version)'"
   },
   {
    "tcgplayer": "Fall 2020 Collector's Chest Tin + Great Ball 2-Pack (Retail Exclusive)",
@@ -12953,14 +13732,14 @@
    "why": "set not found on Scrydex; ambiguous between 'Fall 2020 Collector's Chest Tin + Level Ball 2-Pack (Retail Exclusive)' and 'Fall 2020 Collector's Chest Tin + Premier Ball 2-Pack (Retail Exclusive)'"
   },
   {
-   "tcgplayer": "Knock Out Collection [Toxtricity, Duraludon, Sandaconda]",
+   "tcgplayer": "Poke Ball Tin Display (Q2 2022)",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Knock Out Collection (Toxtricity, Duraludon, Sandaconda)')"
+   "why": "set not found on Scrydex; prices disagree (Scrydex 'Pok\u00e9 Ball Tin Display (Q2 2022)' 324.99 vs TCGplayer 998.00)"
   },
   {
-   "tcgplayer": "Knock Out Collection [Boltund, Eiscue, Galarian Sirfetch'd]",
+   "tcgplayer": "V Heroes Tin [Espeon V] (International Version)",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Knock Out Collection (Boltund, Eiscue, Galarian Sirfetch'd)')"
+   "why": "set not found on Scrydex; ambiguous between 'V Heroes Tin [Espeon V] (International Version)' and 'V Heroes Tin (Espeon V)'"
   },
   {
    "tcgplayer": "Kleavor VSTAR Premium Collection",
@@ -12968,59 +13747,19 @@
    "why": "set not found on Scrydex; ambiguous between 'Kleavor VSTAR Premium Collection' and 'Kleavor VSTAR Premium Collection (International)'"
   },
   {
-   "tcgplayer": "Divergent Powers Tin [Hisuian Typhlosion V]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; prices disagree (Scrydex 'Divergent Powers Tin [Hisuian Typhlosion V] (International Version)' 58.00 vs TCGplayer 110.75)"
-  },
-  {
-   "tcgplayer": "Divergent Powers Tin [Hisuian Decidueye V]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; prices disagree (Scrydex 'Divergent Powers Tin [Hisuian Decidueye V] (International Version)' 51.76 vs TCGplayer 107.74)"
-  },
-  {
    "tcgplayer": "XY 3 Pack Blister [Giratina]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Dragon Vault 3-Pack Blister')"
-  },
-  {
-   "tcgplayer": "Enhanced 2-Pack Blister Pack [Galarian Articuno, Galarian Zapdos, & Galarian Moltres]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Chilling Reign 2-Pack Blister - Galarian Zapdos V, Articuno V, Moltres V' and 'Enhanced 2-Pack Blister Pack (Galarian Articuno, Galarian Zapdos, & Galarian Moltres)'"
-  },
-  {
-   "tcgplayer": "Hidden Potential Tin [Rotom V]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Hidden Potential Tin (Rotom V)' and 'Hidden Potential Tin (Gallade V)'"
-  },
-  {
-   "tcgplayer": "Hidden Potential Tin [Gallade V]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Hidden Potential Tin (Gallade V)' and 'Hidden Potential Tin (Rotom V)'"
+   "why": "set not found on Scrydex; Scrydex has no current price to confirm the match"
   },
   {
    "tcgplayer": "Enhanced 2-Pack Blister Pack [Alolan Dugtrio, Alolan Muk, & Alolan Golem]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: '2-Pack Blister Pack (Raikou, Entei, & Suicune)')"
+   "why": "set not found on Scrydex; Scrydex has no current price to confirm the match"
   },
   {
    "tcgplayer": "Darkrai VSTAR/Shaymin VSTAR Premium Collection [Set of 2]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Unbroken Bonds Blastoise GX Premium Collection')"
-  },
-  {
-   "tcgplayer": "Paldea Collection [Sprigatito/Miraidon ex]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Paldea Collection (Sprigatito/Miraidon ex)')"
-  },
-  {
-   "tcgplayer": "Paldea Collection [Fuecoco/Koraidon ex]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Paldea Collection (Fuecoco/Koraidon ex)')"
-  },
-  {
-   "tcgplayer": "Paldea Collection [Quaxly/Miraidon ex]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Paldea Collection (Quaxly/Miraidon ex)')"
+   "why": "set not found on Scrydex; Scrydex has no current price to confirm the match"
   },
   {
    "tcgplayer": "Paldea Collection [Set of 3] (Miraidon ex)",
@@ -13028,69 +13767,9 @@
    "why": "set not found on Scrydex; Scrydex has no current price to confirm the match"
   },
   {
-   "tcgplayer": "Paldea Collection [Fuecoco/Miraidon ex]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Paldea Collection (Fuecoco/Miraidon ex)')"
-  },
-  {
-   "tcgplayer": "Paldea Collection [Quaxly/Koraidon ex]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Paldea Collection (Quaxly/Koraidon ex)')"
-  },
-  {
-   "tcgplayer": "Paldea Collection [Sprigatito/Koraidon ex]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Paldea Collection (Sprigatito/Koraidon ex)')"
-  },
-  {
    "tcgplayer": "Paldea Collection [Set of 3] (Koraidon ex)",
    "set": "Miscellaneous Cards & Products",
    "why": "set not found on Scrydex; Scrydex has no current price to confirm the match"
-  },
-  {
-   "tcgplayer": "Knock Out Collection [Galarian Slowking, Galarian Obstagoon, and Dragapult]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Knock Out Collection (Galarian Slowking, Galarian Obstagoon, and Dragapult)')"
-  },
-  {
-   "tcgplayer": "2-Pack Blister Pack [Meganium, Typhlosion & Feraligatr]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: '2-Pack Blister Pack (Meganium, Typhlosion & Feraligatr)')"
-  },
-  {
-   "tcgplayer": "Paldea Friends Mini Tin [Fuecoco & Smoliv]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Paldea Friends Mini Tin (Fuecoco & Smoliv)' and 'Paldea Friends Mini Tin (Quaxly & Smoliv)'"
-  },
-  {
-   "tcgplayer": "Paldea Friends Mini Tin [Pikachu & Capsakid]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Paldea Friends Mini Tin (Pikachu & Capsakid)' and 'Paldea Friends Mini Tin (Quaxly & Smoliv)'"
-  },
-  {
-   "tcgplayer": "Paldea Friends Mini Tin [Quaxly & Smoliv]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Paldea Friends Mini Tin (Quaxly & Smoliv)' and 'Paldea Friends Mini Tin (Fuecoco & Smoliv)'"
-  },
-  {
-   "tcgplayer": "Paldea Friends Mini Tin [Sprigatito & Fidough]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Paldea Friends Mini Tin (Sprigatito & Fidough)' and 'Paldea Friends Mini Tin (Pawmi & Lechonk)'"
-  },
-  {
-   "tcgplayer": "Paldea Friends Mini Tin [Pawmi & Lechonk]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Paldea Friends Mini Tin (Pawmi & Lechonk)' and 'Paldea Friends Mini Tin (Fuecoco & Smoliv)'"
-  },
-  {
-   "tcgplayer": "ex Battle Deck [Set of 2]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'ex Battle Deck (Set of 2)' and 'ex Battle Deck (Chien-Pao/Tinkaton] (Set of 2)'"
-  },
-  {
-   "tcgplayer": "Enhanced 2-Pack Blister Pack [Articuno, Zapdos, & Moltres]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Enhanced 2-Pack Blister Pack (Articuno, Zapdos, & Moltres)')"
   },
   {
    "tcgplayer": "Paldea Friends Mini Tin Display Case",
@@ -13098,179 +13777,74 @@
    "why": "set not found on Scrydex; no close name match (best: 'Unova Mini Tin Display Case')"
   },
   {
-   "tcgplayer": "Pokemon TCG: Back to School Eraser Blister [Lechonk]",
+   "tcgplayer": "Paldea Legends Tin [Koraidon ex] (International Version)",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9mon TCG: Back to School Eraser Blister (Lechonk)' and 'Pok\u00e9mon TCG: Back to School Eraser Blister (Smoliv)'"
+   "why": "set not found on Scrydex; ambiguous between 'Paldea Legends Tin [Koraidon ex] (International Version)' and 'Paldea Legends Tin (Koraidon ex)'"
   },
   {
-   "tcgplayer": "Pokemon TCG: Back to School Eraser Blister [Smoliv]",
+   "tcgplayer": "Paldea Legends Tin [Koraidon ex]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9mon TCG: Back to School Eraser Blister (Smoliv)' and 'Pok\u00e9mon TCG: Back to School Eraser Blister (Lechonk)'"
+   "why": "set not found on Scrydex; ambiguous between 'Paldea Legends Tin (Koraidon ex)' and 'Paldea Legends Tin [Koraidon ex] (International Version)'"
   },
   {
-   "tcgplayer": "Pokemon TCG: Back to School Eraser Blister 2023 [Set of 2]",
+   "tcgplayer": "Paldea Partners Tin [Meowscarada ex]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Pok\u00e9mon TCG: Back to School Eraser Blister 2024 (Set of 2)')"
+   "why": "set not found on Scrydex; ambiguous between 'Paldea Partners Tin (Meowscarada ex)' and 'Paldea Partners Tin [Meowscarada ex] (International Edition)'"
   },
   {
-   "tcgplayer": "ex Battle Deck (Chien-Pao/Tinkaton] [Set of 2]",
+   "tcgplayer": "Paldea Partners Tin [Meowscarada ex] [International Edition]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'ex Battle Deck (Chien-Pao/Tinkaton] (Set of 2)')"
-  },
-  {
-   "tcgplayer": "Paldea Partners Tin [Skeledirge ex]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Paldea Partners Tin [Quaquaval ex] (International)' and 'Paldea Partners Tin [Meowscarada ex] (International Edition)'"
+   "why": "set not found on Scrydex; ambiguous between 'Paldea Partners Tin [Meowscarada ex] (International Edition)' and 'Paldea Partners Tin (Meowscarada ex)'"
   },
   {
    "tcgplayer": "Paldea Partners Tin [Skeledirge ex] [International Edition]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Sword & Shield Galar Partners International Tin - Rillaboom V')"
+   "why": "set not found on Scrydex; prices disagree (Scrydex 'Paldea Partners Tin (Skeledirge ex)' 49.25 vs TCGplayer 93.60)"
+  },
+  {
+   "tcgplayer": "Paldea Partners Tin [Quaquaval ex]",
+   "set": "Miscellaneous Cards & Products",
+   "why": "set not found on Scrydex; ambiguous between 'Paldea Partners Tin (Quaquaval ex)' and 'Paldea Partners Tin [Quaquaval ex] (International)'"
+  },
+  {
+   "tcgplayer": "Paldea Partners Tin [Quaquaval ex] [International]",
+   "set": "Miscellaneous Cards & Products",
+   "why": "set not found on Scrydex; ambiguous between 'Paldea Partners Tin [Quaquaval ex] (International)' and 'Paldea Partners Tin (Quaquaval ex)'"
   },
   {
    "tcgplayer": "Poke Ball Tin Display (Q3 2023)",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9 Ball Tin Display (Q4 2021)' and 'Pok\u00e9 Ball Tin Display (Q2 2022)'"
+   "why": "set not found on Scrydex; no close name match (best: 'Pok\u00e9 Ball Tin Display (Q4 2021)')"
   },
   {
-   "tcgplayer": "Mythical 2-Pack Blister [Celebi]",
+   "tcgplayer": "Paldea Legends Tins [Bundle of 2] (International Version)",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Mythical 2-Pack Blister (Celebi)' and 'Mythical 2-Pack Blister (Jirachi)'"
+   "why": "set not found on Scrydex; ambiguous between 'Paldea Legends Tins [Bundle of 2] (International Version)' and 'Paldea Legends Tins (Bundle of 2)'"
   },
   {
-   "tcgplayer": "Mythical 2-Pack Blister [Jirachi]",
+   "tcgplayer": "Azure Legends Tin [Dialga ex]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Mythical 2-Pack Blister (Jirachi)' and 'Mythical 2-Pack Blister (Celebi)'"
+   "why": "set not found on Scrydex; ambiguous between 'Azure Legends Tin (Dialga ex)' and 'Azure Legends Tin [Dialga ex] (International Version)'"
   },
   {
-   "tcgplayer": "Paradox Clash Tin [Walking Wake ex]",
+   "tcgplayer": "Azure Legends Tin [Xerneas ex]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Paradox Clash Tin (Walking Wake ex)')"
-  },
-  {
-   "tcgplayer": "Paradox Clash Tin [Iron Leaves ex]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Paradox Clash Tin (Iron Leaves ex)')"
-  },
-  {
-   "tcgplayer": "Vibrant Paldea Mini Tin [Dachsbun]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Vibrant Paldea Mini Tin (Dachsbun)' and 'Vibrant Paldea Mini Tin (Ceruledge)'"
-  },
-  {
-   "tcgplayer": "Vibrant Paldea Mini Tin [Espathra]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Vibrant Paldea Mini Tin (Espathra)' and 'Vibrant Paldea Mini Tin (Arboliva)'"
-  },
-  {
-   "tcgplayer": "Vibrant Paldea Mini Tin [Arboliva]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Vibrant Paldea Mini Tin (Arboliva)' and 'Vibrant Paldea Mini Tin (Espathra)'"
-  },
-  {
-   "tcgplayer": "Vibrant Paldea Mini Tin [Palafin]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Vibrant Paldea Mini Tin (Arboliva)' and 'Vibrant Paldea Mini Tin (Espathra)'"
-  },
-  {
-   "tcgplayer": "Vibrant Paldea Mini Tin [Ceruledge]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Vibrant Paldea Mini Tin (Ceruledge)' and 'Vibrant Paldea Mini Tin (Dachsbun)'"
-  },
-  {
-   "tcgplayer": "Paradox Destinies Tin [Iron Crown ex]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Paradox Destinies Tin (Iron Crown ex)')"
-  },
-  {
-   "tcgplayer": "Paradox Destinies Tin [Iron Boulder ex]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Paradox Destinies Tin (Iron Boulder ex)')"
-  },
-  {
-   "tcgplayer": "Paradox Destinies Tin [Raging Bolt ex]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Paradox Destinies Tin (Raging Bolt ex)')"
-  },
-  {
-   "tcgplayer": "Paradox Destinies Tin [Gouging Fire ex]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Paradox Destinies Tin (Gouging Fire ex)')"
-  },
-  {
-   "tcgplayer": "Poke Ball Tin Display (Q4 2024)",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9 Ball Tin Display (Q4 2024)' and 'Pok\u00e9 Ball Tin Display (Q4 2025)'"
-  },
-  {
-   "tcgplayer": "Pokemon - Poke Ball Tin - Poke Ball (Q4 2024)",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Pok\u00e9 Ball (Q4 2024)' and 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Pok\u00e9 Ball'"
-  },
-  {
-   "tcgplayer": "Pokemon - Poke Ball Tin - Great Ball (Q4 2024)",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Great Ball (Q4 2024)' and 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Great Ball'"
-  },
-  {
-   "tcgplayer": "Pokemon - Poke Ball Tin - Premier Ball (Q4 2024)",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Premier Ball (Q4 2024)' and 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Premier Ball'"
-  },
-  {
-   "tcgplayer": "Pokemon - Poke Ball Tin - Ultra Ball (Q4 2024)",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Ultra Ball (Q4 2024)' and 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Ultra Ball'"
-  },
-  {
-   "tcgplayer": "Pokemon - Poke Ball Tin - Moon Ball (Q4 2024)",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Moon Ball (Q4 2024)' and 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Moon Ball'"
-  },
-  {
-   "tcgplayer": "Costco Pokemon Scarlet & Violet 151 Mini Tin 5-pack (Meowth)",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Costco Pok\u00e9mon Scarlet & Violet 151 Mini Tin 5-pack (Meowth)' and 'Costco Pok\u00e9mon Scarlet & Violet 151 Mini Tin 5-pack (Magneton)'"
-  },
-  {
-   "tcgplayer": "Costco Pokemon Scarlet & Violet 151 Mini Tin 5-pack (Magneton)",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Costco Pok\u00e9mon Scarlet & Violet 151 Mini Tin 5-pack (Magneton)' and 'Costco Pok\u00e9mon Scarlet & Violet 151 Mini Tin 5-pack (Meowth)'"
-  },
-  {
-   "tcgplayer": "Triple Whammy Tin [Tyranitar]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Triple Whammy Tin (Tyranitar)' and 'Triple Whammy Tin (Slaking)'"
-  },
-  {
-   "tcgplayer": "Triple Whammy Tin [Darkrai]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Triple Whammy Tin (Darkrai)' and 'Triple Whammy Tin (Slaking)'"
-  },
-  {
-   "tcgplayer": "Triple Whammy Tin [Slaking]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Triple Whammy Tin (Slaking)' and 'Triple Whammy Tin (Darkrai)'"
-  },
-  {
-   "tcgplayer": "Knock Out Collection [Iron Jugulis]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Knock Out Collection (Iron Jugulis)')"
+   "why": "set not found on Scrydex; ambiguous between 'Azure Legends Tin (Xerneas ex)' and 'Azure Legends Tin [Xerneas ex] (International Version)'"
   },
   {
    "tcgplayer": "Pokemon Stacking Tins: Treasures of Ruin, Paradox Pokemon, Ogerpon Display",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; prices disagree (Scrydex 'Pok\u00e9mon Stacking Tins:Treasures of Ruin, Paradox Pok\u00e9mon, Ogerpon (Set of 3)' 86.00 vs TCGplayer 248.00)"
+   "why": "set not found on Scrydex; Scrydex has no current price to confirm the match"
   },
   {
-   "tcgplayer": "Enhanced 2-Pack Blister Pack [Latios, Zekrom & Palkia]",
+   "tcgplayer": "Azure Legends Tins [Set of 3]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Enhanced 2-Pack Blister Pack (Latios, Zekrom & Palkia)')"
+   "why": "set not found on Scrydex; ambiguous between 'Azure Legends Tins (Set of 3)' and 'Azure Legends Tins [Set of 3] (International Version)'"
   },
   {
-   "tcgplayer": "Enhanced 2-Pack Blister Pack [Armarouge, Revavroom & Houndstone]",
+   "tcgplayer": "Paradox Powers ex Special Collection",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Enhanced 2-Pack Blister Pack (Armarouge, Revavroom & Houndstone)')"
+   "why": "set not found on Scrydex; no close name match (best: 'Dark Powers ex Special Collection')"
   },
   {
    "tcgplayer": "Paldea Adventure Chest Case",
@@ -13278,29 +13852,14 @@
    "why": "set not found on Scrydex; Scrydex has no current price to confirm the match"
   },
   {
-   "tcgplayer": "Slashing Legends Tin [Koraidon ex]",
+   "tcgplayer": "Azure Legends Tin [Xerneas ex] (International Version)",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Slashing Legends Tin (Koraidon ex)' and 'Slashing Legends Tin (Zacian ex)'"
+   "why": "set not found on Scrydex; ambiguous between 'Azure Legends Tin [Xerneas ex] (International Version)' and 'Azure Legends Tin (Xerneas ex)'"
   },
   {
-   "tcgplayer": "Slashing Legends Tin [Zacian ex]",
+   "tcgplayer": "Azure Legends Tins [Set of 3] (International Version)",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Slashing Legends Tin (Zacian ex)' and 'Slashing Legends Tin (Koraidon ex)'"
-  },
-  {
-   "tcgplayer": "Knock Out Collection [Alakazam]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Knock Out Collection (Iron Jugulis)' and 'Knock Out Collection (Alakazam)'"
-  },
-  {
-   "tcgplayer": "Knock Out Collection [Chien-Pao]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Knock Out Collection (Chien-Pao)')"
-  },
-  {
-   "tcgplayer": "2 Pack Blister [Tornadus, Thundurus & Landorus]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: '2 Pack Blister (Tornadus, Thundurus & Landorus)')"
+   "why": "set not found on Scrydex; ambiguous between 'Azure Legends Tins [Set of 3] (International Version)' and 'Azure Legends Tins (Set of 3)'"
   },
   {
    "tcgplayer": "Kleavor VSTAR Premium Collection (International)",
@@ -13315,32 +13874,17 @@
   {
    "tcgplayer": "Prismatic Evolutions Elite Trainer Box and Pokeball (Sam's Club)",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Prismatic Evolutions Elite Trainer Box' and 'Prismatic Evolutions Elite Trainer Box and Pok\u00e9 Ball (Sam's Club)'"
+   "why": "set not found on Scrydex; no close name match (best: 'Prismatic Evolutions Elite Trainer Box')"
   },
   {
    "tcgplayer": "Mighty Mysterious Tins [Set of 3]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; prices disagree (Scrydex 'Pok\u00e9mon Stacking Tins [Set of 3] (Psychic, Metal, and Dragon)' 93.07 vs TCGplayer 325.00)"
-  },
-  {
-   "tcgplayer": "Team Rocket Tin [Team Rocket's Mewtwo ex]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Team Rocket Tin (Team Rocket's Mewtwo ex)')"
-  },
-  {
-   "tcgplayer": "Team Rocket Tin [Team Rocket's Nidoking ex]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Team Rocket Tin (Team Rocket's Nidoking ex)')"
-  },
-  {
-   "tcgplayer": "Team Rocket Tin [Team Rocket's Persian ex]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Team Rocket Tin (Team Rocket's Persian ex)')"
+   "why": "set not found on Scrydex; no close name match (best: 'V Heroes Tin (Set of 3)')"
   },
   {
    "tcgplayer": "Team Rocket Tin [Team Rocket's Nidoking ex] (International Version)",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Team Rocket Tin [Team Rocket's Persian ex] (International Version)' and 'Team Rocket Tin [Team Rocket's Mewtwo ex] (International Version)'"
+   "why": "set not found on Scrydex; no close name match (best: 'Team Rocket Tin [Team Rocket's Persian ex] (International Version)')"
   },
   {
    "tcgplayer": "Charizard ex Super-Premium Collection Case",
@@ -13348,119 +13892,14 @@
    "why": "set not found on Scrydex; ambiguous between 'Charizard ex Premium Collection Case' and 'Charizard ex Super-Premium Collection Case'"
   },
   {
-   "tcgplayer": "Poke Ball Tin Display (Q4 2025)",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9 Ball Tin Display (Q4 2025)' and 'Pok\u00e9 Ball Tin Display (Q4 2024)'"
-  },
-  {
    "tcgplayer": "Mega Lucario ex Premium Figure Collection Case",
    "set": "Miscellaneous Cards & Products",
    "why": "set not found on Scrydex; prices disagree (Scrydex 'Mega Lucario ex Premium Figure Collection Case' 259.96 vs TCGplayer 599.92)"
   },
   {
-   "tcgplayer": "2-Pack Blister Pack [Team Rocket's Articuno, Zapdos & Tyranitar]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: '2-Pack Blister Pack (Team Rocket's Articuno, Zapdos & Tyranitar)')"
-  },
-  {
-   "tcgplayer": "Pokemon - Poke Ball Tin - Repeat Ball",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Repeat Ball' and 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Repeat Ball (Q4 2025)'"
-  },
-  {
-   "tcgplayer": "Knock Out Collection [Kyogre]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Knock Out Collection (Kyogre)' and 'Knock Out Collection (Suicune)'"
-  },
-  {
-   "tcgplayer": "Knock Out Collection [Suicune]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Knock Out Collection (Suicune)' and 'Knock Out Collection (Kyogre)'"
-  },
-  {
-   "tcgplayer": "Mega Charizard Tin (Mega Charizard Y)",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Mega Charizard Tin (Mega Charizard Y)' and 'Mega Charizard Tin (Mega Charizard X)'"
-  },
-  {
-   "tcgplayer": "Mega Charizard Tin (Mega Charizard X)",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Mega Charizard Tin (Mega Charizard X)' and 'Mega Charizard Tin (Mega Charizard Y)'"
-  },
-  {
-   "tcgplayer": "2-Pack Blister [Raikou] (3-tab)",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between '2-Pack Blister [Raikou] (3-tab)' and '2-Pack Blister [Raikou] (1-tab)'"
-  },
-  {
-   "tcgplayer": "2-Pack Blister [Raikou] (1-tab)",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between '2-Pack Blister [Raikou] (1-tab)' and '2-Pack Blister [Raikou] (3-tab)'"
-  },
-  {
    "tcgplayer": "Poke Ball with Two Mini Tins (Sam's Club)",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; Scrydex has no current price to confirm the match"
-  },
-  {
-   "tcgplayer": "2-Pack Blister Pack [Oddish, Gloom, & Vileplume]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: '2-Pack Blister Pack (Oddish, Gloom, & Vileplume)')"
-  },
-  {
-   "tcgplayer": "League Battle Deck Case [Mega Lucario ex]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'League Battle Deck Case (Mega Lucario ex)')"
-  },
-  {
-   "tcgplayer": "Lumiose City Mini Tin [Salamence & Litleo]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Lumiose City Mini Tin (Salamence & Litleo)' and 'Lumiose City Mini Tin (Gallade & Goomy)'"
-  },
-  {
-   "tcgplayer": "Lumiose City Mini Tin [Meganium & Meowstic]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Lumiose City Mini Tin (Meganium & Meowstic)' and 'Lumiose City Mini Tin (Salamence & Litleo)'"
-  },
-  {
-   "tcgplayer": "Lumiose City Mini Tin [Emboar & Inkay]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Lumiose City Mini Tin (Emboar & Inkay)' and 'Lumiose City Mini Tin (Gallade & Goomy)'"
-  },
-  {
-   "tcgplayer": "Lumiose City Mini Tin [Feraligatr & Budew]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Lumiose City Mini Tin (Feraligatr & Budew)' and 'Lumiose City Mini Tin (Meganium & Meowstic)'"
-  },
-  {
-   "tcgplayer": "Lumiose City Mini Tin [Gallade & Goomy]",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Lumiose City Mini Tin (Gallade & Goomy)' and 'Lumiose City Mini Tin (Salamence & Litleo)'"
-  },
-  {
-   "tcgplayer": "Pokemon - Poke Ball Tin - Poke Ball (Q4 2025)",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Pok\u00e9 Ball (Q4 2025)' and 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Pok\u00e9 Ball'"
-  },
-  {
-   "tcgplayer": "Pokemon - Poke Ball Tin - Ultra Ball (Q4 2025)",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Ultra Ball (Q4 2025)' and 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Ultra Ball'"
-  },
-  {
-   "tcgplayer": "Pokemon - Poke Ball Tin - Great Ball (Q4 2025)",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Great Ball (Q4 2025)' and 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Great Ball'"
-  },
-  {
-   "tcgplayer": "Pokemon - Poke Ball Tin - Premier Ball (Q4 2025)",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Premier Ball (Q4 2025)' and 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Premier Ball'"
-  },
-  {
-   "tcgplayer": "Pokemon - Poke Ball Tin - Repeat Ball (Q4 2025)",
-   "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Repeat Ball (Q4 2025)' and 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Repeat Ball'"
+   "why": "set not found on Scrydex; no close name match (best: 'Pok\u00e9mon - Pok\u00e9 Ball Tin - Love Ball')"
   },
   {
    "tcgplayer": "Fusion Strike Elite Trainer Box & 6 Bonus Cards (Sam's Club)",
@@ -13480,7 +13919,7 @@
   {
    "tcgplayer": "Costco Exclusive 4-Tin Bundle: V Powers Tin [Set of 3] + V Strikers [Tyranitar]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Ancient Origins Powers Beyond Tin - Latios EX')"
+   "why": "set not found on Scrydex; no close name match (best: 'Roaring Skies Hoenn Power Tin - Sceptile')"
   },
   {
    "tcgplayer": "Mega Forces Tin [Mega Darkrai ex]",
@@ -13490,27 +13929,27 @@
   {
    "tcgplayer": "Mega Forces Tin [Mega Zeraora ex]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Paldea Legends Tin [Miraidon ex] (International Version)')"
+   "why": "set not found on Scrydex; no close name match (best: 'Paldea Partners Tin (Meowscarada ex)')"
   },
   {
    "tcgplayer": "Mega Forces Tin [Set of 3]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'V Powers Tin [Set of 3] (International Version)')"
+   "why": "set not found on Scrydex; no close name match (best: 'Paldea Partners Tin (Set of 3)')"
   },
   {
    "tcgplayer": "Mega Forces Tin Case",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between 'Mega Charizard Tin Case' and 'Mega Moonlit Tin Case'"
+   "why": "set not found on Scrydex; no close name match (best: 'Mega Charizard Tin Case')"
   },
   {
    "tcgplayer": "Costco Exclusive 4-Tin Bundle: V Heroes Tin [Set of 3] + V Strikers [Empoleon]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; prices disagree (Scrydex 'V Heroes Tin [Set of 3] (International Version)' 195.95 vs TCGplayer 650.00)"
+   "why": "set not found on Scrydex; prices disagree (Scrydex 'V Heroes Tin (Set of 3)' 298.64 vs TCGplayer 650.00)"
   },
   {
    "tcgplayer": "2-Pack Blister [Zarude] (3-Tab)",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between '2-Pack Blister Pack (Oddish, Gloom, & Vileplume)' and '2-Pack Blister Pack (Team Rocket's Articuno, Zapdos & Tyranitar)'"
+   "why": "set not found on Scrydex; no close name match (best: '2-Pack Blister [Raikou] (3-tab)')"
   },
   {
    "tcgplayer": "Deck Crafter's Collection - Meowth ex",
@@ -13520,17 +13959,102 @@
   {
    "tcgplayer": "Enhanced 2-Pack Blister Pack [Gengar, Marshadow, Team Rocket's Mimikyu]",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; no close name match (best: 'Enhanced 2-Pack Blister Pack (Latios, Zekrom & Palkia)')"
+   "why": "set not found on Scrydex; no close name match (best: '2-Pack Blister Pack (Team Rocket's Articuno, Zapdos & Tyranitar)')"
   },
   {
    "tcgplayer": "2-Pack Blister [Zarude] (1-Tab)",
    "set": "Miscellaneous Cards & Products",
-   "why": "set not found on Scrydex; ambiguous between '2-Pack Blister Pack (Oddish, Gloom, & Vileplume)' and '2-Pack Blister Pack (Team Rocket's Articuno, Zapdos & Tyranitar)'"
+   "why": "set not found on Scrydex; no close name match (best: '2-Pack Blister [Raikou] (1-tab)')"
   },
   {
    "tcgplayer": "League Battle Deck Case [Mega Greninja ex]",
    "set": "Miscellaneous Cards & Products",
    "why": "set not found on Scrydex; no close name match (best: 'Mega Greninja ex Premium Collection Case')"
+  },
+  {
+   "tcgplayer": "Ascended Heroes Elite Trainer Box and Pokeball (Sam's Club)",
+   "set": "Miscellaneous Cards & Products",
+   "why": "set not found on Scrydex; no close name match (best: 'Ascended Heroes Elite Trainer Box')"
+  },
+  {
+   "tcgplayer": "Prismatic Evolutions Elite Trainer Box (Dollar General Exclusive)",
+   "set": "",
+   "why": "duplicate: 'Prismatic Evolutions Elite Trainer Box' already matched to 'Prismatic Evolutions Elite Trainer Box'"
+  },
+  {
+   "tcgplayer": "Temporal Forces Elite Trainer Box Case",
+   "set": "",
+   "why": "duplicate: 'Temporal Forces Booster Box Case' already matched to 'Temporal Forces Booster Box Case'"
+  },
+  {
+   "tcgplayer": "Crown Zenith Booster Bundle Case",
+   "set": "",
+   "why": "duplicate: 'Crown Zenith Elite Trainer Box Case' already matched to 'Crown Zenith Elite Trainer Box Case'"
+  },
+  {
+   "tcgplayer": "Silver Tempest Booster Bundle Case",
+   "set": "",
+   "why": "duplicate: 'Silver Tempest Booster Box Case' already matched to 'Silver Tempest Booster Box Case'"
+  },
+  {
+   "tcgplayer": "Lost Origin Sleeved Booster Pack Case",
+   "set": "",
+   "why": "duplicate: 'Lost Origin Elite Trainer Box Case' already matched to 'Lost Origin Elite Trainer Box Case'"
+  },
+  {
+   "tcgplayer": "Hisuian Zoroark VSTAR Premium Collection (International Version)",
+   "set": "",
+   "why": "duplicate: 'Lost Origin Hisuian Zoroark VSTAR Premium Collection' already matched to 'Hisuian Zoroark VSTAR Premium Collection'"
+  },
+  {
+   "tcgplayer": "Lost Origin Pokemon Center Elite Trainer Box Case (Exclusive)",
+   "set": "",
+   "why": "duplicate: 'Lost Origin Booster Box Case' already matched to 'Lost Origin Booster Box Case'"
+  },
+  {
+   "tcgplayer": "Pokemon GO Mini Tin [Snorlax]",
+   "set": "",
+   "why": "duplicate: 'Pokemon Go Tin - Snorlax' already matched to 'Pokemon GO Tin [Snorlax]'"
+  },
+  {
+   "tcgplayer": "Pokemon Go Pokemon Center Elite Trainer Box Plus Case (Exclusive)",
+   "set": "",
+   "why": "duplicate: 'Pokemon GO Elite Trainer Box Case' already matched to 'Pokemon GO Elite Trainer Box Case'"
+  },
+  {
+   "tcgplayer": "Evolving Skies Single Pack Blister [Octillery]",
+   "set": "",
+   "why": "duplicate: 'Evolving Skies Single Pack Blister - Eevee' already matched to 'Evolving Skies Single Pack Blister [Eevee]'"
+  },
+  {
+   "tcgplayer": "Vivid Voltage Sleeved Booster Case",
+   "set": "",
+   "why": "duplicate: 'Vivid Voltage Elite Trainer Box Case' already matched to 'Vivid Voltage Elite Trainer Box Case'"
+  },
+  {
+   "tcgplayer": "True Steel Premium Collection [Zamazenta]",
+   "set": "",
+   "why": "duplicate: 'Darkness Ablaze True Steel Premium Collection - Zacian' already matched to 'True Steel Premium Collection [Zacian]'"
+  },
+  {
+   "tcgplayer": "Guardians Rising Single Pack Blister [Lurantis]",
+   "set": "",
+   "why": "duplicate: 'Guardians Rising Single Pack Blister - Tsareena' already matched to 'Guardians Rising Single Pack Blister [Tsareena]'"
+  },
+  {
+   "tcgplayer": "Hoenn Power Tin [Blaziken]",
+   "set": "",
+   "why": "duplicate: 'Roaring Skies Hoenn Power Tin - Sceptile' already matched to 'Hoenn Power Tin [Sceptile]'"
+  },
+  {
+   "tcgplayer": "Pokemon TCG: Back to School Eraser Blister 2023 [Set of 2]",
+   "set": "",
+   "why": "duplicate: 'Pok\u00e9mon TCG: Back to School Eraser Blister 2024 (Set of 2)' already matched to 'Pokemon TCG: Back to School Eraser Blister 2024 [Set of 2]'"
+  },
+  {
+   "tcgplayer": "Costco Ascended Heroes Mini Tins 5-Pack",
+   "set": "",
+   "why": "duplicate: 'Ascended Heroes Mini Tins 5-Pack' already matched to 'Ascended Heroes Mini Tins 5-Pack'"
   }
  ],
  "imported": {},
