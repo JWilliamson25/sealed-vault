@@ -34,6 +34,14 @@ TCGplayer closed its API to new developers, and the free mirror (tcgcsv.com) blo
 
 After that the daily sync runs on its own. If a GitHub repo has no activity for 60 days, GitHub pauses scheduled workflows; the daily data commits count as activity, so this normally isn't an issue.
 
+## Older price points from Scrydex (optional, one-time)
+
+Scrydex's API doesn't offer price history for sealed products, but every sealed price it returns includes how much it changed over recent periods (7, 30, 90, 180 days…). `scripts/scrydex_import.py --trends` works back from today's price to rebuild one approximate past price per period, scaled to match TCGplayer, so trend-based calls work without waiting months. It never overwrites real TCGplayer days.
+
+1. Repo **Settings → Secrets and variables → Actions**: add `SCRYDEX_API_KEY` and `SCRYDEX_TEAM_ID` (the team **ID** from the Scrydex dashboard, not the team name). GitHub encrypts secrets and never shows them in logs or on the site.
+2. **Actions → Import price history from Scrydex (one-time) → Run workflow**, mode **dry-run** to check product matching (results in `data/scrydex_report.json`), then mode **trends** (about 30 credits).
+3. Cancel the Scrydex plan and delete the two secrets afterwards if you don't need them.
+
 ## Using it
 
 - **Picks** — what's under target today, what's worth buying slowly, and what to hold off on. Watched items that hit their target appear first.

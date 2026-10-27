@@ -21,6 +21,7 @@ What it does:
 from __future__ import annotations
 
 import argparse
+import collections
 import json
 import os
 import re
@@ -372,10 +373,98 @@ def probe(api: Api, matches: list, meta: dict):
     print(f"\nProbe done. Credits used: about {api.used}. Nothing was changed.")
 
 
+TREND_KEY = re.compile(r"^days_(\d+)$")
+
+
+def trend_points(product: dict, variant, condition):
+    """{days_ago: past_price} for one Scrydex product, from its current price and trend changes."""
+    for v in product.get("variants") or []:
+        if v.get("name") != variant:
+            continue
+        for p in v.get("prices") or []:
+            if p.get("type", "raw") != "raw" or p.get("condition") != condition or not p.get("market"):
+                continue
+            now = float(p["market"])
+            out = {}
+            for k, t in (p.get("trends") or {}).items():
+                m = TREND_KEY.match(k)
+                if not m or not isinstance(t, dict):
+                    continue
+                n = int(m.group(1))
+                if n < 7:
+                    continue
+                past = None
+                if t.get("price_change") is not None:
+                    past = now - float(t["price_change"])
+                elif t.get("percent_change") is not None:
+                    past = now / (1 + float(t["percent_change"]) / 100)
+                if past and past > 0:
+                    out[n] = past
+            return now, out
+    return None, {}
+
+
+def trends_import(api: Api, matches: list, sealed: list, meta: dict, report: dict):
+    """Scrydex has no sealed price history, but each sealed price carries 'changed X over N days'.
+    Work back from today's price to a price N days ago, scale it to TCGplayer, and add it."""
+    by_id = {x["id"]: x for x in sealed}
+    history = load_history()
+    cfg = load_config()
+    today = history.get("lastDay", day_index(date.fromisoformat(meta["priceDate"])))
+    periods = collections.Counter()
+    added_products = added_points = 0
+    out = {}
+    for m in matches:
+        key_ = str(m["tcgplayerId"])
+        sx = by_id.get(m["scrydexId"])
+        now, pts = trend_points(sx, m["variant"], m["condition"]) if sx else (None, {})
+        periods.update(pts.keys())
+        existing = history["series"].get(key_, [])
+        if not now or not pts or not existing:
+            out[key_] = "no trend data"
+            continue
+        tcg_now = sorted(existing)[-1][1]
+        scale = tcg_now / now
+        if not (0.75 <= scale <= 1.33):
+            out[key_] = f"skipped: sources {scale:.2f}x apart today"
+            continue
+        first_day = min(p[0] for p in existing)
+        have = {p[0] for p in existing}
+        new = [[today - n, round(v * scale, 2)] for n, v in pts.items() if today - n < first_day and today - n not in have]
+        if new:
+            history["series"][key_] = sorted(existing + new, key=lambda p: p[0])
+            added_products += 1
+            added_points += len(new)
+            out[key_] = "added " + ", ".join(f"{today - d}d ago" for d, _ in sorted(new))
+        else:
+            out[key_] = "nothing older to add"
+    print("Trend periods Scrydex provides for sealed (days: products):",
+          dict(sorted(periods.items())) or "none")
+    if not added_points:
+        report["trends"] = out
+        report["creditsUsed"] = api.used
+        write_json(REPORT_PATH, report, compact=False)
+        print("No usable trend periods beyond 1 day, so nothing was added. Credits used:", api.used)
+        return
+    keep = {str(p["id"]) for p in meta["products"]} | {f"set:{s['id']}" for s in meta["sets"]}
+    h = cfg["history"]
+    compact_history(history, today, h["dailyWindowDays"], h["olderBucketDays"], keep)
+    history.setdefault("sources", {})["scrydexTrends"] = (
+        f"{added_points} past price points for {added_products} products rebuilt from Scrydex "
+        f"percent-change trends on {meta['priceDate']} (approximate)")
+    write_json(HISTORY_PATH, history)
+    report["trends"] = out
+    report["creditsUsed"] = api.used
+    write_json(REPORT_PATH, report, compact=False)
+    print(f"Done: added {added_points} past price points across {added_products} products. Credits used: {api.used}.")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="match and report only")
     ap.add_argument("--probe", action="store_true", help="test how Scrydex serves sealed price history (~40 credits)")
+    ap.add_argument("--trends", action="store_true",
+                    help="rebuild a few past price points from Scrydex's percent-change trends (~30 credits)")
     ap.add_argument("--max-credits", type=int, default=40000)
     args = ap.parse_args()
 
@@ -408,6 +497,10 @@ def main():
 
     if args.probe:
         probe(api, matches, meta)
+        return
+
+    if args.trends:
+        trends_import(api, matches, sealed, meta, report)
         return
 
     if args.dry_run or not matches:
