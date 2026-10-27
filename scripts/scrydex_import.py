@@ -122,16 +122,47 @@ def norm(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", " ", s).strip()
 
 
-def set_key(name: str) -> str:
-    """'SV08: Surging Sparks' -> 'surging sparks'; 'SV: Scarlet and Violet 151' -> '151'."""
-    n = name.split(":", 1)[1] if ":" in name else name
+SERIES = r"(scarlet and violet|sword and shield|sun and moon|mega evolution|black and white|diamond and pearl|heartgold soulsilver)"
+SET_ALIASES = {
+    "sm base set": "sun and moon", "sm base": "sun and moon", "xy base set": "xy", "xy base": "xy",
+    "base set": "base", "base set shadowless": "base", "base set 1st edition": "base",
+    "black and white": "black and white", "diamond and pearl": "diamond and pearl",
+    "heartgold soulsilver": "heartgold and soulsilver", "hgss": "heartgold and soulsilver",
+}
+
+
+def set_keys(name: str) -> list[str]:
+    """All the spellings a set might go by:
+    'SV08: Surging Sparks' / 'SM - Guardians Rising' / 'EX Power Keepers' / 'SV: Scarlet & Violet 151'."""
+    raw = norm(name)
+    n = name
+    m = re.match(r"^\s*[A-Za-z]{1,5}\d{0,3}[a-z]?\s*(?::|\s-\s)\s*(.+)$", n)  # 'SV08: x', 'SM - x'
+    if m:
+        n = m.group(1)
     n = norm(n)
-    n = re.sub(r"^(scarlet and violet|sword and shield|sun and moon|mega evolution)\s+(?=\S)", "", n)
-    return n
+    out: list[str] = []
+
+    def add(k):
+        if k and k not in out:
+            out.append(k)
+        if k in SET_ALIASES and SET_ALIASES[k] not in out:
+            out.append(SET_ALIASES[k])
+    add(n)                                                    # most specific first
+    add(re.sub(rf"^{SERIES}\s+(?=\S)", "", n))               # 'scarlet and violet 151' -> '151'
+    add(re.sub(r"^(ex|sm|xy|swsh|sv|me|bw|dp)\s+", "", n))    # 'ex power keepers' -> 'power keepers'
+    add(re.sub(r"\s+(set|expansion)$", "", n))
+    add(raw)
+    return out
+
+
+def clean_name(name: str) -> str:
+    n = re.sub(r"\([^)]*\)", " ", name)                    # '(3-Tab)', '(Exclusive)', "(Sam's Club)"
+    n = norm(n)
+    return re.sub(rf"^{SERIES}\s+", "", n)
 
 
 def tokens(s: str) -> set[str]:
-    return {t for t in norm(s).split() if t not in STOP}
+    return {t for t in clean_name(s).split() if t not in STOP}
 
 
 def sim(a: set, b: set) -> float:
@@ -148,55 +179,89 @@ def latest_prices(product: dict):
     return out
 
 
+def is_pc_variant(v) -> bool:
+    return bool(v) and bool(re.search(r"center|pokemoncenter|\bpc\b|exclusive", str(v), re.I))
+
+
+def pick(p: dict, cands: list[dict], strip_set: str | None, need_pc_variant: bool = False):
+    """Best candidate by name + price. Returns (match_dict, None) or (None, reason)."""
+    pt = tokens(p["name"]) - (tokens(strip_set) if strip_set else set())
+    scored = []
+    for c in cands:
+        ct = tokens(c["name"]) - (tokens(c.get("expansion", {}).get("name", "")) if strip_set else set())
+        s_name = sim(pt, ct)
+        prices = latest_prices(c)
+        if need_pc_variant:
+            prices = [x for x in prices if is_pc_variant(x[0])]
+        best_px = min(prices, key=lambda x: abs(x[2] - p["price"]), default=None)
+        ratio = best_px[2] / p["price"] if best_px and p["price"] else None
+        s_price = 0 if ratio is None else max(0.0, 1 - abs(1 - ratio))
+        scored.append((s_name * 0.6 + s_price * 0.4, s_name, ratio, c, best_px))
+    if not scored:
+        return None, "no candidates"
+    scored.sort(key=lambda x: -x[0])
+    score, s_name, ratio, c, best_px = scored[0]
+    runner = scored[1] if len(scored) > 1 else None
+    if ratio is None:
+        return None, "Scrydex has no current price to confirm the match"
+    if not (0.6 <= ratio <= 1.67):
+        return None, f"prices disagree (Scrydex '{c['name']}' {best_px[2]:.2f} vs TCGplayer {p['price']:.2f})"
+    if strip_set is None and s_name < 0.6:
+        return None, f"no close name match (best: '{c['name']}')"
+    if runner and score - runner[0] < 0.08 and not (s_name >= 0.99 and runner[1] < 0.99):
+        return None, f"ambiguous between '{c['name']}' and '{runner[3]['name']}'"
+    return {"tcgplayerId": p["id"], "tcgplayer": p["name"], "scrydexId": c["id"], "scrydex": c["name"],
+            "scrydexSet": c.get("expansion", {}).get("name"), "variant": best_px[0], "condition": best_px[1],
+            "priceRatio": round(ratio, 3), "confidence": round(score, 2)}, None
+
+
 def match_products(meta: dict, sealed: list[dict]):
     sets_by_id = {s["id"]: s for s in meta["sets"]}
-    by_set: dict[str, list] = {}
+    by_key: dict[str, list] = {}
     for sp in sealed:
-        exp = sp.get("expansion") or {}
-        by_set.setdefault(set_key(exp.get("name") or ""), []).append(sp)
+        for k in set_keys((sp.get("expansion") or {}).get("name") or ""):
+            by_key.setdefault(k, []).append(sp)
+    by_type: dict[str, list] = {}
+    for sp in sealed:
+        by_type.setdefault(classify_sealed(sp.get("name", "")), []).append(sp)
 
     matches, skips = [], []
     for p in meta["products"]:
         gname = sets_by_id.get(p["groupId"], {}).get("name", "")
-        k = set_key(gname)
-        cands = by_set.get(k)
-        if not cands:  # looser: best token overlap between set names
-            best = max(by_set, key=lambda s: sim(set(k.split()), set(s.split())), default=None)
-            if best and sim(set(k.split()), set(best.split())) >= 0.67:
-                cands = by_set[best]
-        if not cands:
-            skips.append({"tcgplayer": p["name"], "set": gname, "why": "set not found on Scrydex"})
+        cands = []
+        for k in set_keys(gname):
+            cands = by_key.get(k) or cands
+            if cands:
+                break
+        cands = list({c["id"]: c for c in cands}.values())
+
+        if cands:
+            same = [c for c in cands if classify_sealed(c.get("name", "")) == p["type"]]
+            m, why = (pick(p, same, gname) if same else (None, None))
+            if not same and p["type"] == "pc_etb":
+                # Scrydex may list the Pokémon Center ETB as a variant of the regular ETB.
+                etbs = [c for c in cands if classify_sealed(c.get("name", "")) == "etb"
+                        and any(is_pc_variant(v.get("name")) for v in c.get("variants") or [])]
+                m, why = pick(p, etbs, gname, need_pc_variant=True) if etbs else (None, None)
+            if m:
+                matches.append(m)
+                continue
+            if why is None:
+                names = sorted({c["name"] for c in cands})[:12]
+                skips.append({"tcgplayer": p["name"], "set": gname, "why": f"no {p['type']} in that set on Scrydex",
+                              "scrydexHas": names})
+            else:
+                skips.append({"tcgplayer": p["name"], "set": gname, "why": why})
             continue
-        same_type = [c for c in cands if classify_sealed(c.get("name", "")) == p["type"]]
-        if not same_type:
-            skips.append({"tcgplayer": p["name"], "set": gname, "why": f"no {p['type']} in that set on Scrydex"})
-            continue
-        pt = tokens(p["name"]) - tokens(gname)
-        scored = []
-        for c in same_type:
-            ct = tokens(c["name"]) - tokens(c.get("expansion", {}).get("name", ""))
-            s_name = sim(pt, ct)
-            prices = latest_prices(c)
-            best_px = min(prices, key=lambda x: abs(x[2] - p["price"]), default=None)
-            ratio = best_px[2] / p["price"] if best_px and p["price"] else None
-            s_price = 0 if ratio is None else max(0.0, 1 - abs(1 - ratio))
-            scored.append((s_name * 0.6 + s_price * 0.4, s_name, ratio, c, best_px))
-        scored.sort(key=lambda x: -x[0])
-        score, s_name, ratio, c, best_px = scored[0]
-        runner = scored[1][0] if len(scored) > 1 else 0
-        why = None
-        if ratio is None:
-            why = "Scrydex has no current price to confirm the match"
-        elif not (0.6 <= ratio <= 1.67):
-            why = f"prices disagree (Scrydex {best_px[2]:.2f} vs TCGplayer {p['price']:.2f})"
-        elif len(scored) > 1 and score - runner < 0.08 and s_name < 0.99:
-            why = f"ambiguous between '{c['name']}' and '{scored[1][3]['name']}'"
-        if why:
-            skips.append({"tcgplayer": p["name"], "set": gname, "why": why})
-            continue
-        matches.append({"tcgplayerId": p["id"], "tcgplayer": p["name"], "scrydexId": c["id"],
-                        "scrydex": c["name"], "variant": best_px[0], "condition": best_px[1],
-                        "priceRatio": round(ratio, 3), "confidence": round(score, 2)})
+
+        # Set not found (e.g. TCGplayer's 'Miscellaneous Cards & Products'): match on the
+        # full product name across every Scrydex product of the same type, strictly.
+        m, why = pick(p, by_type.get(p["type"], []), None)
+        if m:
+            m["via"] = "name-only"
+            matches.append(m)
+        else:
+            skips.append({"tcgplayer": p["name"], "set": gname, "why": f"set not found on Scrydex; {why}"})
     return matches, skips
 
 
@@ -248,7 +313,8 @@ def main():
 
     matches, skips = match_products(meta, sealed)
     print(f"Matched {len(matches)} of {len(meta['products'])} tracked products; {len(skips)} skipped.")
-    report = {"priceDate": meta["priceDate"], "matched": matches, "skipped": skips, "imported": {}}
+    report = {"priceDate": meta["priceDate"], "matched": matches, "skipped": skips, "imported": {},
+              "scrydexSets": sorted({(x.get("expansion") or {}).get("name") or "" for x in sealed})}
 
     if args.dry_run or not matches:
         report["creditsUsed"] = api.used
