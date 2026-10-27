@@ -156,13 +156,22 @@ def set_keys(name: str) -> list[str]:
 
 
 def clean_name(name: str) -> str:
-    n = re.sub(r"\([^)]*\)", " ", name)                    # '(3-Tab)', '(Exclusive)', "(Sam's Club)"
+    n = re.sub(r"[\[(][^\])]*(exclusive|sam'?s club|costco|walmart|target|dollar general|3-tab|international|retail|best buy|gamestop)[^\])]*[\])]",
+               " ", name, flags=re.I)                    # retailer notes; keep '(Toxtricity V)', '[Set of 3]'
+    n = n.replace("[", " ").replace("]", " ").replace("(", " ").replace(")", " ")
     n = norm(n)
     return re.sub(rf"^{SERIES}\s+", "", n)
 
 
+EDITION = {"1st", "first", "edition", "unlimited", "revised", "shadowless"}  # told apart by price variant
+
+
+def stem(t: str) -> str:
+    return t[:-1] if len(t) > 3 and t.endswith("s") and not t.endswith("ss") else t
+
+
 def tokens(s: str) -> set[str]:
-    return {t for t in clean_name(s).split() if t not in STOP}
+    return {stem(t) for t in clean_name(s).split() if t not in STOP and t not in EDITION}
 
 
 def sim(a: set, b: set) -> float:
@@ -206,8 +215,10 @@ def pick(p: dict, cands: list[dict], strip_set: str | None, need_pc_variant: boo
         return None, "Scrydex has no current price to confirm the match"
     if not (0.6 <= ratio <= 1.67):
         return None, f"prices disagree (Scrydex '{c['name']}' {best_px[2]:.2f} vs TCGplayer {p['price']:.2f})"
-    if strip_set is None and s_name < 0.6:
+    if strip_set is None and s_name < 0.75:
         return None, f"no close name match (best: '{c['name']}')"
+    if strip_set is not None and s_name < 0.5:
+        return None, f"no close name match in set (best: '{c['name']}')"
     if runner and score - runner[0] < 0.08 and not (s_name >= 0.99 and runner[1] < 0.99):
         return None, f"ambiguous between '{c['name']}' and '{runner[3]['name']}'"
     return {"tcgplayerId": p["id"], "tcgplayer": p["name"], "scrydexId": c["id"], "scrydex": c["name"],
@@ -262,7 +273,20 @@ def match_products(meta: dict, sealed: list[dict]):
             matches.append(m)
         else:
             skips.append({"tcgplayer": p["name"], "set": gname, "why": f"set not found on Scrydex; {why}"})
-    return matches, skips
+    best: dict[tuple, dict] = {}
+    for m in matches:
+        k = (m["scrydexId"], m["variant"])
+        if k not in best or m["confidence"] > best[k]["confidence"]:
+            best[k] = m
+    kept = []
+    for m in matches:
+        w = best[(m["scrydexId"], m["variant"])]
+        if w is m:
+            kept.append(m)
+        else:
+            skips.append({"tcgplayer": m["tcgplayer"], "set": "", "why": f"duplicate: '{m['scrydex']}' already "
+                          f"matched to '{w['tcgplayer']}'"})
+    return kept, skips
 
 
 # ------------------------------------------------------------------- history ---
