@@ -35,8 +35,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import (  # noqa: E402
-    DATA, EPOCH, HISTORY_PATH, META_PATH, classify_sealed, compact_history, day_index,
-    load_config, load_history, write_json,
+    DATA, EPOCH, HISTORY_PATH, META_PATH, SINGLES_HISTORY_PATH, SINGLES_PATH, classify_sealed, compact_history,
+    day_index, load_config, load_history, write_json,
 )
 
 BASE = os.environ.get("SCRYDEX_BASE", "https://api.scrydex.com")
@@ -459,12 +459,226 @@ def trends_import(api: Api, matches: list, sealed: list, meta: dict, report: dic
     print(f"Done: added {added_points} past price points across {added_products} products. Credits used: {api.used}.")
 
 
+# ------------------------------------------------------------------- singles ---
+
+SINGLES_REPORT = DATA / "scrydex_singles_report.json"
+
+
+def num_key(n) -> str:
+    """'199/165' -> '199', 'TG14/TG30' -> 'TG14', 'SWSH050' -> 'SWSH50', '006/012' -> '6'."""
+    n = str(n or "").split("/")[0].strip().upper().replace(" ", "")
+    m = re.match(r"^([A-Z]*)0*(\d+)([A-Z]*)$", n)
+    return f"{m.group(1)}{m.group(2)}{m.group(3)}" if m else n
+
+
+def variant_key(v) -> str:
+    v = re.sub(r"[^a-z0-9]", "", str(v or "").lower()).replace("1st", "first")
+    return v
+
+
+def card_prices(card: dict):
+    """[(variant, kind, value)] where kind is 'raw' (NM) or 'psa10'."""
+    out = []
+    for v in card.get("variants") or []:
+        for p in v.get("prices") or []:
+            if not p.get("market"):
+                continue
+            if p.get("type", "raw") == "raw" and (p.get("condition") or "NM") == "NM":
+                out.append((v.get("name"), "raw", float(p["market"])))
+            elif p.get("type") == "graded" and str(p.get("company", "")).upper() == "PSA" and str(p.get("grade", "")).strip() in ("10", "10.0"):
+                out.append((v.get("name"), "psa10", float(p["market"])))
+    return out
+
+
+def card_tokens(name: str) -> set[str]:
+    """TCGplayer adds descriptors Scrydex doesn't: 'Charizard ex - 199/165', 'Umbreon VMAX (Alternate Art Secret)'."""
+    n = re.sub(r"\s+-\s+.*$", "", name or "")
+    n = re.sub(r"[\(\[][^\)\]]*[\)\]]", " ", n)
+    return tokens(n)
+
+
+def choose_variant(card: dict, tcg_sub, tcg_price):
+    raws = [(v, val) for v, k, val in card_prices(card) if k == "raw"]
+    if not raws:
+        return None, None
+    want = variant_key(tcg_sub)
+    exact = [x for x in raws if want and (variant_key(x[0]) == want or variant_key(x[0]).endswith(want))]
+    pool = exact or raws
+    return min(pool, key=lambda x: abs(x[1] - tcg_price))
+
+
+def match_singles(cards: list[dict], scry: list[dict]):
+    by_set_num: dict[tuple, list] = {}
+    by_num: dict[str, list] = {}
+    for c in scry:
+        nk = num_key(c.get("number") or c.get("printed_number"))
+        by_num.setdefault(nk, []).append(c)
+        for k in set_keys((c.get("expansion") or {}).get("name") or ""):
+            by_set_num.setdefault((k, nk), []).append(c)
+    matched, skipped = [], []
+    for t in cards:
+        nk = num_key(t.get("number"))
+        cands = []
+        for name in (t.get("group"), t.get("setName")):
+            for k in set_keys(name or ""):
+                cands = by_set_num.get((k, nk)) or cands
+                if cands:
+                    break
+            if cands:
+                break
+        via = "set+number"
+        if not cands:
+            via = "number+name"
+            cands = by_num.get(nk, [])
+        tt = card_tokens(t["name"])
+        scored = []
+        for c in cands:
+            s_name = sim(tt, card_tokens(c.get("name", "")))
+            var, px = choose_variant(c, t.get("sub"), t["price"])
+            ratio = px / t["price"] if px else None
+            scored.append((s_name, ratio, c, var))
+        scored.sort(key=lambda x: (-x[0], abs(1 - (x[1] or 9))))
+        if not scored:
+            skipped.append({"card": t["name"], "set": t.get("setName"), "number": t.get("number"), "why": "not found on Scrydex"})
+            continue
+        s_name, ratio, c, var = scored[0]
+        need = 0.5 if via == "set+number" else 0.75
+        why = None
+        if s_name < need:
+            why = f"name doesn't match ('{c.get('name')}')"
+        elif ratio is None:
+            why = "Scrydex has no raw near-mint price to confirm it"
+        elif not (0.5 <= ratio <= 2.0):
+            why = f"prices disagree (Scrydex {ratio * t['price']:.2f} vs TCGplayer {t['price']:.2f})"
+        if why:
+            skipped.append({"card": t["name"], "set": t.get("setName"), "number": t.get("number"), "why": why})
+            continue
+        psa = [val for v, k, val in card_prices(c) if k == "psa10" and v == var] or \
+              [val for v, k, val in card_prices(c) if k == "psa10"]
+        matched.append({"id": t["id"], "card": t["name"], "scrydexId": c["id"], "scrydex": c.get("name"),
+                        "scrydexSet": (c.get("expansion") or {}).get("name"), "variant": var, "via": via,
+                        "priceRatio": round(ratio, 3), "psa10": max(psa) if psa else None})
+    return matched, skipped
+
+
+def card_history(api: Api, cid: str, variant, start: date, end: date):
+    raw, psa = {}, {}
+    params = {"start_date": start.isoformat(), "end_date": end.isoformat(), "page_size": 100}
+    for entry in pages(api, f"/pokemon/v1/cards/{urllib.parse.quote(cid)}/price_history", params, cost=HISTORY_COST):
+        try:
+            d = day_index(date.fromisoformat(entry["date"][:10].replace("/", "-")))
+        except (KeyError, ValueError):
+            continue
+        for x in entry.get("prices") or []:
+            if not x.get("market"):
+                continue
+            same = x.get("variant") == variant
+            if x.get("type", "raw") == "raw" and x.get("condition") == "NM" and same:
+                raw[d] = float(x["market"])
+            elif x.get("type") == "graded" and str(x.get("company", "")).upper() == "PSA" and str(x.get("grade", "")).strip() in ("10", "10.0"):
+                if same or d not in psa:
+                    psa[d] = float(x["market"])
+    return raw, psa
+
+
+def singles_import(api: Api, dry_run: bool):
+    if not SINGLES_PATH.exists():
+        sys.exit("No data/singles.json yet. Run the daily price sync first.")
+    sj = json.loads(SINGLES_PATH.read_text())
+    cfg = load_config()
+    sc = cfg.get("singles") or {}
+    cards = sj["cards"]
+    mons = sorted({c["pokemon"] for c in cards})
+    print(f"Searching Scrydex for {len(mons)} Pokémon…")
+    scry = []
+    for mon in mons:
+        got = [c for c in pages(api, "/pokemon/v1/cards", {"q": f'name:"{mon}"', "include": "prices", "page_size": 100})
+               if (c.get("language_code") or (c.get("expansion") or {}).get("language_code") or "EN").upper() == "EN"]
+        print(f"  {mon}: {len(got)} English cards ({api.used} credits)")
+        scry += got
+    matched, skipped = match_singles(cards, scry)
+    print(f"Matched {len(matched)} of {len(cards)} tracked singles; {len(skipped)} skipped.")
+    report = {"priceDate": sj["priceDate"], "matched": matched, "skipped": skipped, "imported": {}}
+
+    # PSA 10 prices today, for every matched card (free: they came with the search).
+    psa_now = {str(m["id"]): {"price": m["psa10"], "date": sj["priceDate"]} for m in matched if m["psa10"]}
+    sj["psa10"] = {**(sj.get("psa10") or {}), **psa_now}
+    sj["psa10Date"] = sj["priceDate"]
+    write_json(SINGLES_PATH, sj)
+    if dry_run:
+        report["creditsUsed"] = api.used
+        write_json(SINGLES_REPORT, report, compact=False)
+        print(f"Dry run done (PSA 10 prices saved for {len(psa_now)} cards). See data/scrydex_singles_report.json. "
+              f"Credits used: {api.used}")
+        return
+
+    hist = json.loads(SINGLES_HISTORY_PATH.read_text()) if SINGLES_HISTORY_PATH.exists() else {"series": {}}
+    today = hist.get("lastDay", day_index(date.fromisoformat(sj["priceDate"])))
+    yday = date.fromisoformat(sj["priceDate"]) - timedelta(days=1)
+    byid = {c["id"]: c for c in cards}
+    lo, hi, sweet = sc.get("budgetMin", 30), sc.get("budgetMax", 300), sc.get("sweetSpotMax", 100)
+    # Your sweet spot first, then the rest of your budget, then cards just outside it.
+    matched.sort(key=lambda m: (0 if lo <= byid[m["id"]]["price"] <= sweet else 1 if byid[m["id"]]["price"] <= hi else 2,
+                                byid[m["id"]]["price"]))
+    done = 0
+    try:
+        for m in matched:
+            t = byid[m["id"]]
+            key = str(t["id"])
+            existing = hist["series"].get(key, [])
+            if f"g:{key}" in hist["series"] and len(existing) > 20:
+                continue  # already imported (re-run)
+            first_day = min((p[0] for p in existing), default=today)
+            rel = t.get("release")
+            start = max(EPOCH, date.fromisoformat(rel) - timedelta(days=14)) if rel else EPOCH
+            if yday <= start:
+                continue
+            # Whole range up to yesterday: PSA 10 has no other source; raw only fills days before TCGplayer's.
+            raw, psa = card_history(api, m["scrydexId"], m["variant"], start, yday)
+            note = []
+            if raw:
+                near = [v for d, v in raw.items() if d >= max(raw) - 7]
+                anchor = t["price"]  # today's TCGplayer price vs Scrydex's latest week
+                scale = anchor / (sum(near) / len(near)) if near else 1 / m["priceRatio"]
+                if 0.67 <= scale <= 1.5:
+                    have = {p[0] for p in existing}
+                    new = [[d, round(v * scale, 2)] for d, v in raw.items() if d < first_day and d not in have]
+                    hist["series"][key] = sorted(existing + new, key=lambda p: p[0])
+                    note.append(f"raw +{len(new)} days")
+                else:
+                    note.append(f"raw skipped (sources {scale:.2f}x apart)")
+            if psa:
+                g = hist["series"].get(f"g:{key}", [])
+                have = {p[0] for p in g}
+                hist["series"][f"g:{key}"] = sorted(g + [[d, round(v, 2)] for d, v in psa.items() if d not in have],
+                                                    key=lambda p: p[0])
+                note.append(f"PSA 10 {len(psa)} days")
+            report["imported"][key] = ", ".join(note) or "no history returned"
+            done += 1
+            if done % 25 == 0:
+                print(f"  {done} cards done ({api.used} credits)")
+                write_json(SINGLES_HISTORY_PATH, hist)
+    except Budget:
+        print(f"Stopped at the credit limit after {done} cards. Re-run to continue; finished cards are skipped.")
+    keep = {str(c["id"]) for c in cards} | {f"g:{c['id']}" for c in cards}
+    h = cfg["history"]
+    compact_history(hist, today, h["dailyWindowDays"], h["olderBucketDays"], keep)
+    write_json(SINGLES_HISTORY_PATH, hist)
+    sj["scrydex"] = f"raw + PSA 10 history imported for {done} cards on {sj['priceDate']}"
+    write_json(SINGLES_PATH, sj)
+    report["creditsUsed"] = api.used
+    write_json(SINGLES_REPORT, report, compact=False)
+    print(f"Done: history imported for {done} cards. Credits used: {api.used}.")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="match and report only")
     ap.add_argument("--probe", action="store_true", help="test how Scrydex serves sealed price history (~40 credits)")
     ap.add_argument("--trends", action="store_true",
                     help="rebuild a few past price points from Scrydex's percent-change trends (~30 credits)")
+    ap.add_argument("--singles", action="store_true",
+                    help="import raw + PSA 10 price history for tracked singles (combine with --dry-run to match only)")
     ap.add_argument("--max-credits", type=int, default=40000)
     args = ap.parse_args()
 
@@ -485,6 +699,10 @@ def main():
     if usage is not None:
         u = usage.get("data", usage)
         print(f"  Key works. Credits remaining: {u.get('remaining_credits', u.get('credits_remaining', '?'))}")
+    if args.singles:
+        singles_import(api, args.dry_run)
+        return
+
     print("Listing Scrydex sealed products…")
     sealed = [s for s in pages(api, "/pokemon/v1/sealed", {"include": "prices", "page_size": 100})
               if (s.get("language_code") or s.get("expansion", {}).get("language_code") or "EN").upper() == "EN"]

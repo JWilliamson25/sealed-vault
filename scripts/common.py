@@ -209,3 +209,65 @@ def parse_ts(s: str | None) -> str | None:
         return datetime.fromisoformat(s.replace("Z", "")[:19]).date().isoformat()
     except ValueError:
         return s[:10]
+
+
+# ----------------------------------------------------------------- singles ----
+
+SINGLES_PATH = DATA / "singles.json"
+SINGLES_HISTORY_PATH = DATA / "singles_history.json"
+
+# Cards that aren't normal English singles a long-term buyer would hold.
+SINGLE_EXCLUDE_RE = re.compile(
+    r"\b(jumbo|oversized|code card|japanese|portuguese|korean|chinese|french|german|italian|spanish|dutch|"
+    r"error|misprint|metal|pre-?release stamp|staff)\b", re.I)
+
+TIER_LABEL = {
+    "sir": "Special Illustration Rare", "alt": "Alternate Art", "ir": "Illustration / Gallery",
+    "secret": "Secret / Hyper Rare", "shiny": "Shiny", "ultra": "Ultra Rare / Full Art",
+    "vintage": "Vintage holo & rare", "promo": "Promo", "classic": "Classic Collection reprint",
+    "base": "Regular rare", "other": "Special rare",
+}
+
+
+def card_tier(name: str, rarity: str | None, number: str | None, release: str | None) -> str:
+    """Bucket a single into a rarity tier that long-term buyers treat alike."""
+    n, r, num = name or "", (rarity or "").lower(), (number or "").upper()
+    year = int(release[:4]) if release else None
+    if "special illustration" in r:
+        return "sir"
+    if re.search(r"alternate (full )?art", n, re.I):
+        return "alt"
+    if "illustration rare" in r or re.match(r"(TG|GG|RC)\d", num):
+        return "ir"
+    if r.startswith("classic collection"):
+        return "classic"
+    if re.search(r"secret|rainbow|hyper|gold|futuristic", r) or re.search(r"\((secret|gold|rainbow)\)", n, re.I):
+        return "secret"
+    if "shiny" in r or re.match(r"SV\d", num) or "shining" in n.lower():
+        return "shiny"
+    if r == "promo":
+        return "promo"
+    if re.search(r"ultra|double rare|full art", r) or re.search(r"\b(V|VMAX|VSTAR|GX|EX|ex)\b|full art", n):
+        return "ultra"
+    if re.search(r"amazing|radiant|prism|rgb|break|ace spec|star", r):
+        return "other"
+    if year and year < 2017:
+        return "vintage"
+    return "base"
+
+
+def card_era(release: str | None) -> str:
+    if not release:
+        return "unknown"
+    y = int(release[:4])
+    return "sv" if y >= 2023 else "swsh" if y >= 2020 else "smxy" if y >= 2014 else "classic" if y >= 2003 else "wotc"
+
+
+def single_price(rows: list[dict], prefer_sub: str | None) -> dict | None:
+    """A single's price, sticking to one printing (Holofoil, Reverse Holofoil…) so its history stays consistent."""
+    if prefer_sub:
+        same = [r for r in rows if r.get("subTypeName") == prefer_sub]
+        bp = best_price(same)
+        if bp:
+            return bp
+    return best_price(rows)

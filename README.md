@@ -34,6 +34,12 @@ TCGplayer closed its API to new developers, and the free mirror (tcgcsv.com) blo
 
 After that the daily sync runs on its own. If a GitHub repo has no activity for 60 days, GitHub pauses scheduled workflows; the daily data commits count as activity, so this normally isn't an issue.
 
+## Singles
+
+The daily sync also tracks singles of your chase Pokémon (about $20–$450, a little wider than the default $30–$300 budget so cards drifting past it keep their history). The **Singles** tab scores each card for a long hold: value against similar cards (same Pokémon, rarity tier and era, using every TCGplayer price), demand, momentum, where its set is in its print life, and budget fit. Budget and sweet spot are in Settings and in `config.json` → `singles`.
+
+PSA 10 prices and older raw history come from a one-time Scrydex import: **Actions → Import price history from Scrydex → mode `singles-dry-run`** (matches cards and saves today's PSA 10 prices, ~40 credits), then **mode `singles`** (daily raw + PSA 10 history, roughly 25–35 credits per card).
+
 ## Older price points from Scrydex (optional, one-time)
 
 Scrydex's API doesn't offer price history for sealed products, but every sealed price it returns includes how much it changed over recent periods (7, 30, 90, 180 days…). `scripts/scrydex_import.py --trends` works back from today's price to rebuild one approximate past price per period, scaled to match TCGplayer, so trend-based calls work without waiting months. It never overwrites real TCGplayer days.

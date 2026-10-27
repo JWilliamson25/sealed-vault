@@ -94,6 +94,14 @@
     "mini_tin": 3,
     "pack_other": 3
   },
+  "singles": {
+    "_comment": "Singles of your chase Pokemon. budgetMin/budgetMax/sweetSpotMax are what the Singles tab shows by default (you can change them in Settings). trackMin/trackMax are wider so a card drifting just outside your budget keeps its price history.",
+    "budgetMin": 30,
+    "budgetMax": 300,
+    "sweetSpotMax": 100,
+    "trackMin": 20,
+    "trackMax": 450
+  },
   "history": {
     "dailyWindowDays": 120,
     "olderBucketDays": 7

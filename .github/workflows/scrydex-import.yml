@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "dry-run = match only (~30 credits); trends = rebuild past prices from Scrydex trends (~30 credits); probe = test sealed history (~70 credits); import = full history (Scrydex doesn't offer it for sealed)"
+        description: "dry-run = match only (~30 credits); trends = rebuild past prices from Scrydex trends (~30 credits); singles-dry-run = match singles + PSA 10 prices (~40 credits); singles = raw + PSA 10 history for singles; probe = test sealed history (~70 credits); import = full history (Scrydex doesn't offer it for sealed)"
         type: choice
-        options: [dry-run, trends, probe, import]
+        options: [dry-run, trends, probe, import, singles-dry-run, singles]
         default: dry-run
       max_credits:
         description: "Stop before using more than this many credits"
@@ -32,7 +32,7 @@ jobs:
         env:
           SCRYDEX_API_KEY: ${{ secrets.SCRYDEX_API_KEY }}
           SCRYDEX_TEAM_ID: ${{ secrets.SCRYDEX_TEAM_ID }}
-        run: python scripts/scrydex_import.py --max-credits ${{ inputs.max_credits }} ${{ inputs.mode == 'dry-run' && '--dry-run' || inputs.mode == 'probe' && '--probe' || inputs.mode == 'trends' && '--trends' || '' }}
+        run: python scripts/scrydex_import.py --max-credits ${{ inputs.max_credits }} ${{ inputs.mode == 'dry-run' && '--dry-run' || inputs.mode == 'probe' && '--probe' || inputs.mode == 'trends' && '--trends' || inputs.mode == 'singles-dry-run' && '--singles --dry-run' || inputs.mode == 'singles' && '--singles' || '' }}
       - name: Commit data
         if: always()
         run: |

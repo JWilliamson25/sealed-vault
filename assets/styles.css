@@ -240,3 +240,37 @@ tbody tr:last-child td { border-bottom: 0; }
 .checks li span { display: inline-block; width: 1.2em; font-weight: 800; }
 .checks li.ok span { color: var(--good); }
 .checks li.miss span { color: var(--bad); }
+
+/* ---- singles: the card sits inside the slab ---- */
+.slabs.cards { grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); }
+.card-art { display: grid; place-items: center; padding: 12px 12px 4px; background: var(--surface-2); margin: 10px 12px 0; border-radius: 6px; min-height: 212px; }
+.card-art img { max-height: 200px; width: auto; max-width: 100%; border-radius: 4.5% / 3.2%; box-shadow: 0 2px 8px -3px rgba(0,0,0,.4); }
+.card-art .noimg { color: var(--ink-3); font-size: .8125rem; text-align: center; padding: 40px 8px; }
+.card-slab .prices { grid-template-columns: repeat(3, auto); gap: 2px 14px; padding: 10px 12px 0; }
+.card-slab .slab-why { padding-top: 8px; }
+.tier-tag { font-size: .75rem; color: var(--ink-2); }
+.detail-art { display: grid; place-items: center; }
+.detail-art img { width: 132px; height: auto; border-radius: 4.5% / 3.2%; box-shadow: 0 3px 12px -4px rgba(0,0,0,.45); }
+.peers td { padding: 7px 10px; }
+.peers tr.me td { font-weight: 650; background: var(--surface-2); }
+.more { display: flex; justify-content: center; margin-top: 16px; }
+.card-set { padding: 8px 12px 0; font-size: .8125rem; color: var(--ink-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card-slab .foot-trend { overflow: hidden; }
+@media (max-width: 760px) {
+  .slabs.cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .card-slab .slab-label { grid-template-columns: 1fr; padding: 8px 10px; }
+  .card-slab .grade { grid-row: auto; grid-column: 1; text-align: left; display: flex; align-items: baseline; gap: 6px; }
+  .card-slab .grade b { font-size: 1rem; }
+  .card-slab .slab-set { display: none; }
+  .card-slab .slab-name { font-size: .875rem; }
+  .card-art { margin: 8px 8px 0; padding: 8px; min-height: 0; }
+  .card-art img { max-height: 150px; }
+  .card-art .noimg { padding: 24px 4px; }
+  .card-slab .prices { grid-template-columns: repeat(2, auto); padding: 8px 10px 0; font-size: .75rem; }
+  .card-slab .prices strong { font-size: .9375rem; }
+  .card-slab .prices > div:nth-child(3) { display: none; }
+  .card-slab .slab-why { font-size: .8125rem; padding: 6px 10px 10px; }
+  .card-slab .slab-foot { padding: 8px 10px; }
+  .card-slab .foot-trend { display: none; }
+  .card-set { padding: 6px 10px 0; }
+}

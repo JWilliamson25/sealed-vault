@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sealed Vault</title>
-  <meta name="description" content="Personal sealed Pokémon TCG price tracker with long-hold buy targets.">
+  <meta name="description" content="Personal Pokémon TCG sealed and singles price tracker with long-hold buy targets.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
@@ -18,7 +18,8 @@
       <p class="asof" id="asof">Loading prices…</p>
       <nav class="tabs" aria-label="Sections">
         <a href="#picks" data-view="picks">Picks</a>
-        <a href="#products" data-view="products">All products</a>
+        <a href="#singles" data-view="singles">Singles</a>
+        <a href="#products" data-view="products">All sealed</a>
         <a href="#sets" data-view="sets">Sets</a>
         <a href="#portfolio" data-view="portfolio">My vault</a>
         <a href="#settings" data-view="settings">Settings</a>
@@ -34,6 +35,7 @@
   </aside>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="assets/engine.js"></script>
+  <script src="assets/singles.js"></script>
   <script src="assets/chart.js"></script>
   <script src="assets/app.js"></script>
 </body>

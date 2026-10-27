@@ -2,6 +2,7 @@
 (function () {
   "use strict";
   const E = window.Engine;
+  const S = window.Singles;
   const $ = (s, r = document) => r.querySelector(s);
   const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const fmt$ = E.fmt$, fmtPct = E.fmtPct;
@@ -13,6 +14,9 @@
 
   const state = {
     meta: null, history: null, config: null, rows: [], byId: new Map(),
+    singles: null, singlesHistory: null, sRows: [], sById: new Map(),
+    sFilters: { q: "", band: "sweet", pokemon: "", tier: "", signal: "", sort: "score", limit: 48 },
+    sChart: "raw",
     watch: new Set(store.get(LS.watch, [])), holdings: store.get(LS.hold, {}),
     filters: { q: "", type: "", signal: "", pokemon: "", sort: "rank", dir: 1 },
     range: "1y",
@@ -31,6 +35,7 @@
       productOverrides: c.productOverrides || {},
       formatScore: c.formatScore,
       risk: s.risk || "balanced",
+      singles: { budgetMin: 30, budgetMax: 300, sweetSpotMax: 100, ...(c.singles || {}), ...(s.singles || {}) },
     };
   }
 
@@ -39,9 +44,9 @@
   const confPill = (r) => `<span class="conf conf-${r.confidence}" title="${esc(r.checks.filter((c) => !c.ok).map((c) => c.label).join("; ") || "All data checks pass")}">${E.CONFIDENCE[r.confidence].label}</span>`;
   const pct = (v) => (v == null ? '<span class="muted">—</span>' : `<span class="${v > 0.5 ? "up" : v < -0.5 ? "down" : ""}">${fmtPct(v)}</span>`);
   const thumb = (r) => (r.img ? `<img class="thumb" src="${esc(r.img)}" alt="" loading="lazy">` : `<div class="thumb">${esc(E.TYPE_LABEL[r.type] || "")}</div>`);
-  const seriesPts = (id, sinceDays) => {
-    const s = state.history.series[String(id)] || [];
-    const last = state.history.lastDay ?? 0;
+  const seriesPts = (id, sinceDays, hist = state.history) => {
+    const s = hist.series[String(id)] || [];
+    const last = hist.lastDay ?? 0;
     return s.filter(([d]) => sinceDays == null || d >= last - sinceDays).map(([d, v]) => [E.dayToDate(d).getTime(), v]);
   };
 
@@ -54,6 +59,12 @@
         fetch("data/history.json", { cache: "no-cache" }).then((r) => (r.ok ? r.json() : { series: {} })),
       ]);
       Object.assign(state, { config, meta, history });
+      // Singles are optional: older syncs didn't write them.
+      const [singles, singlesHistory] = await Promise.all([
+        fetch("data/singles.json", { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+        fetch("data/singles_history.json", { cache: "no-cache" }).then((r) => (r.ok ? r.json() : { series: {} })).catch(() => ({ series: {} })),
+      ]);
+      Object.assign(state, { singles, singlesHistory });
     } catch (e) {
       $("#main").innerHTML = `<div class="empty"><h2>No price data yet</h2><p>Run the “Daily price sync” workflow from your repository's Actions tab, then reload. If you opened index.html straight from disk, serve the folder instead (for example <code>python -m http.server</code>) — browsers block local data files.</p></div>`;
       $("#asof").textContent = "";
@@ -72,18 +83,24 @@
   function recompute() {
     state.rows = E.analyse({ meta: state.meta, history: state.history, settings: settings() });
     state.byId = new Map(state.rows.map((r) => [String(r.id), r]));
+    if (state.singles && S) {
+      state.sRows = S.analyse({ singles: state.singles, history: state.singlesHistory, meta: state.meta, sealedHistory: state.history, settings: settings() });
+      state.sById = new Map(state.sRows.map((r) => [String(r.id), r]));
+    }
   }
+  const anyById = (id) => state.byId.get(String(id)) || state.sById.get(String(id));
 
   /* ------------------------------------------------------------ router --- */
   function route() {
     const h = location.hash.slice(1) || "picks";
     const [view, arg] = h.split("/");
     if (view === "p" && arg) { if (!$("#main").dataset.view) renderView("picks"); openDetail(arg); return; }
+    if (view === "s" && arg) { if (!$("#main").dataset.view) renderView("singles"); openSingle(arg); return; }
     closeDetail(false);
     renderView(view);
   }
   function renderView(view) {
-    const views = { picks: renderPicks, products: renderProducts, sets: renderSets, portfolio: renderPortfolio, settings: renderSettings, about: renderAbout };
+    const views = { picks: renderPicks, singles: renderSingles, products: renderProducts, sets: renderSets, portfolio: renderPortfolio, settings: renderSettings, about: renderAbout };
     const fn = views[view] || renderPicks;
     $("#main").dataset.view = view;
     document.querySelectorAll(".tabs a").forEach((a) => { if (a.dataset.view === view) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
@@ -129,6 +146,7 @@
         ${buys.length ? `<div class="slabs">${buys.map(slab).join("")}</div>` : `<div class="empty">Nothing is a buy today${noCall ? ` — and ${noCall} products don't have enough data for a call yet` : ""}. That's normal — patience is most of this game.</div>`}
       </section>
       ${acc.length ? `<section class="section"><div class="section-head"><h2>Worth accumulating slowly</h2><span class="muted small">Strong sets a little above target — buy a piece, not the position</span></div><div class="slabs">${acc.map(slab).join("")}</div></section>` : ""}
+      ${singlesTeaser()}
       ${hot.length ? `<section class="section"><div class="section-head"><h2>Hold off</h2><span class="muted small">Spiking or still sliding — wait for these to settle</span></div><div class="slabs">${hot.map(slab).join("")}</div></section>` : ""}`;
     $("#brief").onclick = () => askClaude(deskBrief(buys, acc, hot));
   }
@@ -145,6 +163,176 @@
     const done = () => toast("Prompt copied. Paste it into Claude if it isn't already filled in.");
     (navigator.clipboard?.writeText(prompt) || Promise.reject()).then(done, () => toast("Opening Claude with your prompt."));
     window.open("https://claude.ai/new?q=" + encodeURIComponent(prompt), "_blank", "noopener");
+  }
+
+
+  /* ----------------------------------------------------------- singles --- */
+  const openAttr = (r) => (r.kind === "single" ? `data-open-single="${r.id}"` : `data-open="${r.id}"`);
+  const cardImg = (r, big) => (r.img ? `<img src="${esc(big ? r.img.replace(/_200w(\.\w+)$/, "_in_1000x1000$1") : r.img)}" alt="${esc(r.name)}" loading="lazy">` : `<div class="noimg">${esc(r.name)}</div>`);
+  const sPts = (id, days) => seriesPts(id, days, state.singlesHistory);
+  const whole$ = (v) => "$" + Math.round(v).toLocaleString();
+
+  function cardSlab(r) {
+    const holo = r.signal === "strong_buy";
+    return `<button class="slab card-slab" data-open-single="${r.id}">
+      <div class="slab-label${holo ? " holo" : ""}">
+        <span class="slab-set">${esc(r.tierLabel)}</span>
+        <span class="slab-name">${esc(r.name)}</span>
+        <span class="grade g-${r.signal}"><b>${E.SIGNALS[r.signal].label}</b><span>score ${r.score}</span></span>
+      </div>
+      <div class="card-art">${cardImg(r)}</div>
+      <div class="card-set">${esc(r.setName)}${r.number ? ` · ${esc(r.number)}` : ""}</div>
+      <div class="prices">
+        <div>Raw<strong class="price">${fmt$(r.price)}</strong></div>
+        <div>Buy under<strong class="price">${fmt$(r.target)}</strong></div>
+        <div>PSA 10<strong class="price">${fmt$(r.psa.price)}</strong></div>
+      </div>
+      <p class="slab-why">${esc(r.short)}</p>
+      <div class="slab-foot"><span>${confPill(r)}</span><span class="foot-trend">30d ${pct(r.stats.ch30)} ${Charts.sparkline(sPts(r.id, 180))}</span></div>
+    </button>`;
+  }
+
+  function inBand(r) {
+    const b = settings().singles;
+    return r.price >= b.budgetMin && r.price <= (state.sFilters.band === "sweet" ? b.sweetSpotMax : b.budgetMax);
+  }
+
+  function singlesTeaser() {
+    if (!state.sRows.length) return "";
+    const b = settings().singles;
+    const top = state.sRows.filter((r) => ["strong_buy", "buy"].includes(r.signal) && r.price >= b.budgetMin && r.price <= b.budgetMax)
+      .sort((a, z) => E.SIGNALS[a.signal].rank - E.SIGNALS[z.signal].rank || z.score - a.score).slice(0, 4);
+    if (!top.length) return "";
+    return `<section class="section"><div class="section-head"><h2>Singles worth a look</h2><a class="small" href="#singles">All singles</a></div><div class="slabs cards">${top.map(cardSlab).join("")}</div></section>`;
+  }
+
+  const S_SORTS = {
+    score: { label: "Best score", fn: (a, z) => E.SIGNALS[a.signal].rank - E.SIGNALS[z.signal].rank || z.score - a.score },
+    value: { label: "Most under similar cards", fn: (a, z) => (z.ratio ?? 0) - (a.ratio ?? 0) },
+    pullback: { label: "Biggest pullback", fn: (a, z) => (a.stats.high365 ? a.price / a.stats.high365 : 9) - (z.stats.high365 ? z.price / z.stats.high365 : 9) },
+    price: { label: "Lowest price", fn: (a, z) => a.price - z.price },
+  };
+
+  function renderSingles() {
+    const f = state.sFilters; const b = settings().singles;
+    if (!state.singles) {
+      $("#main").innerHTML = `<h1>Singles</h1><div class="empty" style="margin-top:16px">No singles data yet. It appears after the next daily price sync runs.</div>`;
+      return;
+    }
+    const mons = [...new Set(state.sRows.map((r) => r.pokemon))].sort();
+    const tiers = Object.entries(S.TIERS).filter(([k]) => state.sRows.some((r) => r.tier === k));
+    $("#main").innerHTML = `
+      <h1>Singles</h1>
+      <p class="lede">Cards of your chase Pokémon, raw near-mint TCGplayer prices, scored for a 4+ year hold. “Buy under” is the most I'd pay for a raw copy today.${state.singles.psa10Date ? ` PSA 10 prices as of ${esc(state.singles.psa10Date)}.` : ""}</p>
+      <div class="controls">
+        <div class="seg" role="group" aria-label="Price range">
+          <button data-band="sweet" aria-pressed="${f.band === "sweet"}">Sweet spot ${whole$(b.budgetMin)}–${whole$(b.sweetSpotMax)}</button>
+          <button data-band="all" aria-pressed="${f.band === "all"}">Up to ${whole$(b.budgetMax)}</button>
+        </div>
+        <input type="search" id="sq" placeholder="Search card or set" value="${esc(f.q)}" aria-label="Search singles">
+        <select id="smon" aria-label="Pokémon"><option value="">Any Pokémon</option>${mons.map((m) => `<option ${f.pokemon === m ? "selected" : ""}>${esc(m)}</option>`).join("")}</select>
+        <select id="stier" aria-label="Rarity"><option value="">Any rarity</option>${tiers.map(([k, v]) => `<option value="${k}" ${f.tier === k ? "selected" : ""}>${esc(v.label)}</option>`).join("")}</select>
+        <select id="ssig" aria-label="Signal"><option value="">All signals</option>${Object.entries(E.SIGNALS).map(([k, v]) => `<option value="${k}" ${f.signal === k ? "selected" : ""}>${v.label}</option>`).join("")}</select>
+        <select id="ssort" aria-label="Sort">${Object.entries(S_SORTS).map(([k, v]) => `<option value="${k}" ${f.sort === k ? "selected" : ""}>${v.label}</option>`).join("")}</select>
+      </div>
+      <div id="sgrid"></div>`;
+    const upd = () => { f.q = $("#sq").value; f.pokemon = $("#smon").value; f.tier = $("#stier").value; f.signal = $("#ssig").value; f.sort = $("#ssort").value; f.limit = 48; drawSingles(); };
+    ["#sq", "#smon", "#stier", "#ssig", "#ssort"].forEach((x) => $(x).addEventListener("input", upd));
+    document.querySelectorAll("[data-band]").forEach((x) => x.onclick = () => { f.band = x.dataset.band; f.limit = 48; renderSingles(); });
+    drawSingles();
+  }
+
+  function drawSingles() {
+    const f = state.sFilters; const q = f.q.trim().toLowerCase();
+    const rows = state.sRows.filter((r) => inBand(r) && (!q || (r.name + " " + r.setName).toLowerCase().includes(q)) &&
+      (!f.pokemon || r.pokemon === f.pokemon) && (!f.tier || r.tier === f.tier) && (!f.signal || r.signal === f.signal)).sort(S_SORTS[f.sort].fn);
+    const buys = rows.filter((r) => r.signal === "strong_buy" || r.signal === "buy").length;
+    $("#sgrid").innerHTML = rows.length
+      ? `<p class="small muted" style="margin:0 0 12px">${rows.length} cards · ${buys} at or under their buy-under price</p>
+         <div class="slabs cards">${rows.slice(0, f.limit).map(cardSlab).join("")}</div>
+         ${rows.length > f.limit ? `<div class="more"><button class="btn" id="smore">Show ${Math.min(48, rows.length - f.limit)} more</button></div>` : ""}`
+      : `<div class="empty">No cards match. Try the full budget range or clear a filter.</div>`;
+    const m = $("#smore"); if (m) m.onclick = () => { f.limit += 48; drawSingles(); };
+  }
+
+  function openSingle(id) {
+    const r = state.sById.get(String(id));
+    if (!r) { location.hash = "#singles"; return; }
+    const sheet = $("#sheet"), panel = $("#sheet-panel");
+    const st = r.stats, b = settings().singles;
+    const watched = state.watch.has(String(r.id));
+    const lots = state.holdings[r.id] || [];
+    const peers = state.sRows.filter((x) => x.pokemon === r.pokemon && x.tier === r.tier && x.era === r.era).sort((a, z) => z.price - a.price).slice(0, 8);
+    const hasPsaHist = (state.singlesHistory.series["g:" + r.id] || []).length > 1;
+    panel.innerHTML = `
+      <div class="sheet-head">
+        <div><div class="pset">${esc(r.setName)}${r.number ? ` · ${esc(r.number)}` : ""} · ${esc(r.tierLabel)}${r.sub ? ` · ${esc(r.sub)}` : ""}</div><h2 id="sheet-title">${esc(r.name)}</h2></div>
+        <div style="display:flex;gap:4px"><button class="star" id="star" aria-pressed="${watched}" aria-label="Watch this card" title="Watch">★</button><button class="btn ghost" data-close aria-label="Close">Close</button></div>
+      </div>
+      <div class="sheet-body">
+        <div class="card verdict">
+          <div><span class="big grade g-${r.signal}" style="text-align:left"><b>${E.SIGNALS[r.signal].label}</b></span>
+          <p style="margin-top:8px">${r.target != null
+            ? `Buy a raw copy under <strong>${fmt$(r.target)}</strong> — ${esc(r.targetWhy)}. Market is ${fmt$(r.price)} (${Math.abs(Math.round(r.gap)) === 0 ? "right at" : Math.abs(Math.round(r.gap)) + "% " + (r.gap > 0 ? "over" : "under")} target).`
+            : `No buy-under price yet — ${esc(r.targetWhy)}. Market is ${fmt$(r.price)}.`}</p>
+          <p class="small" style="margin:6px 0 0">${confPill(r)}</p></div>
+          <div class="detail-art">${cardImg(r, true)}</div>
+        </div>
+        <div class="card">
+          <div class="section-head" style="margin:0 0 8px"><h3 style="margin:0">Price history</h3>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              ${hasPsaHist ? `<div class="seg" role="group" aria-label="Copy">${[["raw", "Raw"], ["psa", "PSA 10"]].map(([k, l]) => `<button data-copy="${k}" aria-pressed="${state.sChart === k}">${l}</button>`).join("")}</div>` : ""}
+              <div class="seg" role="group" aria-label="Range">${[["3m", 90], ["1y", 365], ["all", null]].map(([k]) => `<button data-range="${k}" aria-pressed="${state.range === k}">${k === "all" ? "All" : k.toUpperCase()}</button>`).join("")}</div>
+            </div></div>
+          <div id="chart"></div>
+          <div class="legend" id="slegend"></div>
+        </div>
+        <div class="card"><h3>Why</h3><ul class="reasons">${r.reasons.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
+        <div class="card"><h3>Numbers</h3><div class="kv">
+          <div>Raw market<strong>${fmt$(r.price)}</strong></div><div>TCGplayer low<strong>${fmt$(r.low)}</strong></div>
+          <div>PSA 10<strong>${fmt$(r.psa.price)}</strong></div><div>PSA 10 ÷ raw<strong>${r.psa.price ? (r.psa.price / r.price).toFixed(1) + "×" : "—"}</strong></div>
+          <div>30 days<strong>${pct(st.ch30)}</strong></div><div>90 days<strong>${pct(st.ch90)}</strong></div>
+          <div>90-day low<strong>${fmt$(st.low90)}</strong></div><div>1-year high<strong>${fmt$(st.high365)}</strong></div>
+          <div>Similar cards<strong>${r.fair ? fmt$(r.fair.value) : "—"}</strong></div><div>Score<strong>${r.score}/100</strong></div>
+          <div>Demand<strong>${r.demand}/100</strong></div><div>Released<strong>${esc(r.release || "—")}</strong></div>
+        </div></div>
+        ${peers.length > 1 ? `<div class="card"><h3>Similar cards you're tracking</h3>
+          <p class="small muted" style="margin:0 0 8px">${esc(r.pokemon)} · ${esc(r.tierLabel)} · ${esc(r.eraLabel)}${r.fair ? `. Median across all of TCGplayer: ${fmt$(r.fair.value)}` : ""}</p>
+          <table class="peers"><tbody>${peers.map((x) => `<tr class="${x.id === r.id ? "me" : ""}" data-open-single="${x.id}"><td>${esc(x.name)} <span class="muted small">${esc(x.setName)}</span></td><td class="num">${fmt$(x.price)}</td><td>${sigPill(x.signal)}</td></tr>`).join("")}</tbody></table>
+        </div>` : ""}
+        <div class="card"><h3>Holdings</h3>
+          ${lots.length ? `<p class="small">${lots.map((l, i) => `${l.qty} × ${fmt$(l.cost)}${l.note ? ` (${esc(l.note)})` : ""} <button class="btn ghost small" data-rmlot="${i}">Remove</button>`).join("<br>")}</p>` : ""}
+          <div class="form-grid"><label class="field">Quantity<input type="number" id="hq" min="1" value="1"></label><label class="field">Paid each<input type="number" id="hc" min="0" step="0.01" value="${r.price.toFixed(2)}"></label>
+            <label class="field">Copy<select id="hn"><option value="">Raw</option><option>PSA 10</option><option>PSA 9</option><option>Other grade</option></select></label></div>
+          <div class="actions" style="margin-top:10px"><button class="btn" id="addlot">Add to holdings</button></div>
+        </div>
+        <div class="actions">
+          <button class="btn primary" id="ask">Ask Claude for a second opinion</button>
+          ${r.url ? `<a class="btn" href="${esc(r.url)}" target="_blank" rel="noopener">Open on TCGplayer</a>` : ""}
+        </div>
+      </div>`;
+    const draw = () => {
+      const days = { "3m": 90, "1y": 365, all: null }[state.range];
+      const psa = state.sChart === "psa" && hasPsaHist;
+      const refs = !psa && r.target != null ? [{ value: r.target, label: "Buy " + fmt$(r.target), cls: "series-target" }] : [];
+      Charts.priceChart($("#chart"), sPts(psa ? "g:" + r.id : r.id, days), refs);
+      $("#slegend").innerHTML = psa ? "<span>PSA 10 price (Scrydex)</span>" : `<span>Raw near-mint price</span>${refs.length ? '<span class="l-target">Buy under</span>' : ""}`;
+    };
+    if (sheet.getAttribute("aria-hidden") !== "false") { sheet.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden"; panel.querySelector("[data-close]").focus(); }
+    draw();
+    panel.querySelectorAll("[data-range]").forEach((x) => x.onclick = () => { state.range = x.dataset.range; panel.querySelectorAll("[data-range]").forEach((y) => y.setAttribute("aria-pressed", y === x)); draw(); });
+    panel.querySelectorAll("[data-copy]").forEach((x) => x.onclick = () => { state.sChart = x.dataset.copy; panel.querySelectorAll("[data-copy]").forEach((y) => y.setAttribute("aria-pressed", y === x)); draw(); });
+    $("#star").onclick = (e) => {
+      const k = String(r.id); state.watch.has(k) ? state.watch.delete(k) : state.watch.add(k); store.set(LS.watch, [...state.watch]);
+      e.currentTarget.setAttribute("aria-pressed", state.watch.has(k)); toast(state.watch.has(k) ? "Added to watchlist." : "Removed from watchlist.");
+    };
+    $("#addlot").onclick = () => {
+      const qty = parseInt($("#hq").value, 10), cost = parseFloat($("#hc").value), note = $("#hn").value;
+      if (!(qty > 0) || !(cost >= 0)) { toast("Enter a quantity and the price you paid."); return; }
+      (state.holdings[r.id] ||= []).push({ qty, cost, note, date: state.meta.priceDate }); store.set(LS.hold, state.holdings); toast("Added to holdings."); openSingle(r.id);
+    };
+    panel.querySelectorAll("[data-rmlot]").forEach((x) => x.onclick = () => { state.holdings[r.id].splice(+x.dataset.rmlot, 1); if (!state.holdings[r.id].length) delete state.holdings[r.id]; store.set(LS.hold, state.holdings); openSingle(r.id); });
+    $("#ask").onclick = () => askClaude(S.claudePrompt(r, state.singles.priceDate, b));
   }
 
   /* ---------------------------------------------------------- products --- */
@@ -229,7 +417,7 @@
   /* --------------------------------------------------------- portfolio --- */
   function renderPortfolio() {
     const ids = new Set([...state.watch, ...Object.keys(state.holdings)]);
-    const rows = [...ids].map((id) => state.byId.get(id)).filter(Boolean);
+    const rows = [...ids].map((id) => anyById(id)).filter(Boolean);
     let cost = 0, value = 0;
     const holdRows = rows.filter((r) => (state.holdings[r.id] || []).length).map((r) => {
       const lots = state.holdings[r.id]; const qty = lots.reduce((a, l) => a + l.qty, 0); const c = lots.reduce((a, l) => a + l.qty * l.cost, 0);
@@ -242,11 +430,11 @@
       <div class="controls"><button class="btn" id="exp">Export backup</button><label class="btn">Import backup<input type="file" id="imp" accept="application/json" hidden></label></div>
       <section class="section"><div class="section-head"><h2>Holdings</h2>${holdRows.length ? `<span class="small">Cost ${fmt$(cost)} · Value ${fmt$(value)} · ${pct((value / cost - 1) * 100)}</span>` : ""}</div>
         ${holdRows.length ? `<div class="table-wrap"><table><thead><tr><th>Product</th><th class="num">Qty</th><th class="num">Avg cost</th><th class="num">Market</th><th class="num">Value</th><th class="num">Gain</th><th>Add more?</th></tr></thead><tbody>
-          ${holdRows.map(({ r, qty, c, v }) => `<tr data-open="${r.id}"><td><div class="pname">${esc(r.name)}</div><div class="pset">${esc(r.set.name)}</div></td><td class="num">${qty}</td><td class="num">${fmt$(c / qty)}</td><td class="num">${fmt$(r.price)}</td><td class="num">${fmt$(v)}</td><td class="num">${pct((v / c - 1) * 100)}</td><td>${sigPill(r.signal)}</td></tr>`).join("")}
+          ${holdRows.map(({ r, qty, c, v }) => `<tr ${openAttr(r)}><td><div class="pname">${esc(r.name)}</div><div class="pset">${esc(r.set.name)}</div></td><td class="num">${qty}</td><td class="num">${fmt$(c / qty)}</td><td class="num">${fmt$(r.price)}</td><td class="num">${fmt$(v)}</td><td class="num">${pct((v / c - 1) * 100)}</td><td>${sigPill(r.signal)}</td></tr>`).join("")}
           </tbody></table></div>` : `<div class="empty">No holdings yet. Open any product and use “Add to holdings” to log what you paid.</div>`}
       </section>
       <section class="section"><div class="section-head"><h2>Watchlist</h2></div>
-        ${watchRows.length ? `<div class="slabs">${watchRows.map(slab).join("")}</div>` : `<div class="empty">Star products from their detail view to watch them. Watched items that drop under target show at the top of Picks.</div>`}
+        ${watchRows.length ? `<div class="slabs">${watchRows.filter((r) => r.kind !== "single").map(slab).join("")}</div>${watchRows.some((r) => r.kind === "single") ? `<div class="slabs cards" style="margin-top:16px">${watchRows.filter((r) => r.kind === "single").map(cardSlab).join("")}</div>` : ""}` : `<div class="empty">Star products from their detail view to watch them. Watched items that drop under target show at the top of Picks.</div>`}
       </section>`;
     $("#exp").onclick = () => {
       const blob = new Blob([JSON.stringify({ watch: [...state.watch], holdings: state.holdings, settings: store.get(LS.settings, {}) }, null, 1)], { type: "application/json" });
@@ -273,6 +461,14 @@
         <p class="small muted">One per line as “Name, weight” (weight 0–1). Scores and signals update instantly. Sets are only pulled in by the sync if they match the list in config.json.</p>
         <label class="field"><span class="sr-only">Chase list</span><textarea id="chase">${esc(s.chasePokemon.map((c) => `${c.name}, ${c.weight ?? 1}`).join("\n"))}</textarea></label>
       </div>
+      <div class="card" style="margin-top:16px"><h3>Singles budget</h3>
+        <p class="small muted">What the Singles tab shows and calls buys. Cards slightly outside this range are still tracked so their history continues.</p>
+        <div class="form-grid">
+          <label class="field">Lowest price<input type="number" min="0" step="1" id="smin" value="${s.singles.budgetMin}"></label>
+          <label class="field">Sweet spot up to<input type="number" min="0" step="1" id="ssweet" value="${s.singles.sweetSpotMax}"></label>
+          <label class="field">Most you'd pay<input type="number" min="0" step="1" id="smax" value="${s.singles.budgetMax}"></label>
+        </div>
+      </div>
       <div class="card" style="margin-top:16px"><h3>Risk profile</h3>
         <div class="seg" role="group" aria-label="Risk profile">${["conservative", "balanced", "aggressive"].map((k) => `<button data-risk="${k}" aria-pressed="${s.risk === k}">${k[0].toUpperCase() + k.slice(1)}</button>`).join("")}</div>
         <p class="small muted">Conservative sets buy targets 5% lower; aggressive 5% higher.</p>
@@ -291,7 +487,9 @@
         const v = i.value === "" ? null : parseFloat(i.value); const d = state.config.retailReference[i.dataset.retail] ?? null;
         if (v !== d) retailReference[i.dataset.retail] = v;
       });
-      store.set(LS.settings, { ...store.get(LS.settings, {}), v: SETTINGS_V, cfgRetail: JSON.stringify(state.config.retailReference), chasePokemon, retailReference, risk });
+      const sv = (id, d) => { const v = parseFloat($(id).value); return v >= 0 ? v : d; };
+      const sing = { budgetMin: sv("#smin", 30), sweetSpotMax: sv("#ssweet", 100), budgetMax: sv("#smax", 300) };
+      store.set(LS.settings, { ...store.get(LS.settings, {}), v: SETTINGS_V, cfgRetail: JSON.stringify(state.config.retailReference), chasePokemon, retailReference, risk, singles: sing });
       recompute(); toast("Settings saved. Signals updated.");
     };
     $("#reset").onclick = () => { store.set(LS.settings, {}); recompute(); renderSettings(); toast("Settings reset."); };
@@ -334,6 +532,16 @@
       </ul>
       <h2>Confidence</h2>
       <p>Every call checks four things: enough price history, a real release date, a known retail price, and chase cards from the product's own set. <strong>Strong buy</strong> needs all four. With thin history, the only calls made are against a known retail price, and they top out at Buy. Products in TCGplayer's catch-all groups (Miscellaneous, promos, POP series) aren't treated as part of a set; add their MSRP and release date under <code>productOverrides</code> in config.json.</p>
+      <h2>Singles</h2>
+      <p>The daily sync also tracks every single of your chase Pokémon priced roughly ${fmt$(settings().singles.budgetMin)}–${fmt$(settings().singles.budgetMax)} (a little wider, so cards drifting past your budget keep their history). Each card's score looks at:</p>
+      <ul class="reasons">
+        <li><strong>Value against similar cards (30%).</strong> The median price of the same Pokémon, rarity tier and era, worked out from every price on TCGplayer, not just your budget. A card well under its peers might be undervalued — or just a weaker card, so it's one input, not the verdict.</li>
+        <li><strong>Demand (25%).</strong> The Pokémon's weight in your chase list and the rarity: Special Illustration Rares and alt arts first, then Illustration Rares and gallery cards, vintage holos, secret rares, and down to promos and Classic Collection reprints.</li>
+        <li><strong>Momentum (20%).</strong> Rewards pullbacks that have flattened and cards lagging their own set; flags spikes and slides.</li>
+        <li><strong>Timing (15%).</strong> Singles usually bottom while their set is still printing and recover after.</li>
+        <li><strong>Budget fit (10%).</strong> Your sweet spot scores highest. Cards over your max never get a buy call.</li>
+      </ul>
+      <p>PSA 10 prices come from a one-time Scrydex import, so they're as of that date unless you import again. Raw cards carry condition risk; buy clean near-mint copies.</p>
       <h2>What it can't see</h2>
       <p>Reprint announcements, Pokémon Center restocks, print-run sizes, and sales volume. Use “Ask Claude” on any product for a second opinion that checks current news. This isn't financial advice; prices can and do fall.</p>
       <p class="small muted">Data: TCGplayer prices via the free tcgcsv.com daily mirror. Not affiliated with TCGplayer, Nintendo, or The Pokémon Company.</p>
@@ -424,12 +632,14 @@
     if (sheet.getAttribute("aria-hidden") === "false") {
       sheet.setAttribute("aria-hidden", "true"); document.body.style.overflow = "";
       const v = $("#main").dataset.view || "picks";
-      if (updateHash) location.hash = "#" + v; else if (v === "picks" || v === "portfolio") renderView(v);
+      if (updateHash) location.hash = "#" + v; else if (v === "picks" || v === "portfolio" || v === "singles") renderView(v);
     }
   }
 
   document.addEventListener("click", (e) => {
     if (e.target.closest("[data-close]")) { e.preventDefault(); closeDetail(); return; }
+    const so = e.target.closest("[data-open-single]");
+    if (so && !e.target.closest("a")) { location.hash = "#s/" + so.dataset.openSingle; return; }
     const o = e.target.closest("[data-open]");
     if (o && !e.target.closest("a")) location.hash = "#p/" + o.dataset.open;
   });

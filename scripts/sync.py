@@ -22,6 +22,9 @@ from common import (  # noqa: E402
     http_get, is_single, load_config, load_history, parent_name, parse_ts, put_point, write_json,
 )
 from common import HISTORY_PATH  # noqa: E402
+from common import (  # noqa: E402
+    SINGLE_EXCLUDE_RE, SINGLES_HISTORY_PATH, SINGLES_PATH, card_era, card_tier, chase_regexes, single_price,
+)
 
 FIXTURE: Path | None = None
 
@@ -78,6 +81,8 @@ def main():
             parent_of[g["groupId"]] = by_name[pn]["groupId"]
 
     singles: dict[int, list] = {}  # parent groupId -> [{id,name,price,number,rarity,img}]
+    old_singles = json.loads(SINGLES_PATH.read_text()) if SINGLES_PATH.exists() else {}
+    old_sub = {c["id"]: c.get("sub") for c in old_singles.get("cards", [])}
     sealed: list[dict] = []
     excluded = set(tr.get("excludeGroupIds") or [])
 
@@ -98,10 +103,12 @@ def main():
             if is_single(p):
                 if bp:
                     ext = {e["name"]: e["value"] for e in p.get("extendedData") or []}
+                    sp = single_price(by_pid.get(p["productId"], []), old_sub.get(p["productId"]))
                     singles.setdefault(pgid, []).append({
                         "id": p["productId"], "name": p["name"], "price": bp["price"],
                         "number": ext.get("Number"), "rarity": ext.get("Rarity"),
                         "img": p.get("imageUrl"), "url": p.get("url"),
+                        "group": g["name"], "sub": sp["sub"], "sprice": sp["price"], "low": sp["low"],
                     })
             else:
                 t = classify_sealed(p["name"])
@@ -181,6 +188,75 @@ def main():
     write_json(META_PATH, meta)
     write_json(HISTORY_PATH, history)
     print(f"Wrote {META_PATH.name} and {HISTORY_PATH.name} for {price_date}")
+
+    sync_singles(cfg, groups, parent_of, singles, old_singles, price_date, today)
+
+
+def group_release(g: dict, price_date: str) -> str | None:
+    rel = parse_ts(g.get("publishedOn"))
+    return None if rel == price_date else rel  # catch-all groups come back stamped with today
+
+
+def sync_singles(cfg, groups, parent_of, singles, old_singles, price_date, today):
+    """Track singles of the chase Pokemon inside the configured price band, plus peer medians."""
+    sc = cfg.get("singles") or {}
+    lo, hi = sc.get("trackMin", 20), sc.get("trackMax", 450)
+    rx = chase_regexes(cfg["chasePokemon"])
+    gby = {g["groupId"]: g for g in groups}
+    was_tracked = {c["id"] for c in old_singles.get("cards", [])}
+
+    cards, peers_raw = [], {}
+    for pgid, lst in singles.items():
+        parent = gby.get(pgid, {})
+        release = group_release(parent, price_date)
+        for c in lst:
+            if SINGLE_EXCLUDE_RE.search(c["name"]) or SINGLE_EXCLUDE_RE.search(c.get("group") or ""):
+                continue
+            mon = next((nm for nm, _w, r in rx if r.search(c["name"])), None)
+            if not mon:
+                continue
+            tier = card_tier(c["name"], c.get("rarity"), c.get("number"), release)
+            era = card_era(release)
+            price = c["sprice"]
+            if price and price >= 3:  # peers use every price, so the band doesn't skew them
+                peers_raw.setdefault(f"{mon}|{tier}|{era}", []).append(price)
+            in_band = lo <= price <= hi
+            keep_band = c["id"] in was_tracked and lo * 0.5 <= price <= hi * 2
+            if not (in_band or keep_band):
+                continue
+            cards.append({
+                "id": c["id"], "name": c["name"], "pokemon": mon, "tier": tier, "era": era,
+                "rarity": c.get("rarity"), "number": c.get("number"), "sub": c.get("sub"),
+                "setId": pgid, "setName": parent.get("name", c.get("group")), "group": c.get("group"),
+                "release": release, "price": price, "low": c.get("low"), "img": c.get("img"), "url": c.get("url"),
+            })
+
+    def med(v):
+        v = sorted(v)
+        n = len(v)
+        return v[n // 2] if n % 2 else (v[n // 2 - 1] + v[n // 2]) / 2
+    peers = {k: {"median": round(med(v), 2), "n": len(v)} for k, v in peers_raw.items()}
+
+    hist = load_history_file(SINGLES_HISTORY_PATH)
+    keep = set()
+    for c in cards:
+        put_point(hist, str(c["id"]), today, c["price"])
+        keep.add(str(c["id"]))
+        keep.add(f"g:{c['id']}")  # PSA 10 series from the Scrydex import
+    h = cfg["history"]
+    compact_history(hist, today, h["dailyWindowDays"], h["olderBucketDays"], keep)
+    hist["lastDay"] = today
+    out = {**{k: v for k, v in old_singles.items() if k in ("psa10", "psa10Date", "scrydex")},
+           "priceDate": price_date, "cards": cards, "peers": peers}
+    write_json(SINGLES_PATH, out)
+    write_json(SINGLES_HISTORY_PATH, hist)
+    print(f"Tracking {len(cards)} singles of your chase Pokemon (${lo}-${hi}); {len(peers)} peer groups")
+
+
+def load_history_file(path):
+    if path.exists():
+        return json.loads(path.read_text())
+    return {"epoch": "2024-01-01", "series": {}}
 
 
 if __name__ == "__main__":
