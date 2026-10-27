@@ -10,7 +10,8 @@
    "variant": "davidCohen",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 46700.0
+   "psa10": 46700.0,
+   "rarity": "Rare Holo"
   },
   {
    "id": 284303,
@@ -21,7 +22,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 174.08
+   "psa10": 174.08,
+   "rarity": "Rare Secret"
   },
   {
    "id": 87417,
@@ -32,7 +34,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 2167.31
+   "psa10": 2167.31,
+   "rarity": "Promo"
   },
   {
    "id": 198771,
@@ -43,7 +46,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 2935.27
+   "psa10": 2935.27,
+   "rarity": "Promo"
   },
   {
    "id": 146982,
@@ -54,7 +58,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 16621.23
+   "psa10": 16621.23,
+   "rarity": "Promo"
   },
   {
    "id": 648359,
@@ -65,7 +70,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 125.02
+   "psa10": 125.02,
+   "rarity": "Double Rare"
   },
   {
    "id": 151973,
@@ -76,7 +82,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 677.65
+   "psa10": 677.65,
+   "rarity": "Promo"
   },
   {
    "id": 263872,
@@ -87,7 +94,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 256.09
+   "psa10": 256.09,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 146696,
@@ -98,7 +106,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1015.79
+   "psa10": 1015.79,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 189761,
@@ -109,7 +118,8 @@
    "variant": "crackedIceHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 2025.0
+   "psa10": 1664.79,
+   "rarity": "Common"
   },
   {
    "id": 87429,
@@ -120,7 +130,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 3412.27
+   "psa10": 3412.27,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 158738,
@@ -131,7 +142,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 15284.85
+   "psa10": 15284.85,
+   "rarity": "Rare Holo"
   },
   {
    "id": 86859,
@@ -142,7 +154,8 @@
    "variant": "firstEdition",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2454.82
+   "psa10": 2454.82,
+   "rarity": "Common"
   },
   {
    "id": 477429,
@@ -153,7 +166,8 @@
    "variant": "chrisFulop",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 85779.78
+   "psa10": 85779.78,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 45163,
@@ -164,7 +178,8 @@
    "variant": "firstEdition",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1456.67
+   "psa10": 1456.67,
+   "rarity": "Common"
   },
   {
    "id": 535527,
@@ -175,7 +190,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.985,
-   "psa10": 304.32
+   "psa10": 304.32,
+   "rarity": "Shiny Ultra Rare"
   },
   {
    "id": 88069,
@@ -186,7 +202,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 326.28
+   "psa10": 326.28,
+   "rarity": "Promo"
   },
   {
    "id": 123466,
@@ -197,7 +214,8 @@
    "variant": "crackedIceHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 10351.63
+   "psa10": 10351.63,
+   "rarity": "Rare"
   },
   {
    "id": 92250,
@@ -208,7 +226,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 245.0
+   "psa10": 245.0,
+   "rarity": "Rare"
   },
   {
    "id": 179377,
@@ -219,7 +238,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 2846.68
+   "psa10": 2846.68,
+   "rarity": "Promo"
   },
   {
    "id": 98096,
@@ -230,7 +250,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 3549.93
+   "psa10": 3549.93,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 108623,
@@ -241,7 +262,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 800.0
+   "psa10": 800.0,
+   "rarity": "Promo"
   },
   {
    "id": 85087,
@@ -252,7 +274,8 @@
    "variant": "reverseHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 744.95
+   "psa10": 744.95,
+   "rarity": "Common"
   },
   {
    "id": 250341,
@@ -263,7 +286,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 154.29
+   "psa10": 154.29,
+   "rarity": "Classic Collection"
   },
   {
    "id": 125045,
@@ -274,7 +298,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 3077.82
+   "psa10": 3077.82,
+   "rarity": "Rare Holo"
   },
   {
    "id": 246698,
@@ -285,7 +310,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 175.38
+   "psa10": 175.38,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 277024,
@@ -296,7 +322,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 799.0
+   "psa10": 178.58,
+   "rarity": "Rare Secret"
   },
   {
    "id": 482095,
@@ -307,7 +334,8 @@
    "variant": "harukiMiyamoto",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 330.98
+   "psa10": 330.98,
+   "rarity": "Rare Holo GX"
   },
   {
    "id": 253146,
@@ -318,7 +346,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.998,
-   "psa10": 305.7
+   "psa10": 305.7,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 124066,
@@ -329,7 +358,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 5777.33
+   "psa10": 5777.33,
+   "rarity": "Rare Holo"
   },
   {
    "id": 253397,
@@ -340,7 +370,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.001,
-   "psa10": 251.44
+   "psa10": 251.44,
+   "rarity": "Promo"
   },
   {
    "id": 148426,
@@ -351,7 +382,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 0.945,
-   "psa10": 5621.39
+   "psa10": 5621.39,
+   "rarity": "Promo"
   },
   {
    "id": 96379,
@@ -362,7 +394,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 4619.55
+   "psa10": 4619.55,
+   "rarity": "Promo"
   },
   {
    "id": 509989,
@@ -373,7 +406,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.994,
-   "psa10": 251.1
+   "psa10": 251.1,
+   "rarity": "Hyper Rare"
   },
   {
    "id": 178980,
@@ -384,7 +418,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1770.22
+   "psa10": 1770.22,
+   "rarity": "Rare Holo GX"
   },
   {
    "id": 86850,
@@ -395,7 +430,8 @@
    "variant": "firstEdition",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 595.94
+   "psa10": 595.94,
+   "rarity": "Uncommon"
   },
   {
    "id": 88072,
@@ -406,7 +442,8 @@
    "variant": "firstEdition",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2605.78
+   "psa10": 2605.78,
+   "rarity": "Common"
   },
   {
    "id": 528365,
@@ -417,7 +454,8 @@
    "variant": "playPokemonStamp",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 919.0
+   "psa10": 919.0,
+   "rarity": "Promo"
   },
   {
    "id": 88102,
@@ -428,7 +466,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1799.23
+   "psa10": 1799.23,
+   "rarity": "Common"
   },
   {
    "id": 482107,
@@ -439,7 +478,8 @@
    "variant": "henryBrand",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 274.67
+   "psa10": 274.67,
+   "rarity": "Rare Holo GX"
   },
   {
    "id": 517017,
@@ -450,7 +490,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.001,
-   "psa10": 221.34
+   "psa10": 221.34,
+   "rarity": "Ultra Rare"
   },
   {
    "id": 183561,
@@ -461,7 +502,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 290.76
+   "psa10": 290.76,
+   "rarity": "Promo"
   },
   {
    "id": 478103,
@@ -472,7 +514,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.001,
-   "psa10": 304.47
+   "psa10": 217.92,
+   "rarity": "Rare Secret"
   },
   {
    "id": 478058,
@@ -483,7 +526,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 547.58
+   "psa10": 547.58,
+   "rarity": "Trainer Gallery Rare Holo"
   },
   {
    "id": 87414,
@@ -494,7 +538,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 1543.9
+   "psa10": 1543.9,
+   "rarity": "Promo"
   },
   {
    "id": 696687,
@@ -505,7 +550,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.001,
-   "psa10": 490.65
+   "psa10": 490.65,
+   "rarity": "Futuristic Rare"
   },
   {
    "id": 107183,
@@ -516,7 +562,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1211.85
+   "psa10": 1211.85,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 124025,
@@ -527,7 +574,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 229.41
+   "psa10": 229.41,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 175270,
@@ -538,7 +586,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1412.73
+   "psa10": 1412.73,
+   "rarity": "Rare Holo"
   },
   {
    "id": 85083,
@@ -549,7 +598,8 @@
    "variant": "normal",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 319.31
+   "psa10": 319.31,
+   "rarity": "Common"
   },
   {
    "id": 88645,
@@ -560,7 +610,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 3512.95
+   "psa10": 3512.95,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 451995,
@@ -571,7 +622,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 260.08
+   "psa10": 260.08,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 85091,
@@ -582,7 +634,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 8337.61
+   "psa10": 8337.61,
+   "rarity": "Common"
   },
   {
    "id": 219233,
@@ -593,7 +646,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 194.92
+   "psa10": 148.27,
+   "rarity": "Rare Holo VMAX"
   },
   {
    "id": 85094,
@@ -604,7 +658,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 3733.63
+   "psa10": 3733.63,
+   "rarity": "Uncommon"
   },
   {
    "id": 716231,
@@ -615,7 +670,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.997,
-   "psa10": 558.99
+   "psa10": 558.99,
+   "rarity": "Special Illustration Rare"
   },
   {
    "id": 285378,
@@ -626,7 +682,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 663.9
+   "psa10": 663.9,
+   "rarity": "Promo"
   },
   {
    "id": 482087,
@@ -637,7 +694,8 @@
    "variant": "henryBrand",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 527.35
+   "psa10": 527.35,
+   "rarity": "Rare Holo GX"
   },
   {
    "id": 152608,
@@ -648,7 +706,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 4028.74
+   "psa10": 4028.74,
+   "rarity": "Promo"
   },
   {
    "id": 284258,
@@ -659,7 +718,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.002,
-   "psa10": 748.8
+   "psa10": 748.8,
+   "rarity": "Trainer Gallery Rare Holo"
   },
   {
    "id": 479726,
@@ -670,7 +730,8 @@
    "variant": "tomRoos",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 70270.96
+   "psa10": 70270.96,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 200351,
@@ -681,7 +742,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 222.8
+   "psa10": 222.8,
+   "rarity": "Rare Holo GX"
   },
   {
    "id": 183785,
@@ -692,7 +754,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2205.93
+   "psa10": 2205.93,
+   "rarity": "Rare"
   },
   {
    "id": 108619,
@@ -703,7 +766,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Promo"
   },
   {
    "id": 518872,
@@ -714,7 +778,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.015,
-   "psa10": 631.79
+   "psa10": 631.79,
+   "rarity": "Promo"
   },
   {
    "id": 224364,
@@ -725,7 +790,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 219.23
+   "psa10": 219.23,
+   "rarity": "Promo"
   },
   {
    "id": 183562,
@@ -736,7 +802,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 153.35
+   "psa10": 153.35,
+   "rarity": "Promo"
   },
   {
    "id": 226431,
@@ -747,7 +814,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1299.99
+   "psa10": 218.78,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 170936,
@@ -758,7 +826,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1663.92
+   "psa10": 1663.92,
+   "rarity": "Rare Holo GX"
   },
   {
    "id": 107182,
@@ -769,7 +838,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1273.52
+   "psa10": 1273.52,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 121772,
@@ -780,7 +850,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 705.9
+   "psa10": 705.9,
+   "rarity": "Promo"
   },
   {
    "id": 505996,
@@ -791,7 +862,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 0.977,
-   "psa10": 25186.17
+   "psa10": 25186.17,
+   "rarity": "Promo"
   },
   {
    "id": 88066,
@@ -802,7 +874,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 1341.74
+   "psa10": 1341.74,
+   "rarity": "Promo"
   },
   {
    "id": 285384,
@@ -813,7 +886,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 574.16
+   "psa10": 574.16,
+   "rarity": "Promo"
   },
   {
    "id": 565479,
@@ -824,7 +898,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 225.67
+   "psa10": 225.67,
+   "rarity": "Double Rare"
   },
   {
    "id": 85075,
@@ -835,7 +910,8 @@
    "variant": "firstEdition",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1103.0
+   "psa10": 1103.0,
+   "rarity": "Uncommon"
   },
   {
    "id": 633040,
@@ -846,7 +922,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.999,
-   "psa10": 161.08
+   "psa10": 161.08,
+   "rarity": "Hyper Rare"
   },
   {
    "id": 197811,
@@ -857,7 +934,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 249.99
+   "psa10": 164.33,
+   "rarity": "Rare Shiny"
   },
   {
    "id": 253371,
@@ -868,7 +946,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.001,
-   "psa10": 323.57
+   "psa10": 211.16,
+   "rarity": "Rare Holo VMAX"
   },
   {
    "id": 190940,
@@ -879,7 +958,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Promo"
   },
   {
    "id": 85088,
@@ -890,7 +970,8 @@
    "variant": "reverseHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 252.0
+   "psa10": 252.0,
+   "rarity": "Common"
   },
   {
    "id": 85084,
@@ -901,7 +982,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 139.16
+   "psa10": 139.16,
+   "rarity": "Common"
   },
   {
    "id": 253394,
@@ -912,7 +994,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 593.01
+   "psa10": 593.01,
+   "rarity": "Promo"
   },
   {
    "id": 717603,
@@ -923,7 +1006,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.997,
-   "psa10": 485.43
+   "psa10": 485.43,
+   "rarity": "Special Illustration Rare"
   },
   {
    "id": 610534,
@@ -934,7 +1018,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.002,
-   "psa10": 314.48
+   "psa10": 314.48,
+   "rarity": "Hyper Rare"
   },
   {
    "id": 284266,
@@ -945,7 +1030,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.013,
-   "psa10": 706.62
+   "psa10": 706.62,
+   "rarity": "Trainer Gallery Rare Holo"
   },
   {
    "id": 513793,
@@ -956,7 +1042,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 249.31
+   "psa10": 249.31,
+   "rarity": "Rare Holo V"
   },
   {
    "id": 108624,
@@ -967,7 +1054,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 7600.0
+   "psa10": 7600.0,
+   "rarity": "Promo"
   },
   {
    "id": 712953,
@@ -978,7 +1066,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.998,
-   "psa10": 579.61
+   "psa10": 579.61,
+   "rarity": "Special Illustration Rare"
   },
   {
    "id": 696688,
@@ -989,7 +1078,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.003,
-   "psa10": 591.6
+   "psa10": 591.6,
+   "rarity": "Futuristic Rare"
   },
   {
    "id": 113746,
@@ -1000,7 +1090,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2083.73
+   "psa10": 2083.73,
+   "rarity": "Uncommon"
   },
   {
    "id": 88103,
@@ -1011,7 +1102,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2112.85
+   "psa10": 2112.85,
+   "rarity": "Common"
   },
   {
    "id": 92251,
@@ -1022,7 +1114,8 @@
    "variant": "crackedIceHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 245.0
+   "psa10": 245.0,
+   "rarity": "Rare"
   },
   {
    "id": 206823,
@@ -1033,7 +1126,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 0.947,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Promo"
   },
   {
    "id": 153998,
@@ -1044,7 +1138,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 738.0
+   "psa10": 738.0,
+   "rarity": "Promo"
   },
   {
    "id": 124116,
@@ -1055,7 +1150,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 958.0
+   "psa10": 917.82,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 527943,
@@ -1066,7 +1162,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 177.6
+   "psa10": 177.6,
+   "rarity": null
   },
   {
    "id": 117854,
@@ -1077,7 +1174,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2031.05
+   "psa10": 2031.05,
+   "rarity": "Rare BREAK"
   },
   {
    "id": 283301,
@@ -1088,7 +1186,8 @@
    "variant": "snowflakeStamp",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Promo"
   },
   {
    "id": 88086,
@@ -1099,7 +1198,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 199999.99
+   "psa10": 199999.99,
+   "rarity": "Common"
   },
   {
    "id": 87430,
@@ -1110,7 +1210,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 5000.0
+   "psa10": 5000.0,
+   "rarity": "Promo"
   },
   {
    "id": 277011,
@@ -1121,7 +1222,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 184.34
+   "psa10": 184.34,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 246717,
@@ -1132,7 +1234,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 415.24
+   "psa10": 415.24,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 479922,
@@ -1143,7 +1246,8 @@
    "variant": "davidCohen",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 40000.0
+   "psa10": 40000.0,
+   "rarity": "Rare Holo LV.X"
   },
   {
    "id": 542914,
@@ -1154,7 +1258,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 370.69
+   "psa10": 370.69,
+   "rarity": "Ultra Rare"
   },
   {
    "id": 153997,
@@ -1165,7 +1270,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 1001.02
+   "psa10": 1001.02,
+   "rarity": "Promo"
   },
   {
    "id": 610679,
@@ -1176,7 +1282,8 @@
    "variant": "masterBallReverseHolofoil",
    "via": "set+number",
    "priceRatio": 0.996,
-   "psa10": 473.56
+   "psa10": 473.56,
+   "rarity": "Rare"
   },
   {
    "id": 121950,
@@ -1187,7 +1294,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 1039.97
+   "psa10": 1039.97,
+   "rarity": "Promo"
   },
   {
    "id": 183804,
@@ -1198,7 +1306,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 535.85
+   "psa10": 535.85,
+   "rarity": "Rare Holo GX"
   },
   {
    "id": 148151,
@@ -1209,7 +1318,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 1693.66
+   "psa10": 1693.66,
+   "rarity": "Promo"
   },
   {
    "id": 137526,
@@ -1220,7 +1330,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 3920.88
+   "psa10": 3920.88,
+   "rarity": "Promo"
   },
   {
    "id": 162457,
@@ -1231,7 +1342,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 70514.95
+   "psa10": 70514.95,
+   "rarity": "Rare Secret"
   },
   {
    "id": 246702,
@@ -1242,7 +1354,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 227.0
+   "psa10": 126.91,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 716198,
@@ -1253,7 +1366,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 733.03
+   "psa10": 733.03,
+   "rarity": "Rare Prime"
   },
   {
    "id": 127014,
@@ -1264,7 +1378,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1096.55
+   "psa10": 1096.55,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 274470,
@@ -1275,7 +1390,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 295.22
+   "psa10": 295.22,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 153996,
@@ -1286,7 +1402,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 756.98
+   "psa10": 756.98,
+   "rarity": "Promo"
   },
   {
    "id": 98111,
@@ -1297,7 +1414,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2372.04
+   "psa10": 2372.04,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 85090,
@@ -1308,7 +1426,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 5000.0
+   "psa10": 5000.0,
+   "rarity": "Common"
   },
   {
    "id": 123454,
@@ -1319,7 +1438,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 1505.23
+   "psa10": 1505.23,
+   "rarity": "Promo"
   },
   {
    "id": 88098,
@@ -1330,7 +1450,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 44765.97
+   "psa10": 44765.97,
+   "rarity": "Promo"
   },
   {
    "id": 88093,
@@ -1341,7 +1462,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 499.0
+   "psa10": 499.0,
+   "rarity": "Common"
   },
   {
    "id": 480476,
@@ -1352,7 +1474,8 @@
    "variant": "davidCohen",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "LEGEND"
   },
   {
    "id": 113693,
@@ -1363,7 +1486,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 24798.19
+   "psa10": 24798.19,
+   "rarity": "Rare Holo"
   },
   {
    "id": 649173,
@@ -1374,7 +1498,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 116.26
+   "psa10": 116.26,
+   "rarity": "Double Rare"
   },
   {
    "id": 127434,
@@ -1385,7 +1510,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 5040.0
+   "psa10": 5040.0,
+   "rarity": "Promo"
   },
   {
    "id": 85077,
@@ -1396,7 +1522,8 @@
    "variant": "normal",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1073.26
+   "psa10": 1073.26,
+   "rarity": "Common"
   },
   {
    "id": 263893,
@@ -1407,7 +1534,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.992,
-   "psa10": 265.54
+   "psa10": 265.54,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 153995,
@@ -1418,7 +1546,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.001,
-   "psa10": 1870.62
+   "psa10": 1870.62,
+   "rarity": "Promo"
   },
   {
    "id": 712954,
@@ -1429,7 +1558,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.011,
-   "psa10": 663.01
+   "psa10": 663.01,
+   "rarity": "Special Illustration Rare"
   },
   {
    "id": 89729,
@@ -1440,7 +1570,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 2013.67
+   "psa10": 2013.67,
+   "rarity": "Promo"
   },
   {
    "id": 250295,
@@ -1451,7 +1582,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 260.0
+   "psa10": 173.51,
+   "rarity": "Rare Holo"
   },
   {
    "id": 85074,
@@ -1462,7 +1594,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 1633.62
+   "psa10": 1633.62,
+   "rarity": "Promo"
   },
   {
    "id": 183560,
@@ -1473,7 +1606,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 499.77
+   "psa10": 499.77,
+   "rarity": "Promo"
   },
   {
    "id": 188409,
@@ -1484,7 +1618,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.006,
-   "psa10": 274.67
+   "psa10": 274.67,
+   "rarity": "Rare Holo GX"
   },
   {
    "id": 247414,
@@ -1495,7 +1630,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 4627.05
+   "psa10": 4627.05,
+   "rarity": "Rare"
   },
   {
    "id": 513796,
@@ -1506,7 +1642,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 66.12
+   "psa10": 66.12,
+   "rarity": "Rare Holo V"
   },
   {
    "id": 152673,
@@ -1517,7 +1654,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 1068.07
+   "psa10": 1068.07,
+   "rarity": "Promo"
   },
   {
    "id": 88088,
@@ -1528,7 +1666,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 398.08
+   "psa10": 398.08,
+   "rarity": "Common"
   },
   {
    "id": 187218,
@@ -1539,7 +1678,8 @@
    "variant": "sheenHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 32.51
+   "psa10": 32.51,
+   "rarity": "Uncommon"
   },
   {
    "id": 87424,
@@ -1550,7 +1690,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1499.99
+   "psa10": 1499.99,
+   "rarity": "Rare Holo"
   },
   {
    "id": 88081,
@@ -1561,7 +1702,8 @@
    "variant": "normal",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2829.92
+   "psa10": 2829.92,
+   "rarity": "Common"
   },
   {
    "id": 107179,
@@ -1572,7 +1714,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 27596.2
+   "psa10": 27596.2,
+   "rarity": "Rare Holo"
   },
   {
    "id": 117812,
@@ -1583,7 +1726,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1995.64
+   "psa10": 1995.64,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 123633,
@@ -1594,7 +1738,8 @@
    "variant": "e3Stamp",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 36792.46
+   "psa10": 2655.88,
+   "rarity": "Common"
   },
   {
    "id": 89643,
@@ -1605,7 +1750,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 0.993,
-   "psa10": 1358.93
+   "psa10": 1358.93,
+   "rarity": "Promo"
   },
   {
    "id": 87419,
@@ -1616,7 +1762,8 @@
    "variant": "normal",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2791.18
+   "psa10": 2791.18,
+   "rarity": "Rare"
   },
   {
    "id": 264208,
@@ -1627,7 +1774,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 168.07
+   "psa10": 168.07,
+   "rarity": "Rare Holo VMAX"
   },
   {
    "id": 108603,
@@ -1638,7 +1786,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 9520.43
+   "psa10": 9520.43,
+   "rarity": "Promo"
   },
   {
    "id": 717610,
@@ -1649,7 +1798,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.016,
-   "psa10": 1036.39
+   "psa10": 1036.39,
+   "rarity": "Special Illustration Rare"
   },
   {
    "id": 246727,
@@ -1660,7 +1810,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 317.48
+   "psa10": 317.48,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 518871,
@@ -1671,7 +1822,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 0.995,
-   "psa10": 671.14
+   "psa10": 671.14,
+   "rarity": "Promo"
   },
   {
    "id": 97708,
@@ -1682,7 +1834,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 59863.4
+   "psa10": 59863.4,
+   "rarity": "Rare"
   },
   {
    "id": 189170,
@@ -1693,7 +1846,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 15000.0
+   "psa10": 15000.0,
+   "rarity": "Rare"
   },
   {
    "id": 88095,
@@ -1704,7 +1858,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2174.94
+   "psa10": 2174.94,
+   "rarity": "Common"
   },
   {
    "id": 513721,
@@ -1715,7 +1870,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 457.99
+   "psa10": 457.99,
+   "rarity": "Illustration Rare"
   },
   {
    "id": 86914,
@@ -1726,7 +1882,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Promo"
   },
   {
    "id": 100514,
@@ -1737,7 +1894,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 265.96
+   "psa10": 265.96,
+   "rarity": "Promo"
   },
   {
    "id": 166411,
@@ -1748,7 +1906,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 4029.43
+   "psa10": 4029.43,
+   "rarity": "Promo"
   },
   {
    "id": 285396,
@@ -1759,7 +1918,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 1272.36
+   "psa10": 1272.36,
+   "rarity": "Promo"
   },
   {
    "id": 478027,
@@ -1770,7 +1930,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.995,
-   "psa10": 2456.53
+   "psa10": 2456.53,
+   "rarity": "Trainer Gallery Rare Holo"
   },
   {
    "id": 88110,
@@ -1781,7 +1942,8 @@
    "variant": "normal",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 4016.13
+   "psa10": 4016.13,
+   "rarity": "Common"
   },
   {
    "id": 593169,
@@ -1792,7 +1954,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 291.08
+   "psa10": 291.08,
+   "rarity": "Hyper Rare"
   },
   {
    "id": 134922,
@@ -1803,7 +1966,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 134527.51
+   "psa10": 134527.51,
+   "rarity": "Promo"
   },
   {
    "id": 550232,
@@ -1814,7 +1978,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 300.0
+   "psa10": 262.91,
+   "rarity": "Illustration Rare"
   },
   {
    "id": 476068,
@@ -1825,7 +1990,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 60.71
+   "psa10": 60.71,
+   "rarity": "Rare Holo V"
   },
   {
    "id": 205171,
@@ -1836,7 +2002,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 4170.0
+   "psa10": 4170.0,
+   "rarity": "Promo"
   },
   {
    "id": 86915,
@@ -1847,7 +2014,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 17341.43
+   "psa10": 17341.43,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 264207,
@@ -1858,7 +2026,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 258.63
+   "psa10": 258.63,
+   "rarity": "Rare Holo V"
   },
   {
    "id": 264209,
@@ -1869,7 +2038,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.997,
-   "psa10": 228.0
+   "psa10": 211.08,
+   "rarity": "Rare Holo V"
   },
   {
    "id": 131007,
@@ -1880,7 +2050,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 770.15
+   "psa10": 770.15,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 91146,
@@ -1891,7 +2062,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2163.66
+   "psa10": 2163.66,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 85082,
@@ -1902,7 +2074,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 10595.35
+   "psa10": 10595.35,
+   "rarity": "Common"
   },
   {
    "id": 534522,
@@ -1913,7 +2086,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 727.24
+   "psa10": 727.24,
+   "rarity": "Shiny Rare"
   },
   {
    "id": 250332,
@@ -1924,7 +2098,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 674.1
+   "psa10": 313.65,
+   "rarity": "Classic Collection"
   },
   {
    "id": 84194,
@@ -1935,7 +2110,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 875.0
+   "psa10": 875.0,
+   "rarity": "Rare Holo"
   },
   {
    "id": 84192,
@@ -1946,7 +2122,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 5375.0
+   "psa10": 5375.0,
+   "rarity": "Rare Holo"
   },
   {
    "id": 188404,
@@ -1957,7 +2134,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 396.03
+   "psa10": 396.03,
+   "rarity": "Rare Holo GX"
   },
   {
    "id": 107277,
@@ -1968,7 +2146,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 12191.19
+   "psa10": 12191.19,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 717605,
@@ -1979,7 +2158,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.012,
-   "psa10": 1316.35
+   "psa10": 1316.35,
+   "rarity": "Special Illustration Rare"
   },
   {
    "id": 246722,
@@ -1990,7 +2170,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.996,
-   "psa10": 200.86
+   "psa10": 200.86,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 42347,
@@ -2001,7 +2182,8 @@
    "variant": "unlimitedHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 6253.94
+   "psa10": 6253.94,
+   "rarity": "Rare Holo"
   },
   {
    "id": 88631,
@@ -2012,7 +2194,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 17292.11
+   "psa10": 17292.11,
+   "rarity": "Rare Holo"
   },
   {
    "id": 85681,
@@ -2023,7 +2206,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1973.88
+   "psa10": 1973.88,
+   "rarity": "Uncommon"
   },
   {
    "id": 201332,
@@ -2034,7 +2218,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 632.05
+   "psa10": 632.05,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 509980,
@@ -2045,7 +2230,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 674.16
+   "psa10": 674.16,
+   "rarity": "Special Illustration Rare"
   },
   {
    "id": 480477,
@@ -2056,7 +2242,8 @@
    "variant": "davidCohen",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 23137.75
+   "psa10": 23137.75,
+   "rarity": "LEGEND"
   },
   {
    "id": 107278,
@@ -2067,7 +2254,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 7485.69
+   "psa10": 7485.69,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 94167,
@@ -2078,7 +2266,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.994,
-   "psa10": 3545.04
+   "psa10": 3545.04,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 253176,
@@ -2089,7 +2278,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 292.02
+   "psa10": 292.02,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 84200,
@@ -2100,7 +2290,8 @@
    "variant": "normal",
    "via": "set+number",
    "priceRatio": 0.996,
-   "psa10": 1776.98
+   "psa10": 1776.98,
+   "rarity": "Rare"
   },
   {
    "id": 108614,
@@ -2111,7 +2302,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 7927.52
+   "psa10": 7927.52,
+   "rarity": "Promo"
   },
   {
    "id": 264206,
@@ -2122,7 +2314,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 220.77
+   "psa10": 220.77,
+   "rarity": "Rare Holo VMAX"
   },
   {
    "id": 183907,
@@ -2133,7 +2326,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 930.0
+   "psa10": 798.19,
+   "rarity": "Rare Holo GX"
   },
   {
    "id": 284283,
@@ -2144,7 +2338,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.001,
-   "psa10": 732.14
+   "psa10": 268.9,
+   "rarity": "Rare Holo VMAX"
   },
   {
    "id": 85534,
@@ -2155,7 +2350,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 2411.28
+   "psa10": 2411.28,
+   "rarity": "Promo"
   },
   {
    "id": 146697,
@@ -2166,7 +2362,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 812.18
+   "psa10": 812.18,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 113763,
@@ -2177,7 +2374,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.991,
-   "psa10": 2017.69
+   "psa10": 2017.69,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 189318,
@@ -2188,7 +2386,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 535.85
+   "psa10": 535.85,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 124026,
@@ -2199,7 +2398,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 12140.09
+   "psa10": 12140.09,
+   "rarity": "Rare Holo"
   },
   {
    "id": 195083,
@@ -2210,7 +2410,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 610.63
+   "psa10": 610.63,
+   "rarity": "Rare Holo GX"
   },
   {
    "id": 251102,
@@ -2221,7 +2422,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 837.74
+   "psa10": 837.74,
+   "rarity": "Promo"
   },
   {
    "id": 90148,
@@ -2232,7 +2434,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 11289.3
+   "psa10": 11289.3,
+   "rarity": "Uncommon"
   },
   {
    "id": 88105,
@@ -2243,7 +2446,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 5820.87
+   "psa10": 5820.87,
+   "rarity": "Uncommon"
   },
   {
    "id": 88068,
@@ -2254,7 +2458,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 4156.39
+   "psa10": 4156.39,
+   "rarity": "Promo"
   },
   {
    "id": 88094,
@@ -2265,7 +2470,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 5336.71
+   "psa10": 5336.71,
+   "rarity": "Common"
   },
   {
    "id": 253147,
@@ -2276,7 +2482,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 426.77
+   "psa10": 426.77,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 100515,
@@ -2287,7 +2494,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Promo"
   },
   {
    "id": 202379,
@@ -2298,7 +2506,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Promo"
   },
   {
    "id": 88076,
@@ -2309,7 +2518,8 @@
    "variant": "reverseHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 22318.85
+   "psa10": 22318.85,
+   "rarity": "Common"
   },
   {
    "id": 85093,
@@ -2320,7 +2530,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 300.0
+   "psa10": 300.0,
+   "rarity": "Common"
   },
   {
    "id": 146980,
@@ -2331,7 +2542,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 1200.0
+   "psa10": 1200.0,
+   "rarity": "Promo"
   },
   {
    "id": 113684,
@@ -2342,7 +2554,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 6884.78
+   "psa10": 6884.78,
+   "rarity": "Common"
   },
   {
    "id": 91145,
@@ -2353,7 +2566,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.001,
-   "psa10": 668.99
+   "psa10": 668.99,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 542481,
@@ -2364,7 +2578,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.014,
-   "psa10": 193.52
+   "psa10": 193.52,
+   "rarity": "Promo"
   },
   {
    "id": 565480,
@@ -2375,7 +2590,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 116.11
+   "psa10": 116.11,
+   "rarity": "Double Rare"
   },
   {
    "id": 165745,
@@ -2386,7 +2602,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Rare"
   },
   {
    "id": 509963,
@@ -2397,7 +2614,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 190.1
+   "psa10": 190.1,
+   "rarity": "Ultra Rare"
   },
   {
    "id": 538687,
@@ -2408,7 +2626,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 0.998,
-   "psa10": 165.41
+   "psa10": 165.41,
+   "rarity": "Promo"
   },
   {
    "id": 662183,
@@ -2419,7 +2638,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.002,
-   "psa10": 109.01
+   "psa10": 109.01,
+   "rarity": "Ultra Rare"
   },
   {
    "id": 716196,
@@ -2430,7 +2650,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.992,
-   "psa10": 394.41
+   "psa10": 394.41,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 479706,
@@ -2441,7 +2662,8 @@
    "variant": "tomRoos",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 706.87
+   "psa10": 706.87,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 648707,
@@ -2452,7 +2674,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 0.996,
-   "psa10": 41.51
+   "psa10": 41.51,
+   "rarity": "Double Rare"
   },
   {
    "id": 88092,
@@ -2463,7 +2686,8 @@
    "variant": "normal",
    "via": "set+number",
    "priceRatio": 1.011,
-   "psa10": 11753.68
+   "psa10": 11753.68,
+   "rarity": "Common"
   },
   {
    "id": 513794,
@@ -2474,7 +2698,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 1.005,
-   "psa10": 159.06
+   "psa10": 159.06,
+   "rarity": "Rare Holo VSTAR"
   },
   {
    "id": 250577,
@@ -2485,7 +2710,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 1086.21
+   "psa10": 1086.21,
+   "rarity": "Promo"
   },
   {
    "id": 101490,
@@ -2496,7 +2722,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.996,
-   "psa10": 1559.76
+   "psa10": 1559.76,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 200275,
@@ -2507,7 +2734,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 2187.88
+   "psa10": 2187.88,
+   "rarity": "Promo"
   },
   {
    "id": 164116,
@@ -2518,7 +2746,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.007,
-   "psa10": 4989.64
+   "psa10": 4989.64,
+   "rarity": "Rare Holo"
   },
   {
    "id": 96392,
@@ -2529,7 +2758,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 1952.27
+   "psa10": 1952.27,
+   "rarity": "Promo"
   },
   {
    "id": 716207,
@@ -2540,7 +2770,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.996,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Holo Rare VMAX"
   },
   {
    "id": 205170,
@@ -2551,7 +2782,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 1813.65
+   "psa10": 1813.65,
+   "rarity": "Promo"
   },
   {
    "id": 177113,
@@ -2562,7 +2794,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 281.3
+   "psa10": 281.3,
+   "rarity": "Rare Holo GX"
   },
   {
    "id": 713288,
@@ -2573,7 +2806,8 @@
    "variant": "anniversaryStamp",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Promo"
   },
   {
    "id": 92202,
@@ -2584,7 +2818,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Common"
   },
   {
    "id": 517051,
@@ -2595,7 +2830,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.989,
-   "psa10": 246.0
+   "psa10": 246.0,
+   "rarity": "Hyper Rare"
   },
   {
    "id": 131006,
@@ -2606,7 +2842,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 314.26
+   "psa10": 314.26,
+   "rarity": "Rare Holo GX"
   },
   {
    "id": 284302,
@@ -2617,7 +2854,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.991,
-   "psa10": 118.79
+   "psa10": 118.79,
+   "rarity": "Rare Secret"
   },
   {
    "id": 270724,
@@ -2628,7 +2866,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 205.79
+   "psa10": 205.79,
+   "rarity": "Promo"
   },
   {
    "id": 477873,
@@ -2639,7 +2878,8 @@
    "variant": "jasonKlaczynski",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 775.67
+   "psa10": 775.67,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 528002,
@@ -2650,7 +2890,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 500.0
+   "psa10": 179.67,
+   "rarity": null
   },
   {
    "id": 126952,
@@ -2661,7 +2902,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 761.21
+   "psa10": 761.21,
+   "rarity": "Rare Holo GX"
   },
   {
    "id": 226594,
@@ -2672,7 +2914,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 250.0
+   "psa10": 200.86,
+   "rarity": "Amazing Rare"
   },
   {
    "id": 263876,
@@ -2683,7 +2926,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 214.76
+   "psa10": 214.76,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 250325,
@@ -2694,7 +2938,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 586.19
+   "psa10": 198.12,
+   "rarity": "Classic Collection"
   },
   {
    "id": 452009,
@@ -2705,7 +2950,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.013,
-   "psa10": 180.95
+   "psa10": 180.95,
+   "rarity": "Rare Secret"
   },
   {
    "id": 141259,
@@ -2716,7 +2962,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 2425.0
+   "psa10": 2425.0,
+   "rarity": "Rare Holo"
   },
   {
    "id": 590026,
@@ -2727,7 +2974,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.992,
-   "psa10": 151.18
+   "psa10": 151.18,
+   "rarity": "Ultra Rare"
   },
   {
    "id": 659612,
@@ -2738,7 +2986,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 0.994,
-   "psa10": 137.09
+   "psa10": 137.09,
+   "rarity": "Promo"
   },
   {
    "id": 200273,
@@ -2749,7 +2998,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 1952.58
+   "psa10": 1952.58,
+   "rarity": "Promo"
   },
   {
    "id": 452048,
@@ -2760,7 +3010,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 154.53
+   "psa10": 154.53,
+   "rarity": "Rare Secret"
   },
   {
    "id": 189176,
@@ -2771,7 +3022,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1521.51
+   "psa10": 1521.51,
+   "rarity": "Rare Holo"
   },
   {
    "id": 131308,
@@ -2782,7 +3034,8 @@
    "variant": "crackedIceHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 1507.79
+   "psa10": 1507.79,
+   "rarity": "Common"
   },
   {
    "id": 178933,
@@ -2793,7 +3046,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2022.3
+   "psa10": 2022.3,
+   "rarity": "Rare"
   },
   {
    "id": 131305,
@@ -2804,7 +3058,8 @@
    "variant": "crackedIceHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 3067.35
+   "psa10": 2006.97,
+   "rarity": "Rare"
   },
   {
    "id": 517027,
@@ -2815,7 +3070,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 203.86
+   "psa10": 203.86,
+   "rarity": "Ultra Rare"
   },
   {
    "id": 138496,
@@ -2826,7 +3082,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.001,
-   "psa10": 487.57
+   "psa10": 487.57,
+   "rarity": "Rare Holo GX"
   },
   {
    "id": 197854,
@@ -2837,7 +3094,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 2003.93
+   "psa10": 2003.93,
+   "rarity": "Promo"
   },
   {
    "id": 184217,
@@ -2848,7 +3106,8 @@
    "variant": "crackedIceHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 4627.05
+   "psa10": 2205.93,
+   "rarity": "Rare"
   },
   {
    "id": 185253,
@@ -2859,7 +3118,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 433.5
+   "psa10": 433.5,
+   "rarity": "Promo"
   },
   {
    "id": 196992,
@@ -2870,7 +3130,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 0.954,
-   "psa10": 599.26
+   "psa10": 599.26,
+   "rarity": "Promo"
   },
   {
    "id": 655094,
@@ -2881,7 +3142,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.003,
-   "psa10": 124.35
+   "psa10": 124.35,
+   "rarity": "Promo"
   },
   {
    "id": 183920,
@@ -2892,7 +3154,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2287.66
+   "psa10": 2287.66,
+   "rarity": "Rare Holo"
   },
   {
    "id": 86860,
@@ -2903,7 +3166,8 @@
    "variant": "firstEdition",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1149.71
+   "psa10": 1149.71,
+   "rarity": "Common"
   },
   {
    "id": 285257,
@@ -2914,7 +3178,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 1364.05
+   "psa10": 1364.05,
+   "rarity": "Promo"
   },
   {
    "id": 648703,
@@ -2925,7 +3190,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 250.0
+   "psa10": 100.2,
+   "rarity": "Double Rare"
   },
   {
    "id": 482106,
@@ -2936,7 +3202,8 @@
    "variant": "kayaLichtleitner",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 269.14
+   "psa10": 269.14,
+   "rarity": "Rare Holo GX"
   },
   {
    "id": 637592,
@@ -2947,7 +3214,8 @@
    "variant": "evanPavelsk",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 225.67
+   "psa10": 225.67,
+   "rarity": "Double Rare"
   },
   {
    "id": 284251,
@@ -2958,7 +3226,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.003,
-   "psa10": 382.13
+   "psa10": 382.13,
+   "rarity": "Trainer Gallery Rare Holo"
   },
   {
    "id": 113669,
@@ -2969,7 +3238,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1387.54
+   "psa10": 1387.54,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 85089,
@@ -2980,7 +3250,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 832.35
+   "psa10": 832.35,
+   "rarity": "Common"
   },
   {
    "id": 246720,
@@ -2991,7 +3262,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.007,
-   "psa10": 150.46
+   "psa10": 150.46,
+   "rarity": "Rare Holo VMAX"
   },
   {
    "id": 190828,
@@ -3002,7 +3274,8 @@
    "variant": "crackedIceHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 2059.14
+   "psa10": 1125.21,
+   "rarity": "Rare"
   },
   {
    "id": 94663,
@@ -3013,7 +3286,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 32.51
+   "psa10": 32.51,
+   "rarity": "Uncommon"
   },
   {
    "id": 149061,
@@ -3024,7 +3298,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 4822.5
+   "psa10": 4822.5,
+   "rarity": "Rare Holo"
   },
   {
    "id": 714373,
@@ -3035,7 +3310,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.989,
-   "psa10": 442.71
+   "psa10": 442.71,
+   "rarity": "Rare Holo GX"
   },
   {
    "id": 610664,
@@ -3046,7 +3322,8 @@
    "variant": "masterBallReverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 202.44
+   "psa10": 202.44,
+   "rarity": "Rare"
   },
   {
    "id": 85086,
@@ -3057,7 +3334,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 235.5
+   "psa10": 235.5,
+   "rarity": "Common"
   },
   {
    "id": 676081,
@@ -3068,7 +3346,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.996,
-   "psa10": 1000.0
+   "psa10": 151.13,
+   "rarity": "Mega Attack Rare"
   },
   {
    "id": 179380,
@@ -3079,7 +3358,8 @@
    "variant": "reverseHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Common"
   },
   {
    "id": 477974,
@@ -3090,7 +3370,8 @@
    "variant": "jimmyBallard",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 5400.0
+   "psa10": 5400.0,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 205163,
@@ -3101,7 +3382,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 811.76
+   "psa10": 811.76,
+   "rarity": "Promo"
   },
   {
    "id": 476026,
@@ -3112,7 +3394,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 42.27
+   "psa10": 42.27,
+   "rarity": "Rare Holo V"
   },
   {
    "id": 224365,
@@ -3123,7 +3406,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 274.01
+   "psa10": 274.01,
+   "rarity": "Promo"
   },
   {
    "id": 85073,
@@ -3134,7 +3418,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 5718.24
+   "psa10": 5718.24,
+   "rarity": "Common"
   },
   {
    "id": 88090,
@@ -3145,7 +3430,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 198.48
+   "psa10": 198.48,
+   "rarity": "Common"
   },
   {
    "id": 88632,
@@ -3156,7 +3442,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 530.52
+   "psa10": 530.52,
+   "rarity": "Rare Holo"
   },
   {
    "id": 246731,
@@ -3167,7 +3454,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 238.96
+   "psa10": 238.96,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 284278,
@@ -3178,7 +3466,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.995,
-   "psa10": 439.18
+   "psa10": 418.37,
+   "rarity": "Rare Holo V"
   },
   {
    "id": 214241,
@@ -3189,7 +3478,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 705.59
+   "psa10": 705.59,
+   "rarity": "Promo"
   },
   {
    "id": 232496,
@@ -3200,7 +3490,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 275.0
+   "psa10": 251.8,
+   "rarity": "Rare Holo VMAX"
   },
   {
    "id": 476049,
@@ -3211,7 +3502,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 288.27
+   "psa10": 288.27,
+   "rarity": "Rare Holo V"
   },
   {
    "id": 153234,
@@ -3222,7 +3514,8 @@
    "variant": "crackedIceHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 364.49
+   "psa10": 364.49,
+   "rarity": "Rare Holo"
   },
   {
    "id": 148428,
@@ -3233,7 +3526,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 5184.65
+   "psa10": 5184.65,
+   "rarity": "Promo"
   },
   {
    "id": 84191,
@@ -3244,7 +3538,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 364.49
+   "psa10": 364.49,
+   "rarity": "Rare Holo"
   },
   {
    "id": 98112,
@@ -3255,7 +3550,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 473.56
+   "psa10": 473.56,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 90149,
@@ -3266,7 +3562,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Uncommon"
   },
   {
    "id": 151974,
@@ -3277,7 +3574,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 2717.52
+   "psa10": 2717.52,
+   "rarity": "Promo"
   },
   {
    "id": 125044,
@@ -3288,7 +3586,8 @@
    "variant": "crackedIceHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 12600.0
+   "psa10": 12600.0,
+   "rarity": "Rare Holo"
   },
   {
    "id": 183966,
@@ -3299,7 +3598,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.002,
-   "psa10": 4529.91
+   "psa10": 4529.91,
+   "rarity": "Promo"
   },
   {
    "id": 44428,
@@ -3310,7 +3610,8 @@
    "variant": "firstEdition",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 3562.21
+   "psa10": 3562.21,
+   "rarity": "Rare"
   },
   {
    "id": 477776,
@@ -3321,7 +3622,8 @@
    "variant": "hirokiYano",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 3851.23
+   "psa10": 3851.23,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 127135,
@@ -3332,7 +3634,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Promo"
   },
   {
    "id": 124114,
@@ -3343,7 +3646,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 675.95
+   "psa10": 675.95,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 189315,
@@ -3354,7 +3658,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 417.45
+   "psa10": 417.45,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 178981,
@@ -3365,7 +3670,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 3159.05
+   "psa10": 3159.05,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 88108,
@@ -3376,7 +3682,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.097,
-   "psa10": 1298.0
+   "psa10": 1298.0,
+   "rarity": "Common"
   },
   {
    "id": 164231,
@@ -3387,7 +3694,8 @@
    "variant": "reverseHolofoil",
    "via": "number+name",
    "priceRatio": 0.978,
-   "psa10": 76508.83
+   "psa10": 76508.83,
+   "rarity": "Rare Holo"
   },
   {
    "id": 200272,
@@ -3398,7 +3706,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 5482.15
+   "psa10": 5482.15,
+   "rarity": "Promo"
   },
   {
    "id": 127193,
@@ -3409,7 +3718,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1422.99
+   "psa10": 1422.99,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 87411,
@@ -3420,7 +3730,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 29999.99
+   "psa10": 29999.99,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 649940,
@@ -3431,7 +3742,8 @@
    "variant": "winnerStamp",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 233.13
+   "psa10": 233.13,
+   "rarity": "Promo"
   },
   {
    "id": 222072,
@@ -3442,7 +3754,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 3732.23
+   "psa10": 3732.23,
+   "rarity": "Promo"
   },
   {
    "id": 43053,
@@ -3453,7 +3766,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 600.0
+   "psa10": 600.0,
+   "rarity": "Rare"
   },
   {
    "id": 107276,
@@ -3464,7 +3778,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 3781.7
+   "psa10": 3781.7,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 716740,
@@ -3475,7 +3790,8 @@
    "variant": "winnerStamp",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Promo"
   },
   {
    "id": 250320,
@@ -3486,7 +3802,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 4250.0
+   "psa10": 457.44,
+   "rarity": "Classic Collection"
   },
   {
    "id": 85095,
@@ -3497,7 +3814,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Promo"
   },
   {
    "id": 513797,
@@ -3508,7 +3826,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 43.19
+   "psa10": 43.19,
+   "rarity": "Rare Holo VSTAR"
   },
   {
    "id": 201611,
@@ -3519,7 +3838,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 422.22
+   "psa10": 422.22,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 197806,
@@ -3530,7 +3850,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 374.4
+   "psa10": 374.4,
+   "rarity": "Rare Shiny GX"
   },
   {
    "id": 86904,
@@ -3541,7 +3862,8 @@
    "variant": "firstEdition",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 5804.61
+   "psa10": 5804.61,
+   "rarity": "Rare"
   },
   {
    "id": 87395,
@@ -3552,7 +3874,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 11783.16
+   "psa10": 11783.16,
+   "rarity": "Promo"
   },
   {
    "id": 184483,
@@ -3563,7 +3886,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.002,
-   "psa10": 2156.36
+   "psa10": 2156.36,
+   "rarity": "Promo"
   },
   {
    "id": 107279,
@@ -3574,7 +3898,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 4667.21
+   "psa10": 4667.21,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 194997,
@@ -3585,7 +3910,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 918.72
+   "psa10": 918.72,
+   "rarity": "Rare Holo GX"
   },
   {
    "id": 42445,
@@ -3596,7 +3922,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 8107.7
+   "psa10": 8107.7,
+   "rarity": "Rare Holo"
   },
   {
    "id": 113771,
@@ -3607,7 +3934,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.995,
-   "psa10": 8484.59
+   "psa10": 8484.59,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 117891,
@@ -3618,7 +3946,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 8296.85
+   "psa10": 8296.85,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 87416,
@@ -3629,7 +3958,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 4258.33
+   "psa10": 4258.33,
+   "rarity": "Promo"
   },
   {
    "id": 114005,
@@ -3640,7 +3970,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Promo"
   },
   {
    "id": 84573,
@@ -3651,7 +3982,8 @@
    "variant": "firstEdition",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 3933.84
+   "psa10": 3933.84,
+   "rarity": "Rare"
   },
   {
    "id": 94168,
@@ -3662,7 +3994,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 10208.56
+   "psa10": 10208.56,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 88087,
@@ -3673,7 +4006,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 803.54
+   "psa10": 803.54,
+   "rarity": "Uncommon"
   },
   {
    "id": 146719,
@@ -3684,7 +4018,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1402.17
+   "psa10": 1402.17,
+   "rarity": "Rare Shining"
   },
   {
    "id": 98097,
@@ -3695,7 +4030,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 4070.09
+   "psa10": 4070.09,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 610522,
@@ -3706,7 +4042,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 436.81
+   "psa10": 436.81,
+   "rarity": "Special Illustration Rare"
   },
   {
    "id": 495194,
@@ -3717,7 +4054,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 57.32
+   "psa10": 57.32,
+   "rarity": "Rare Holo V"
   },
   {
    "id": 118404,
@@ -3728,7 +4066,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 15839.35
+   "psa10": 15839.35,
+   "rarity": "Rare Holo"
   },
   {
    "id": 113670,
@@ -3739,7 +4078,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 4019.38
+   "psa10": 4019.38,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 714372,
@@ -3750,7 +4090,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2159.22
+   "psa10": 2159.22,
+   "rarity": "Rare Holo"
   },
   {
    "id": 86913,
@@ -3761,7 +4102,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 65523.23
+   "psa10": 65523.23,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 88097,
@@ -3772,7 +4114,8 @@
    "variant": "reverseHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 400.0
+   "psa10": 400.0,
+   "rarity": "Common"
   },
   {
    "id": 87397,
@@ -3783,7 +4126,8 @@
    "variant": "normal",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 3987.86
+   "psa10": 3987.86,
+   "rarity": "Promo"
   },
   {
    "id": 123435,
@@ -3794,7 +4138,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 35105.97
+   "psa10": 35105.97,
+   "rarity": "Promo"
   },
   {
    "id": 88067,
@@ -3805,7 +4150,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 7524.54
+   "psa10": 7524.54,
+   "rarity": "Promo"
   },
   {
    "id": 226434,
@@ -3816,7 +4162,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 300.43
+   "psa10": 300.43,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 87421,
@@ -3827,7 +4174,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1500.0
+   "psa10": 1500.0,
+   "rarity": "Rare Holo"
   },
   {
    "id": 489307,
@@ -3838,7 +4186,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 273.51
+   "psa10": 273.51,
+   "rarity": "Rare Holo V"
   },
   {
    "id": 90152,
@@ -3849,7 +4198,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 15284.85
+   "psa10": 15284.85,
+   "rarity": "Rare Holo"
   },
   {
    "id": 88101,
@@ -3860,7 +4210,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 7961.48
+   "psa10": 7961.48,
+   "rarity": "Rare Secret"
   },
   {
    "id": 713257,
@@ -3871,7 +4222,8 @@
    "variant": "anniversaryStamp",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Promo"
   },
   {
    "id": 452034,
@@ -3882,7 +4234,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 317.33
+   "psa10": 317.33,
+   "rarity": "Rare Holo VMAX"
   },
   {
    "id": 85081,
@@ -3893,7 +4246,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 8274.16
+   "psa10": 8274.16,
+   "rarity": "Common"
   },
   {
    "id": 114006,
@@ -3904,7 +4258,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 28426.32
+   "psa10": 28426.32,
+   "rarity": "Promo"
   },
   {
    "id": 475982,
@@ -3915,7 +4270,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 51.71
+   "psa10": 51.71,
+   "rarity": "Rare Holo V"
   },
   {
    "id": 196347,
@@ -3926,7 +4282,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 12678.3
+   "psa10": 12678.3,
+   "rarity": "Promo"
   },
   {
    "id": 183805,
@@ -3937,7 +4294,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 912.3
+   "psa10": 912.3,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 87398,
@@ -3948,7 +4306,8 @@
    "variant": "reverseHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 113.75
+   "psa10": 113.75,
+   "rarity": "Rare"
   },
   {
    "id": 170937,
@@ -3959,7 +4318,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2654.64
+   "psa10": 2654.64,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 131008,
@@ -3970,7 +4330,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1120.9
+   "psa10": 1120.9,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 527938,
@@ -3981,7 +4342,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 932.2
+   "psa10": 932.2,
+   "rarity": null
   },
   {
    "id": 85097,
@@ -3992,7 +4354,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 13200.0
+   "psa10": 13200.0,
+   "rarity": "Common"
   },
   {
    "id": 202638,
@@ -4003,7 +4366,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.002,
-   "psa10": 635.03
+   "psa10": 635.03,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 713256,
@@ -4014,7 +4378,8 @@
    "variant": "anniversaryStamp",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Promo"
   },
   {
    "id": 223073,
@@ -4025,7 +4390,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 293.57
+   "psa10": 293.57,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 86910,
@@ -4036,7 +4402,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 357868.34
+   "psa10": 357868.34,
+   "rarity": "Rare Holo"
   },
   {
    "id": 189317,
@@ -4047,7 +4414,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 605.9
+   "psa10": 605.9,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 246700,
@@ -4058,7 +4426,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 388.89
+   "psa10": 388.89,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 662185,
@@ -4069,7 +4438,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.983,
-   "psa10": 2230.73
+   "psa10": 2230.73,
+   "rarity": "Mega Hyper Rare"
   },
   {
    "id": 107055,
@@ -4080,7 +4450,8 @@
    "variant": "firstEditionShadowless",
    "via": "set+number",
    "priceRatio": 1.005,
-   "psa10": 8037.88
+   "psa10": 8037.88,
+   "rarity": "Common"
   },
   {
    "id": 113764,
@@ -4091,7 +4462,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.98,
-   "psa10": 14407.59
+   "psa10": 14407.59,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 282259,
@@ -4102,7 +4474,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 1884.14
+   "psa10": 1884.14,
+   "rarity": "Promo"
   },
   {
    "id": 714386,
@@ -4113,7 +4486,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1421.09
+   "psa10": 1421.09,
+   "rarity": "Rare Secret"
   },
   {
    "id": 713259,
@@ -4124,7 +4498,8 @@
    "variant": "anniversaryStamp",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Promo"
   },
   {
    "id": 185986,
@@ -4135,7 +4510,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 1427.7
+   "psa10": 1427.7,
+   "rarity": "Promo"
   },
   {
    "id": 90145,
@@ -4146,7 +4522,8 @@
    "variant": "reverseHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 7000.0
+   "psa10": 7000.0,
+   "rarity": "Rare Holo"
   },
   {
    "id": 90138,
@@ -4157,7 +4534,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 7094.75
+   "psa10": 7094.75,
+   "rarity": "Rare"
   },
   {
    "id": 90147,
@@ -4168,7 +4546,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 40270.85
+   "psa10": 40270.85,
+   "rarity": "Rare Holo"
   },
   {
    "id": 187219,
@@ -4179,7 +4558,8 @@
    "variant": "anniversaryStamp",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 987.0
+   "psa10": 987.0,
+   "rarity": "Promo"
   },
   {
    "id": 146699,
@@ -4190,7 +4570,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1548.33
+   "psa10": 1548.33,
+   "rarity": "Rare Shining"
   },
   {
    "id": 676093,
@@ -4201,7 +4582,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.008,
-   "psa10": 412.57
+   "psa10": 412.57,
+   "rarity": "Special Illustration Rare"
   },
   {
    "id": 117267,
@@ -4212,7 +4594,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 0.989,
-   "psa10": 12675.38
+   "psa10": 12675.38,
+   "rarity": "Promo"
   },
   {
    "id": 194998,
@@ -4223,7 +4606,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1830.72
+   "psa10": 1830.72,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 88073,
@@ -4234,7 +4618,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 46730.92
+   "psa10": 46730.92,
+   "rarity": "Common"
   },
   {
    "id": 114004,
@@ -4245,7 +4630,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 2000.0
+   "psa10": 2000.0,
+   "rarity": "Promo"
   },
   {
    "id": 107283,
@@ -4256,7 +4642,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 13643.83
+   "psa10": 13643.83,
+   "rarity": "Rare Secret"
   },
   {
    "id": 201352,
@@ -4267,7 +4654,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2103.16
+   "psa10": 1684.06,
+   "rarity": "Rare Secret"
   },
   {
    "id": 88648,
@@ -4278,7 +4666,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": null
+   "psa10": null,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 107282,
@@ -4289,7 +4678,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 11716.85
+   "psa10": 11716.85,
+   "rarity": "Rare Secret"
   },
   {
    "id": 185985,
@@ -4300,7 +4690,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 1742.8
+   "psa10": 1742.8,
+   "rarity": "Promo"
   },
   {
    "id": 108599,
@@ -4311,7 +4702,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 49925.71
+   "psa10": 49925.71,
+   "rarity": "Promo"
   },
   {
    "id": 87402,
@@ -4322,7 +4714,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 48650.69
+   "psa10": 48650.69,
+   "rarity": "Promo"
   },
   {
    "id": 197830,
@@ -4333,7 +4726,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 404.36
+   "psa10": 404.36,
+   "rarity": "Rare Shiny GX"
   },
   {
    "id": 85677,
@@ -4344,7 +4738,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 235.0
+   "psa10": 235.0,
+   "rarity": "Rare"
   },
   {
    "id": 87399,
@@ -4355,7 +4750,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 24600.0
+   "psa10": 24600.0,
+   "rarity": "Rare Holo"
   },
   {
    "id": 253177,
@@ -4366,7 +4762,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 507.67
+   "psa10": 507.67,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 211452,
@@ -4377,7 +4774,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 7870.88
+   "psa10": 7870.88,
+   "rarity": "Promo"
   },
   {
    "id": 85080,
@@ -4388,7 +4786,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1899.0
+   "psa10": 1899.0,
+   "rarity": "Common"
   },
   {
    "id": 477057,
@@ -4399,7 +4798,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 459.05
+   "psa10": 459.05,
+   "rarity": "Rare Holo VSTAR"
   },
   {
    "id": 183908,
@@ -4410,7 +4810,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 858.44
+   "psa10": 858.44,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 101516,
@@ -4421,7 +4822,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 14772.68
+   "psa10": 14772.68,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 676106,
@@ -4432,7 +4834,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.01,
-   "psa10": 1983.05
+   "psa10": 1983.05,
+   "rarity": "Mega Hyper Rare"
   },
   {
    "id": 88640,
@@ -4443,7 +4846,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 129537.79
+   "psa10": 129537.79,
+   "rarity": "Rare Holo LV.X"
   },
   {
    "id": 87433,
@@ -4454,7 +4858,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 40000.0
+   "psa10": 40000.0,
+   "rarity": "Rare Holo LV.X"
   },
   {
    "id": 88078,
@@ -4465,7 +4870,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 43200.0
+   "psa10": 29150.61,
+   "rarity": "Common"
   },
   {
    "id": 183806,
@@ -4476,7 +4882,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 991.74
+   "psa10": 991.74,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 189319,
@@ -4487,7 +4894,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 767.62
+   "psa10": 767.62,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 126209,
@@ -4498,7 +4906,8 @@
    "variant": "wStamp",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 580.67
+   "psa10": 580.67,
+   "rarity": "Common"
   },
   {
    "id": 85674,
@@ -4509,7 +4918,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 0.98,
-   "psa10": 48683.32
+   "psa10": 48683.32,
+   "rarity": "Rare Holo"
   },
   {
    "id": 90150,
@@ -4520,7 +4930,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 264000.0
+   "psa10": 264000.0,
+   "rarity": "Promo"
   },
   {
    "id": 223078,
@@ -4531,7 +4942,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.997,
-   "psa10": 415.68
+   "psa10": 415.68,
+   "rarity": "Rare Secret"
   },
   {
    "id": 98140,
@@ -4542,7 +4954,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 41060.36
+   "psa10": 41060.36,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 535090,
@@ -4553,7 +4966,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 742.38
+   "psa10": 742.38,
+   "rarity": "Special Illustration Rare"
   },
   {
    "id": 590027,
@@ -4564,7 +4978,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 781.06
+   "psa10": 781.06,
+   "rarity": "Special Illustration Rare"
   },
   {
    "id": 87403,
@@ -4575,7 +4990,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 8999.0
+   "psa10": 8999.0,
+   "rarity": "Rare Holo"
   },
   {
    "id": 85535,
@@ -4586,7 +5002,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 102.48
+   "psa10": 102.48,
+   "rarity": "Rare Secret"
   },
   {
    "id": 87432,
@@ -4597,7 +5014,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 115000.0
+   "psa10": 115000.0,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 88074,
@@ -4608,7 +5026,8 @@
    "variant": "normal",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2384.36
+   "psa10": 2384.36,
+   "rarity": "Common"
   },
   {
    "id": 490543,
@@ -4619,7 +5038,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 117.29
+   "psa10": 117.29,
+   "rarity": "Rare Holo V"
   },
   {
    "id": 263873,
@@ -4630,7 +5050,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.995,
-   "psa10": 1000.0
+   "psa10": 752.89,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 88639,
@@ -4641,7 +5062,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 76508.83
+   "psa10": 76508.83,
+   "rarity": "Rare Holo"
   },
   {
    "id": 87426,
@@ -4652,7 +5074,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.065,
-   "psa10": 37993.07
+   "psa10": 37993.07,
+   "rarity": "Rare"
   },
   {
    "id": 90143,
@@ -4663,7 +5086,8 @@
    "variant": "normal",
    "via": "set+number",
    "priceRatio": 0.981,
-   "psa10": 3548.7
+   "psa10": 3548.7,
+   "rarity": "Rare"
   },
   {
    "id": 123434,
@@ -4674,7 +5098,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 9791.68
+   "psa10": 9791.68,
+   "rarity": "Promo"
   },
   {
    "id": 170938,
@@ -4685,7 +5110,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 635.44
+   "psa10": 635.44,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 87434,
@@ -4696,7 +5122,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 302.07
+   "psa10": 302.07,
+   "rarity": "Promo"
   },
   {
    "id": 676089,
@@ -4707,7 +5134,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 608.49
+   "psa10": 608.49,
+   "rarity": "Special Illustration Rare"
   },
   {
    "id": 91206,
@@ -4718,7 +5146,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2567.14
+   "psa10": 2567.14,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 87413,
@@ -4729,7 +5158,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 34630.65
+   "psa10": 34630.65,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 85670,
@@ -4740,7 +5170,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 304285.54
+   "psa10": 304285.54,
+   "rarity": "Rare Holo"
   },
   {
    "id": 476027,
@@ -4751,7 +5182,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 62.79
+   "psa10": 62.79,
+   "rarity": "Rare Holo VMAX"
   },
   {
    "id": 85676,
@@ -4762,7 +5194,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 3000.0
+   "psa10": 3000.0,
+   "rarity": "Rare"
   },
   {
    "id": 91238,
@@ -4773,7 +5206,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 31445.09
+   "psa10": 31445.09,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 517045,
@@ -4784,7 +5218,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1309.36
+   "psa10": 1309.36,
+   "rarity": "Special Illustration Rare"
   },
   {
    "id": 125253,
@@ -4795,7 +5230,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 15354.0
+   "psa10": 15354.0,
+   "rarity": "Promo"
   },
   {
    "id": 84189,
@@ -4806,7 +5242,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 9387.12
+   "psa10": 9387.12,
+   "rarity": "Rare Holo"
   },
   {
    "id": 476050,
@@ -4817,7 +5254,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 150.46
+   "psa10": 150.46,
+   "rarity": "Rare Holo VMAX"
   },
   {
    "id": 91245,
@@ -4828,7 +5266,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 32360.42
+   "psa10": 32360.42,
+   "rarity": "Rare Secret"
   },
   {
    "id": 197823,
@@ -4839,7 +5278,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 657.43
+   "psa10": 657.43,
+   "rarity": "Rare Shiny GX"
   },
   {
    "id": 88082,
@@ -4850,7 +5290,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 17146.91
+   "psa10": 17146.91,
+   "rarity": "Common"
   },
   {
    "id": 205169,
@@ -4861,7 +5302,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 12316.16
+   "psa10": 12316.16,
+   "rarity": "Promo"
   },
   {
    "id": 88627,
@@ -4872,7 +5314,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1875.0
+   "psa10": 1875.0,
+   "rarity": "Rare Holo"
   },
   {
    "id": 87422,
@@ -4883,7 +5326,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 80000.0
+   "psa10": 80000.0,
+   "rarity": "Rare Holo"
   },
   {
    "id": 86917,
@@ -4894,7 +5338,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 8227.0
+   "psa10": 8227.0,
+   "rarity": "LEGEND"
   },
   {
    "id": 633031,
@@ -4905,7 +5350,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 868.79
+   "psa10": 868.79,
+   "rarity": "Special Illustration Rare"
   },
   {
    "id": 87400,
@@ -4916,7 +5362,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 70514.95
+   "psa10": 70514.95,
+   "rarity": "Rare Secret"
   },
   {
    "id": 88091,
@@ -4927,7 +5374,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 3299.0
+   "psa10": 3299.0,
+   "rarity": "Rare Secret"
   },
   {
    "id": 88647,
@@ -4938,7 +5386,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.944,
-   "psa10": 70270.96
+   "psa10": 70270.96,
+   "rarity": "Rare Holo EX"
   },
   {
    "id": 88633,
@@ -4949,7 +5398,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 31883.41
+   "psa10": 31883.41,
+   "rarity": "Rare Holo"
   },
   {
    "id": 86907,
@@ -4960,7 +5410,8 @@
    "variant": "normal",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 511.0
+   "psa10": 511.0,
+   "rarity": "Rare"
   },
   {
    "id": 197856,
@@ -4971,7 +5422,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 2048.11
+   "psa10": 1766.58,
+   "rarity": "Promo"
   },
   {
    "id": 246704,
@@ -4982,7 +5434,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 0.992,
-   "psa10": 584.36
+   "psa10": 584.36,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 85675,
@@ -4993,7 +5446,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 7416.52
+   "psa10": 7416.52,
+   "rarity": "Rare"
   },
   {
    "id": 84188,
@@ -5004,7 +5458,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 34132.39
+   "psa10": 34132.39,
+   "rarity": "Rare Holo"
   },
   {
    "id": 88083,
@@ -5015,7 +5470,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 125.5
+   "psa10": 125.5,
+   "rarity": "Common"
   },
   {
    "id": 178982,
@@ -5026,7 +5482,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 3572.9
+   "psa10": 3572.9,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 84572,
@@ -5037,7 +5494,8 @@
    "variant": "unlimitedHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 12627.73
+   "psa10": 12627.73,
+   "rarity": "Rare Holo"
   },
   {
    "id": 106521,
@@ -5048,7 +5506,8 @@
    "variant": "firstEditionHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 104067.45
+   "psa10": 104067.45,
+   "rarity": "Rare Holo"
   },
   {
    "id": 246719,
@@ -5059,7 +5518,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1067.63
+   "psa10": 1067.63,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 84202,
@@ -5070,7 +5530,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 10954.65
+   "psa10": 10954.65,
+   "rarity": "Promo"
   },
   {
    "id": 86908,
@@ -5081,7 +5542,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 186902.02
+   "psa10": 186902.02,
+   "rarity": "Rare Holo"
   },
   {
    "id": 90141,
@@ -5092,7 +5554,8 @@
    "variant": "normal",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 3102.48
+   "psa10": 3102.48,
+   "rarity": "Rare"
   },
   {
    "id": 183828,
@@ -5103,7 +5566,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.002,
-   "psa10": 2470.83
+   "psa10": 2470.83,
+   "rarity": "Rare Holo GX"
   },
   {
    "id": 610511,
@@ -5114,7 +5578,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1311.52
+   "psa10": 1311.52,
+   "rarity": "Special Illustration Rare"
   },
   {
    "id": 183909,
@@ -5125,7 +5590,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1327.79
+   "psa10": 1327.79,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 88624,
@@ -5136,7 +5602,8 @@
    "variant": "normal",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2279.97
+   "psa10": 2279.97,
+   "rarity": "Rare"
   },
   {
    "id": 87405,
@@ -5147,7 +5614,8 @@
    "variant": "holofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 33706.58
+   "psa10": 33706.58,
+   "rarity": "Rare Prime"
   },
   {
    "id": 90142,
@@ -5158,7 +5626,8 @@
    "variant": "firstEdition",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 5672.43
+   "psa10": 5672.43,
+   "rarity": "Rare"
   },
   {
    "id": 86906,
@@ -5169,7 +5638,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 13907.19
+   "psa10": 13907.19,
+   "rarity": "Rare"
   },
   {
    "id": 489296,
@@ -5180,7 +5650,8 @@
    "variant": "playPokemonStampHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 106.76
+   "psa10": 106.76,
+   "rarity": "Rare Holo V"
   },
   {
    "id": 183829,
@@ -5191,7 +5662,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1978.37
+   "psa10": 1978.37,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 86918,
@@ -5202,7 +5674,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 12778.16
+   "psa10": 12778.16,
+   "rarity": "LEGEND"
   },
   {
    "id": 87412,
@@ -5213,7 +5686,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 127034.68
+   "psa10": 127034.68,
+   "rarity": "Rare Ultra"
   },
   {
    "id": 89644,
@@ -5224,7 +5698,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 2494.34
+   "psa10": 2494.34,
+   "rarity": "Rare Secret"
   },
   {
    "id": 147229,
@@ -5235,7 +5710,8 @@
    "variant": "firstEditionShadowlessRedCheeks",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 36792.46
+   "psa10": 36792.46,
+   "rarity": "Common"
   },
   {
    "id": 88084,
@@ -5246,7 +5722,8 @@
    "variant": "reverseHolofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 50248.32
+   "psa10": 50248.32,
+   "rarity": "Common"
   },
   {
    "id": 194999,
@@ -5257,7 +5734,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1716.79
+   "psa10": 1716.79,
+   "rarity": "Rare Rainbow"
   },
   {
    "id": 42479,
@@ -5268,7 +5746,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 51092.77
+   "psa10": 51092.77,
+   "rarity": "Rare Holo"
   },
   {
    "id": 88085,
@@ -5279,7 +5758,8 @@
    "variant": "holofoil",
    "via": "set+number",
    "priceRatio": 1.0,
-   "psa10": 1807.83
+   "psa10": 1807.83,
+   "rarity": "Common"
   },
   {
    "id": 84185,
@@ -5290,7 +5770,8 @@
    "variant": "reverseHolofoil",
    "via": "number+name",
    "priceRatio": 1.0,
-   "psa10": 8382.39
+   "psa10": 8382.39,
+   "rarity": "Rare"
   }
  ],
  "skipped": [
@@ -5650,487 +6131,487 @@
   }
  ],
  "imported": {
-  "479921": "raw +178 days, PSA 10 73 days",
-  "284303": "raw +181 days, PSA 10 81 days",
-  "87417": "raw +179 days, PSA 10 74 days",
-  "198771": "raw +181 days, PSA 10 76 days",
-  "146982": "raw +181 days, PSA 10 76 days",
-  "648359": "raw +181 days, PSA 10 77 days",
-  "151973": "raw +181 days, PSA 10 76 days",
-  "263872": "raw +181 days, PSA 10 80 days",
-  "146696": "raw +181 days, PSA 10 77 days",
-  "189761": "raw +181 days, PSA 10 77 days",
-  "87429": "raw +181 days, PSA 10 76 days",
-  "158738": "raw +181 days, PSA 10 76 days",
-  "86859": "raw +177 days, PSA 10 72 days",
-  "477429": "raw +180 days, PSA 10 73 days",
-  "45163": "raw +180 days, PSA 10 73 days",
-  "535527": "raw +177 days, PSA 10 79 days",
-  "88069": "raw +179 days, PSA 10 74 days",
-  "123466": "raw +180 days, PSA 10 76 days",
-  "92250": "raw +181 days, PSA 10 76 days",
-  "179377": "raw +181 days, PSA 10 51 days",
-  "98096": "raw +181 days, PSA 10 71 days",
-  "108623": "raw +181 days, PSA 10 75 days",
-  "85087": "raw +180 days, PSA 10 75 days",
-  "250341": "raw +181 days, PSA 10 81 days",
-  "125045": "raw +181 days, PSA 10 75 days",
-  "246698": "raw +180 days, PSA 10 76 days",
-  "277024": "raw +181 days, PSA 10 81 days",
-  "482095": "raw +181 days, PSA 10 78 days",
-  "253146": "raw +181 days, PSA 10 77 days",
-  "124066": "raw +181 days, PSA 10 75 days",
-  "253397": "raw +181 days, PSA 10 76 days",
-  "148426": "raw +181 days, PSA 10 76 days",
-  "96379": "raw +181 days, PSA 10 75 days",
-  "509989": "raw +178 days, PSA 10 78 days",
-  "178980": "raw +181 days, PSA 10 79 days",
-  "86850": "raw +177 days, PSA 10 71 days",
-  "88072": "raw +179 days, PSA 10 72 days",
-  "528365": "raw +178 days, PSA 10 77 days",
-  "88102": "raw +181 days, PSA 10 76 days",
-  "482107": "raw +180 days, PSA 10 78 days",
-  "517017": "raw +178 days, PSA 10 76 days",
-  "183561": "raw +181 days, PSA 10 76 days",
-  "478103": "raw +180 days, PSA 10 80 days",
-  "478058": "raw +181 days, PSA 10 80 days",
-  "87414": "raw +179 days, PSA 10 74 days",
-  "696687": "raw +42 days, PSA 10 9 days",
-  "107183": "raw +181 days, PSA 10 75 days",
-  "124025": "raw +181 days, PSA 10 75 days",
-  "175270": "raw +181 days, PSA 10 81 days",
-  "85083": "raw +180 days, PSA 10 76 days",
-  "88645": "raw +181 days, PSA 10 76 days",
-  "451995": "raw +179 days, PSA 10 80 days",
-  "85091": "raw +181 days, PSA 10 76 days",
-  "219233": "raw +180 days, PSA 10 80 days",
-  "85094": "raw +181 days, PSA 10 76 days",
-  "716231": "raw +40 days, PSA 10 4 days",
-  "285378": "raw +179 days, PSA 10 78 days",
-  "482087": "raw +180 days, PSA 10 78 days",
-  "152608": "raw +181 days, PSA 10 76 days",
-  "284258": "raw +181 days, PSA 10 81 days",
-  "479726": "raw +180 days, PSA 10 73 days",
-  "200351": "raw +179 days, PSA 10 79 days",
-  "183785": "raw +181 days, PSA 10 78 days",
-  "108619": "raw +181 days",
-  "518872": "raw +178 days, PSA 10 77 days",
-  "224364": "raw +179 days, PSA 10 78 days",
-  "183562": "raw +181 days, PSA 10 76 days",
-  "226431": "raw +179 days, PSA 10 80 days",
-  "170936": "raw +180 days, PSA 10 80 days",
-  "107182": "raw +181 days, PSA 10 75 days",
-  "121772": "raw +179 days, PSA 10 74 days",
-  "505996": "raw +109 days, PSA 10 27 days",
-  "88066": "raw +179 days, PSA 10 72 days",
-  "285384": "raw +179 days, PSA 10 78 days",
-  "565479": "raw +178 days, PSA 10 76 days",
-  "85075": "raw +179 days, PSA 10 71 days",
-  "633040": "raw +180 days, PSA 10 77 days",
-  "197811": "raw +181 days, PSA 10 80 days",
-  "253371": "raw +181 days, PSA 10 77 days",
-  "190940": "raw +181 days, PSA 10 73 days",
-  "85088": "raw +39 days, PSA 10 75 days",
-  "85084": "raw +178 days, PSA 10 73 days",
-  "253394": "raw +181 days, PSA 10 76 days",
-  "717603": "raw +40 days, PSA 10 4 days",
-  "610534": "raw +181 days, PSA 10 77 days",
-  "284266": "raw +181 days, PSA 10 81 days",
-  "513793": "raw +179 days, PSA 10 80 days",
-  "108624": "raw +181 days, PSA 10 75 days",
-  "712953": "raw +41 days, PSA 10 4 days",
-  "696688": "raw +42 days, PSA 10 10 days",
-  "113746": "raw +180 days, PSA 10 76 days",
-  "88103": "raw +181 days, PSA 10 76 days",
-  "92251": "raw +181 days, PSA 10 76 days",
-  "206823": "raw +181 days, PSA 10 73 days",
-  "153998": "raw +181 days, PSA 10 76 days",
-  "124116": "raw +181 days, PSA 10 75 days",
-  "527943": "raw +181 days, PSA 10 78 days",
-  "117854": "raw +180 days, PSA 10 76 days",
-  "283301": "raw +38 days, PSA 10 78 days",
-  "88086": "raw +179 days, PSA 10 74 days",
-  "87430": "raw +181 days, PSA 10 62 days",
-  "277011": "raw +181 days, PSA 10 81 days",
-  "246717": "raw +180 days, PSA 10 76 days",
-  "479922": "raw +178 days, PSA 10 75 days",
-  "542914": "raw +177 days, PSA 10 77 days",
-  "153997": "raw +181 days, PSA 10 76 days",
-  "610679": "raw +181 days, PSA 10 77 days",
-  "121950": "raw +181 days, PSA 10 75 days",
-  "183804": "raw +181 days, PSA 10 78 days",
-  "148151": "raw +181 days, PSA 10 76 days",
-  "137526": "raw +181 days, PSA 10 76 days",
-  "162457": "raw +179 days, PSA 10 75 days",
-  "246702": "raw +180 days, PSA 10 76 days",
-  "716198": "raw +40 days, PSA 10 9 days",
-  "127014": "raw +181 days, PSA 10 76 days",
-  "274470": "raw +181 days, PSA 10 81 days",
-  "153996": "raw +181 days, PSA 10 76 days",
-  "98111": "raw +181 days, PSA 10 76 days",
-  "85090": "raw +181 days, PSA 10 52 days",
-  "123454": "raw +181 days, PSA 10 75 days",
-  "88098": "raw +181 days, PSA 10 76 days",
-  "88093": "raw +180 days, PSA 10 75 days",
-  "480476": "raw +136 days",
-  "113693": "raw +180 days, PSA 10 76 days",
-  "649173": "raw +181 days, PSA 10 77 days",
-  "127434": "raw +181 days, PSA 10 36 days",
-  "85077": "raw +179 days, PSA 10 73 days",
-  "263893": "raw +181 days, PSA 10 80 days",
-  "153995": "raw +181 days, PSA 10 76 days",
-  "712954": "raw +40 days, PSA 10 11 days",
-  "89729": "raw +181 days, PSA 10 75 days",
-  "250295": "raw +181 days, PSA 10 80 days",
-  "85074": "raw +179 days, PSA 10 74 days",
-  "183560": "raw +181 days, PSA 10 76 days",
-  "188409": "raw +180 days, PSA 10 78 days",
-  "247414": "raw +181 days, PSA 10 78 days",
-  "513796": "raw +181 days, PSA 10 81 days",
-  "152673": "raw +181 days, PSA 10 76 days",
-  "88088": "raw +178 days, PSA 10 73 days",
-  "187218": "raw +181 days, PSA 10 76 days",
-  "87424": "raw +181 days, PSA 10 76 days",
-  "88081": "raw +181 days, PSA 10 76 days",
-  "107179": "raw +181 days, PSA 10 75 days",
-  "117812": "raw +180 days, PSA 10 76 days",
-  "123633": "raw +179 days, PSA 10 71 days",
-  "89643": "raw +179 days, PSA 10 74 days",
-  "87419": "raw +176 days, PSA 10 73 days",
-  "264208": "raw +181 days, PSA 10 81 days",
-  "108603": "raw +181 days, PSA 10 75 days",
-  "717610": "raw +40 days, PSA 10 9 days",
-  "246727": "raw +180 days, PSA 10 76 days",
-  "518871": "raw +178 days, PSA 10 77 days",
-  "97708": "raw +181 days, PSA 10 74 days",
-  "189170": "raw +180 days, PSA 10 78 days",
-  "88095": "raw +181 days, PSA 10 75 days",
-  "513721": "raw +178 days, PSA 10 76 days",
-  "86914": "raw +181 days",
-  "100514": "raw +181 days, PSA 10 75 days",
-  "166411": "raw +181 days, PSA 10 76 days",
-  "285396": "raw +179 days, PSA 10 78 days",
-  "478027": "raw +181 days, PSA 10 80 days",
-  "88110": "raw +181 days, PSA 10 76 days",
-  "593169": "raw +180 days, PSA 10 76 days",
-  "134922": "raw +181 days, PSA 10 75 days",
-  "550232": "raw +179 days, PSA 10 79 days",
-  "476068": "raw +180 days, PSA 10 76 days",
-  "205171": "raw +181 days, PSA 10 75 days",
-  "86915": "raw +181 days, PSA 10 76 days",
-  "264207": "raw +181 days, PSA 10 81 days",
-  "264209": "raw +181 days, PSA 10 81 days",
-  "131007": "raw +181 days, PSA 10 77 days",
-  "91146": "raw +181 days, PSA 10 76 days",
-  "85082": "raw +181 days, PSA 10 75 days",
-  "534522": "raw +177 days, PSA 10 79 days",
-  "250332": "raw +181 days, PSA 10 81 days",
-  "84194": "raw +181 days, PSA 10 76 days",
+  "479921": "raw +5 days, PSA 10 73 days",
+  "284303": "raw +5 days, PSA 10 81 days",
+  "87417": "raw +5 days, PSA 10 74 days",
+  "198771": "raw +5 days, PSA 10 76 days",
+  "146982": "raw +5 days, PSA 10 76 days",
+  "648359": "raw +5 days, PSA 10 77 days",
+  "151973": "raw +5 days, PSA 10 76 days",
+  "263872": "raw +5 days, PSA 10 80 days",
+  "146696": "raw +5 days, PSA 10 77 days",
+  "189761": "raw +5 days, PSA 10 77 days",
+  "87429": "raw +5 days, PSA 10 76 days",
+  "158738": "raw +5 days, PSA 10 76 days",
+  "86859": "raw +5 days, PSA 10 72 days",
+  "477429": "raw +5 days, PSA 10 73 days",
+  "45163": "raw +5 days, PSA 10 73 days",
+  "535527": "raw +5 days, PSA 10 79 days",
+  "88069": "raw +5 days, PSA 10 74 days",
+  "123466": "raw +5 days, PSA 10 76 days",
+  "92250": "raw +5 days, PSA 10 76 days",
+  "179377": "raw +5 days, PSA 10 51 days",
+  "98096": "raw +5 days, PSA 10 71 days",
+  "108623": "raw +5 days, PSA 10 75 days",
+  "85087": "raw +5 days, PSA 10 75 days",
+  "250341": "raw +5 days, PSA 10 81 days",
+  "125045": "raw +5 days, PSA 10 75 days",
+  "246698": "raw +5 days, PSA 10 76 days",
+  "277024": "raw +5 days, PSA 10 81 days",
+  "482095": "raw +5 days, PSA 10 78 days",
+  "253146": "raw +5 days, PSA 10 77 days",
+  "124066": "raw +5 days, PSA 10 75 days",
+  "253397": "raw +5 days, PSA 10 76 days",
+  "148426": "raw +5 days, PSA 10 76 days",
+  "96379": "raw +5 days, PSA 10 75 days",
+  "509989": "raw +5 days, PSA 10 78 days",
+  "178980": "raw +5 days, PSA 10 79 days",
+  "86850": "raw +5 days, PSA 10 71 days",
+  "88072": "raw +5 days, PSA 10 72 days",
+  "528365": "raw +5 days, PSA 10 77 days",
+  "88102": "raw +5 days, PSA 10 76 days",
+  "482107": "raw +5 days, PSA 10 78 days",
+  "517017": "raw +5 days, PSA 10 76 days",
+  "183561": "raw +5 days, PSA 10 76 days",
+  "478103": "raw +5 days, PSA 10 80 days",
+  "478058": "raw +5 days, PSA 10 80 days",
+  "87414": "raw +5 days, PSA 10 74 days",
+  "696687": "raw +0 days, PSA 10 9 days",
+  "107183": "raw +5 days, PSA 10 75 days",
+  "124025": "raw +5 days, PSA 10 75 days",
+  "175270": "raw +5 days, PSA 10 81 days",
+  "85083": "raw +5 days, PSA 10 76 days",
+  "88645": "raw +5 days, PSA 10 76 days",
+  "451995": "raw +5 days, PSA 10 80 days",
+  "85091": "raw +5 days, PSA 10 76 days",
+  "219233": "raw +5 days, PSA 10 80 days",
+  "85094": "raw +5 days, PSA 10 76 days",
+  "716231": "raw +0 days, PSA 10 4 days",
+  "285378": "raw +5 days, PSA 10 78 days",
+  "482087": "raw +5 days, PSA 10 78 days",
+  "152608": "raw +5 days, PSA 10 76 days",
+  "284258": "raw +5 days, PSA 10 81 days",
+  "479726": "raw +5 days, PSA 10 73 days",
+  "200351": "raw +5 days, PSA 10 79 days",
+  "183785": "raw +5 days, PSA 10 78 days",
+  "108619": "raw +5 days",
+  "518872": "raw +5 days, PSA 10 77 days",
+  "224364": "raw +5 days, PSA 10 78 days",
+  "183562": "raw +5 days, PSA 10 76 days",
+  "226431": "raw +5 days, PSA 10 80 days",
+  "170936": "raw +5 days, PSA 10 80 days",
+  "107182": "raw +5 days, PSA 10 75 days",
+  "121772": "raw +5 days, PSA 10 74 days",
+  "505996": "raw +0 days, PSA 10 27 days",
+  "88066": "raw +5 days, PSA 10 72 days",
+  "285384": "raw +5 days, PSA 10 78 days",
+  "565479": "raw +5 days, PSA 10 76 days",
+  "85075": "raw +5 days, PSA 10 71 days",
+  "633040": "raw +5 days, PSA 10 77 days",
+  "197811": "raw +5 days, PSA 10 80 days",
+  "253371": "raw +5 days, PSA 10 77 days",
+  "190940": "raw +5 days, PSA 10 73 days",
+  "85088": "raw +3 days, PSA 10 75 days",
+  "85084": "raw +5 days, PSA 10 73 days",
+  "253394": "raw +5 days, PSA 10 76 days",
+  "717603": "raw +0 days, PSA 10 4 days",
+  "610534": "raw +5 days, PSA 10 77 days",
+  "284266": "raw +5 days, PSA 10 81 days",
+  "513793": "raw +5 days, PSA 10 80 days",
+  "108624": "raw +5 days, PSA 10 75 days",
+  "712953": "raw +0 days, PSA 10 4 days",
+  "696688": "raw +0 days, PSA 10 10 days",
+  "113746": "raw +5 days, PSA 10 76 days",
+  "88103": "raw +5 days, PSA 10 76 days",
+  "92251": "raw +5 days, PSA 10 76 days",
+  "206823": "raw +5 days, PSA 10 73 days",
+  "153998": "raw +5 days, PSA 10 76 days",
+  "124116": "raw +5 days, PSA 10 75 days",
+  "527943": "raw +5 days, PSA 10 78 days",
+  "117854": "raw +5 days, PSA 10 76 days",
+  "283301": "raw +0 days, PSA 10 78 days",
+  "88086": "raw +5 days, PSA 10 74 days",
+  "87430": "raw +5 days, PSA 10 62 days",
+  "277011": "raw +5 days, PSA 10 81 days",
+  "246717": "raw +5 days, PSA 10 76 days",
+  "479922": "raw +5 days, PSA 10 75 days",
+  "542914": "raw +5 days, PSA 10 77 days",
+  "153997": "raw +5 days, PSA 10 76 days",
+  "610679": "raw +5 days, PSA 10 77 days",
+  "121950": "raw +5 days, PSA 10 75 days",
+  "183804": "raw +5 days, PSA 10 78 days",
+  "148151": "raw +5 days, PSA 10 76 days",
+  "137526": "raw +5 days, PSA 10 76 days",
+  "162457": "raw +5 days, PSA 10 75 days",
+  "246702": "raw +5 days, PSA 10 76 days",
+  "716198": "raw +0 days, PSA 10 9 days",
+  "127014": "raw +5 days, PSA 10 76 days",
+  "274470": "raw +5 days, PSA 10 81 days",
+  "153996": "raw +5 days, PSA 10 76 days",
+  "98111": "raw +5 days, PSA 10 76 days",
+  "85090": "raw +5 days, PSA 10 52 days",
+  "123454": "raw +5 days, PSA 10 75 days",
+  "88098": "raw +5 days, PSA 10 76 days",
+  "88093": "raw +5 days, PSA 10 75 days",
+  "480476": "raw +2 days",
+  "113693": "raw +5 days, PSA 10 76 days",
+  "649173": "raw +5 days, PSA 10 77 days",
+  "127434": "raw +5 days, PSA 10 36 days",
+  "85077": "raw +5 days, PSA 10 73 days",
+  "263893": "raw +5 days, PSA 10 80 days",
+  "153995": "raw +5 days, PSA 10 76 days",
+  "712954": "raw +0 days, PSA 10 11 days",
+  "89729": "raw +5 days, PSA 10 75 days",
+  "250295": "raw +5 days, PSA 10 80 days",
+  "85074": "raw +5 days, PSA 10 73 days",
+  "183560": "raw +5 days, PSA 10 76 days",
+  "188409": "raw +5 days, PSA 10 78 days",
+  "247414": "raw +5 days, PSA 10 78 days",
+  "513796": "raw +5 days, PSA 10 81 days",
+  "152673": "raw +5 days, PSA 10 76 days",
+  "88088": "raw +5 days, PSA 10 73 days",
+  "187218": "raw +5 days, PSA 10 76 days",
+  "87424": "raw +5 days, PSA 10 76 days",
+  "88081": "raw +5 days, PSA 10 76 days",
+  "107179": "raw +5 days, PSA 10 75 days",
+  "117812": "raw +5 days, PSA 10 76 days",
+  "123633": "raw +5 days, PSA 10 71 days",
+  "89643": "raw +5 days, PSA 10 74 days",
+  "87419": "raw +5 days, PSA 10 73 days",
+  "264208": "raw +5 days, PSA 10 81 days",
+  "108603": "raw +5 days, PSA 10 75 days",
+  "717610": "raw +0 days, PSA 10 9 days",
+  "246727": "raw +5 days, PSA 10 76 days",
+  "518871": "raw +5 days, PSA 10 77 days",
+  "97708": "raw +5 days, PSA 10 74 days",
+  "189170": "raw +5 days, PSA 10 78 days",
+  "88095": "raw +5 days, PSA 10 75 days",
+  "513721": "raw +5 days, PSA 10 76 days",
+  "86914": "raw +5 days",
+  "100514": "raw +5 days, PSA 10 75 days",
+  "166411": "raw +5 days, PSA 10 76 days",
+  "285396": "raw +5 days, PSA 10 78 days",
+  "478027": "raw +5 days, PSA 10 80 days",
+  "88110": "raw +5 days, PSA 10 76 days",
+  "593169": "raw +5 days, PSA 10 76 days",
+  "134922": "raw +5 days, PSA 10 75 days",
+  "550232": "raw +5 days, PSA 10 79 days",
+  "476068": "raw +5 days, PSA 10 76 days",
+  "205171": "raw +5 days, PSA 10 75 days",
+  "86915": "raw +5 days, PSA 10 76 days",
+  "264207": "raw +5 days, PSA 10 81 days",
+  "264209": "raw +5 days, PSA 10 81 days",
+  "131007": "raw +5 days, PSA 10 77 days",
+  "91146": "raw +5 days, PSA 10 76 days",
+  "85082": "raw +5 days, PSA 10 75 days",
+  "534522": "raw +5 days, PSA 10 79 days",
+  "250332": "raw +5 days, PSA 10 81 days",
+  "84194": "raw +5 days, PSA 10 76 days",
   "84192": "raw skipped (sources 1.63x apart), PSA 10 76 days",
-  "188404": "raw +180 days, PSA 10 78 days",
-  "107277": "raw +181 days, PSA 10 75 days",
-  "717605": "raw +40 days, PSA 10 4 days",
-  "246722": "raw +180 days, PSA 10 76 days",
-  "42347": "raw +179 days, PSA 10 71 days",
-  "88631": "raw +181 days, PSA 10 71 days",
-  "85681": "raw +179 days, PSA 10 74 days",
-  "201332": "raw +179 days, PSA 10 79 days",
-  "509980": "raw +178 days, PSA 10 78 days",
-  "480477": "raw +138 days, PSA 10 75 days",
-  "107278": "raw +181 days, PSA 10 75 days",
-  "94167": "raw +181 days, PSA 10 76 days",
-  "253176": "raw +181 days, PSA 10 77 days",
-  "84200": "raw +180 days, PSA 10 75 days",
-  "108614": "raw +181 days, PSA 10 75 days",
-  "264206": "raw +181 days, PSA 10 81 days",
-  "183907": "raw +181 days, PSA 10 78 days",
-  "284283": "raw +181 days, PSA 10 81 days",
-  "85534": "raw +179 days, PSA 10 74 days",
-  "146697": "raw +181 days, PSA 10 77 days",
-  "113763": "raw +180 days, PSA 10 76 days",
-  "189318": "raw +180 days, PSA 10 78 days",
-  "124026": "raw +181 days, PSA 10 75 days",
-  "195083": "raw +180 days, PSA 10 78 days",
-  "251102": "raw +179 days, PSA 10 78 days",
-  "90148": "raw +181 days, PSA 10 76 days",
-  "88105": "raw +181 days, PSA 10 76 days",
-  "88068": "raw +179 days, PSA 10 74 days",
-  "88094": "raw +151 days, PSA 10 74 days",
-  "253147": "raw +181 days, PSA 10 77 days",
-  "100515": "raw +181 days",
-  "202379": "raw +146 days",
-  "88076": "raw +63 days, PSA 10 73 days",
-  "85093": "raw +181 days, PSA 10 76 days",
-  "146980": "raw +181 days, PSA 10 76 days",
-  "113684": "raw +180 days, PSA 10 76 days",
-  "91145": "raw +181 days, PSA 10 76 days",
-  "542481": "raw +178 days, PSA 10 77 days",
-  "565480": "raw +107 days, PSA 10 77 days",
-  "165745": "raw +181 days",
-  "509963": "raw +178 days, PSA 10 78 days",
-  "538687": "raw +178 days, PSA 10 77 days",
-  "662183": "raw +181 days, PSA 10 82 days",
-  "716196": "raw +39 days, PSA 10 4 days",
-  "479706": "raw +181 days, PSA 10 72 days",
-  "648707": "raw +125 days, PSA 10 76 days",
-  "88092": "raw +181 days, PSA 10 75 days",
-  "513794": "raw +179 days, PSA 10 80 days",
-  "250577": "raw +179 days, PSA 10 78 days",
-  "101490": "raw +181 days, PSA 10 75 days",
-  "200275": "raw +181 days, PSA 10 76 days",
-  "164116": "raw +180 days, PSA 10 77 days",
-  "96392": "raw +181 days, PSA 10 75 days",
-  "716207": "raw +40 days",
-  "205170": "raw +181 days, PSA 10 76 days",
-  "177113": "raw +181 days, PSA 10 49 days",
-  "713288": "raw +33 days",
-  "92202": "raw +181 days",
-  "517051": "raw +178 days, PSA 10 77 days",
-  "131006": "raw +181 days, PSA 10 77 days",
-  "284302": "raw +181 days, PSA 10 81 days",
-  "270724": "raw +179 days, PSA 10 78 days",
-  "477873": "raw +181 days, PSA 10 72 days",
-  "528002": "raw +181 days, PSA 10 78 days",
-  "126952": "raw +181 days, PSA 10 76 days",
-  "226594": "raw +179 days, PSA 10 80 days",
-  "263876": "raw +181 days, PSA 10 80 days",
-  "250325": "raw +181 days, PSA 10 81 days",
-  "452009": "raw +179 days, PSA 10 80 days",
-  "141259": "raw +181 days, PSA 10 75 days",
-  "590026": "raw +180 days, PSA 10 76 days",
-  "659612": "raw +181 days, PSA 10 81 days",
-  "200273": "raw +181 days, PSA 10 76 days",
-  "452048": "raw +181 days, PSA 10 80 days",
-  "189176": "raw +180 days, PSA 10 78 days",
-  "131308": "raw +181 days, PSA 10 75 days",
-  "178933": "raw +181 days, PSA 10 79 days",
-  "131305": "raw +181 days, PSA 10 75 days",
-  "517027": "raw +178 days, PSA 10 77 days",
-  "138496": "raw +181 days, PSA 10 77 days",
-  "197854": "raw +181 days, PSA 10 76 days",
-  "184217": "raw +181 days, PSA 10 78 days",
-  "185253": "raw +181 days, PSA 10 76 days",
+  "188404": "raw +5 days, PSA 10 78 days",
+  "107277": "raw +5 days, PSA 10 75 days",
+  "717605": "raw +0 days, PSA 10 4 days",
+  "246722": "raw +5 days, PSA 10 76 days",
+  "42347": "raw +5 days, PSA 10 71 days",
+  "88631": "raw +5 days, PSA 10 71 days",
+  "85681": "raw +5 days, PSA 10 74 days",
+  "201332": "raw +5 days, PSA 10 79 days",
+  "509980": "raw +5 days, PSA 10 78 days",
+  "480477": "raw +5 days, PSA 10 75 days",
+  "107278": "raw +5 days, PSA 10 75 days",
+  "94167": "raw +5 days, PSA 10 76 days",
+  "253176": "raw +5 days, PSA 10 77 days",
+  "84200": "raw +5 days, PSA 10 75 days",
+  "108614": "raw +5 days, PSA 10 75 days",
+  "264206": "raw +5 days, PSA 10 81 days",
+  "183907": "raw +5 days, PSA 10 78 days",
+  "284283": "raw +5 days, PSA 10 81 days",
+  "85534": "raw +5 days, PSA 10 74 days",
+  "146697": "raw +5 days, PSA 10 77 days",
+  "113763": "raw +5 days, PSA 10 76 days",
+  "189318": "raw +5 days, PSA 10 78 days",
+  "124026": "raw +5 days, PSA 10 75 days",
+  "195083": "raw +5 days, PSA 10 78 days",
+  "251102": "raw +5 days, PSA 10 78 days",
+  "90148": "raw +5 days, PSA 10 76 days",
+  "88105": "raw +5 days, PSA 10 76 days",
+  "88068": "raw +5 days, PSA 10 74 days",
+  "88094": "raw +5 days, PSA 10 74 days",
+  "253147": "raw +5 days, PSA 10 77 days",
+  "100515": "raw +5 days",
+  "202379": "raw +5 days",
+  "88076": "raw +1 days, PSA 10 73 days",
+  "85093": "raw +5 days, PSA 10 76 days",
+  "146980": "raw +5 days, PSA 10 76 days",
+  "113684": "raw +5 days, PSA 10 76 days",
+  "91145": "raw +5 days, PSA 10 76 days",
+  "542481": "raw +5 days, PSA 10 77 days",
+  "565480": "raw +0 days, PSA 10 77 days",
+  "165745": "raw +5 days",
+  "509963": "raw +5 days, PSA 10 78 days",
+  "538687": "raw +5 days, PSA 10 77 days",
+  "662183": "raw +5 days, PSA 10 82 days",
+  "716196": "raw +0 days, PSA 10 4 days",
+  "479706": "raw +5 days, PSA 10 72 days",
+  "648707": "raw +4 days, PSA 10 76 days",
+  "88092": "raw +5 days, PSA 10 75 days",
+  "513794": "raw +5 days, PSA 10 80 days",
+  "250577": "raw +5 days, PSA 10 78 days",
+  "101490": "raw +5 days, PSA 10 75 days",
+  "200275": "raw +5 days, PSA 10 76 days",
+  "164116": "raw +5 days, PSA 10 77 days",
+  "96392": "raw +5 days, PSA 10 75 days",
+  "716207": "raw +0 days",
+  "205170": "raw +5 days, PSA 10 76 days",
+  "177113": "raw +5 days, PSA 10 49 days",
+  "713288": "raw +0 days",
+  "92202": "raw +5 days",
+  "517051": "raw +5 days, PSA 10 77 days",
+  "131006": "raw +5 days, PSA 10 77 days",
+  "284302": "raw +5 days, PSA 10 81 days",
+  "270724": "raw +5 days, PSA 10 78 days",
+  "477873": "raw +5 days, PSA 10 72 days",
+  "528002": "raw +5 days, PSA 10 78 days",
+  "126952": "raw +5 days, PSA 10 76 days",
+  "226594": "raw +5 days, PSA 10 80 days",
+  "263876": "raw +5 days, PSA 10 80 days",
+  "250325": "raw +5 days, PSA 10 81 days",
+  "452009": "raw +5 days, PSA 10 80 days",
+  "141259": "raw +5 days, PSA 10 75 days",
+  "590026": "raw +5 days, PSA 10 76 days",
+  "659612": "raw +5 days, PSA 10 81 days",
+  "200273": "raw +5 days, PSA 10 76 days",
+  "452048": "raw +5 days, PSA 10 80 days",
+  "189176": "raw +5 days, PSA 10 78 days",
+  "131308": "raw +5 days, PSA 10 75 days",
+  "178933": "raw +5 days, PSA 10 79 days",
+  "131305": "raw +5 days, PSA 10 75 days",
+  "517027": "raw +5 days, PSA 10 77 days",
+  "138496": "raw +5 days, PSA 10 77 days",
+  "197854": "raw +5 days, PSA 10 76 days",
+  "184217": "raw +5 days, PSA 10 78 days",
+  "185253": "raw +5 days, PSA 10 76 days",
   "196992": "PSA 10 76 days",
-  "655094": "raw +178 days, PSA 10 77 days",
-  "183920": "raw +181 days, PSA 10 78 days",
-  "86860": "raw +177 days, PSA 10 71 days",
-  "285257": "raw +179 days, PSA 10 77 days",
-  "648703": "raw +125 days, PSA 10 76 days",
-  "482106": "raw +180 days, PSA 10 78 days",
-  "637592": "raw +178 days, PSA 10 76 days",
-  "284251": "raw +181 days, PSA 10 81 days",
-  "113669": "raw +180 days, PSA 10 76 days",
-  "85089": "raw +181 days, PSA 10 75 days",
-  "246720": "raw +180 days, PSA 10 76 days",
-  "190828": "raw +180 days, PSA 10 78 days",
-  "94663": "raw +181 days, PSA 10 76 days",
-  "149061": "raw +180 days, PSA 10 77 days",
-  "714373": "raw +39 days, PSA 10 4 days",
-  "610664": "raw +181 days, PSA 10 77 days",
-  "85086": "raw +179 days, PSA 10 69 days",
-  "676081": "raw +181 days, PSA 10 81 days",
-  "179380": "raw +181 days",
-  "477974": "raw +181 days, PSA 10 74 days",
-  "205163": "raw +181 days, PSA 10 76 days",
-  "476026": "raw +180 days, PSA 10 76 days",
-  "224365": "raw +179 days, PSA 10 78 days",
-  "85073": "raw +179 days, PSA 10 73 days",
-  "88090": "raw +178 days, PSA 10 75 days",
-  "88632": "raw +181 days, PSA 10 76 days",
-  "246731": "raw +180 days, PSA 10 76 days",
-  "284278": "raw +181 days, PSA 10 81 days",
-  "214241": "raw +179 days, PSA 10 78 days",
-  "232496": "raw +181 days, PSA 10 79 days",
-  "476049": "raw +180 days, PSA 10 76 days",
-  "153234": "raw +180 days, PSA 10 74 days",
-  "148428": "raw +181 days, PSA 10 76 days",
-  "84191": "raw +180 days, PSA 10 74 days",
-  "98112": "raw +181 days, PSA 10 77 days",
-  "90149": "raw +181 days",
-  "151974": "raw +181 days, PSA 10 76 days",
-  "125044": "raw +181 days, PSA 10 75 days",
-  "183966": "raw +181 days, PSA 10 76 days",
-  "44428": "raw +179 days, PSA 10 72 days",
-  "477776": "raw +155 days, PSA 10 74 days",
-  "127135": "raw +181 days",
-  "124114": "raw +181 days, PSA 10 75 days",
-  "189315": "raw +180 days, PSA 10 78 days",
-  "178981": "raw +181 days, PSA 10 79 days",
-  "88108": "raw +38 days, PSA 10 75 days",
-  "164231": "raw +180 days, PSA 10 75 days",
-  "200272": "raw +181 days, PSA 10 76 days",
-  "127193": "raw +181 days, PSA 10 76 days",
-  "87411": "raw +181 days, PSA 10 15 days",
-  "649940": "raw +161 days, PSA 10 71 days",
-  "222072": "raw +179 days, PSA 10 78 days",
-  "43053": "raw +181 days, PSA 10 74 days",
-  "107276": "raw +181 days, PSA 10 75 days",
-  "716740": "raw +33 days",
-  "250320": "raw +181 days, PSA 10 81 days",
-  "85095": "raw +181 days",
-  "513797": "raw +181 days, PSA 10 81 days",
-  "201611": "raw +179 days, PSA 10 79 days",
-  "197806": "raw +181 days, PSA 10 80 days",
-  "86904": "raw +179 days, PSA 10 74 days",
-  "87395": "raw +179 days, PSA 10 74 days",
-  "184483": "raw +181 days, PSA 10 76 days",
-  "107279": "raw +181 days, PSA 10 75 days",
-  "194997": "raw +180 days, PSA 10 78 days",
-  "42445": "raw +179 days, PSA 10 74 days",
-  "113771": "raw +180 days, PSA 10 76 days",
-  "117891": "raw +180 days, PSA 10 76 days",
-  "87416": "raw +179 days, PSA 10 74 days",
-  "114005": "raw +181 days",
-  "84573": "raw +177 days, PSA 10 72 days",
-  "94168": "raw +181 days, PSA 10 76 days",
-  "88087": "raw +181 days, PSA 10 78 days",
-  "146719": "raw +181 days, PSA 10 77 days",
-  "98097": "raw +181 days, PSA 10 76 days",
-  "610522": "raw +181 days, PSA 10 77 days",
-  "495194": "raw +181 days, PSA 10 80 days",
-  "118404": "raw +176 days, PSA 10 73 days",
-  "113670": "raw +180 days, PSA 10 76 days",
-  "714372": "raw +40 days, PSA 10 10 days",
-  "86913": "raw +181 days, PSA 10 76 days",
-  "88097": "raw +181 days, PSA 10 75 days",
-  "87397": "raw +179 days, PSA 10 74 days",
-  "123435": "raw +181 days, PSA 10 75 days",
-  "88067": "raw +181 days, PSA 10 75 days",
-  "226434": "raw +179 days, PSA 10 80 days",
-  "87421": "raw +178 days, PSA 10 73 days",
-  "489307": "raw +181 days, PSA 10 77 days",
-  "90152": "raw +181 days, PSA 10 76 days",
-  "88101": "raw +181 days, PSA 10 75 days",
-  "713257": "raw +18 days",
-  "452034": "raw +181 days, PSA 10 80 days",
-  "85081": "raw +181 days, PSA 10 74 days",
-  "114006": "raw +181 days, PSA 10 75 days",
-  "475982": "raw +180 days, PSA 10 80 days",
-  "196347": "raw +181 days, PSA 10 76 days",
-  "183805": "raw +181 days, PSA 10 78 days",
-  "87398": "raw +176 days, PSA 10 73 days",
-  "170937": "raw +181 days, PSA 10 80 days",
-  "131008": "raw +181 days, PSA 10 77 days",
-  "527938": "raw +181 days, PSA 10 78 days",
-  "85097": "raw +137 days, PSA 10 75 days",
-  "202638": "raw +181 days, PSA 10 80 days",
-  "713256": "raw +33 days",
-  "223073": "raw +180 days, PSA 10 80 days",
-  "86910": "raw +181 days, PSA 10 75 days",
-  "189317": "raw +180 days, PSA 10 78 days",
-  "246700": "raw +180 days, PSA 10 76 days",
-  "662185": "raw +181 days, PSA 10 82 days",
-  "107055": "raw +179 days, PSA 10 71 days",
-  "113764": "raw +180 days, PSA 10 76 days",
-  "282259": "raw +179 days, PSA 10 78 days",
-  "714386": "raw +40 days, PSA 10 7 days",
-  "713259": "raw +16 days",
-  "185986": "raw +181 days, PSA 10 76 days",
-  "90145": "raw +181 days, PSA 10 75 days",
-  "90138": "raw +176 days, PSA 10 73 days",
-  "90147": "raw +181 days, PSA 10 75 days",
-  "187219": "raw +181 days, PSA 10 75 days",
-  "146699": "raw +181 days, PSA 10 77 days",
-  "676093": "raw +181 days, PSA 10 81 days",
-  "117267": "raw +181 days, PSA 10 75 days",
-  "194998": "raw +180 days, PSA 10 78 days",
-  "88073": "raw +179 days, PSA 10 73 days",
-  "114004": "raw +181 days, PSA 10 75 days",
-  "107283": "raw +181 days, PSA 10 75 days",
-  "201352": "raw +179 days, PSA 10 79 days",
-  "88648": "raw +101 days",
-  "107282": "raw +181 days, PSA 10 75 days",
-  "185985": "raw +181 days, PSA 10 76 days",
-  "108599": "raw +181 days, PSA 10 75 days",
-  "87402": "raw +181 days, PSA 10 75 days",
-  "197830": "raw +181 days, PSA 10 80 days",
-  "85677": "raw +180 days, PSA 10 74 days",
-  "87399": "raw +181 days, PSA 10 75 days",
-  "253177": "raw +181 days, PSA 10 77 days",
-  "211452": "raw +181 days, PSA 10 76 days",
-  "85080": "raw +178 days, PSA 10 74 days",
-  "477057": "raw +181 days, PSA 10 80 days",
-  "183908": "raw +181 days, PSA 10 78 days",
-  "101516": "raw +181 days, PSA 10 75 days",
-  "676106": "raw +181 days, PSA 10 81 days",
-  "88640": "raw +180 days, PSA 10 75 days",
-  "87433": "raw +178 days, PSA 10 75 days",
-  "88078": "raw +180 days, PSA 10 73 days",
-  "183806": "raw +181 days, PSA 10 78 days",
-  "189319": "raw +180 days, PSA 10 78 days",
-  "126209": "raw +180 days, PSA 10 73 days",
-  "85674": "raw +90 days, PSA 10 75 days",
-  "90150": "raw +181 days, PSA 10 13 days",
-  "223078": "raw +180 days, PSA 10 80 days",
-  "98140": "raw +181 days, PSA 10 76 days",
-  "535090": "raw +177 days, PSA 10 79 days",
-  "590027": "raw +180 days, PSA 10 76 days",
-  "87403": "raw +179 days, PSA 10 42 days",
-  "85535": "raw +179 days, PSA 10 74 days",
-  "87432": "raw +181 days, PSA 10 28 days",
-  "88074": "raw +179 days, PSA 10 73 days",
-  "490543": "raw +179 days, PSA 10 80 days",
-  "263873": "raw +181 days, PSA 10 80 days",
-  "88639": "raw +180 days, PSA 10 75 days",
-  "87426": "raw +155 days, PSA 10 75 days",
-  "90143": "raw +178 days, PSA 10 74 days",
-  "123434": "raw +181 days, PSA 10 75 days",
-  "170938": "raw +181 days, PSA 10 80 days",
-  "87434": "raw +181 days, PSA 10 74 days",
-  "676089": "raw +181 days, PSA 10 81 days",
-  "91206": "raw +181 days, PSA 10 76 days",
-  "87413": "raw +181 days, PSA 10 76 days",
-  "85670": "raw +176 days, PSA 10 73 days",
-  "476027": "raw +180 days, PSA 10 76 days",
-  "85676": "raw +178 days, PSA 10 75 days",
-  "91238": "raw +181 days, PSA 10 76 days",
-  "517045": "raw +178 days, PSA 10 77 days",
-  "125253": "raw +181 days, PSA 10 75 days",
-  "84189": "raw +179 days, PSA 10 75 days",
-  "476050": "raw +180 days, PSA 10 76 days",
-  "91245": "raw +181 days, PSA 10 72 days",
-  "197823": "raw +181 days, PSA 10 80 days",
-  "88082": "raw +180 days, PSA 10 75 days",
-  "205169": "raw +181 days, PSA 10 76 days",
-  "88627": "raw +172 days, PSA 10 75 days",
-  "87422": "raw +178 days, PSA 10 75 days",
-  "86917": "raw +181 days, PSA 10 75 days",
-  "633031": "raw +180 days, PSA 10 77 days",
-  "87400": "raw +179 days, PSA 10 75 days",
-  "88091": "raw +175 days, PSA 10 74 days",
-  "88647": "raw +106 days, PSA 10 73 days",
-  "88633": "raw +181 days, PSA 10 75 days",
-  "86907": "raw +181 days, PSA 10 76 days",
-  "197856": "raw +181 days, PSA 10 76 days",
-  "246704": "raw +180 days, PSA 10 76 days",
-  "85675": "raw +178 days, PSA 10 73 days",
-  "84188": "raw +178 days, PSA 10 73 days",
-  "88083": "raw +181 days, PSA 10 74 days",
-  "178982": "raw +181 days, PSA 10 79 days",
-  "84572": "raw +177 days, PSA 10 72 days",
-  "106521": "raw +179 days, PSA 10 72 days",
-  "246719": "raw +180 days, PSA 10 76 days",
-  "84202": "raw +181 days, PSA 10 74 days",
-  "86908": "raw +179 days, PSA 10 75 days",
-  "90141": "raw +179 days, PSA 10 73 days",
-  "183828": "raw +181 days, PSA 10 78 days",
-  "610511": "raw +181 days, PSA 10 77 days",
-  "183909": "raw +181 days, PSA 10 78 days",
-  "88624": "raw +181 days, PSA 10 76 days",
-  "87405": "raw +181 days, PSA 10 75 days",
-  "90142": "raw +122 days, PSA 10 71 days",
-  "86906": "raw +181 days, PSA 10 74 days",
-  "489296": "raw +181 days, PSA 10 77 days",
-  "183829": "raw +181 days, PSA 10 78 days",
-  "86918": "raw +181 days, PSA 10 75 days",
-  "87412": "raw +181 days, PSA 10 76 days",
-  "89644": "raw +179 days, PSA 10 74 days",
-  "147229": "raw +164 days, PSA 10 71 days",
-  "88084": "raw +68 days, PSA 10 73 days",
-  "194999": "raw +180 days, PSA 10 78 days",
-  "42479": "raw +179 days, PSA 10 74 days",
-  "88085": "raw +157 days, PSA 10 76 days",
-  "84185": "raw +176 days, PSA 10 73 days"
+  "655094": "raw +5 days, PSA 10 77 days",
+  "183920": "raw +5 days, PSA 10 78 days",
+  "86860": "raw +5 days, PSA 10 71 days",
+  "285257": "raw +5 days, PSA 10 77 days",
+  "648703": "raw +4 days, PSA 10 76 days",
+  "482106": "raw +5 days, PSA 10 78 days",
+  "637592": "raw +5 days, PSA 10 76 days",
+  "284251": "raw +5 days, PSA 10 81 days",
+  "113669": "raw +5 days, PSA 10 76 days",
+  "85089": "raw +5 days, PSA 10 75 days",
+  "246720": "raw +5 days, PSA 10 76 days",
+  "190828": "raw +5 days, PSA 10 78 days",
+  "94663": "raw +5 days, PSA 10 76 days",
+  "149061": "raw +5 days, PSA 10 77 days",
+  "714373": "raw +0 days, PSA 10 4 days",
+  "610664": "raw +5 days, PSA 10 77 days",
+  "85086": "raw +5 days, PSA 10 69 days",
+  "676081": "raw +5 days, PSA 10 81 days",
+  "179380": "raw +5 days",
+  "477974": "raw +5 days, PSA 10 74 days",
+  "205163": "raw +5 days, PSA 10 76 days",
+  "476026": "raw +5 days, PSA 10 76 days",
+  "224365": "raw +5 days, PSA 10 78 days",
+  "85073": "raw +5 days, PSA 10 73 days",
+  "88090": "raw +5 days, PSA 10 75 days",
+  "88632": "raw +5 days, PSA 10 76 days",
+  "246731": "raw +5 days, PSA 10 76 days",
+  "284278": "raw +5 days, PSA 10 81 days",
+  "214241": "raw +5 days, PSA 10 78 days",
+  "232496": "raw +5 days, PSA 10 79 days",
+  "476049": "raw +5 days, PSA 10 76 days",
+  "153234": "raw +5 days, PSA 10 74 days",
+  "148428": "raw +5 days, PSA 10 76 days",
+  "84191": "raw +5 days, PSA 10 74 days",
+  "98112": "raw +5 days, PSA 10 77 days",
+  "90149": "raw +5 days",
+  "151974": "raw +5 days, PSA 10 76 days",
+  "125044": "raw +5 days, PSA 10 75 days",
+  "183966": "raw +5 days, PSA 10 76 days",
+  "44428": "raw +5 days, PSA 10 72 days",
+  "477776": "raw +5 days, PSA 10 74 days",
+  "127135": "raw +5 days",
+  "124114": "raw +5 days, PSA 10 75 days",
+  "189315": "raw +5 days, PSA 10 78 days",
+  "178981": "raw +5 days, PSA 10 79 days",
+  "88108": "raw +5 days, PSA 10 75 days",
+  "164231": "raw +5 days, PSA 10 75 days",
+  "200272": "raw +5 days, PSA 10 76 days",
+  "127193": "raw +5 days, PSA 10 76 days",
+  "87411": "raw +5 days, PSA 10 15 days",
+  "649940": "raw +2 days, PSA 10 71 days",
+  "222072": "raw +5 days, PSA 10 78 days",
+  "43053": "raw +5 days, PSA 10 74 days",
+  "107276": "raw +5 days, PSA 10 75 days",
+  "716740": "raw +0 days",
+  "250320": "raw +5 days, PSA 10 81 days",
+  "85095": "raw +5 days",
+  "513797": "raw +5 days, PSA 10 81 days",
+  "201611": "raw +5 days, PSA 10 79 days",
+  "197806": "raw +5 days, PSA 10 80 days",
+  "86904": "raw +5 days, PSA 10 74 days",
+  "87395": "raw +5 days, PSA 10 74 days",
+  "184483": "raw +5 days, PSA 10 76 days",
+  "107279": "raw +5 days, PSA 10 75 days",
+  "194997": "raw +5 days, PSA 10 78 days",
+  "42445": "raw +5 days, PSA 10 74 days",
+  "113771": "raw +5 days, PSA 10 76 days",
+  "117891": "raw +5 days, PSA 10 76 days",
+  "87416": "raw +5 days, PSA 10 74 days",
+  "114005": "raw +5 days",
+  "84573": "raw +5 days, PSA 10 72 days",
+  "94168": "raw +5 days, PSA 10 76 days",
+  "88087": "raw +5 days, PSA 10 78 days",
+  "146719": "raw +5 days, PSA 10 77 days",
+  "98097": "raw +5 days, PSA 10 76 days",
+  "610522": "raw +5 days, PSA 10 77 days",
+  "495194": "raw +5 days, PSA 10 80 days",
+  "118404": "raw +5 days, PSA 10 73 days",
+  "113670": "raw +5 days, PSA 10 76 days",
+  "714372": "raw +0 days, PSA 10 10 days",
+  "86913": "raw +5 days, PSA 10 76 days",
+  "88097": "raw +5 days, PSA 10 75 days",
+  "87397": "raw +5 days, PSA 10 74 days",
+  "123435": "raw +5 days, PSA 10 75 days",
+  "88067": "raw +5 days, PSA 10 75 days",
+  "226434": "raw +5 days, PSA 10 80 days",
+  "87421": "raw +5 days, PSA 10 73 days",
+  "489307": "raw +5 days, PSA 10 77 days",
+  "90152": "raw +5 days, PSA 10 76 days",
+  "88101": "raw +5 days, PSA 10 75 days",
+  "713257": "raw +0 days",
+  "452034": "raw +5 days, PSA 10 80 days",
+  "85081": "raw +5 days, PSA 10 74 days",
+  "114006": "raw +5 days, PSA 10 75 days",
+  "475982": "raw +5 days, PSA 10 80 days",
+  "196347": "raw +5 days, PSA 10 76 days",
+  "183805": "raw +5 days, PSA 10 78 days",
+  "87398": "raw +5 days, PSA 10 73 days",
+  "170937": "raw +5 days, PSA 10 80 days",
+  "131008": "raw +5 days, PSA 10 77 days",
+  "527938": "raw +5 days, PSA 10 78 days",
+  "85097": "raw +5 days, PSA 10 75 days",
+  "202638": "raw +5 days, PSA 10 80 days",
+  "713256": "raw +0 days",
+  "223073": "raw +5 days, PSA 10 80 days",
+  "86910": "raw +5 days, PSA 10 75 days",
+  "189317": "raw +5 days, PSA 10 78 days",
+  "246700": "raw +5 days, PSA 10 76 days",
+  "662185": "raw +5 days, PSA 10 82 days",
+  "107055": "raw +5 days, PSA 10 71 days",
+  "113764": "raw +5 days, PSA 10 76 days",
+  "282259": "raw +5 days, PSA 10 78 days",
+  "714386": "raw +0 days, PSA 10 7 days",
+  "713259": "raw +0 days",
+  "185986": "raw +5 days, PSA 10 76 days",
+  "90145": "raw +5 days, PSA 10 75 days",
+  "90138": "raw +2 days, PSA 10 73 days",
+  "90147": "raw +5 days, PSA 10 75 days",
+  "187219": "raw +5 days, PSA 10 75 days",
+  "146699": "raw +5 days, PSA 10 77 days",
+  "676093": "raw +5 days, PSA 10 81 days",
+  "117267": "raw +5 days, PSA 10 75 days",
+  "194998": "raw +5 days, PSA 10 78 days",
+  "88073": "raw +5 days, PSA 10 73 days",
+  "114004": "raw +5 days, PSA 10 75 days",
+  "107283": "raw +5 days, PSA 10 75 days",
+  "201352": "raw +5 days, PSA 10 79 days",
+  "88648": "raw +0 days",
+  "107282": "raw +5 days, PSA 10 75 days",
+  "185985": "raw +5 days, PSA 10 76 days",
+  "108599": "raw +5 days, PSA 10 75 days",
+  "87402": "raw +5 days, PSA 10 75 days",
+  "197830": "raw +5 days, PSA 10 80 days",
+  "85677": "raw +5 days, PSA 10 74 days",
+  "87399": "raw +5 days, PSA 10 75 days",
+  "253177": "raw +5 days, PSA 10 77 days",
+  "211452": "raw +5 days, PSA 10 76 days",
+  "85080": "raw +5 days, PSA 10 74 days",
+  "477057": "raw +5 days, PSA 10 80 days",
+  "183908": "raw +5 days, PSA 10 78 days",
+  "101516": "raw +5 days, PSA 10 75 days",
+  "676106": "raw +5 days, PSA 10 81 days",
+  "88640": "raw +5 days, PSA 10 75 days",
+  "87433": "raw +5 days, PSA 10 75 days",
+  "88078": "raw +5 days, PSA 10 73 days",
+  "183806": "raw +5 days, PSA 10 78 days",
+  "189319": "raw +5 days, PSA 10 78 days",
+  "126209": "raw +5 days, PSA 10 73 days",
+  "85674": "raw +5 days, PSA 10 75 days",
+  "90150": "raw +5 days, PSA 10 13 days",
+  "223078": "raw +5 days, PSA 10 80 days",
+  "98140": "raw +5 days, PSA 10 76 days",
+  "535090": "raw +5 days, PSA 10 79 days",
+  "590027": "raw +5 days, PSA 10 76 days",
+  "87403": "raw +5 days, PSA 10 42 days",
+  "85535": "raw +5 days, PSA 10 74 days",
+  "87432": "raw +5 days, PSA 10 28 days",
+  "88074": "raw +5 days, PSA 10 73 days",
+  "490543": "raw +5 days, PSA 10 80 days",
+  "263873": "raw +5 days, PSA 10 80 days",
+  "88639": "raw +5 days, PSA 10 75 days",
+  "87426": "raw +5 days, PSA 10 75 days",
+  "90143": "raw +5 days, PSA 10 74 days",
+  "123434": "raw +5 days, PSA 10 75 days",
+  "170938": "raw +5 days, PSA 10 80 days",
+  "87434": "raw +5 days, PSA 10 74 days",
+  "676089": "raw +5 days, PSA 10 81 days",
+  "91206": "raw +5 days, PSA 10 76 days",
+  "87413": "raw +5 days, PSA 10 76 days",
+  "85670": "raw +5 days, PSA 10 73 days",
+  "476027": "raw +5 days, PSA 10 76 days",
+  "85676": "raw +5 days, PSA 10 75 days",
+  "91238": "raw +5 days, PSA 10 76 days",
+  "517045": "raw +5 days, PSA 10 77 days",
+  "125253": "raw +5 days, PSA 10 75 days",
+  "84189": "raw +5 days, PSA 10 75 days",
+  "476050": "raw +5 days, PSA 10 76 days",
+  "91245": "raw +5 days, PSA 10 72 days",
+  "197823": "raw +5 days, PSA 10 80 days",
+  "88082": "raw +5 days, PSA 10 75 days",
+  "205169": "raw +5 days, PSA 10 76 days",
+  "88627": "raw +5 days, PSA 10 75 days",
+  "87422": "raw +5 days, PSA 10 75 days",
+  "86917": "raw +5 days, PSA 10 75 days",
+  "633031": "raw +5 days, PSA 10 77 days",
+  "87400": "raw +5 days, PSA 10 75 days",
+  "88091": "raw +1 days, PSA 10 74 days",
+  "88647": "raw +5 days, PSA 10 73 days",
+  "88633": "raw +5 days, PSA 10 75 days",
+  "86907": "raw +5 days, PSA 10 76 days",
+  "197856": "raw +5 days, PSA 10 76 days",
+  "246704": "raw +5 days, PSA 10 76 days",
+  "85675": "raw +5 days, PSA 10 73 days",
+  "84188": "raw +5 days, PSA 10 73 days",
+  "88083": "raw +5 days, PSA 10 74 days",
+  "178982": "raw +5 days, PSA 10 79 days",
+  "84572": "raw +5 days, PSA 10 72 days",
+  "106521": "raw +5 days, PSA 10 72 days",
+  "246719": "raw +5 days, PSA 10 76 days",
+  "84202": "raw +5 days, PSA 10 74 days",
+  "86908": "raw +5 days, PSA 10 75 days",
+  "90141": "raw +5 days, PSA 10 73 days",
+  "183828": "raw +5 days, PSA 10 78 days",
+  "610511": "raw +5 days, PSA 10 77 days",
+  "183909": "raw +5 days, PSA 10 78 days",
+  "88624": "raw +5 days, PSA 10 76 days",
+  "87405": "raw +5 days, PSA 10 75 days",
+  "90142": "raw +5 days, PSA 10 71 days",
+  "86906": "raw +5 days, PSA 10 74 days",
+  "489296": "raw +5 days, PSA 10 77 days",
+  "183829": "raw +5 days, PSA 10 78 days",
+  "86918": "raw +5 days, PSA 10 75 days",
+  "87412": "raw +5 days, PSA 10 76 days",
+  "89644": "raw +5 days, PSA 10 74 days",
+  "147229": "raw +4 days, PSA 10 71 days",
+  "88084": "raw +5 days, PSA 10 73 days",
+  "194999": "raw +5 days, PSA 10 78 days",
+  "42479": "raw +5 days, PSA 10 74 days",
+  "88085": "raw +2 days, PSA 10 76 days",
+  "84185": "raw +5 days, PSA 10 73 days"
  },
  "creditsUsed": 2855
 }
