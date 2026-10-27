@@ -41,6 +41,7 @@ from common import (  # noqa: E402
 BASE = os.environ.get("SCRYDEX_BASE", "https://api.scrydex.com")
 REPORT_PATH = DATA / "scrydex_report.json"
 HISTORY_COST = 3  # credits per price-history request (per Scrydex docs)
+HISTORY_PATH_TMPL = os.environ.get("SCRYDEX_HISTORY_PATH", "/pokemon/v1/sealed/{id}/price_history")
 
 
 class Budget(Exception):
@@ -297,7 +298,8 @@ def match_products(meta: dict, sealed: list[dict]):
 def history_points(api: Api, sid: str, variant, condition, start: date, end: date):
     pts = {}
     params = {"start_date": start.isoformat(), "end_date": end.isoformat(), "page_size": 100}
-    for entry in pages(api, f"/pokemon/v1/sealed/{urllib.parse.quote(sid)}/price_history", params, cost=HISTORY_COST):
+    path = HISTORY_PATH_TMPL.format(id=urllib.parse.quote(sid))
+    for entry in pages(api, path, params, cost=HISTORY_COST):
         try:
             d = date.fromisoformat(entry["date"][:10].replace("/", "-"))
         except (KeyError, ValueError):
@@ -310,9 +312,70 @@ def history_points(api: Api, sid: str, variant, condition, start: date, end: dat
     return pts
 
 
+def raw_get(api: Api, path: str, params: dict):
+    """One request, returning (status, parsed-or-text) without exiting on errors. Never prints headers."""
+    url = BASE + path + ("?" + urllib.parse.urlencode(params) if params else "")
+    req = urllib.request.Request(url, headers=api.headers)
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            body = r.read().decode("utf-8", "replace")
+            status = r.status
+    except urllib.error.HTTPError as e:
+        status, body = e.code, e.read().decode("utf-8", "replace")
+    except Exception as e:  # connection dropped, timeout…
+        return "no response", type(e).__name__
+    api.used += HISTORY_COST
+    try:
+        return status, json.loads(body)
+    except ValueError:
+        return status, body[:300]
+
+
+def describe(obj) -> str:
+    if not isinstance(obj, dict):
+        return repr(obj)[:300]
+    data = obj.get("data")
+    keys = sorted(obj.keys())
+    if isinstance(data, list):
+        first = json.dumps(data[0])[:400] if data else "(empty list)"
+        total = obj.get("total_count", obj.get("totalCount"))
+        return f"keys={keys} entries={len(data)} total={total}\n        first entry: {first}"
+    return f"keys={keys} body: {json.dumps(obj)[:400]}"
+
+
+def probe(api: Api, matches: list, meta: dict):
+    """Ask Scrydex for history several ways on a few long-established products, plus a card as a control."""
+    wanted = ["Evolving Skies Booster Box", "151 Elite Trainer Box", "Brilliant Stars Booster Box",
+              "Crown Zenith Elite Trainer Box", "Lost Origin Booster Box"]
+    picks = []
+    for w in wanted:
+        m = next((m for m in matches if w.lower() in m["scrydex"].lower()), None)
+        if m and m not in picks:
+            picks.append(m)
+    picks = (picks or matches)[:3]
+    yday = date.fromisoformat(meta["priceDate"]) - timedelta(days=1)
+    rng = {"start_date": (yday - timedelta(days=60)).isoformat(), "end_date": yday.isoformat()}
+    shapes = [
+        ("sealed price_history, days", "/pokemon/v1/sealed/{id}/price_history", {"days": 60}),
+        ("sealed price_history, dates", "/pokemon/v1/sealed/{id}/price_history", rng),
+        ("sealed price-history (dash)", "/pokemon/v1/sealed/{id}/price-history", {"days": 60}),
+        ("cards price_history w/ sealed id", "/pokemon/v1/cards/{id}/price_history", {"days": 60}),
+    ]
+    print("\nPROBE: how does Scrydex serve sealed price history?")
+    status, obj = raw_get(api, "/pokemon/v1/cards/swsh7-215/price_history", {"days": 30})
+    print(f"  control (a card): HTTP {status}  {describe(obj)}")
+    for m in picks:
+        print(f"\n  {m['scrydex']}  (id {m['scrydexId']})")
+        for label, tmpl, params in shapes:
+            status, obj = raw_get(api, tmpl.format(id=urllib.parse.quote(m["scrydexId"])), params)
+            print(f"    {label}: HTTP {status}  {describe(obj)}")
+    print(f"\nProbe done. Credits used: about {api.used}. Nothing was changed.")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="match and report only")
+    ap.add_argument("--probe", action="store_true", help="test how Scrydex serves sealed price history (~40 credits)")
     ap.add_argument("--max-credits", type=int, default=40000)
     args = ap.parse_args()
 
@@ -343,6 +406,10 @@ def main():
     report = {"priceDate": meta["priceDate"], "matched": matches, "skipped": skips, "imported": {},
               "scrydexSets": sorted({(x.get("expansion") or {}).get("name") or "" for x in sealed})}
 
+    if args.probe:
+        probe(api, matches, meta)
+        return
+
     if args.dry_run or not matches:
         report["creditsUsed"] = api.used
         write_json(REPORT_PATH, report, compact=False)
@@ -369,7 +436,8 @@ def main():
             start = max(EPOCH, date.fromisoformat(rel) - timedelta(days=14)) if rel else EPOCH
             if first_day <= day_index(start) + 14:  # already covered (e.g. a re-run)
                 continue
-            end = EPOCH + timedelta(days=first_day + 7)  # small overlap to line the sources up
+            end = min(EPOCH + timedelta(days=first_day + 7),  # small overlap to line the sources up
+                      date.fromisoformat(meta["priceDate"]) - timedelta(days=1))
             pts = history_points(api, m["scrydexId"], m["variant"], m["condition"], start, end)
             if not probed:
                 probed = True
