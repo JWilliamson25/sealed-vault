@@ -548,7 +548,8 @@ def match_singles(cards: list[dict], scry: list[dict]):
             why = f"name doesn't match ('{c.get('name')}')"
         elif ratio is None:
             why = "Scrydex has no raw near-mint price to confirm it"
-        elif not (0.5 <= ratio <= 2.0):
+        elif not (0.9 <= ratio <= 1.1):
+            # Scrydex's raw prices track TCGplayer's closely, so a real gap means a different card or printing.
             why = f"prices disagree (Scrydex {ratio * t['price']:.2f} vs TCGplayer {t['price']:.2f})"
         if why:
             skipped.append({"card": t["name"], "set": t.get("setName"), "number": t.get("number"), "why": why})
@@ -602,7 +603,7 @@ def singles_import(api: Api, dry_run: bool):
 
     # PSA 10 prices today, for every matched card (free: they came with the search).
     psa_now = {str(m["id"]): {"price": m["psa10"], "date": sj["priceDate"]} for m in matched if m["psa10"]}
-    sj["psa10"] = {**(sj.get("psa10") or {}), **psa_now}
+    sj["psa10"] = psa_now  # replace, so rejected matches don't leave stale prices
     sj["psa10Date"] = sj["priceDate"]
     write_json(SINGLES_PATH, sj)
     if dry_run:
