@@ -50,7 +50,7 @@ class Budget(Exception):
 class Api:
     def __init__(self, key: str, team: str, max_credits: int):
         self.headers = {"X-Api-Key": key, "X-Team-ID": team, "Accept": "application/json",
-                        "User-Agent": "SealedVault/1.0"}
+                        "User-Agent": "Mozilla/5.0 (compatible; SealedVault/1.0)"}
         self.max = max_credits
         self.used = 0
 
@@ -70,8 +70,18 @@ class Api:
                     self.used += cost
                     return None
                 if e.code in (401, 403):
-                    sys.exit("Scrydex refused the key (401/403). Check the SCRYDEX_API_KEY and "
-                             "SCRYDEX_TEAM_ID secrets are set and correct.")
+                    try:
+                        detail = e.read().decode("utf-8", "replace")[:400]
+                    except Exception:
+                        detail = ""
+                    for secret in (self.headers["X-Api-Key"], self.headers["X-Team-ID"]):
+                        detail = detail.replace(secret, "***")  # never echo credentials
+                    server = e.headers.get("Server", "?")
+                    sys.exit(f"Scrydex refused the request: HTTP {e.code} on {path}\n"
+                             f"  Server header: {server}\n"
+                             f"  Scrydex said: {detail or '(empty response)'}\n"
+                             f"  Key length {len(self.headers['X-Api-Key'])} chars, team ID length "
+                             f"{len(self.headers['X-Team-ID'])} chars (values hidden).")
                 if e.code == 429:
                     time.sleep(2 + 2 * attempt)
                     continue
@@ -226,6 +236,11 @@ def main():
 
     api = Api(key, team, args.max_credits)
 
+    print("Checking the key with Scrydex…")
+    usage = api.get("/account/v1/usage")
+    if usage is not None:
+        u = usage.get("data", usage)
+        print(f"  Key works. Credits remaining: {u.get('remaining_credits', u.get('credits_remaining', '?'))}")
     print("Listing Scrydex sealed products…")
     sealed = [s for s in pages(api, "/pokemon/v1/sealed", {"include": "prices", "page_size": 100})
               if (s.get("language_code") or s.get("expansion", {}).get("language_code") or "EN").upper() == "EN"]
