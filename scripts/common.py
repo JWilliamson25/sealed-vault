@@ -219,7 +219,10 @@ SINGLES_HISTORY_PATH = DATA / "singles_history.json"
 # Cards that aren't normal English singles a long-term buyer would hold.
 SINGLE_EXCLUDE_RE = re.compile(
     r"\b(jumbo|oversized|code card|japanese|portuguese|korean|chinese|french|german|italian|spanish|dutch|"
-    r"error|misprint|metal|pre-?release stamp|staff)\b", re.I)
+    r"error|misprint|metal|pre-?release stamp|staff|"
+    # filler promos that rarely hold value: cereal/fast-food/retail giveaways and cosmos-holo blister reprints
+    r"cosmos holo|general mills|kellogg|futsal|burger king|mcdonald'?s|build-a-bear|value pack|toys r us|"
+    r"southeast asia|world collection|pokemon together|blister exclusives?)\b", re.I)
 
 TIER_LABEL = {
     "sir": "Special Illustration Rare", "alt": "Alternate Art", "ir": "Illustration / Gallery",

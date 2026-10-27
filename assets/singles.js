@@ -105,17 +105,14 @@
       if (enoughHist) {
         target = Math.min(st.ma90 * 0.95, st.low90 * 1.08);
         targetWhy = "just under its 90-day average, near its 90-day low";
-      } else if (fair && fair.n >= 8) {
-        target = fair.value * 0.8;
-        targetWhy = "20% under similar cards' median (not enough price history yet)";
-      } else targetWhy = "not enough price history and too few similar cards to compare with";
+      } else targetWhy = `it needs ${E.MIN_HIST_DAYS}+ days of price history first (the Scrydex import or a few weeks of daily syncs)`;
       if (target != null && phase === "hype") { target *= 0.85; targetWhy += ", minus 15% because new-set singles usually keep falling"; }
       if (target != null) target = Math.round(Math.min(target, b.budgetMax) * { conservative: 0.95, balanced: 1, aggressive: 1.05 }[settings.risk || "balanced"] * 100) / 100;
 
       /* --- scores --- */
       const monW = weights[c.pokemon.toLowerCase()] ?? 0.7;
       const demand = Math.round(0.55 * TIERS[c.tier].demand + 0.45 * monW * 100);
-      const value = ratio == null ? 50 : Math.round(clamp((ratio - 0.8) / 0.8, 0, 1) * 100);
+      const value = ratio == null ? 50 : Math.round(clamp((Math.log(ratio) + 0.25) / 0.75, 0, 1) * 100); // ~0.8x → 0, ~1.65x+ → 100
       const timing = { hype: 25, trough: 85, transition: 85, established: 65, vintage: 60, unknown: 50 }[phase];
       const flags = [];
       let momentum = 50;
@@ -150,7 +147,8 @@
       /* --- reasons --- */
       const R = [];
       if (ratio != null) {
-        if (ratio >= 1.3) R.push(`About ${Math.round((1 - 1 / ratio) * 100)}% cheaper than ${fair.how} (${E.fmt$(fair.value)}). Cards this far under their peers are where undervalued buys hide — check that it isn't just a weaker card.`);
+        if (ratio >= 2) R.push(`Less than half ${fair.how} (${E.fmt$(fair.value)}). Those groups mix stronger and weaker cards, so this is a hint to look closer, not proof it's undervalued.`);
+        else if (ratio >= 1.3) R.push(`About ${Math.round((1 - 1 / ratio) * 100)}% cheaper than ${fair.how} (${E.fmt$(fair.value)}). Cards this far under their peers are where undervalued buys hide — check that it isn't just a weaker card.`);
         else if (ratio <= 0.75) R.push(`Already ${Math.round((1 / ratio - 1) * 100)}% above ${fair.how} (${E.fmt$(fair.value)}) — you're paying up for this one.`);
         else R.push(`In line with ${fair.how} (${E.fmt$(fair.value)}).`);
       } else R.push("Too few similar cards to compare its price with.");
@@ -179,6 +177,7 @@
       // One short line for the card face; the full reasons are in the detail view.
       const short = flags.includes("spike") ? `Up ${E.fmtPct(st.ch30)} in 30 days — wait for it to cool`
         : flags.includes("falling") ? `Down ${E.fmtPct(st.ch30)} in 30 days and still sliding`
+        : ratio != null && ratio >= 2 ? `Well under similar cards (${E.fmt$(fair.value)}) — look closer`
         : ratio != null && ratio >= 1.3 ? `${Math.round((1 - 1 / ratio) * 100)}% under similar cards (${E.fmt$(fair.value)})`
         : flags.includes("pullback") ? `${Math.round(dd * 100)}% off its 1-year high and settling`
         : ratio != null && ratio <= 0.75 ? `${Math.round((1 / ratio - 1) * 100)}% over similar cards (${E.fmt$(fair.value)})`
