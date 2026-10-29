@@ -92,7 +92,17 @@ Buy-under targets depend on the set's age: near retail in the first two months, 
 ## Caveats
 
 - Prices are TCGplayer “market price”, which lags on thinly traded items and can be skewed by a single sale.
-- It can't see reprint announcements, Pokémon Center restocks, or print-run sizes — use Ask Claude for that.
+- It can't see reprint announcements or Pokémon Center restocks in the price data. A weekly scheduled Claude task searches that news and records each set's print status in `config.json` → `setOverrides` (see below). Use Ask Claude for anything newer.
 - Not financial advice. Sealed product can and does fall in value.
 
 Data: TCGplayer prices via [tcgcsv.com](https://tcgcsv.com) (please respect its usage guidelines — the scripts already sync once a day with a custom User-Agent and a delay between requests). Not affiliated with TCGplayer, Nintendo, or The Pokémon Company.
+
+## Print status (weekly reprint check)
+
+Whether a set is still being printed changes the call more than anything else: a set that's still reprinting stays in its print-run phase with a retail-based target, however old it is, and only a set that's out of print gets the out-of-print climb. The price data can't tell, so a scheduled Claude task runs every Monday morning:
+
+1. `python scripts/print_status.py todo` lists every tracked set aged 9 months to 5 years with its status and last check date.
+2. It searches recent reprint, restock and print-run news for each set.
+3. It records each result with `python scripts/print_status.py set "<set>" <in_print|likely_out_of_print|out_of_print> "<evidence>"` (or `touch` when nothing changed), then commits and pushes.
+
+`likely_out_of_print` is for inferred cases (no reprint news, rotated, old stock only) and earns part of the out-of-print bonus. A status unchecked for 30+ days goes stale: an out-of-print call stops counting and the product can't be a Strong buy; an in-print call stays in force, since that's the cautious direction.

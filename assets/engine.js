@@ -38,6 +38,9 @@
   // Real daily prices needed inside that window. A few scattered snapshots (a backfill or import
   // that only caught some dates) span many days but say nothing about the trend between them.
   const MIN_HIST_POINTS = 30;
+  // Print status is re-checked weekly by a scheduled task (scripts/print_status.py). Past this age an
+  // "out of print" call no longer earns its bonus; "in print" stays in force (the cautious direction).
+  const PRINT_STALE_DAYS = 30;
 
   const TYPE_LABEL = {
     booster_box: "Booster Box", case: "Sealed Case", display: "Display (multi-unit)", lot: "Bundle / lot",
@@ -241,7 +244,9 @@
       const printStatus = ov.printStatus || so.printStatus || null;
       const printNote = ov.note && ov.printStatus ? ov.note : so.note || null;
       const printChecked = ov.verified || so.verified || null;
-      const oop = printStatus === "out_of_print" || printStatus === "likely_out_of_print";
+      const printAge = printChecked ? Math.round((nowMs - Date.parse(printChecked + "T00:00:00Z")) / DAY) : null;
+      const printStale = printStatus != null && (printAge == null || printAge > PRINT_STALE_DAYS);
+      const oop = !printStale && (printStatus === "out_of_print" || printStatus === "likely_out_of_print");
       let phase = phaseFor(ageMonths);
       if (printStatus === "in_print" && (phase === "transition" || phase === "established")) phase = "trough";
       const printUnverified = phase === "transition" && !oop;
@@ -328,7 +333,7 @@
       /* --- data checks & confidence ---------------------------------------- */
       const checks = [
         { k: "history", ok: enoughHist, label: enoughHist ? `${st.recentN} daily prices in the last ${MIN_HIST_DAYS} days` : `Only ${st.recentN} daily price${st.recentN === 1 ? "" : "s"} in the last ${MIN_HIST_DAYS} days (needs ${MIN_HIST_POINTS})${st.n > st.recentN ? `, plus ${st.n - st.recentN} older snapshot${st.n - st.recentN === 1 ? "" : "s"}` : ""}` },
-        { k: "print", ok: !printUnverified, label: printStatus ? `${{ in_print: "Still being printed", out_of_print: "Out of print", likely_out_of_print: "Likely out of print (inferred)" }[printStatus]} (${printChecked ? "checked " + printChecked : "set in config"})` : printUnverified ? "Print status unverified — it may still be reprinting" : "Print status not needed at this age" },
+        { k: "print", ok: !printUnverified && !printStale, label: printStatus ? `${{ in_print: "Still being printed", out_of_print: "Out of print", likely_out_of_print: "Likely out of print (inferred)" }[printStatus]} (${printChecked ? "checked " + printChecked : "no check date"}${printStale ? ` — stale, over ${PRINT_STALE_DAYS} days old; re-check for reprints` : ""})` : printUnverified ? "Print status unverified — it may still be reprinting" : "Print status not needed at this age" },
         { k: "release", ok: phase !== "unknown", label: phase !== "unknown" ? `Release date ${release}${ov.release ? " (set for this product)" : ""}` : "Release date unknown" },
         { k: "retail", ok: retailSrc !== "none", label: retailSrc === "product" ? `Retail ${fmt$(retail)} (set for this product)` : retailSrc === "format" ? `Retail ${fmt$(retail)} (standard ${TYPE_LABEL[type] || type} MSRP)` : "No retail price on file" },
         { k: "chase", ok: chaseSrc === "set", label: chaseSrc === "set" ? `Chase cards from ${set.name}` : chaseSrc === "linked" ? `Chase cards borrowed from ${chaseInfo.linkedSet} (named in the product)` : chaseSrc === "name" ? `No set chase cards — scored only on ${chaseInfo.pokemon} being on the box` : "Can't tie this product to any chase cards" },
@@ -411,7 +416,7 @@
         (chase < 30 && chaseSrc === "set" ? pick(/Chase score under/) : null) || reasons[1] || reasons[0];
 
       out.push({
-        ...p, type, set, release, releaseSrc: ov.release ? "product" : release ? "set" : "none", printStatus, printNote, printChecked, printUnverified,
+        ...p, type, set, release, releaseSrc: ov.release ? "product" : release ? "set" : "none", printStatus, printNote, printChecked, printStale, printUnverified,
         ageMonths, chaseInfo, chaseSrc, headline, retail, retailSrc, mult, stats: st, phase, target, targetWhy,
         value, lifecycle, format, momentum, chase, score, quality, signal, confidence, checks, flags, reasons,
         gap: target != null ? (price / target - 1) * 100 : null,
@@ -436,7 +441,7 @@
       ? `released ${a.release}${a.releaseSrc === "set" ? " (the set's date; this product may have launched later)" : ""}, ~${Math.round(a.ageMonths)} months ago`
       : "release date unknown to my tracker";
     const print = a.printStatus
-      ? `${{ in_print: "still being reprinted", out_of_print: "out of print", likely_out_of_print: "likely out of print (inferred, not confirmed)" }[a.printStatus]} per my config${a.printNote ? ` — ${a.printNote}` : ""}${a.printChecked ? ` (checked ${a.printChecked})` : ""}`
+      ? `${{ in_print: "still being reprinted", out_of_print: "out of print", likely_out_of_print: "likely out of print (inferred, not confirmed)" }[a.printStatus]} per my config${a.printNote ? ` — ${a.printNote}` : ""}${a.printChecked ? ` (checked ${a.printChecked}${a.printStale ? ", now stale" : ""})` : ""}`
       : "unknown to my tracker";
     const phaseLbl = a.printUnverified ? "second year, print status unverified" : PHASES[a.phase].label;
     const chase = a.chaseSrc === "set" || a.chaseSrc === "linked"
@@ -459,5 +464,5 @@
     ].join("\n");
   }
 
-  global.Engine = { analyse, chaseScore, seriesStats, historyDays, claudePrompt, refineType, TYPE_LABEL, PHASES, SIGNALS, CONFIDENCE, MIN_HIST_DAYS, MIN_HIST_POINTS, dayToDate, dateToDay, fmt$, fmtPct };
+  global.Engine = { analyse, chaseScore, seriesStats, historyDays, claudePrompt, refineType, TYPE_LABEL, PHASES, SIGNALS, CONFIDENCE, MIN_HIST_DAYS, MIN_HIST_POINTS, PRINT_STALE_DAYS, dayToDate, dateToDay, fmt$, fmtPct };
 })(window);
