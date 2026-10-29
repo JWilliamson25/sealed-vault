@@ -96,11 +96,11 @@
     return {
       fair(card) {
         const own = peers?.[`${card.pokemon}|${card.tier}|${card.era}`];
-        if (own && own.n >= 5) return { value: own.median, n: own.n, how: `the median of ${own.n} ${card.pokemon} ${TIERS[card.tier].label.toLowerCase()} cards from the ${ERAS[card.era]}` };
+        if (own && own.n >= 5) return { kind: "own", value: own.median, n: own.n, how: `the median of ${own.n} ${card.pokemon} ${TIERS[card.tier].label.toLowerCase()} cards from the ${ERAS[card.era]}` };
         const base = te[`${card.tier}|${card.era}`];
         if (base && base.n >= 6) {
           const f = monFactor[card.pokemon] ?? 1;
-          return { value: base.median * f, n: base.n, how: `${base.n} ${TIERS[card.tier].label.toLowerCase()} cards from the ${ERAS[card.era]}, adjusted for how ${card.pokemon} usually sells` };
+          return { kind: "borrowed", value: base.median * f, n: base.n, how: `${base.n} ${TIERS[card.tier].label.toLowerCase()} cards from the ${ERAS[card.era]}, adjusted for how ${card.pokemon} usually sells` };
         }
         return null;
       },
@@ -122,6 +122,9 @@
       const st = E.seriesStats(sealedHistory?.series?.["set:" + s.id], sealedHistory?.lastDay);
       if (st.ch90 != null) setSealed90[s.id] = st.ch90;
     }
+
+    const bySetMon = {};
+    for (const c of singles.cards) (bySetMon[`${c.setId}|${c.pokemon}`] ||= []).push(c);
 
     const out = [];
     for (const c of singles.cards) {
@@ -172,7 +175,9 @@
       /* --- scores --- */
       const monW = weights[c.pokemon.toLowerCase()] ?? 0.7;
       const demand = Math.round(0.55 * TIERS[c.tier].demand + 0.45 * monW * 100);
-      const value = ratio == null ? 50 : Math.round(clamp((Math.log(ratio) + 0.25) / 0.75, 0, 1) * 100); // ~0.8x → 0, ~1.65x+ → 100
+      let value = ratio == null ? 50 : Math.round(clamp((Math.log(ratio) + 0.25) / 0.75, 0, 1) * 100); // ~0.8x → 0, ~1.65x+ → 100
+      // A borrowed comparison (other Pokémon's cards scaled for this one) is a rough guide: half the pull.
+      if (fair?.kind === "borrowed") value = Math.round(50 + (value - 50) / 2);
       const timing = { hype: 25, trough: 85, transition: 85, established: 65, vintage: 60, unknown: 50 }[phase];
       const flags = [];
       let momentum = 50;
@@ -219,6 +224,10 @@
       const guard = [];
       // No peers to compare and under a year of history: a discount can't be told apart from a slide.
       if (buyish() && !peerOk && shortHist) { signal = "wait"; guard.push(`No similar cards to compare with and under a year of price history, so a real discount can't be told apart from a slide. Check recent sold listings before buying.`); }
+      // Still drifting down: buying a piece above the buy-under price makes no sense while it's moving toward it.
+      const drifting = st.ch30 != null && st.ch90 != null && st.ch30 <= -3 && st.ch90 <= -5;
+      if (signal === "accumulate" && drifting) { signal = "wait"; flags.push("drifting"); guard.push(`Still drifting down (${E.fmtPct(st.ch30)} this month, ${E.fmtPct(st.ch90)} over 90 days), so there's no reason to buy above ${E.fmt$(target)} — set a limit there instead.`); }
+      if (signal === "strong_buy" && drifting) { signal = "buy"; guard.push("Capped at Buy while it's still drifting down."); }
       // A drop from a short history's high, or a gap to peers so big the peer group is probably wrong, isn't proof.
       if (signal === "strong_buy" && flags.includes("unwind")) { signal = "buy"; guard.push("Capped at Buy: part of the drop may be a run-up unwinding."); }
       if (signal === "strong_buy" && ratio != null && ratio >= 2) { signal = "buy"; guard.push("Capped at Buy: a gap this big usually means the comparison group includes stronger cards, so confirm with sold listings."); }
@@ -231,6 +240,9 @@
         else if (ratio <= 0.75) R.push(`Already ${Math.round((1 / ratio - 1) * 100)}% above ${fair.how} (${E.fmt$(fair.value)}) — you're paying up for this one.`);
         else R.push(`In line with ${fair.how} (${E.fmt$(fair.value)}).`);
       } else R.push("Too few similar cards to compare its price with.");
+      if (fair?.kind === "borrowed" && ratio != null && ratio >= 1.15) R.push(`That comparison borrows other Pokémon's ${TIERS[c.tier].label.toLowerCase()} cards and scales them for ${c.pokemon}, and those groups include stronger cards, so treat the gap as a rough guide.`);
+      const sibs = (bySetMon[`${c.setId}|${c.pokemon}`] || []).filter((x) => x.id !== c.id && x.price > 0).sort((a, b2) => b2.price - a.price).slice(0, 2);
+      if (sibs.length) R.push(`Closest comparable${sibs.length > 1 ? "s" : ""}: ${sibs.map((x) => `${x.name}${x.number ? ` (${x.number.split("/")[0]})` : ""} at ${E.fmt$(x.price)}`).join(", ")} from the same set.`);
       R.push(`${TIERS[c.tier].label} of ${c.pokemon}: ${demand >= 75 ? "the kind of card collectors keep chasing for years" : demand >= 55 ? "solid demand, not a top-tier chase" : "weak long-term demand — fine to collect, not a strong hold"}.`);
       if (phase !== "unknown") R.push(`${E.PHASES[phase].label} (${Math.max(0, ageMonths).toFixed(0)} mo): ${phase === "hype" ? "new-set singles usually fall for months as more packs get opened." : phase === "trough" ? "still being printed — singles usually bottom in this window." : phase === "transition" ? "printing has likely ended; good cards tend to recover from here." : "an older card; moves are slower and driven by demand, not supply."}`);
       if (runup) R.push(`Still ${Math.round((price / lowAll - 1) * 100)}% above where it traded before its run-up (${E.fmt$(lowAll)} in ${monthYear(lowDay)}; peak ${E.fmt$(highAll)}). A drop from a hype peak isn't a discount — the buy-under price is set near the pre-run-up level.`);
@@ -249,7 +261,7 @@
       if (psaNow) {
         const m = psaNow / price;
         if (m >= 12) R.push(`PSA 10 runs about ${E.fmt$(psaNow)}, ${m.toFixed(0)}× raw. A premium that steep tends to shrink as more copies get graded — raw is the better long hold.`);
-        else if (psaNow <= b.budgetMax) R.push(`A PSA 10 copy runs about ${E.fmt$(psaNow)} — within your budget, and graded copies skip the condition risk of raw.`);
+        else if (psaNow <= b.budgetMax) R.push(`A PSA 10 copy runs about ${E.fmt$(psaNow)}${singles.psa10Date ? ` (Scrydex, as of ${singles.psa10Date})` : ""} — within your budget and free of raw's condition risk, but check recent PSA 10 sales first: that price is a snapshot, and cards that grade easily have large PSA 10 populations.`);
         else R.push(`PSA 10 copies sell for about ${E.fmt$(psaNow)} (${m.toFixed(1)}× raw). Raw is the only way in at your budget; buy clean near-mint copies.`);
         if (m >= 4 && price <= b.sweetSpotMax) R.push("Big gap between raw and PSA 10 — worth grading only if your copy is clearly well centered and clean (grading costs ~$20–25+ per card, and many modern pulls don't get a 10).");
       }
@@ -270,6 +282,7 @@
         : runup && price > (target ?? 0) ? `Still ${Math.round((price / lowAll - 1) * 100)}% above its pre-run-up price (${E.fmt$(lowAll)})`
         : flags.includes("slow_slide") ? `Down ${E.fmtPct(st.ch90)} in 90 days, still making new lows`
         : flags.includes("falling") ? `Down ${E.fmtPct(st.ch30)} in 30 days and still sliding`
+        : flags.includes("drifting") ? `Drifting down (${E.fmtPct(st.ch90)} in 90 days) — wait for ${E.fmt$(target)}`
         : peerCapped && price > target && ratio != null && ratio < 1.1 ? `Fair price — in line with similar cards (${E.fmt$(fair.value)}); buy under ${E.fmt$(target)}`
         : flags.includes("unwind") ? `${Math.round(dd * 100)}% off a high in its short history — may be a run-up unwinding`
         : ratio != null && ratio >= 2 ? `Well under similar cards (${E.fmt$(fair.value)}) — look closer`
@@ -297,7 +310,7 @@
       `TCGplayer market (raw, ${priceDate}): ${E.fmt$(r.price)}; 30d ${E.fmtPct(r.stats.ch30)}, 90d ${E.fmtPct(r.stats.ch90)}, 1y high ${E.fmt$(r.stats.high365)}`,
       r.psa.price ? `PSA 10: about ${E.fmt$(r.psa.price)} (Scrydex)${r.psaJump ? ` — note: Scrydex jumped to ${E.fmt$(r.psaJump.to)} recently, which looked like an outlier` : ""}` : "PSA 10: unknown",
       r.histStart != null ? `My price history only starts ${E.dayToDate(r.histStart).toISOString().slice(0, 10)}${r.runup ? `; it ran up from ${E.fmt$(r.lowAll)} since then` : ""}.` : "",
-      r.fair ? `Similar cards: ${r.fair.how}, median ${E.fmt$(r.fair.value)} (this card is ${r.ratio >= 1 ? Math.round((1 - 1 / r.ratio) * 100) + "% under" : Math.round((1 / r.ratio - 1) * 100) + "% over"} that)` : "",
+      r.fair ? `Similar cards${r.fair.kind === "borrowed" ? " (borrowed estimate)" : ""}: ${r.fair.how}, median ${E.fmt$(r.fair.value)} (this card is ${r.ratio >= 1 ? Math.round((1 - 1 / r.ratio) * 100) + "% under" : Math.round((1 / r.ratio - 1) * 100) + "% over"} that)` : "",
       `My tracker says: ${E.SIGNALS[r.signal].label}, buy under ${E.fmt$(r.target)} (${r.targetWhy}), score ${r.score}/100.`,
       `Its reasons: ${r.reasons.slice(0, 6).join(" ")}`,
       "",
