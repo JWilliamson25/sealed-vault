@@ -106,3 +106,7 @@ Whether a set is still being printed changes the call more than anything else: a
 3. It records each result with `python scripts/print_status.py set "<set>" <in_print|likely_out_of_print|out_of_print> "<evidence>"` (or `touch` when nothing changed), then commits and pushes.
 
 `likely_out_of_print` is for inferred cases (no reprint news, rotated, old stock only) and earns part of the out-of-print bonus. A status unchecked for 30+ days goes stale: an out-of-print call stops counting and the product can't be a Strong buy; an in-print call stays in force, since that's the cautious direction.
+
+## Updating the app code
+
+After changing anything in `assets/`, bump the `?v=` value on the script and stylesheet links in `index.html` (any new value works, e.g. the date and time). Otherwise browsers can keep showing the old code, and the old buy calls, for about 10 minutes after GitHub Pages publishes.
