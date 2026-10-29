@@ -33,6 +33,7 @@
       retailReference: { ...c.retailReference, ...(fresh ? s.retailReference || {} : {}) },
       retailOverrides: { ...(c.retailOverrides || {}), ...(fresh ? s.retailOverrides || {} : {}) },
       productOverrides: c.productOverrides || {},
+      setOverrides: c.setOverrides || {},
       formatScore: c.formatScore,
       risk: s.risk || "balanced",
       singles: { budgetMin: 30, budgetMax: 300, sweetSpotMax: 100, ...(c.singles || {}), ...(s.singles || {}) },
@@ -74,7 +75,7 @@
     $("#asof").textContent = `TCGplayer market prices as of ${d}`;
     const hd = E.historyDays(state.meta, state.history);
     if (state.meta.demo) $("#banner").innerHTML = `<div class="banner"><p><strong>Demo data.</strong> These are fictional sets with simulated prices so you can try the app. Real TCGplayer prices replace them after the first daily sync runs.</p></div>`;
-    else if (hd < E.MIN_HIST_DAYS) $("#banner").innerHTML = `<div class="banner"><p><strong>${hd} day${hd === 1 ? "" : "s"} of price history so far.</strong> Until there are about ${E.MIN_HIST_DAYS}, the only calls the app makes are against a known retail price, and most products show “Not enough data.” Nothing is a Strong buy until then.</p></div>`;
+    else if (hd < E.MIN_HIST_POINTS) $("#banner").innerHTML = `<div class="banner"><p><strong>${hd} day${hd === 1 ? "" : "s"} of daily prices so far.</strong> Until there are ${E.MIN_HIST_POINTS} (about ${E.MIN_HIST_DAYS} days of syncing), the only calls the app makes are against a known retail price, and most products show “Not enough data.” Nothing is a Strong buy until then.</p></div>`;
     recompute();
     window.addEventListener("hashchange", route);
     route();
@@ -511,11 +512,11 @@
         <li><strong>Format (15%).</strong> Booster boxes and cases hold value best, then Pokémon Center ETBs and premium collections, then ETBs and bundles. Loose packs and tins trail.</li>
       </ul>
       <h2>How the buy-under target is set</h2>
-      <p>A target is never worked out from today's price. It comes from a known retail price early in a product's life, or from at least ${E.MIN_HIST_DAYS} days of price history after that. With neither, the product shows “Not enough data.”</p>
+      <p>A target is never worked out from today's price. It comes from a known retail price early in a product's life, or from real price history after that: at least ${E.MIN_HIST_POINTS} daily prices in the last ${E.MIN_HIST_DAYS} days. A few scattered older snapshots don't count. With neither, the product shows “Not enough data.”</p>
       <ul class="reasons">
         <li>Brand new (under 2 months): around retail — let the release premium bleed out.</li>
         <li>Still printing (2–12 months): retail to 15% over retail, depending on chase strength.</li>
-        <li>Out-of-print climb (12–24 months): just under the 90-day average.</li>
+        <li>Out-of-print climb (12–24 months): just under the 90-day average — only once the set is confirmed out of print. Sets confirmed still reprinting stay on the retail-based target above, whatever their age. Print status is set per set under <code>setOverrides</code> in config.json.</li>
         <li>Established (2–4 years): about 7% under the 6-month average.</li>
         <li>Older than 4 years: about 5% under the 6-month average.</li>
       </ul>
@@ -531,7 +532,7 @@
         <li>${sigPill("no_call")} No known retail price and not enough price history, or no chase cards to judge it by. No call is better than a guess.</li>
       </ul>
       <h2>Confidence</h2>
-      <p>Every call checks four things: enough price history, a real release date, a known retail price, and chase cards from the product's own set. <strong>Strong buy</strong> needs all four. With thin history, the only calls made are against a known retail price, and they top out at Buy. Products in TCGplayer's catch-all groups (Miscellaneous, promos, POP series) aren't treated as part of a set; add their MSRP and release date under <code>productOverrides</code> in config.json.</p>
+      <p>Every call checks five things: enough price history, a real release date, a known retail price, chase cards from the product's own set, and — for second-year sets — confirmed print status. <strong>Strong buy</strong> needs all five, and a price that isn't still drifting down. A second-year product above 2× retail is never a buy until its set is confirmed out of print. With thin history, the only calls made are against a known retail price, and they top out at Buy. Products in TCGplayer's catch-all groups (Miscellaneous, promos, POP series) aren't treated as part of a set; add their MSRP and release date under <code>productOverrides</code> in config.json.</p>
       <h2>Singles</h2>
       <p>The daily sync also tracks every single of your chase Pokémon priced roughly ${fmt$(settings().singles.budgetMin)}–${fmt$(settings().singles.budgetMax)} (a little wider, so cards drifting past your budget keep their history). Each card's score looks at:</p>
       <ul class="reasons">

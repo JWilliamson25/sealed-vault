@@ -226,6 +226,24 @@
     "704185": {
       "release": "2026-10-02",
       "note": "30th Celebration Mini Tin, $9.99 MSRP (format default)."
+    },
+    "600518": {
+      "retail": 26.94,
+      "release": "2025-03-07",
+      "note": "Prismatic Evolutions Booster Bundle. Launched Mar 7 2025 per pokemon.com (set launched Jan 17); $26.94 MSRP."
+    },
+    "593359": {
+      "retail": 14.99,
+      "release": "2025-01-17",
+      "note": "Prismatic Evolutions Poster Collection. $14.99 MSRP."
+    }
+  },
+  "setOverrides": {
+    "_comment": "Print status per set, by TCGplayer group name (or id). printStatus: \"in_print\" keeps a set in its print-run phase however old it is, so targets stay tied to retail; \"out_of_print\" unlocks the out-of-print climb for second-year sets. Leave a set out when unsure: an unverified second-year set gets no Strong buy and no buy above 2x retail. Re-check every few months.",
+    "SV: Prismatic Evolutions": {
+      "printStatus": "in_print",
+      "verified": "2026-10-28",
+      "note": "Pokemon Center booster bundle restock Jun 25 2026, ETB reprint reported Sep 2026, Walmart bundle drawing Oct 26 2026"
     }
   }
 }

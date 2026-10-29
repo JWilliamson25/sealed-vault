@@ -20,6 +20,12 @@
  *  C. Retail is only known for formats with one fixed MSRP, or when set per product in
  *     config.json → productOverrides. Everything else has no retail.
  *  D. Strong buy needs real history, a real release date and real chase cards.
+ *  E. "Real history" means 30+ actual daily prices in the last 45 days, not a long span made of a
+ *     few scattered snapshots.
+ *  F. Print status is a fact to look up, not a function of age. Sets confirmed still printing
+ *     (config.json → setOverrides) stay in the print-run phase; second-year sets nobody has confirmed
+ *     out of print get no out-of-print bonus, no Strong buy, and no buy at all above 2× retail.
+ *  G. A slow drift down is not a floor: no Strong buy while 30d and 90d are both falling.
  *
  * Everything here is transparent heuristics, not financial advice.
  */
@@ -29,6 +35,9 @@
   const DAY = 86400000;
   const EPOCH = Date.UTC(2024, 0, 1);
   const MIN_HIST_DAYS = 45;
+  // Real daily prices needed inside that window. A few scattered snapshots (a backfill or import
+  // that only caught some dates) span many days but say nothing about the trend between them.
+  const MIN_HIST_POINTS = 30;
 
   const TYPE_LABEL = {
     booster_box: "Booster Box", case: "Sealed Case", display: "Display (multi-unit)", lot: "Bundle / lot",
@@ -136,6 +145,7 @@
     const w90 = win(90), w180 = win(180), w365 = win(365);
     return {
       n: pts.length, spanDays: end - pts[0][0], staleDays: end - pts[pts.length - 1][0], cur,
+      recentN: pts.filter(([d]) => d > end - MIN_HIST_DAYS).length,
       ch30: ch(30), ch90: ch(90), ch365: ch(365),
       low30: w90.length ? Math.min(...win(30)) : null,
       low90: w90.length ? Math.min(...w90) : null,
@@ -155,13 +165,13 @@
     return "vintage";
   }
 
-  /** Days of price history the app has: the longest span any product's history covers. */
+  /** Real daily prices the app has: the most any product has inside the last MIN_HIST_DAYS days.
+   *  (Not the span: a few old snapshots would make a week of syncing look like months.) */
   function historyDays(meta, history) {
     let best = 0;
-    const last = history.lastDay;
     for (const p of meta.products) {
       const s = history.series[String(p.id)];
-      if (s && s.length) best = Math.max(best, (last ?? s[s.length - 1][0]) - Math.min(...s.map((x) => x[0])) + 1);
+      if (s && s.length) best = Math.max(best, seriesStats(s, history.lastDay).recentN);
     }
     return best;
   }
@@ -181,6 +191,7 @@
     const ageOf = (iso) => (iso ? (nowMs - Date.parse(iso + "T00:00:00Z")) / DAY / 30.44 : null);
     const riskMult = { conservative: 0.95, balanced: 1, aggressive: 1.05 }[settings.risk || "balanced"];
     const overrides = settings.productOverrides || {};
+    const setOv = settings.setOverrides || {};
 
     const sets = {};
     for (const s of meta.sets) {
@@ -207,8 +218,9 @@
       const type = refineType(p.name, p.type);
       const price = p.price;
       const st = seriesStats(history.series[String(p.id)], lastDay);
-      // Enough history = 45+ days of it, still updating (last point within 3 weeks), with a recent 90-day window.
-      const enoughHist = st.n >= 6 && st.spanDays >= MIN_HIST_DAYS && st.staleDays <= 21 && st.ma90 != null && st.low90 != null;
+      // Enough history = 30+ real daily prices in the last 45 days, still updating, with a recent 90-day window.
+      // Counting points, not the span, so a handful of scattered snapshots can't pass for months of data.
+      const enoughHist = st.recentN >= MIN_HIST_POINTS && st.spanDays >= MIN_HIST_DAYS && st.staleDays <= 21 && st.ma90 != null && st.low90 != null;
 
       /* --- retail: per product, else a fixed-MSRP format default (never for catch-all multi-era groups' odd formats) */
       let retail = null, retailSrc = "none";
@@ -220,7 +232,14 @@
       /* --- release & phase: from the product override, else the set (only if it's a real set) */
       const release = ov.release || set.release || null;
       const ageMonths = ageOf(release);
-      const phase = phaseFor(ageMonths);
+      // Print status comes from config.json → setOverrides (by set name or id), never from age alone.
+      // A set confirmed still printing stays in the print-run phase however old it is; a second-year set
+      // nobody has confirmed out of print can't claim the "out-of-print climb".
+      const so = setOv[set.name] || setOv[set.id] || setOv[String(set.id)] || {};
+      const printStatus = ov.printStatus || so.printStatus || null; // "in_print" | "out_of_print" | null
+      let phase = phaseFor(ageMonths);
+      if (printStatus === "in_print" && (phase === "transition" || phase === "established")) phase = "trough";
+      const printUnverified = phase === "transition" && printStatus !== "out_of_print";
 
       /* --- chase: the set's cards, a set named in the product, or only the Pokémon on the box */
       let chaseInfo, chaseSrc;
@@ -268,7 +287,8 @@
         value = clamp(100 - ((price / target - 0.95) / 0.4) * 100, 0, 100);
         if (phase === "hype" && mult && mult > 1.4) value = Math.min(value, 20);
       }
-      const lifecycle = PHASES[phase].lifecycle;
+      // The out-of-print bonus is only earned once print status is confirmed.
+      const lifecycle = printUnverified ? 70 : PHASES[phase].lifecycle;
       const fmtType = type === "case" || type === "display" || type === "lot" ? innerType(p.name) : type;
       let format = (settings.formatScore?.[fmtType] ?? 5) * 10;
       if (type === "lot") format = Math.max(0, format - 10);
@@ -286,6 +306,8 @@
         else if (ch90 != null && ch90 < -8 && Math.abs(ch30) < 4) { momentum = 80; flags.push("bottoming"); }
         else if (ch365 != null && ch365 > 15 && ch30 < -5) { momentum = 85; flags.push("dip_in_uptrend"); }
         else if (ch90 != null && ch90 >= 5 && ch90 <= 25 && ch30 > -5 && ch30 < 10) { momentum = 70; flags.push("steady_up"); }
+        // A slow drift down (too gentle for "falling") is still not a floor.
+        else if (ch90 != null && ch30 < -1 && ch90 <= -5) { momentum = 40; flags.push("slow_slide"); }
       }
       if (idx90 != null && ch90 != null) {
         if (idx90 > 15 && ch90 < 5) { momentum = Math.min(100, momentum + 15); flags.push("divergence"); }
@@ -299,7 +321,8 @@
 
       /* --- data checks & confidence ---------------------------------------- */
       const checks = [
-        { k: "history", ok: enoughHist, label: enoughHist ? `${st.n} days of price history` : `Only ${st.n} day${st.n === 1 ? "" : "s"} of price history (needs ~${MIN_HIST_DAYS})` },
+        { k: "history", ok: enoughHist, label: enoughHist ? `${st.recentN} daily prices in the last ${MIN_HIST_DAYS} days` : `Only ${st.recentN} daily price${st.recentN === 1 ? "" : "s"} in the last ${MIN_HIST_DAYS} days (needs ${MIN_HIST_POINTS})${st.n > st.recentN ? `, plus ${st.n - st.recentN} older snapshot${st.n - st.recentN === 1 ? "" : "s"}` : ""}` },
+        { k: "print", ok: !printUnverified, label: printStatus === "in_print" ? `Still being printed (${so.verified || ov.verified ? "checked " + (ov.verified || so.verified) : "set in config"})` : printStatus === "out_of_print" ? `Out of print (${so.verified || ov.verified ? "checked " + (ov.verified || so.verified) : "set in config"})` : printUnverified ? "Print status unverified — it may still be reprinting" : "Print status not needed at this age" },
         { k: "release", ok: phase !== "unknown", label: phase !== "unknown" ? `Release date ${release}${ov.release ? " (set for this product)" : ""}` : "Release date unknown" },
         { k: "retail", ok: retailSrc !== "none", label: retailSrc === "product" ? `Retail ${fmt$(retail)} (set for this product)` : retailSrc === "format" ? `Retail ${fmt$(retail)} (standard ${TYPE_LABEL[type] || type} MSRP)` : "No retail price on file" },
         { k: "chase", ok: chaseSrc === "set", label: chaseSrc === "set" ? `Chase cards from ${set.name}` : chaseSrc === "linked" ? `Chase cards borrowed from ${chaseInfo.linkedSet} (named in the product)` : chaseSrc === "name" ? `No set chase cards — scored only on ${chaseInfo.pokemon} being on the box` : "Can't tie this product to any chase cards" },
@@ -323,6 +346,13 @@
       if (signal === "strong_buy" && (confidence === "low" || misses.length)) { signal = "buy"; downgraded.push("Capped at Buy until the data checks below pass."); }
       // A low-confidence Buy is only allowed when it's anchored to a known retail price.
       if ((signal === "buy" || signal === "accumulate") && confidence === "low" && !(early && retail)) { signal = "wait"; downgraded.push("Not a buy on this little data."); }
+      // Still drifting down: no Strong buy until it flattens.
+      if (signal === "strong_buy" && flags.includes("slow_slide")) { signal = "buy"; downgraded.push("Capped at Buy while the price is still drifting down."); }
+      // Paying a big multiple of retail is only a buy once supply is confirmed to have stopped.
+      if (["strong_buy", "buy", "accumulate"].includes(signal) && printUnverified && mult != null && mult > 2) {
+        signal = "wait";
+        downgraded.push(`At ${mult.toFixed(1)}× retail with print status unverified — not a buy until it's confirmed out of print (add it under setOverrides in config.json).`);
+      }
 
       /* --- reasons, veteran voice -------------------------------------------- */
       const reasons = [];
@@ -340,6 +370,8 @@
         reasons.push(`Filed in TCGplayer's “${set.name}” group, which isn't a set, and the name doesn't point to one — there are no chase cards to judge it by.`);
       }
       if (phase === "unknown") reasons.push("Release date unknown — add it in config.json → productOverrides to get a life-cycle read.");
+      else if (printStatus === "in_print" && phaseFor(ageMonths) !== phase) reasons.push(`${Math.max(0, ageMonths).toFixed(0)} months old but still being reprinted${so.note || ov.note ? ` (${ov.note || so.note})` : ""} — treated as in its print run, so the target stays tied to retail.`);
+      else if (printUnverified) reasons.push(`Second year (${Math.max(0, ageMonths).toFixed(0)} mo old): sealed usually starts climbing once printing stops, but nothing confirms printing has stopped for this set. Reprints in year two are common.`);
       else reasons.push(`${PHASES[phase].label} (${Math.max(0, ageMonths).toFixed(0)} mo old): ${PHASES[phase].blurb}`);
       if (target == null) reasons.push(`No buy-under price yet: ${targetWhy}.`);
       if (mult != null) {
@@ -352,6 +384,7 @@
       if (flags.includes("falling")) reasons.push(early
         ? `Down ${fmtPct(ch30)} in 30 days while still in print — let it flatten before buying.`
         : `Down ${fmtPct(ch90)} over 90 days and still sliding (${fmtPct(ch30)} this month) — don't catch a falling knife; wait for it to flatten.`);
+      if (flags.includes("slow_slide")) reasons.push(`Drifting down: ${fmtPct(ch30)} this month, ${fmtPct(ch90)} over 90 days. Not a crash, but not a floor yet either.`);
       if (flags.includes("bottoming")) reasons.push(`Fell ${fmtPct(ch90)} over 90 days but has flattened this month — looks like it's finding a floor.`);
       if (flags.includes("dip_in_uptrend")) reasons.push(`A ${fmtPct(ch30)} pullback inside a ${fmtPct(ch365)} yearly uptrend — dips like this are where you add.`);
       if (flags.includes("steady_up")) reasons.push(`Steady climb (${fmtPct(ch90)} over 90 days) without a blow-off — healthy.`);
@@ -365,11 +398,13 @@
 
       const pick = (re) => reasons.find((x) => re.test(x));
       const headline = (signal === "no_call" ? pick(/^No buy-under price/) : null) ||
-        pick(/^(Up |Down |Fell |A [-+]|Chase singles|Steady climb)/) || pick(/retail —|release premium/) ||
+        pick(/print status unverified — not a buy/) ||
+        pick(/^(Up |Down |Fell |A [-+]|Chase singles|Steady climb|Drifting down)/) || pick(/retail —|release premium/) ||
         (chase < 30 && chaseSrc === "set" ? pick(/Chase score under/) : null) || reasons[1] || reasons[0];
 
       out.push({
-        ...p, type, set, release, ageMonths, chaseInfo, chaseSrc, headline, retail, retailSrc, mult, stats: st, phase, target, targetWhy,
+        ...p, type, set, release, releaseSrc: ov.release ? "product" : release ? "set" : "none", printStatus, printUnverified,
+        ageMonths, chaseInfo, chaseSrc, headline, retail, retailSrc, mult, stats: st, phase, target, targetWhy,
         value, lifecycle, format, momentum, chase, score, quality, signal, confidence, checks, flags, reasons,
         gap: target != null ? (price / target - 1) * 100 : null,
       });
@@ -389,7 +424,11 @@
 
   function claudePrompt(a, meta) {
     const s = a.stats;
-    const rel = a.release ? `released ${a.release}, ~${Math.round(a.ageMonths)} months ago` : "release date unknown to my tracker";
+    const rel = a.release
+      ? `released ${a.release}${a.releaseSrc === "set" ? " (the set's date; this product may have launched later)" : ""}, ~${Math.round(a.ageMonths)} months ago`
+      : "release date unknown to my tracker";
+    const print = a.printStatus === "in_print" ? "still being reprinted (per my config)" : a.printStatus === "out_of_print" ? "out of print (per my config)" : "unknown to my tracker";
+    const phaseLbl = a.printUnverified ? "second year, print status unverified" : PHASES[a.phase].label;
     const chase = a.chaseSrc === "set" || a.chaseSrc === "linked"
       ? (a.chaseInfo.iconic || []).slice(0, 4).map((c) => `${c.name} ${fmt$(c.price)}`).join("; ") || "none from my list"
       : "none tied to this product (it's in a catch-all TCGplayer group)";
@@ -399,15 +438,16 @@
       `Product: ${a.name} — TCGplayer group "${a.set.name}" (${rel})`,
       `Format: ${TYPE_LABEL[a.type] || a.type}`,
       `TCGplayer market price (${meta.priceDate}): ${fmt$(a.price)}${a.retail ? ` (${a.mult.toFixed(2)}× retail of ${fmt$(a.retail)}${a.retailSrc === "format" ? ", a standard format MSRP" : ""})` : " (no retail price on file)"}`,
-      `Change: 30d ${fmtPct(s.ch30)}, 90d ${fmtPct(s.ch90)}, 1y ${fmtPct(s.ch365)}; 90-day low ${fmt$(s.low90)}; 1-year high ${fmt$(s.high365)} (${s.n} day${s.n === 1 ? "" : "s"} of history)`,
+      `Print status: ${print}`,
+      `Change: 30d ${fmtPct(s.ch30)}, 90d ${fmtPct(s.ch90)}, 1y ${fmtPct(s.ch365)}; 90-day low ${fmt$(s.low90)}; 1-year high ${fmt$(s.high365)} (${s.recentN} daily price${s.recentN === 1 ? "" : "s"} in the last ${MIN_HIST_DAYS} days${s.n > s.recentN ? ` plus ${s.n - s.recentN} older snapshot${s.n - s.recentN === 1 ? "" : "s"}, so the longer changes are rough` : ""})`,
       `Top chase cards${a.chaseSrc === "linked" ? ` (from ${a.chaseInfo.linkedSet})` : ""}: ${chase}`,
       `Chase singles index 90d: ${fmtPct(a.chaseSrc === "set" ? a.set.singlesStats.ch90 : null)}`,
-      `My tracker says: ${SIGNALS[a.signal].label}${a.target != null ? `, target buy ${fmt$(a.target)}` : ", no target yet"}, score ${a.score}/100 (${PHASES[a.phase].label}), ${CONFIDENCE[a.confidence].label.toLowerCase()}.`,
+      `My tracker says: ${SIGNALS[a.signal].label}${a.target != null ? `, target buy ${fmt$(a.target)}` : ", no target yet"}, score ${a.score}/100 (${phaseLbl}), ${CONFIDENCE[a.confidence].label.toLowerCase()}.`,
       `Data gaps: ${a.checks.filter((c) => !c.ok).map((c) => c.label).join("; ") || "none"}`,
       ``,
       `Questions: Is this a good entry for a 4+ year hold? Would you buy now, set a lower limit, or skip? What's the biggest risk (reprints, print volume, chase card decline)?`,
     ].join("\n");
   }
 
-  global.Engine = { analyse, chaseScore, seriesStats, historyDays, claudePrompt, refineType, TYPE_LABEL, PHASES, SIGNALS, CONFIDENCE, MIN_HIST_DAYS, dayToDate, dateToDay, fmt$, fmtPct };
+  global.Engine = { analyse, chaseScore, seriesStats, historyDays, claudePrompt, refineType, TYPE_LABEL, PHASES, SIGNALS, CONFIDENCE, MIN_HIST_DAYS, MIN_HIST_POINTS, dayToDate, dateToDay, fmt$, fmtPct };
 })(window);
