@@ -10,6 +10,13 @@
  *  3. Singles usually bottom while their set is still being printed, then recover once printing stops.
  *  4. Buy pullbacks that have flattened, not spikes and not active slides.
  *  5. Raw copies carry condition risk; the PSA 10 price shows what a perfect copy is worth.
+ *  6. A buy needs a real discount to similar cards, not just a price under the card's own recent lows
+ *     (a card sliding since a run-up always looks "at target" against its own history). Cards in line
+ *     with their peers are fair prices: wait for a limit about 8% under the peer median.
+ *  7. A drop from the high of a short price history isn't a discount: that high may be this year's
+ *     run-up, and the history can't show where the card sat before it.
+ *  8. Promo groups' dates are the group's start, not the card's; many promos were mass-distributed.
+ *  9. When PSA 10 costs many times raw on a widely graded card, raw is the better long hold.
  *
  * Heuristics, not financial advice.
  */
@@ -33,6 +40,7 @@
     base:    { label: "Regular rare",               demand: 38 },
     classic: { label: "Classic Collection reprint", demand: 30 },
   };
+  const PROMO_GROUP_RE = /promo|miscellaneous|league|championship|prize pack|mcdonald|burger king|jumbo/i;
   const ERAS = { sv: "Scarlet & Violet / Mega era", swsh: "Sword & Shield era", smxy: "Sun & Moon / XY era", classic: "2003–2013", wotc: "WotC era", unknown: "era unknown" };
 
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
@@ -122,7 +130,9 @@
       const g = E.seriesStats(history.series["g:" + c.id], lastDay);
       const psaR = robustPsa(history.series["g:" + c.id], lastDay, psa[c.id]?.price);
       const psaNow = psaR.price;
-      const ageMonths = c.release ? (nowMs - Date.parse(c.release + "T00:00:00Z")) / DAY / 30.44 : null;
+      // Promo and catch-all groups carry the group's start date, not the card's own release.
+      const groupDate = PROMO_GROUP_RE.test(c.setName || c.group || "");
+      const ageMonths = c.release && !groupDate ? (nowMs - Date.parse(c.release + "T00:00:00Z")) / DAY / 30.44 : null;
       const phase = (() => { if (ageMonths == null) return "unknown"; if (ageMonths < 2) return "hype"; if (ageMonths < 12) return "trough"; if (ageMonths < 24) return "transition"; if (ageMonths < 48) return "established"; return "vintage"; })();
       const enoughHist = st.n >= 6 && st.spanDays >= E.MIN_HIST_DAYS && st.staleDays <= 21 && st.ma90 != null && st.low90 != null;
       const fair = model.fair(c);
@@ -146,6 +156,16 @@
           targetWhy = `no more than 15% over where it traded before its run-up (${E.fmt$(lowAll)} in ${monthYear(lowDay)})`;
         }
       } else targetWhy = `it needs ${E.MIN_HIST_DAYS}+ days of price history first (the Scrydex import or a few weeks of daily syncs)`;
+      // A buy also needs a real discount to similar cards. Top-demand rarities (SIR, alt art, illustration
+      // rares) only need to be at or under their peers, since those groups lump weaker cards in.
+      const topTier = TIERS[c.tier].demand >= 82;
+      const peerOk = fair && fair.n >= 8;
+      const peerCap = peerOk ? fair.value * (topTier ? 1 : 0.92) : null;
+      let peerCapped = false;
+      if (target != null && peerCap != null && peerCap < target) {
+        target = peerCap; peerCapped = true;
+        targetWhy = topTier ? `no more than similar cards' median (${E.fmt$(fair.value)})` : `about 8% under similar cards' median (${E.fmt$(fair.value)}) — in line with its peers is a fair price, not a discount`;
+      }
       if (target != null && phase === "hype") { target *= 0.85; targetWhy += ", minus 15% because new-set singles usually keep falling"; }
       if (target != null) target = Math.round(Math.min(target, b.budgetMax) * { conservative: 0.95, balanced: 1, aggressive: 1.05 }[settings.risk || "balanced"] * 100) / 100;
 
@@ -163,6 +183,7 @@
         else if (st.ch30 < -15) { momentum = 22; flags.push("falling"); }
         // A slow slide: down 12%+ over 90 days, still dropping this month, sitting at its low.
         else if (st.ch90 != null && st.ch90 <= -12 && st.ch30 <= -4 && st.low90 != null && price <= st.low90 * 1.03) { momentum = 25; flags.push("falling"); flags.push("slow_slide"); }
+        else if (dd != null && dd >= 0.2 && st.ch30 > -5 && !runup && histStart != null && lastDay - histStart < 330) { momentum = 45; flags.push("unwind"); }
         else if (dd != null && dd >= 0.25 && st.ch30 > -5 && !runup) { momentum = 88; flags.push("pullback"); }
         else if (st.ch90 != null && st.ch90 >= 5 && st.ch90 <= 30 && st.ch30 < 12) { momentum = 66; flags.push("steady"); }
       }
@@ -192,6 +213,16 @@
         else if (st.ch30 <= -5 && signal === "strong_buy") signal = "buy";
       }
 
+      // Same checks a second opinion would make before calling it a buy:
+      const buyish = () => ["strong_buy", "buy", "accumulate"].includes(signal);
+      const shortHist = histStart == null || lastDay - histStart < 330;
+      const guard = [];
+      // No peers to compare and under a year of history: a discount can't be told apart from a slide.
+      if (buyish() && !peerOk && shortHist) { signal = "wait"; guard.push(`No similar cards to compare with and under a year of price history, so a real discount can't be told apart from a slide. Check recent sold listings before buying.`); }
+      // A drop from a short history's high, or a gap to peers so big the peer group is probably wrong, isn't proof.
+      if (signal === "strong_buy" && flags.includes("unwind")) { signal = "buy"; guard.push("Capped at Buy: part of the drop may be a run-up unwinding."); }
+      if (signal === "strong_buy" && ratio != null && ratio >= 2) { signal = "buy"; guard.push("Capped at Buy: a gap this big usually means the comparison group includes stronger cards, so confirm with sold listings."); }
+
       /* --- reasons --- */
       const R = [];
       if (ratio != null) {
@@ -203,6 +234,7 @@
       R.push(`${TIERS[c.tier].label} of ${c.pokemon}: ${demand >= 75 ? "the kind of card collectors keep chasing for years" : demand >= 55 ? "solid demand, not a top-tier chase" : "weak long-term demand — fine to collect, not a strong hold"}.`);
       if (phase !== "unknown") R.push(`${E.PHASES[phase].label} (${Math.max(0, ageMonths).toFixed(0)} mo): ${phase === "hype" ? "new-set singles usually fall for months as more packs get opened." : phase === "trough" ? "still being printed — singles usually bottom in this window." : phase === "transition" ? "printing has likely ended; good cards tend to recover from here." : "an older card; moves are slower and driven by demand, not supply."}`);
       if (runup) R.push(`Still ${Math.round((price / lowAll - 1) * 100)}% above where it traded before its run-up (${E.fmt$(lowAll)} in ${monthYear(lowDay)}; peak ${E.fmt$(highAll)}). A drop from a hype peak isn't a discount — the buy-under price is set near the pre-run-up level.`);
+      if (flags.includes("unwind")) R.push(`Down ${Math.round(dd * 100)}% from ${E.fmt$(high)}, but its price history only starts ${monthYear(histStart)}. That high may have been this year's run-up, so the drop isn't necessarily a discount — ${ratio != null ? (ratio < 1.1 ? "and it's no cheaper than similar cards." : "though it is cheaper than similar cards.") : "check where it traded before."}`);
       if (flags.includes("pullback")) R.push(`Down ${Math.round(dd * 100)}% from its 1-year high (${E.fmt$(high)}) and flat this month — a pullback that's settling.`);
       if (flags.includes("spike")) R.push(`Up ${E.fmtPct(st.ch30)} in 30 days. Spikes usually give some back — wait for ${E.fmt$(target)}.`);
       if (flags.includes("still_dropping")) R.push(`At its buy-under price, but down ${E.fmtPct(st.ch30)} in the last 30 days — wait for it to flatten before buying.`);
@@ -212,12 +244,16 @@
       if (flags.includes("lagging_set")) R.push(`Lagging its set: ${E.fmtPct(st.ch90)} over 90 days vs ${E.fmtPct(setSealed90[c.setId])} for the set's sealed product.`);
       if (psaR.jump?.mixed) R.push(`Scrydex mixes two PSA 10 prices for this card (about ${E.fmt$(psaR.jump.from)} and ${E.fmt$(psaR.jump.to)} — probably a normal copy and a signed or special one). Using ${E.fmt$(psaR.price)}; check recent sold listings.`);
       else if (psaR.jump) R.push(`Scrydex's PSA 10 price jumped from about ${E.fmt$(psaR.jump.from)} to ${E.fmt$(psaR.jump.to)} on ${E.dayToDate(psaR.jump.since).toISOString().slice(0, 10)} and froze there — likely one odd sale or listing. Using ${E.fmt$(psaR.price)}; check recent sold listings before relying on it.`);
+      if (peerCapped && price > target) R.push(`Fair price, not a bargain: the buy-under price is ${E.fmt$(target)}, ${targetWhy}.`);
+      if (c.tier === "promo") R.push(groupDate ? "Promo: many were mass-distributed (events, movie giveaways, box toppers, jumbo packs), so check how widely before treating it as scarce. Its listed date is the promo group's start, not this card's." : "Promo: many were mass-distributed, so check how widely before treating it as scarce.");
       if (psaNow) {
         const m = psaNow / price;
-        if (psaNow <= b.budgetMax) R.push(`A PSA 10 copy runs about ${E.fmt$(psaNow)} — within your budget, and graded copies skip the condition risk of raw.`);
+        if (m >= 12) R.push(`PSA 10 runs about ${E.fmt$(psaNow)}, ${m.toFixed(0)}× raw. A premium that steep tends to shrink as more copies get graded — raw is the better long hold.`);
+        else if (psaNow <= b.budgetMax) R.push(`A PSA 10 copy runs about ${E.fmt$(psaNow)} — within your budget, and graded copies skip the condition risk of raw.`);
         else R.push(`PSA 10 copies sell for about ${E.fmt$(psaNow)} (${m.toFixed(1)}× raw). Raw is the only way in at your budget; buy clean near-mint copies.`);
         if (m >= 4 && price <= b.sweetSpotMax) R.push("Big gap between raw and PSA 10 — worth grading only if your copy is clearly well centered and clean (grading costs ~$20–25+ per card, and many modern pulls don't get a 10).");
       }
+      R.push(...guard);
       if (price > b.budgetMax) R.push(`Now above your ${E.fmt$(b.budgetMax)} max; kept in the list so its history continues.`);
       if (!enoughHist) R.push(`Only ${st.n} day${st.n === 1 ? "" : "s"} of price history so far — treat this call as provisional.`);
       else if (histStart != null && lastDay - histStart < 330) R.push(`Price history here only goes back to ${monthYear(histStart)}, so older prices (like where it sat before any hype) aren't visible. TCGplayer's market price can also run above actual sold prices — check recent sales.`);
@@ -225,7 +261,7 @@
       const checks = [
         { k: "history", ok: enoughHist, label: enoughHist ? `${st.spanDays} days of price history` : `Only ${st.spanDays} days of price history (needs ${E.MIN_HIST_DAYS})` },
         { k: "peers", ok: !!fair, label: fair ? `Compared with ${fair.n} similar cards` : "Too few similar cards to compare with" },
-        { k: "release", ok: !!c.release, label: c.release ? `Released ${c.release}` : "Release date unknown (promo or catch-all group)" },
+        { k: "release", ok: !!c.release && !groupDate, label: groupDate ? `Release date unknown (${c.release ? `${c.release} is the promo group's start` : "promo or catch-all group"})` : c.release ? `Released ${c.release}` : "Release date unknown" },
         { k: "psa", ok: !!psaNow && !psaR.jump, label: psaR.jump ? "PSA 10 price had a suspicious jump (using the earlier level)" : psaNow ? "PSA 10 price known" : "No PSA 10 price" },
       ];
       // One short line for the card face; the full reasons are in the detail view.
@@ -234,14 +270,17 @@
         : runup && price > (target ?? 0) ? `Still ${Math.round((price / lowAll - 1) * 100)}% above its pre-run-up price (${E.fmt$(lowAll)})`
         : flags.includes("slow_slide") ? `Down ${E.fmtPct(st.ch90)} in 90 days, still making new lows`
         : flags.includes("falling") ? `Down ${E.fmtPct(st.ch30)} in 30 days and still sliding`
+        : peerCapped && price > target && ratio != null && ratio < 1.1 ? `Fair price — in line with similar cards (${E.fmt$(fair.value)}); buy under ${E.fmt$(target)}`
+        : flags.includes("unwind") ? `${Math.round(dd * 100)}% off a high in its short history — may be a run-up unwinding`
         : ratio != null && ratio >= 2 ? `Well under similar cards (${E.fmt$(fair.value)}) — look closer`
-        : ratio != null && ratio >= 1.3 ? `${Math.round((1 - 1 / ratio) * 100)}% under similar cards (${E.fmt$(fair.value)})`
+        : ratio != null && ratio >= 1.15 ? `${Math.round((1 - 1 / ratio) * 100)}% under similar cards (${E.fmt$(fair.value)})`
+        : !peerOk && shortHist && signal === "wait" ? "No similar cards and under a year of history — check sold listings"
         : flags.includes("pullback") ? `${Math.round(dd * 100)}% off its 1-year high and settling`
         : ratio != null && ratio <= 0.75 ? `${Math.round((1 / ratio - 1) * 100)}% over similar cards (${E.fmt$(fair.value)})`
         : flags.includes("lagging_set") ? "Lagging its own set's sealed product"
         : ratio != null ? `In line with similar cards (${E.fmt$(fair.value)})` : "Too few similar cards to compare";
       out.push({
-        ...c, kind: "single", checks, short, histStart, runup, lowAll, psaJump: psaR.jump || null, set: { id: c.setId, name: c.setName }, stats: st, psa: { price: psaNow, stats: g },
+        ...c, kind: "single", checks, short, peerCapped, groupDate, psaMult: psaNow ? psaNow / price : null, histStart, runup, lowAll, psaJump: psaR.jump || null, set: { id: c.setId, name: c.setName }, stats: st, psa: { price: psaNow, stats: g },
         ageMonths, phase, fair, ratio, target, targetWhy, gap: target != null ? (price / target - 1) * 100 : null,
         demand, value, momentum, timing, budgetFit, score, confidence, signal, flags, reasons: R,
         headline: R[0], tierLabel: TIERS[c.tier].label, eraLabel: ERAS[c.era],
@@ -254,14 +293,15 @@
     return [
       `Act as a veteran Pokémon TCG singles investor. I buy raw (sometimes PSA 10) singles of popular Pokémon to hold 4+ years. My budget is ${E.fmt$(b.budgetMin)}–${E.fmt$(b.budgetMax)} per card, sweet spot up to ${E.fmt$(b.sweetSpotMax)}. Search the web for recent sales and news on this card, then give me a second opinion.`,
       "",
-      `Card: ${r.name} — ${r.setName}${r.number ? ` #${r.number}` : ""} (${r.tierLabel}${r.sub ? `, ${r.sub}` : ""}), released ${r.release || "unknown"}`,
+      `Card: ${r.name} — ${r.setName}${r.number ? ` #${r.number}` : ""} (${r.tierLabel}${r.sub ? `, ${r.sub}` : ""}), ${r.groupDate ? `release unknown to my tracker (${r.release || "no date"} is the promo group's start date)` : `released ${r.release || "unknown"}`}`,
       `TCGplayer market (raw, ${priceDate}): ${E.fmt$(r.price)}; 30d ${E.fmtPct(r.stats.ch30)}, 90d ${E.fmtPct(r.stats.ch90)}, 1y high ${E.fmt$(r.stats.high365)}`,
       r.psa.price ? `PSA 10: about ${E.fmt$(r.psa.price)} (Scrydex)${r.psaJump ? ` — note: Scrydex jumped to ${E.fmt$(r.psaJump.to)} recently, which looked like an outlier` : ""}` : "PSA 10: unknown",
       r.histStart != null ? `My price history only starts ${E.dayToDate(r.histStart).toISOString().slice(0, 10)}${r.runup ? `; it ran up from ${E.fmt$(r.lowAll)} since then` : ""}.` : "",
-      r.fair ? `Similar cards: ${r.fair.how}, median ${E.fmt$(r.fair.value)}` : "",
-      `My tracker says: ${E.SIGNALS[r.signal].label}, buy under ${E.fmt$(r.target)}, score ${r.score}/100.`,
+      r.fair ? `Similar cards: ${r.fair.how}, median ${E.fmt$(r.fair.value)} (this card is ${r.ratio >= 1 ? Math.round((1 - 1 / r.ratio) * 100) + "% under" : Math.round((1 / r.ratio - 1) * 100) + "% over"} that)` : "",
+      `My tracker says: ${E.SIGNALS[r.signal].label}, buy under ${E.fmt$(r.target)} (${r.targetWhy}), score ${r.score}/100.`,
+      `Its reasons: ${r.reasons.slice(0, 6).join(" ")}`,
       "",
-      "Is it actually undervalued or just a weaker card? Would you buy raw now, set a lower limit, buy a PSA 10 instead, or skip? Biggest risks (reprints, more copies coming, condition)?",
+      "Where you disagree with my tracker, say which fact it's missing or getting wrong, so I can fix it. Is it actually undervalued or just a weaker card? Would you buy raw now, set a lower limit, buy a PSA 10 instead, or skip? Biggest risks (reprints, more copies coming, condition)?",
     ].filter(Boolean).join("\n");
   }
 
