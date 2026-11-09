@@ -242,82 +242,82 @@
     "_comment": "Print status per set, by TCGplayer group name (or id). printStatus: \"in_print\" keeps a set in its print-run phase however old it is, so targets stay tied to retail; \"out_of_print\" = confirmed (its era has ended); \"likely_out_of_print\" = inferred (no reprint news, rotated, old stock only) and earns part of the out-of-print bonus. TPCi never announces when printing stops. Leave a set out when unsure: an unverified second-year set gets no Strong buy and no buy above 2x retail. Re-check every few months.",
     "SV: Prismatic Evolutions": {
       "printStatus": "in_print",
-      "verified": "2026-11-02",
-      "note": "Walmart Collectibles Draw ETB (69.99) Aug 31, Oct 7, Oct 14 and Oct 28 2026; Walmart booster bundle draw Oct 26 2026; Pokemon Center ETB drop Aug 2026"
+      "verified": "2026-11-09",
+      "note": "Walmart Collectibles Draw ETB (69) Oct 28 and Nov 4 2026; Walmart booster bundle 2pk draw Oct 26 2026; Best Buy ETB invite sales Oct 21 and Oct 30 2026; Pokemon Center ETB bundle drop Aug 17 2026"
     },
     "SV10: Destined Rivals": {
       "printStatus": "in_print",
-      "verified": "2026-11-02",
-      "note": "Walmart Collectibles Draws Oct 14 2026 (DRI blisters) and Oct 21 2026 (3-pack blisters 39.97); Pokemon Center ETB drop Aug 17 2026; Target backend ETB load rumor Jun 2026"
+      "verified": "2026-11-09",
+      "note": "Walmart Collectibles Draw 3-pack blister 2pk (39.97) Oct 21 2026; Target DRI 3-pack blister drawing Nov 2-4 2026; Pokemon Center ETB bundle drop Aug 17 2026"
     },
     "ME02: Phantasmal Flames": {
       "printStatus": "in_print",
-      "verified": "2026-11-02",
-      "note": "MIXED/thinning: no Jul-Oct 2026 Walmart/Target/Costco/PC restock of ETB, bundle or box found (absent from all Walmart draws Aug 31-Oct 28); last qualifying PC booster bundle drop Apr 2026; one-store Houston reprint report Aug 2026; downgrade if nothing by next check"
+      "verified": "2026-11-09",
+      "note": "MIXED/thinning: still no Jul-early Nov 2026 Walmart/Target/Costco/PC/Best Buy restock of ETB, bundle or box found (absent from Walmart draws Oct 21-Nov 4 and PC drops through Oct); last qualifying PC booster bundle drop Apr 2026; unverified GameStop restock YouTube short; kept in_print as Mega Evolution era still printing - downgrade candidate"
     },
     "ME: Ascended Heroes": {
       "printStatus": "in_print",
-      "verified": "2026-11-02",
-      "note": "Walmart Collectibles Draw Oct 28 2026 incl. Ascended Heroes 89.99 (alert accounts: ETB); Walmart teased AH for draws Sep 2026; Costco ETB restock Sep 2026; Pokemon Center drop Apr 2026; Aug 2026 tins are a side product"
+      "verified": "2026-11-09",
+      "note": "Walmart Collectibles Draw ETB (79.99, limit 4) Oct 28 2026; Costco ETB restock Sep 2026; Pokemon Center drop Apr 2026; Aug 2026 tins are a side product"
     },
     "SV08: Surging Sparks": {
       "printStatus": "likely_out_of_print",
-      "verified": "2026-11-02",
-      "note": "no restock or reprint news since an Apr 2025 Pokemon Center restock; Scarlet & Violet sets winding down ahead of 2027 rotation"
+      "verified": "2026-11-09",
+      "note": "no restock or reprint news Jul-early Nov 2026 (absent from Walmart draws Oct 21-Nov 4 and PC drops); last PC restock Apr 2025; Scarlet & Violet wind-down, stop reported early 2027 (moonstone Jul 2026)"
     },
     "SV06: Twilight Masquerade": {
       "printStatus": "likely_out_of_print",
-      "verified": "2026-11-02",
+      "verified": "2026-11-09",
       "note": "no US reprint or restock news Jul-Oct 2026; single Smyths UK ETB restock report Aug 2026 (resellvault) - watch; in the Scarlet & Violet wind-down, expected to rotate in 2027"
     },
     "SV05: Temporal Forces": {
       "printStatus": "likely_out_of_print",
-      "verified": "2026-11-02",
+      "verified": "2026-11-09",
       "note": "no reprint news; in the Scarlet & Violet wind-down, expected to rotate in 2027"
     },
     "SV: Paldean Fates": {
       "printStatus": "likely_out_of_print",
-      "verified": "2026-11-02",
+      "verified": "2026-11-09",
       "note": "rotated out of Standard Apr 2026; no restock Jul-Oct 2026; cardtracker.au (Nov 2026) says no new sealed product being made, leftover stock only"
     },
     "SV03: Obsidian Flames": {
       "printStatus": "likely_out_of_print",
-      "verified": "2026-11-02",
+      "verified": "2026-11-09",
       "note": "last (small, 'final') distributor reprint Nov 2024-Mar 2025; rotated out of Standard Apr 2026; no 2026 restock found, older stock only"
     },
     "SV: Scarlet & Violet 151": {
       "printStatus": "likely_out_of_print",
-      "verified": "2026-11-02",
+      "verified": "2026-11-09",
       "note": "no English reprint announced and no MSRP ETB/bundle restock Jul-Oct 2026 (TCGinvest Sep 27 2026); last Pokemon Center 151 bundle drop Feb 2026; Jul 2026 mini tins are a side product; ETB ~500+ vs 50 MSRP. Draws reprint talk - watch it"
     },
     "SWSH: Crown Zenith": {
       "printStatus": "out_of_print",
-      "verified": "2026-11-02",
+      "verified": "2026-11-09",
       "note": "Sword & Shield era ended in 2023; no reprint since"
     },
     "SWSH12: Silver Tempest": {
       "printStatus": "out_of_print",
-      "verified": "2026-11-02",
+      "verified": "2026-11-09",
       "note": "Sword & Shield era ended in 2023; last seen Target ETB restock ~Mar 2026 (old stock), nothing Jul-Oct 2026"
     },
     "SWSH11: Lost Origin": {
       "printStatus": "out_of_print",
-      "verified": "2026-11-02",
+      "verified": "2026-11-09",
       "note": "Sword & Shield era ended in 2023; no reprint since"
     },
     "Pokemon GO": {
       "printStatus": "out_of_print",
-      "verified": "2026-11-02",
+      "verified": "2026-11-09",
       "note": "Sword & Shield era ended in 2023; no reprint since"
     },
     "SWSH09: Brilliant Stars": {
       "printStatus": "out_of_print",
-      "verified": "2026-11-02",
+      "verified": "2026-11-09",
       "note": "Sword & Shield era ended in 2023; no reprint since"
     },
     "SWSH08: Fusion Strike": {
       "printStatus": "out_of_print",
-      "verified": "2026-11-02",
+      "verified": "2026-11-09",
       "note": "Sword & Shield era ended in 2023; no reprint since"
     }
   }
