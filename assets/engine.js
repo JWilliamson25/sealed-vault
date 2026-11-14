@@ -62,6 +62,7 @@
   const SIGNALS = {
     strong_buy: { label: "Strong buy", rank: 0, icon: "▲▲" },
     buy:        { label: "Buy",        rank: 1, icon: "▲" },
+    verify:     { label: "Check first", rank: 1.5, icon: "◇" }, // singles: looks like a buy, but its long-run price isn't known yet
     accumulate: { label: "Accumulate", rank: 2, icon: "◆" },
     wait:       { label: "Wait",       rank: 3, icon: "■" },
     overheated: { label: "Overheated", rank: 4, icon: "!" },

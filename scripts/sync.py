@@ -207,6 +207,9 @@ def sync_singles(cfg, groups, parent_of, singles, old_singles, price_date, today
     srarity = old_singles.get("srarity") or {}  # Scrydex rarity per card, from the singles import
 
     cards, peers_raw = [], {}
+    set_tiers_raw: dict[str, list] = {}  # "group|tier" -> prices of EVERY card in that (sub)set, any Pokemon
+    spotlight_raw: dict[str, list] = {}  # chase Pokemon -> its recent big cards, any price
+    pd = datetime.fromisoformat(price_date).date()
     for pgid, lst in singles.items():
         parent = gby.get(pgid, {})
         release = group_release(parent, price_date)
@@ -214,11 +217,16 @@ def sync_singles(cfg, groups, parent_of, singles, old_singles, price_date, today
             if SINGLE_EXCLUDE_RE.search(c["name"]) or SINGLE_EXCLUDE_RE.search(c.get("group") or ""):
                 continue
             mon = next((nm for nm, _w, r in rx if r.search(c["name"])), None)
+            tier = card_tier(c["name"], c.get("rarity"), c.get("number"), release, srarity.get(str(c["id"])))
+            if c.get("sprice") and c["sprice"] >= 0.25:
+                set_tiers_raw.setdefault(f"{c.get('group') or parent.get('name')}|{tier}", []).append(c["sprice"])
             if not mon:
                 continue
-            tier = card_tier(c["name"], c.get("rarity"), c.get("number"), release, srarity.get(str(c["id"])))
             era = card_era(release)
             price = c["sprice"]
+            if release and price and price >= 60 and (pd - datetime.fromisoformat(release).date()).days <= 300:
+                spotlight_raw.setdefault(mon, []).append({"name": c["name"], "set": parent.get("name", c.get("group")),
+                                                          "price": price, "release": release, "tier": tier})
             if price and price >= 3:  # peers use every price, so the band doesn't skew them
                 peers_raw.setdefault(f"{mon}|{tier}|{era}", []).append(price)
             in_band = lo <= price <= hi
@@ -237,6 +245,12 @@ def sync_singles(cfg, groups, parent_of, singles, old_singles, price_date, today
         n = len(v)
         return v[n // 2] if n % 2 else (v[n // 2 - 1] + v[n // 2]) / 2
     peers = {k: {"median": round(med(v), 2), "n": len(v)} for k, v in peers_raw.items()}
+    # Setmates: what the same card type sells for in the same (sub)set across all Pokemon. Only for sets
+    # with a tracked card, to keep the file small.
+    tracked_groups = {c.get("group") or c.get("setName") for c in cards}
+    set_tiers = {k: {"median": round(med(v), 2), "n": len(v), "max": round(max(v), 2)}
+                 for k, v in set_tiers_raw.items() if k.rsplit("|", 1)[0] in tracked_groups}
+    spotlight = {m: sorted(v, key=lambda x: -x["price"])[:4] for m, v in spotlight_raw.items()}
 
     hist = load_history_file(SINGLES_HISTORY_PATH)
     keep = set()
@@ -248,7 +262,7 @@ def sync_singles(cfg, groups, parent_of, singles, old_singles, price_date, today
     compact_history(hist, today, h["dailyWindowDays"], h["olderBucketDays"], keep)
     hist["lastDay"] = today
     out = {**{k: v for k, v in old_singles.items() if k in ("psa10", "psa10Date", "scrydex", "srarity")},
-           "priceDate": price_date, "cards": cards, "peers": peers}
+           "priceDate": price_date, "cards": cards, "peers": peers, "setTiers": set_tiers, "spotlight": spotlight}
     write_json(SINGLES_PATH, out)
     write_json(SINGLES_HISTORY_PATH, hist)
     print(f"Tracking {len(cards)} singles of your chase Pokemon (${lo}-${hi}); {len(peers)} peer groups")

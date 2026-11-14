@@ -274,3 +274,16 @@ tbody tr:last-child td { border-bottom: 0; }
   .card-slab .foot-trend { display: none; }
   .card-set { padding: 6px 10px 0; }
 }
+
+/* ---- singles investor checklist ---- */
+.sig-verify { background: var(--neutral-bg); color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--good); }
+.grade.g-verify b { color: var(--ink); }
+.pillars { width: 100%; border-collapse: collapse; font-size: .9375rem; }
+.pillars th { text-align: left; font-weight: 600; padding: 5px 8px 5px 0; }
+.pillars th .small { font-weight: 400; display: block; }
+.pillars td { padding: 5px 0; }
+.pillars td.num { width: 3em; text-align: right; padding-right: 10px; font-variant-numeric: tabular-nums; font-weight: 700; }
+.pillars .bar-cell { width: 34%; }
+.pillars tr.total th, .pillars tr.total td { border-top: 1px solid var(--line); padding-top: 8px; }
+.pbar { display: block; height: 6px; border-radius: 3px; background: var(--neutral-bg); overflow: hidden; }
+.pbar i { display: block; height: 100%; background: var(--ink-2); border-radius: 3px; }

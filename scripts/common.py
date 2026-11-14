@@ -225,7 +225,8 @@ SINGLE_EXCLUDE_RE = re.compile(
     r"southeast asia|world collection|pokemon together|blister exclusives?)\b", re.I)
 
 TIER_LABEL = {
-    "sir": "Special Illustration Rare", "alt": "Alternate Art", "ir": "Illustration / Gallery",
+    "sir": "Special Illustration Rare", "alt": "Alternate Art", "ir": "Illustration Rare",
+    "gallery_v": "Gallery V / VMAX / full art", "gallery": "Gallery holo (TG / GG / RC)",
     "secret": "Secret Rare", "gold": "Gold / Hyper Rare", "rainbow": "Rainbow Rare",
     "shiny": "Shiny", "ultra": "Ultra Rare / Full Art",
     "vintage": "Vintage holo & rare", "promo": "Promo", "classic": "Classic Collection reprint",
@@ -242,8 +243,18 @@ def card_tier(name: str, rarity: str | None, number: str | None, release: str | 
         return "sir"
     if re.search(r"alternate (full )?art", n, re.I):
         return "alt"
-    if "illustration rare" in r or re.match(r"(TG|GG|RC)\d", num):
+    if "illustration rare" in r:
         return "ir"
+    if re.match(r"(TG|GG|RC)\d", num):
+        # Gallery subsets (Trainer Gallery, Galarian Gallery, Radiant Collection) are three different
+        # markets: the secret golds, the V/VMAX/EX and full-art cards, and the plain holos. The plain
+        # holos sell mostly on the Pokemon, at a fraction of an illustration rare of the same Pokemon.
+        sr = (srarity or "").lower()
+        if re.search(r"secret|gold|hyper", r + " " + sr) or re.search(r"\((secret|gold)\)", n, re.I):
+            return "gold"
+        if re.search(r"\b(V|VMAX|VSTAR|GX|EX|ex)\b|full art", n) or re.search(r"holo (v|vmax|vstar|ex|gx)\b|rare ultra", sr):
+            return "gallery_v"
+        return "gallery"
     if r.startswith("classic collection"):
         return "classic"
     if re.search(r"secret|rainbow|hyper|gold|futuristic", r) or re.search(r"\((secret|gold|rainbow)\)", n, re.I):

@@ -494,6 +494,9 @@ def card_prices(card: dict):
             elif (p.get("type") == "graded" and str(p.get("company", "")).upper() == "PSA"
                   and str(p.get("grade", "")).strip() in ("10", "10.0") and not plain_flags(p)):
                 out.append((v.get("name"), "psa10", float(p["market"])))
+            elif (p.get("type") == "graded" and str(p.get("company", "")).upper() == "PSA"
+                  and str(p.get("grade", "")).strip() in ("9", "9.0") and not plain_flags(p)):
+                out.append((v.get("name"), "psa9", float(p["market"])))
     return out
 
 
@@ -563,7 +566,10 @@ def match_singles(cards: list[dict], scry: list[dict]):
             continue
         psa = [val for v, k, val in card_prices(c) if k == "psa10" and v == var] or \
               [val for v, k, val in card_prices(c) if k == "psa10"]
+        psa9 = [val for v, k, val in card_prices(c) if k == "psa9" and v == var] or \
+               [val for v, k, val in card_prices(c) if k == "psa9"]
         matched.append({"id": t["id"], "card": t["name"], "scrydexId": c["id"], "scrydex": c.get("name"),
+                        "psa9": sorted(psa9)[len(psa9) // 2] if psa9 else None,
                         "scrydexSet": (c.get("expansion") or {}).get("name"), "variant": var, "via": via,
                         "priceRatio": round(ratio, 3), "psa10": sorted(psa)[len(psa) // 2] if psa else None,
                         "rarity": c.get("rarity")})
@@ -613,6 +619,7 @@ def singles_import(api: Api, dry_run: bool):
     # PSA 10 prices today, for every matched card (free: they came with the search).
     psa_now = {str(m["id"]): {"price": m["psa10"], "date": sj["priceDate"]} for m in matched if m["psa10"]}
     sj["psa10"] = psa_now  # replace, so rejected matches don't leave stale prices
+    sj["psa9"] = {str(m["id"]): {"price": m["psa9"], "date": sj["priceDate"]} for m in matched if m.get("psa9")}
     sj["psa10Date"] = sj["priceDate"]
     sj["srarity"] = {str(m["id"]): m["rarity"] for m in matched if m.get("rarity")}
     write_json(SINGLES_PATH, sj)

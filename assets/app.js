@@ -61,11 +61,13 @@
       ]);
       Object.assign(state, { config, meta, history });
       // Singles are optional: older syncs didn't write them.
-      const [singles, singlesHistory] = await Promise.all([
+      const [singles, singlesHistory, cardFacts] = await Promise.all([
         fetch("data/singles.json", { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).catch(() => null),
         fetch("data/singles_history.json", { cache: "no-cache" }).then((r) => (r.ok ? r.json() : { series: {} })).catch(() => ({ series: {} })),
+        // Researched long-run prices, sold prices, population and reprint status (scripts/card_facts.py).
+        fetch("data/card_facts.json", { cache: "no-cache" }).then((r) => (r.ok ? r.json() : { cards: {} })).catch(() => ({ cards: {} })),
       ]);
-      Object.assign(state, { singles, singlesHistory });
+      Object.assign(state, { singles, singlesHistory, cardFacts });
     } catch (e) {
       $("#main").innerHTML = `<div class="empty"><h2>No price data yet</h2><p>Run the “Daily price sync” workflow from your repository's Actions tab, then reload. If you opened index.html straight from disk, serve the folder instead (for example <code>python -m http.server</code>) — browsers block local data files.</p></div>`;
       $("#asof").textContent = "";
@@ -85,7 +87,7 @@
     state.rows = E.analyse({ meta: state.meta, history: state.history, settings: settings() });
     state.byId = new Map(state.rows.map((r) => [String(r.id), r]));
     if (state.singles && S) {
-      state.sRows = S.analyse({ singles: state.singles, history: state.singlesHistory, meta: state.meta, sealedHistory: state.history, settings: settings() });
+      state.sRows = S.analyse({ singles: state.singles, history: state.singlesHistory, meta: state.meta, sealedHistory: state.history, settings: settings(), facts: state.cardFacts });
       state.sById = new Map(state.sRows.map((r) => [String(r.id), r]));
     }
   }
@@ -201,7 +203,7 @@
   function singlesTeaser() {
     if (!state.sRows.length) return "";
     const b = settings().singles;
-    const top = state.sRows.filter((r) => ["strong_buy", "buy"].includes(r.signal) && r.price >= b.budgetMin && r.price <= b.budgetMax)
+    const top = state.sRows.filter((r) => ["strong_buy", "buy", "verify"].includes(r.signal) && r.price >= b.budgetMin && r.price <= b.budgetMax)
       .sort((a, z) => E.SIGNALS[a.signal].rank - E.SIGNALS[z.signal].rank || z.score - a.score).slice(0, 4);
     if (!top.length) return "";
     return `<section class="section"><div class="section-head"><h2>Singles worth a look</h2><a class="small" href="#singles">All singles</a></div><div class="slabs cards">${top.map(cardSlab).join("")}</div></section>`;
@@ -248,8 +250,9 @@
     const rows = state.sRows.filter((r) => inBand(r) && (!q || (r.name + " " + r.setName).toLowerCase().includes(q)) &&
       (!f.pokemon || r.pokemon === f.pokemon) && (!f.tier || r.tier === f.tier) && (!f.signal || r.signal === f.signal)).sort(S_SORTS[f.sort].fn);
     const buys = rows.filter((r) => r.signal === "strong_buy" || r.signal === "buy").length;
+    const checkFirst = rows.filter((r) => r.signal === "verify").length;
     $("#sgrid").innerHTML = rows.length
-      ? `<p class="small muted" style="margin:0 0 12px">${rows.length} cards · ${buys} at or under their buy-under price</p>
+      ? `<p class="small muted" style="margin:0 0 12px">${rows.length} cards · ${buys} buy${buys === 1 ? "" : "s"}${checkFirst ? ` · ${checkFirst} to check first (look like buys, but their long-run price isn't known yet)` : ""}</p>
          <div class="slabs cards">${rows.slice(0, f.limit).map(cardSlab).join("")}</div>
          ${rows.length > f.limit ? `<div class="more"><button class="btn" id="smore">Show ${Math.min(48, rows.length - f.limit)} more</button></div>` : ""}`
       : `<div class="empty">No cards match. Try the full budget range or clear a filter.</div>`;
@@ -289,16 +292,24 @@
           <div class="legend" id="slegend"></div>
         </div>
         <div class="card"><h3>Why</h3><ul class="reasons">${r.reasons.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
+        <div class="card"><h3>Investor checklist</h3>
+          <table class="pillars"><tbody>${Object.entries(S.PILLARS).map(([k, p]) => `<tr><th scope="row">${esc(p.label)} <span class="muted small">${Math.round(p.w * 100)}% · ${esc(p.what)}</span></th><td class="num">${r.pillars[k]}</td><td class="bar-cell"><span class="pbar"><i style="width:${r.pillars[k]}%"></i></span></td></tr>`).join("")}
+            <tr class="total"><th scope="row">Score</th><td class="num">${r.score}</td><td></td></tr></tbody></table>
+          <ul class="checks" style="margin-top:12px">${r.checks.map((c) => `<li><span aria-hidden="true">${c.ok ? "✓" : "✗"}</span><span class="sr-only">${c.ok ? "Checked:" : "Missing:"}</span> ${esc(c.label)}</li>`).join("")}</ul>
+          ${r.checks.some((c) => !c.ok && ["range", "sold", "pop", "reprint", "psa9"].includes(c.k)) ? `<p class="small muted" style="margin:10px 0 0">Researched facts live in <code>data/card_facts.json</code> (card id <code>${r.id}</code>). Record them with <code>python scripts/card_facts.py set ${r.id} low=PRICE@DATE high=PRICE@DATE sold=LO-HI …</code> — Ask Claude lists them at the end of its answer.</p>` : ""}
+        </div>
         <div class="card"><h3>Numbers</h3><div class="kv">
           <div>Raw market<strong>${fmt$(r.price)}</strong></div><div>TCGplayer low<strong>${fmt$(r.low)}</strong></div>
           <div>PSA 10<strong>${fmt$(r.psa.price)}</strong></div><div>PSA 10 ÷ raw<strong>${r.psa.price ? (r.psa.price / r.price).toFixed(1) + "×" : "—"}</strong></div>
           <div>30 days<strong>${pct(st.ch30)}</strong></div><div>90 days<strong>${pct(st.ch90)}</strong></div>
           <div>90-day low<strong>${fmt$(st.low90)}</strong></div><div>1-year high<strong>${fmt$(st.high365)}</strong></div>
-          <div>Similar cards<strong>${r.fair ? fmt$(r.fair.value) : "—"}</strong></div><div>Score<strong>${r.score}/100</strong></div>
-          <div>Demand<strong>${r.demand}/100</strong></div><div>Released<strong>${esc(r.release || "—")}</strong></div>
+          <div>Long-run low<strong>${fmt$(r.lowAll)}</strong></div><div>Long-run high<strong>${fmt$(r.highAll)}</strong></div>
+          <div>PSA 9<strong>${fmt$(r.psa9)}</strong></div><div>Gem rate<strong>${r.gem != null ? Math.round(r.gem * 100) + "%" : "—"}</strong></div>
+          <div>Like-for-like<strong>${r.fair ? fmt$(r.fair.value) : "—"}</strong></div><div>Setmates median<strong>${r.mates ? fmt$(r.mates.median) : "—"}</strong></div>
+          <div>Break-even sale<strong>${fmt$(r.breakeven)}</strong></div><div>Released<strong>${esc(r.release || "—")}</strong></div>
         </div></div>
         ${peers.length > 1 ? `<div class="card"><h3>Similar cards you're tracking</h3>
-          <p class="small muted" style="margin:0 0 8px">${esc(r.pokemon)} · ${esc(r.tierLabel)} · ${esc(r.eraLabel)}${r.fair ? `. Median across all of TCGplayer: ${fmt$(r.fair.value)}` : ""}</p>
+          <p class="small muted" style="margin:0 0 8px">${esc(r.pokemon)} · ${esc(r.tierLabel)} · ${esc(r.eraLabel)}${r.fair ? `. Like-for-like median: ${fmt$(r.fair.value)}` : ""}</p>
           <table class="peers"><tbody>${peers.map((x) => `<tr class="${x.id === r.id ? "me" : ""}" data-open-single="${x.id}"><td>${esc(x.name)} <span class="muted small">${esc(x.setName)}</span></td><td class="num">${fmt$(x.price)}</td><td>${sigPill(x.signal)}</td></tr>`).join("")}</tbody></table>
         </div>` : ""}
         <div class="card"><h3>Holdings</h3>
@@ -347,7 +358,7 @@
       <div class="controls">
         <input type="search" id="q" placeholder="Search product or set" value="${esc(f.q)}" aria-label="Search">
         <select id="ftype" aria-label="Format"><option value="">All formats</option>${types.map((t) => `<option value="${t}" ${f.type === t ? "selected" : ""}>${E.TYPE_LABEL[t] || t}</option>`).join("")}</select>
-        <select id="fsig" aria-label="Signal"><option value="">All signals</option>${Object.entries(E.SIGNALS).map(([k, v]) => `<option value="${k}" ${f.signal === k ? "selected" : ""}>${v.label}</option>`).join("")}</select>
+        <select id="fsig" aria-label="Signal"><option value="">All signals</option>${Object.entries(E.SIGNALS).filter(([k]) => k !== "verify").map(([k, v]) => `<option value="${k}" ${f.signal === k ? "selected" : ""}>${v.label}</option>`).join("")}</select>
         <select id="fmon" aria-label="Chase Pokémon"><option value="">Any chase Pokémon</option>${mons.map((m) => `<option ${f.pokemon === m ? "selected" : ""}>${esc(m)}</option>`).join("")}</select>
       </div>
       <div id="ptable"></div>`;
@@ -534,18 +545,20 @@
       <h2>Confidence</h2>
       <p>Every call checks five things: enough price history, a real release date, a known retail price, chase cards from the product's own set, and — for second-year sets — confirmed print status. <strong>Strong buy</strong> needs all five, and a price that isn't still drifting down. A second-year product above 2× retail is never a buy until its set is confirmed out of print. With thin history, the only calls made are against a known retail price, and they top out at Buy. Products in TCGplayer's catch-all groups (Miscellaneous, promos, POP series) aren't treated as part of a set; add their MSRP and release date under <code>productOverrides</code> in config.json.</p>
       <h2>Singles</h2>
-      <p>The daily sync also tracks every single of your chase Pokémon priced roughly ${fmt$(settings().singles.budgetMin)}–${fmt$(settings().singles.budgetMax)} (a little wider, so cards drifting past your budget keep their history). Each card's score looks at:</p>
+      <p>The daily sync also tracks every single of your chase Pokémon priced roughly ${fmt$(settings().singles.budgetMin)}–${fmt$(settings().singles.budgetMax)} (a little wider, so cards drifting past your budget keep their history). Each card is scored on the checklist an experienced buyer runs through:</p>
       <ul class="reasons">
-        <li><strong>Value against similar cards (30%).</strong> The median price of the same Pokémon, rarity tier and era, worked out from every price on TCGplayer, not just your budget. A card well under its peers might be undervalued — or just a weaker card, so it's one input, not the verdict.</li>
-        <li><strong>Demand (25%).</strong> The Pokémon's weight in your chase list and the rarity: Special Illustration Rares and alt arts first, then Illustration Rares and gallery cards, vintage holos, secret rares, and down to promos and Classic Collection reprints.</li>
-        <li><strong>Momentum (20%).</strong> Rewards pullbacks that have flattened and cards lagging their own set; flags spikes and slides.</li>
-        <li><strong>Timing (15%).</strong> Singles usually bottom while their set is still printing and recover after.</li>
-        <li><strong>Budget fit (10%).</strong> Your sweet spot scores highest. Cards over your max never get a buy call.</li>
+        <li><strong>Demand (25%).</strong> The Pokémon's weight in your chase list and the card type: Special Illustration Rares and alt arts first, then Illustration Rares, gallery V/VMAX and full arts, vintage holos, shinies and rainbows, plain gallery holos (Trainer Gallery, Galarian Gallery, Radiant Collection), secrets, golds, and down to promos and Classic Collection reprints.</li>
+        <li><strong>Value against like-for-like cards (15%).</strong> The median of the same card type and era — a Trainer Gallery holo is compared with gallery holos, never with illustration rares or alt arts. Its <em>setmates</em> (the same card type in the same set, any Pokémon) show how much of the price is the Pokémon rather than the card.</li>
+        <li><strong>Price position (20%).</strong> Where today's price sits in the longest range known: daily history plus researched two-year lows and highs. A card that ran up from its low isn't a discount when it gives some back; its buy-under price stays within 30% of the pre-run-up low and no more than a third of the way back up.</li>
+        <li><strong>Momentum and market (15%).</strong> Spikes, slides and flattened pullbacks, the card against the whole singles market, and its Pokémon: when a Pokémon's cards are up 30%+ in six months and well ahead of the market, it's a hype cycle — targets drop 7% and nothing is a Strong buy. New chase cards of the same Pokémon are flagged.</li>
+        <li><strong>Supply and reprints (10%).</strong> Where the set is in its print life and its recorded print status, reprints of the same art, promos and mass-distributed cards.</li>
+        <li><strong>Grading (5%).</strong> PSA 10 and PSA 9 against raw and the gem rate: whether raw or a slab is the better way in, and whether a raw copy is worth grading.</li>
+        <li><strong>Liquidity and costs (10%).</strong> Budget fit, real sold prices against TCGplayer's market price, the gap to the lowest listing, and the ~19% a card has to rise just to cover selling fees.</li>
       </ul>
-      <p><strong>What it takes to be a buy.</strong> Being under its own recent lows isn't enough, because a card that's been sliding always looks “at target” against its own history. A buy also needs a real discount to similar cards: about 8% under their median (or at or under it for Special Illustration Rares, alt arts and Illustration Rares). A card in line with its peers is a fair price and shows Wait, with a buy-under price below the peer median. With no similar cards to compare and under a year of history, nothing is a buy. A drop from the high of a short price history can't be a Strong buy, since that high may have been a run-up, and neither can a card priced far under its peers, since that usually means the comparison group is off. Promo groups' dates are the group's start, not the card's, so promos get no timing read. When PSA 10 costs 12× raw or more, raw is treated as the better long hold.</p>
-      <p>PSA 10 prices come from a one-time Scrydex import, so they're as of that date unless you import again. Raw cards carry condition risk; buy clean near-mint copies.</p>
+      <p><strong>What it takes to be a buy.</strong> The buy-under price is the lowest of every anchor that applies: the card's own recent history, its pre-run-up level, like-for-like cards' median, and recent sold prices. It's never worked out from today's price. ${sigPill("verify")} means a card looks like a buy on its recent prices, but its price history is under a year and nobody has looked up where it traded before — exactly the case where a run-up giving some back looks like a discount. Once its two-year low and high are recorded in <code>data/card_facts.json</code> (Ask Claude lists them; a weekly task can fill them in), the call updates on its own. <strong>Strong buy</strong> needs the long-run range, like-for-like peers, no hype cycle on the Pokémon, and agreeing PSA 10 prices.</p>
+      <p>PSA 10 prices come from a one-time Scrydex import plus researched sales; when the two disagree, the sales win. Raw cards carry condition risk; buy clean near-mint copies with photos.</p>
       <h2>What it can't see</h2>
-      <p>Reprint announcements, Pokémon Center restocks, print-run sizes, and sales volume. Use “Ask Claude” on any product for a second opinion that checks current news. This isn't financial advice; prices can and do fall.</p>
+      <p>Reprint announcements, Pokémon Center restocks, print-run sizes, sales volume, and — for singles — anything older than about six months unless it's been researched. Use “Ask Claude” on any product for a second opinion that checks current news. This isn't financial advice; prices can and do fall.</p>
       <p class="small muted">Data: TCGplayer prices via the free tcgcsv.com daily mirror. Not affiliated with TCGplayer, Nintendo, or The Pokémon Company.</p>
     </div>`;
   }

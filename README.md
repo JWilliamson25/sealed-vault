@@ -36,9 +36,23 @@ After that the daily sync runs on its own. If a GitHub repo has no activity for 
 
 ## Singles
 
-The daily sync also tracks singles of your chase Pokémon (about $20–$450, a little wider than the default $30–$300 budget so cards drifting past it keep their history). The **Singles** tab scores each card for a long hold: value against similar cards (same Pokémon, rarity tier and era, using every TCGplayer price), demand, momentum, where its set is in its print life, and budget fit. Budget and sweet spot are in Settings and in `config.json` → `singles`.
+The daily sync also tracks singles of your chase Pokémon (about $20–$450, a little wider than the default $30–$300 budget so cards drifting past it keep their history). The **Singles** tab scores each card on an investor checklist — demand (Pokémon × card type), value against like-for-like cards, price position in its long-run range, momentum against the market and the Pokémon, supply and reprints, grading, and liquidity and costs — then applies hard rules so a guess never becomes a buy. The full rules are at the top of `assets/singles.js` and on the site's How it works page. Budget and sweet spot are in Settings and in `config.json` → `singles`.
 
-PSA 10 prices and older raw history come from a one-time Scrydex import: **Actions → Import price history from Scrydex → mode `singles-dry-run`** (matches cards and saves today's PSA 10 prices, ~40 credits), then **mode `singles`** (daily raw + PSA 10 history, roughly 25–35 credits per card).
+PSA 10 prices and older raw history come from a one-time Scrydex import: **Actions → Import price history from Scrydex → mode `singles-dry-run`** (matches cards and saves today's PSA 10 and PSA 9 prices, ~40 credits), then **mode `singles`** (daily raw + PSA 10 history, roughly 25–35 credits per card). Scrydex history only reaches back about six months.
+
+### Researched card facts
+
+A price feed can't see where a card traded two years ago, what copies actually sell for, the PSA population, or whether the art was reprinted. Those go in `data/card_facts.json`:
+
+```
+python scripts/card_facts.py todo                  # cards worth researching next ("Check first" cards first)
+python scripts/card_facts.py set 284266 low=28.48@2025-12-26 high=65.93@2026-06-20 sold=38-55.25 \
+    psa10=400-676 psa9=75 pop10=433 poptotal=8250 reprint=none hype="..." note="..." source=https://...
+python scripts/card_facts.py show 284266
+node scripts/singles_calls.js 284266               # the app's call for one card, with reasons
+```
+
+A card with under a year of price history and no researched two-year low shows **Check first** instead of Buy: that's exactly the case where a run-up giving some back looks like a discount. Once its facts are recorded the call updates on its own. "Ask Claude" on a card ends its answer with the facts to record. Long-run lows/highs count for a year, reprint and population for 120 days, sold prices for 45 days.
 
 ## Older price points from Scrydex (optional, one-time)
 

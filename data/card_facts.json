@@ -1,0 +1,53 @@
+{
+ "cards": {
+  "113746": {
+   "name": "Charizard — Generations: Radiant Collection RC5/RC32",
+   "longLow": {
+    "price": 20.95,
+    "date": "2026-01-15"
+   },
+   "pop": {
+    "psa10": 433,
+    "date": "2026-10-26",
+    "total": 8250
+   },
+   "note": "Radiant Collection holo (plain, not full art). NM raw ~$10-13 in 2024; ~$20.95 early 2026 (one tracker, approximate date); peaked ~$63 during the 30th-anniversary run-up. eBay solds ran $26-60 in July 2026, mostly $30s-low $40s. PSA 10 scarce (~5% gem rate).",
+   "verified": "2026-11-13"
+  },
+  "284266": {
+   "name": "Gengar — SWSH11: Lost Origin Trainer Gallery TG06/TG30",
+   "longLow": {
+    "price": 28.48,
+    "date": "2025-12-26"
+   },
+   "longHigh": {
+    "price": 65.93,
+    "date": "2026-06-20"
+   },
+   "sold": {
+    "low": 38.0,
+    "high": 55.25,
+    "date": "2026-11-13"
+   },
+   "psa10Sold": {
+    "low": 400.0,
+    "high": 676.0,
+    "date": "2026-11-13"
+   },
+   "psa9Sold": {
+    "price": 74.78,
+    "date": "2026-11-13"
+   },
+   "reprint": "none",
+   "hype": "Mega Evolution era spotlight: Mega Gengar ex (MEGA Dream ex 240/193, ~$674) and Mega Gengar tins",
+   "note": "Plain Trainer Gallery holo (no V). Raw was ~$4-10 in 2023-24. Setmates in the LO Trainer Gallery sell for $1.49-$8.76. PSA 10 sources disagree ($400 vs $676). Lost Origin out of print since 2023; SWSH sets not reprinted after rotation.",
+   "sources": [
+    "https://www.pricecharting.com/game/pokemon-lost-origin/gengar-tg06",
+    "https://thehobbybin.com/products/gengar-tg06-lost-origin",
+    "https://rarepokemoncard.com/cards/swsh11-lost-origin-trainer-gallery-gengar-TG06-TG30-holofoil",
+    "https://thecardshopfinder.com/shop/pokemon/sealed/lost-origin/"
+   ],
+   "verified": "2026-11-13"
+  }
+ }
+}
