@@ -26,6 +26,8 @@ Fields (all optional; prices are raw near-mint in USD unless named):
   pop10=N poptotal=N popdate=DATE   PSA population (gem rate = pop10 / poptotal)
   reprint=none|same_art|announced|risk   same_art: this artwork was reprinted elsewhere (e.g. Classic
                      Collection); announced: a reprint is announced; risk: credible rumours
+  jpexclusive=yes|no Japanese card: is its artwork Japan-only? Overrides the image check
+                     (scripts/art_check.py), which hides Japanese cards whose art matches an English card
   hype=TEXT          what's driving attention on the Pokemon right now (new chase cards, anime, game)
   note=TEXT  source=URL (repeatable; appended)
 """
@@ -127,6 +129,10 @@ def cmd_set(cid: str, pairs: list[str], touch_only=False):
             if v not in ("none", "same_art", "announced", "risk"):
                 sys.exit("reprint must be none, same_art, announced or risk")
             rec["reprint"] = v
+        elif k == "jpexclusive":
+            if v not in ("yes", "no"):
+                sys.exit("jpexclusive must be yes or no")
+            rec["jpExclusive"] = v
         elif k in ("hype", "note"):
             rec[k] = v
         elif k == "source":

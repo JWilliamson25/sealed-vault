@@ -192,6 +192,10 @@ def main():
 
     jp_groups = fetch_japan_promos(cfg, singles, old_sub)
     sync_singles(cfg, groups + jp_groups, parent_of, singles, old_singles, price_date, today)
+    # Hide Japanese promos whose artwork was also printed in English (scripts/art_check.py).
+    import art_check  # noqa: PLC0415
+    english = [c for lst in singles.values() for c in lst if c.get("lang") != "ja"]
+    art_check.run(cfg, english)
 
 
 def fetch_japan_promos(cfg, singles, old_sub) -> list[dict]:

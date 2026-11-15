@@ -193,6 +193,7 @@
     return v ? (cur / v - 1) * 100 : null;
   }
 
+  const hiddenJp = []; // Japanese cards hidden because their art was printed in English (last analyse)
   function analyse(ctx) {
     const { singles, history, meta, sealedHistory, settings } = ctx;
     const facts = ctx.facts?.cards || {};
@@ -205,7 +206,12 @@
     const fw = { top6: ["Charizard", "Pikachu", "Gengar", "Umbreon", "Mew", "Mewtwo"], ceilingDiscount: 0.25, minPasses: 3, ...(settings.singles.framework || {}) };
     const top6 = new Set(fw.top6.map((x) => x.toLowerCase()));
     // Singles cover only the top-6 characters (config.json → singles.framework.top6).
-    const cards = singles.cards.filter((c) => top6.has(String(c.pokemon).toLowerCase())).map((c) => ({ ...c, tier: TIERS[refineTier(c, srar[c.id])] ? refineTier(c, srar[c.id]) : "other" }));
+    // Japanese cards are only worth tracking as Japan exclusives: hide any whose artwork was also printed
+    // in English (image check in scripts/art_check.py, overridable with a researched jpExclusive fact).
+    const jpExcl = (c) => { const v = facts[c.id]?.jpExclusive ?? facts[String(c.id)]?.jpExclusive; return v === "yes" ? true : v === "no" ? false : c.artEn ? false : true; };
+    hiddenJp.length = 0;
+    for (const c of singles.cards) if (c.lang === "ja" && top6.has(String(c.pokemon).toLowerCase()) && !jpExcl(c)) hiddenJp.push(c);
+    const cards = singles.cards.filter((c) => top6.has(String(c.pokemon).toLowerCase()) && (c.lang !== "ja" || jpExcl(c))).map((c) => ({ ...c, tier: TIERS[refineTier(c, srar[c.id])] ? refineTier(c, srar[c.id]) : "other" }));
     const model = fairModel(singles.peers, legacy);
     const psa = singles.psa10 || {}, psa9 = singles.psa9 || {};
     const b = settings.singles;
@@ -542,6 +548,7 @@
         { k: "step_char", ok: isTop6, label: `3. Top-6 character — ${yn(isTop6)}: ${c.pokemon}` },
         { k: "step_art", ok: fullArt, label: `4. Full Art / SIR — ${yn(fullArt)}: ${tl}` },
         { k: "step_graded", ok: steps.graded === true, label: `5. Graded data — ${yn(steps.graded)}${psaNow ? `: PSA 10 ${E.fmt$(psaNow)}${psaTrend != null ? `, ${E.fmtPct(psaTrend)} in 90 days` : ""}${gem != null ? `, ${Math.round(gem * 100)}% gem rate` : ""}` : ": no PSA 10 data"}` },
+        ...(c.lang === "ja" ? [{ k: "jpart", ok: c.artChecked || F?.jpExclusive === "yes", label: F?.jpExclusive === "yes" ? "Japan-exclusive art (researched)" : c.artChecked ? "Japan-exclusive art: no English card with the same artwork (image check)" : "Artwork not yet checked against English cards" }] : []),
         { k: "language", ok: true, label: c.lang === "ja" ? "Language: Japanese — compared only with Japanese cards; prices are TCGplayer (US) sales, not Japan's market" : "Language: English" },
         { k: "peers", ok: !!fair, label: fair ? `Compared with ${fair.n} like-for-like cards${fair.kind === "borrowed" ? " (other Pokémon, scaled)" : ""}` : "No like-for-like cards to compare with" },
         { k: "setmates", ok: !!mates, label: mates ? `Setmates: ${mates.n} ${tn} cards in ${c.group || c.setName}, median ${E.fmt$(mates.median)}` : "Setmate prices not synced yet" },
@@ -609,5 +616,5 @@
     ].filter(Boolean).join("\n");
   }
 
-  global.Singles = { analyse, claudePrompt, TIERS, PILLARS, ERAS, STEPS, DIST };
+  global.Singles = { analyse, claudePrompt, TIERS, PILLARS, ERAS, STEPS, DIST, hiddenJp };
 })(window);
