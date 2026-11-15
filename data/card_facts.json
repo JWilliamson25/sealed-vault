@@ -48,6 +48,25 @@
     "https://thecardshopfinder.com/shop/pokemon/sealed/lost-origin/"
    ],
    "verified": "2026-11-13"
+  },
+  "88088": {
+   "name": "Pikachu — Majestic Dawn 70/100",
+   "dist": "pack",
+   "reprint": "same_art",
+   "pop": {
+    "psa10": 1,
+    "date": "2026-11-15",
+    "total": 38
+   },
+   "psa9Sold": {
+    "price": 191.0,
+    "date": "2024-12-29"
+   },
+   "note": "Common (reverse holo), not a holo rare. Same art reprinted as 2009 Burger King 'Platinum' stamped reverse holo (TCGplayer 224679, PSA pop 175, PSA 9 sales $1,025-$1,500) - check the stamp. Only 1 PSA 10 graded, so no real PSA 10 market. Cheapest listing far above market price.",
+   "sources": [
+    "https://www.pikawiz.com/card/majesticdawn/pikachu/70"
+   ],
+   "verified": "2026-11-15"
   }
  }
 }

@@ -564,10 +564,10 @@ def match_singles(cards: list[dict], scry: list[dict]):
         if why:
             skipped.append({"card": t["name"], "set": t.get("setName"), "number": t.get("number"), "why": why})
             continue
-        psa = [val for v, k, val in card_prices(c) if k == "psa10" and v == var] or \
-              [val for v, k, val in card_prices(c) if k == "psa10"]
-        psa9 = [val for v, k, val in card_prices(c) if k == "psa9" and v == var] or \
-               [val for v, k, val in card_prices(c) if k == "psa9"]
+        # Graded prices only for the matched printing. Borrowing another printing's PSA 10 (say the
+        # non-holo's for a reverse holo) gives a confident, wrong number; no price is better.
+        psa = [val for v, k, val in card_prices(c) if k == "psa10" and v == var]
+        psa9 = [val for v, k, val in card_prices(c) if k == "psa9" and v == var]
         matched.append({"id": t["id"], "card": t["name"], "scrydexId": c["id"], "scrydex": c.get("name"),
                         "psa9": sorted(psa9)[len(psa9) // 2] if psa9 else None,
                         "scrydexSet": (c.get("expansion") or {}).get("name"), "variant": var, "via": via,
@@ -592,7 +592,7 @@ def card_history(api: Api, cid: str, variant, start: date, end: date):
                 raw[d] = float(x["market"])
             elif (x.get("type") == "graded" and str(x.get("company", "")).upper() == "PSA"
                   and str(x.get("grade", "")).strip() in ("10", "10.0") and not plain_flags(x)):
-                if same or d not in psa:
+                if same:  # only this printing's PSA 10, never another variant's
                     psa[d] = float(x["market"])
     return raw, psa
 
@@ -621,6 +621,7 @@ def singles_import(api: Api, dry_run: bool):
     sj["psa10"] = psa_now  # replace, so rejected matches don't leave stale prices
     sj["psa9"] = {str(m["id"]): {"price": m["psa9"], "date": sj["priceDate"]} for m in matched if m.get("psa9")}
     sj["psa10Date"] = sj["priceDate"]
+    sj["psaStrict"] = sj["priceDate"]  # graded prices are per printing; the app ignores older mixed PSA series
     sj["srarity"] = {str(m["id"]): m["rarity"] for m in matched if m.get("rarity")}
     write_json(SINGLES_PATH, sj)
     if dry_run:

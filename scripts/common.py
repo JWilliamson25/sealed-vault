@@ -230,7 +230,7 @@ TIER_LABEL = {
     "secret": "Secret Rare", "gold": "Gold / Hyper Rare", "rainbow": "Rainbow Rare",
     "shiny": "Shiny", "ultra": "Ultra Rare / Full Art",
     "vintage": "Vintage holo & rare", "promo": "Promo", "classic": "Classic Collection reprint",
-    "base": "Regular rare", "other": "Special rare",
+    "base": "Regular rare", "other": "Special rare", "common": "Common / uncommon",
 }
 
 
@@ -274,6 +274,10 @@ def card_tier(name: str, rarity: str | None, number: str | None, release: str | 
         return "ultra"
     if re.search(r"amazing|radiant|prism|rgb|break|ace spec|star", r):
         return "other"
+    if r in ("common", "uncommon"):
+        # A common or uncommon (often priced as its reverse holo) is a different market from the set's
+        # holo rares: comparing it with them makes a $60 common look half price.
+        return "common"
     if year and year < 2017:
         return "vintage"
     return "base"
