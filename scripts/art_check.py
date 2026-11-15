@@ -19,10 +19,12 @@ import json
 import re
 import sys
 import time
+import urllib.error
+import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import DATA, SINGLES_PATH, http_get, write_json  # noqa: E402
+from common import DATA, SINGLES_PATH, USER_AGENT, write_json  # noqa: E402
 
 HASHES = DATA / "art_hashes.json"
 MATCHES = DATA / "art_matches.json"
@@ -55,6 +57,20 @@ def art_hash(img_bytes: bytes) -> str | None:
     return f"{bits:064x}"
 
 
+def fetch_image(url: str) -> tuple[bytes | None, int | None]:
+    """(bytes, None) or (None, HTTP status / 0). A missing product image comes back as 403/404."""
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "image/*"})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return r.read(), None
+    except urllib.error.HTTPError as e:
+        return None, e.code
+    except Exception:
+        return None, 0
+    finally:
+        time.sleep(0.03)
+
+
 def dist(a: str, b: str) -> int:
     return bin(int(a, 16) ^ int(b, 16)).count("1")
 
@@ -83,15 +99,22 @@ def run(cfg: dict, english_singles: list[dict] | None = None) -> None:
     pool = english_singles if english_singles is not None else [c for c in s["cards"] if c.get("lang") != "ja"]
     en = [c for c in pool if c.get("lang") != "ja" and any(r.search(c["name"]) for r in rx.values())]
     cache = json.loads(HASHES.read_text()) if HASHES.exists() else {}
-    t0, got, failed = time.time(), 0, 0
+    t0, got, failed, streak = time.time(), 0, 0, 0
     for c in jp + en:
         k = str(c["id"])
         if k in cache or got >= MAX_DOWNLOADS or time.time() - t0 > TIME_BUDGET:
             continue
+        if streak >= 40:  # 40 failures in a row: the image server is refusing us; try again next run
+            print("Art check: image downloads are being refused; stopping for this run.")
+            break
         url = image_url(c.get("img"))
-        b = http_get(url, binary=True, sleep=0.03) if url else None
+        b, status = fetch_image(url) if url else (None, 404)
         h = art_hash(b) if b else None
-        cache[k] = h  # None = no usable image; not retried until the cache entry is removed
+        if b is None and status in (None, 0, 429) or (status and status >= 500):
+            streak += 1
+            continue  # temporary: don't cache, retry next run
+        streak = streak + 1 if h is None else 0
+        cache[k] = h  # None = no image for this card; not retried until the cache entry is removed
         got += 1
         failed += h is None
     write_json(HASHES, cache)
