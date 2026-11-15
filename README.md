@@ -36,7 +36,7 @@ After that the daily sync runs on its own. If a GitHub repo has no activity for 
 
 ## Singles
 
-The daily sync also tracks singles of your chase Pokémon (about $20–$450, a little wider than the default $30–$300 budget so cards drifting past it keep their history). The **Singles** tab scores each card on an investor checklist — demand (Pokémon × card type), value against like-for-like cards, price position in its long-run range, momentum against the market and the Pokémon, supply and reprints, grading, and liquidity and costs — then applies hard rules so a guess never becomes a buy. The full rules are at the top of `assets/singles.js` and on the site's How it works page. Budget and sweet spot are in Settings and in `config.json` → `singles`.
+The daily sync also tracks singles of your chase Pokémon (about $20–$450, a little wider than the default $30–$300 budget so cards drifting past it keep their history). The **Singles** tab runs each card through a five-step framework — **the ceiling** (its highest sale; never pay within 25% of it), **distribution** (event promo, pack pull, stamp, box promo, mass giveaway, reprint), **top-6 character** (Charizard, Pikachu, Gengar, Umbreon, Mew, Mewtwo — 40% of the score), **Full Art / SIR**, and **graded data** (PSA 10 population judged against whether the PSA 10 price holds). A Buy needs 3 of 5 and must not fail the ceiling; a Strong buy needs all 5; price is the final filter. Settings: `config.json` → `singles.framework`. It also scores each card on an investor checklist — demand (Pokémon × card type), value against like-for-like cards, price position in its long-run range, momentum against the market and the Pokémon, supply and reprints, grading, and liquidity and costs — then applies hard rules so a guess never becomes a buy. The full rules are at the top of `assets/singles.js` and on the site's How it works page. Budget and sweet spot are in Settings and in `config.json` → `singles`.
 
 PSA 10 prices and older raw history come from a one-time Scrydex import: **Actions → Import price history from Scrydex → mode `singles-dry-run`** (matches cards and saves today's PSA 10 and PSA 9 prices, ~40 credits), then **mode `singles`** (daily raw + PSA 10 history, roughly 25–35 credits per card). Scrydex history only reaches back about six months.
 
@@ -46,7 +46,7 @@ A price feed can't see where a card traded two years ago, what copies actually s
 
 ```
 python scripts/card_facts.py todo                  # cards worth researching next ("Check first" cards first)
-python scripts/card_facts.py set 284266 low=28.48@2025-12-26 high=65.93@2026-06-20 sold=38-55.25 \
+python scripts/card_facts.py set 284266 ceiling=65.93@2026-06-20 dist=pack low=28.48@2025-12-26 high=65.93@2026-06-20 sold=38-55.25 \
     psa10=400-676 psa9=75 pop10=433 poptotal=8250 reprint=none hype="..." note="..." source=https://...
 python scripts/card_facts.py show 284266
 node scripts/singles_calls.js 284266               # the app's call for one card, with reasons

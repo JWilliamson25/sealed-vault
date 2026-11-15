@@ -14,6 +14,10 @@ them in place of guesses, and won't call a card with a short price history a Buy
   python scripts/card_facts.py touch 284266           # re-checked, nothing changed
 
 Fields (all optional; prices are raw near-mint in USD unless named):
+  ceiling=PRICE@DATE the card's all-time highest sale — this exact English card and version
+                     (a stamped promo and the plain card are different cards). Step 1 of the framework.
+  dist=pack|event_promo|prerelease|box_promo|mass_promo|reprint   how the card entered the market
+                     (step 2); only needed when the app's guess from the name and set is wrong
   low=PRICE@DATE     lowest raw price in the last 24 months (skip the first weeks after release)
   high=PRICE@DATE    highest raw price in the last 24 months
   sold=LO-HI[~MED]   recent sold range for raw near-mint (eBay/TCGplayer solds, last ~30 days)
@@ -101,6 +105,12 @@ def cmd_set(cid: str, pairs: list[str], touch_only=False):
         k = k.strip().lower()
         if k in ("low", "high"):
             rec["longLow" if k == "low" else "longHigh"] = parse_at(v)
+        elif k == "ceiling":
+            rec["ceiling"] = parse_at(v)
+        elif k == "dist":
+            if v not in ("pack", "event_promo", "prerelease", "box_promo", "mass_promo", "reprint"):
+                sys.exit("dist must be pack, event_promo, prerelease, box_promo, mass_promo or reprint")
+            rec["dist"] = v
         elif k == "sold":
             rec["sold"] = {**parse_range(v), "date": ref}
         elif k == "psa10":
@@ -188,7 +198,7 @@ def cmd_todo(limit: int):
             continue
         f = facts.get(str(c["id"]), {})
         a = age(f.get("verified"), ref)
-        if a is not None and a <= FRESH_DAYS and f.get("longLow"):
+        if a is not None and a <= FRESH_DAYS and (f.get("longLow") or f.get("ceiling")):
             continue
         ser = h["series"].get(str(c["id"])) or []
         vals = [v for _d, v in ser[-180:]]
