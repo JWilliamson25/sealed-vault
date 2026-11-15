@@ -82,10 +82,12 @@
     if (F?.dist && DIST[F.dist]) return F.dist;
     const t = `${c.name} ${c.group || ""} ${c.setName || ""}`;
     if (c.lang === "ja") {
-      if (/\b(winner|staff|judge|trophy|prize|tournament|champions? league|battle (festa|road)|gym (challenge|battle)|world championships?|wcs|regional|city league|top \d+|finalist)\b/i.test(t)) return "event_promo";
-      if (/corocoro|v ?jump|magazine|famitsu|comic|manga|guide ?book|mook|book\b/i.test(t)) return "magazine";
-      if (/movie|mcdonald|7-?eleven|lawson|family ?mart|cereal|snack|vending|toy|ana\b|jal\b|stamp rally/i.test(t)) return "mass_promo";
-      if (/pokemon center|pokémon center|card gym|campaign|special (box|set)|premium|limited|exclusive|poncho|anniversary/i.test(t)) return "jp_exclusive";
+      // Japanese promos: tournament and staff prizes are scarcest; Pokémon Center store-opening and
+      // costume Pikachu, campaigns and exclusive boxes next; magazine promos; then mass giveaways.
+      if (/\b(winner|staff|judge|trophy|prize|tournament|champions? league|battle road|placement|battle festa|gym (challenge|battle)|world champions(hips?)?|wcs|regional|city league|top \d+|finalist)\b/i.test(t)) return "event_promo";
+      if (/movie|vending|mcdonald|7-?eleven|lawson|family ?mart|cereal|snack|toy|stamp rally/i.test(t)) return "mass_promo";
+      if (/corocoro|v ?jump|magazine|famitsu|comic|manga|guide ?book|mook|pokemon card information|cd promo/i.test(t)) return "magazine";
+      if (/pokemon center|pokémon center|card gym|campaign|special box|golden box|premium (trainer box|file)|gift set|exclusive|limited|poncho|anniversary|\b\w+'s pikachu\b|pretend|pikachu - \d+\/(xy|sm|s)-p/i.test(t)) return "jp_exclusive";
       return "jp_promo";
     }
     if (c.tier === "classic" || /classic collection/i.test(t)) return "reprint";
