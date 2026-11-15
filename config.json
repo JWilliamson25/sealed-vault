@@ -113,6 +113,13 @@
       ],
       "ceilingDiscount": 0.25,
       "minPasses": 3
+    },
+    "japan": {
+      "_comment": "Japanese singles: only promo-type groups from TCGplayer's Pokemon Japan category, for your chase Pokemon in the same price band. Prices are what Japanese cards sell for on TCGplayer (US), not in Japan. groupInclude/groupExclude are regexes on the TCGplayer group name; data/japan_groups.json lists every Japanese group and whether it's included, so you can tune them.",
+      "enabled": true,
+      "categoryId": 85,
+      "groupInclude": "promo|-P\\b|pokemon center|card gym|corocoro|v ?jump|magazine|movie|campaign|tournament|battle|prize|trophy|champions|anniversary|special (box|set|deck)|exclusive|limited|premium|collection file|vending",
+      "groupExclude": "jumbo|oversized|code card"
     }
   },
   "history": {

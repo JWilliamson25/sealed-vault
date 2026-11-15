@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -21,7 +22,7 @@ from common import (  # noqa: E402
     BASE, META_PATH, best_price, chase_score, classify_sealed, compact_history, day_index,
     http_get, is_single, load_config, load_history, parent_name, parse_ts, put_point, write_json,
 )
-from common import HISTORY_PATH  # noqa: E402
+from common import DATA, HISTORY_PATH  # noqa: E402
 from common import (  # noqa: E402
     SINGLE_EXCLUDE_RE, SINGLES_HISTORY_PATH, SINGLES_PATH, card_era, card_tier, chase_regexes, single_price,
 )
@@ -189,7 +190,49 @@ def main():
     write_json(HISTORY_PATH, history)
     print(f"Wrote {META_PATH.name} and {HISTORY_PATH.name} for {price_date}")
 
-    sync_singles(cfg, groups, parent_of, singles, old_singles, price_date, today)
+    jp_groups = fetch_japan_promos(cfg, singles, old_sub)
+    sync_singles(cfg, groups + jp_groups, parent_of, singles, old_singles, price_date, today)
+
+
+def fetch_japan_promos(cfg, singles, old_sub) -> list[dict]:
+    """Japanese promo-type singles from TCGplayer's Pokemon Japan category. Adds them to `singles`
+    (tagged lang=ja) and returns the groups used. Writes data/japan_groups.json so the group filter
+    can be tuned."""
+    jc = (cfg.get("singles") or {}).get("japan") or {}
+    if not jc.get("enabled"):
+        return []
+    cat = jc.get("categoryId", 85)
+    inc = re.compile(jc.get("groupInclude") or "promo", re.I)
+    exc = re.compile(jc.get("groupExclude") or "$^", re.I)
+    groups = results(fetch(f"/tcgplayer/{cat}/groups"))
+    picked = [g for g in groups if inc.search(g["name"]) and not exc.search(g["name"])]
+    write_json(DATA / "japan_groups.json", {"categoryId": cat, "groups": sorted(
+        [{"id": g["groupId"], "name": g["name"], "published": parse_ts(g.get("publishedOn")), "included": g in picked} for g in groups],
+        key=lambda x: (not x["included"], x["name"]))})
+    print(f"Japanese: {len(groups)} groups, {len(picked)} promo-type groups included")
+    n = 0
+    for g in picked:
+        gid = g["groupId"]
+        products = results(fetch(f"/tcgplayer/{cat}/{gid}/products"))
+        prices_rows = results(fetch(f"/tcgplayer/{cat}/{gid}/prices"))
+        by_pid: dict[int, list] = {}
+        for r in prices_rows:
+            by_pid.setdefault(r["productId"], []).append(r)
+        for p in products:
+            bp = best_price(by_pid.get(p["productId"], []))
+            if not (bp and is_single(p)):
+                continue
+            ext = {e["name"]: e["value"] for e in p.get("extendedData") or []}
+            sp = single_price(by_pid.get(p["productId"], []), old_sub.get(p["productId"]))
+            singles.setdefault(gid, []).append({
+                "id": p["productId"], "name": p["name"], "price": bp["price"],
+                "number": ext.get("Number"), "rarity": ext.get("Rarity"),
+                "img": p.get("imageUrl"), "url": p.get("url"), "lang": "ja",
+                "group": g["name"], "sub": sp["sub"], "sprice": sp["price"], "low": sp["low"],
+            })
+            n += 1
+    print(f"Japanese: {n} priced singles in those groups")
+    return [{**g, "lang": "ja"} for g in picked]
 
 
 def group_release(g: dict, price_date: str) -> str | None:
@@ -214,10 +257,16 @@ def sync_singles(cfg, groups, parent_of, singles, old_singles, price_date, today
         parent = gby.get(pgid, {})
         release = group_release(parent, price_date)
         for c in lst:
-            if SINGLE_EXCLUDE_RE.search(c["name"]) or SINGLE_EXCLUDE_RE.search(c.get("group") or ""):
+            ja = c.get("lang") == "ja"
+            if ja:
+                if JP_EXCLUDE_RE.search(c["name"]):
+                    continue
+            elif SINGLE_EXCLUDE_RE.search(c["name"]) or SINGLE_EXCLUDE_RE.search(c.get("group") or ""):
                 continue
             mon = next((nm for nm, _w, r in rx if r.search(c["name"])), None)
             tier = card_tier(c["name"], c.get("rarity"), c.get("number"), release, srarity.get(str(c["id"])))
+            if ja and tier not in ("sir", "alt", "ir", "gold", "gallery_v"):
+                tier = "jp_promo"  # compared only with other Japanese promos
             if c.get("sprice") and c["sprice"] >= 0.25:
                 set_tiers_raw.setdefault(f"{c.get('group') or parent.get('name')}|{tier}", []).append(c["sprice"])
             if not mon:
@@ -228,7 +277,7 @@ def sync_singles(cfg, groups, parent_of, singles, old_singles, price_date, today
                 spotlight_raw.setdefault(mon, []).append({"name": c["name"], "set": parent.get("name", c.get("group")),
                                                           "price": price, "release": release, "tier": tier})
             if price and price >= 3:  # peers use every price, so the band doesn't skew them
-                peers_raw.setdefault(f"{mon}|{tier}|{era}", []).append(price)
+                peers_raw.setdefault(f"{mon}|{tier}{'_ja' if ja and tier != 'jp_promo' else ''}|{era}", []).append(price)
             in_band = lo <= price <= hi
             keep_band = c["id"] in was_tracked and lo * 0.5 <= price <= hi * 2
             if not (in_band or keep_band):
@@ -238,6 +287,7 @@ def sync_singles(cfg, groups, parent_of, singles, old_singles, price_date, today
                 "rarity": c.get("rarity"), "number": c.get("number"), "sub": c.get("sub"),
                 "setId": pgid, "setName": parent.get("name", c.get("group")), "group": c.get("group"),
                 "release": release, "price": price, "low": c.get("low"), "img": c.get("img"), "url": c.get("url"),
+                **({"lang": "ja"} if ja else {}),
             })
 
     def med(v):
@@ -266,6 +316,9 @@ def sync_singles(cfg, groups, parent_of, singles, old_singles, price_date, today
     write_json(SINGLES_PATH, out)
     write_json(SINGLES_HISTORY_PATH, hist)
     print(f"Tracking {len(cards)} singles of your chase Pokemon (${lo}-${hi}); {len(peers)} peer groups")
+
+
+JP_EXCLUDE_RE = re.compile(r"\b(jumbo|oversized|code card|error|misprint|sleeve|playmat|deck box)\b", re.I)
 
 
 def load_history_file(path):

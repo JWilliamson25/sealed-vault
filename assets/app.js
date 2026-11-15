@@ -15,7 +15,7 @@
   const state = {
     meta: null, history: null, config: null, rows: [], byId: new Map(),
     singles: null, singlesHistory: null, sRows: [], sById: new Map(),
-    sFilters: { q: "", band: "sweet", pokemon: "", tier: "", signal: "", sort: "score", limit: 48 },
+    sFilters: { q: "", band: "sweet", pokemon: "", tier: "", signal: "", sort: "score", lang: "", limit: 48 },
     sChart: "raw",
     watch: new Set(store.get(LS.watch, [])), holdings: store.get(LS.hold, {}),
     filters: { q: "", type: "", signal: "", pokemon: "", sort: "rank", dir: 1 },
@@ -184,7 +184,7 @@
         <span class="grade g-${r.signal}"><b>${E.SIGNALS[r.signal].label}</b><span>score ${r.score} · ${r.passes}/5 steps</span></span>
       </div>
       <div class="card-art">${cardImg(r)}</div>
-      <div class="card-set">${esc(r.setName)}${r.number ? ` · ${esc(r.number)}` : ""}</div>
+      <div class="card-set">${r.lang === "ja" ? `<span class="lang-ja">JP</span> ` : ""}${esc(r.setName)}${r.number ? ` · ${esc(r.number)}` : ""}</div>
       <div class="prices">
         <div>Raw<strong class="price">${fmt$(r.price)}</strong></div>
         <div>Buy under<strong class="price">${fmt$(r.target)}</strong></div>
@@ -233,14 +233,15 @@
           <button data-band="all" aria-pressed="${f.band === "all"}">Up to ${whole$(b.budgetMax)}</button>
         </div>
         <input type="search" id="sq" placeholder="Search card or set" value="${esc(f.q)}" aria-label="Search singles">
+        <select id="slang" aria-label="Language"><option value="">English & Japanese</option><option value="en" ${f.lang === "en" ? "selected" : ""}>English</option><option value="ja" ${f.lang === "ja" ? "selected" : ""}>Japanese promos</option></select>
         <select id="smon" aria-label="Pokémon"><option value="">Any Pokémon</option>${mons.map((m) => `<option ${f.pokemon === m ? "selected" : ""}>${esc(m)}</option>`).join("")}</select>
         <select id="stier" aria-label="Rarity"><option value="">Any rarity</option>${tiers.map(([k, v]) => `<option value="${k}" ${f.tier === k ? "selected" : ""}>${esc(v.label)}</option>`).join("")}</select>
         <select id="ssig" aria-label="Signal"><option value="">All signals</option>${Object.entries(E.SIGNALS).map(([k, v]) => `<option value="${k}" ${f.signal === k ? "selected" : ""}>${v.label}</option>`).join("")}</select>
         <select id="ssort" aria-label="Sort">${Object.entries(S_SORTS).map(([k, v]) => `<option value="${k}" ${f.sort === k ? "selected" : ""}>${v.label}</option>`).join("")}</select>
       </div>
       <div id="sgrid"></div>`;
-    const upd = () => { f.q = $("#sq").value; f.pokemon = $("#smon").value; f.tier = $("#stier").value; f.signal = $("#ssig").value; f.sort = $("#ssort").value; f.limit = 48; drawSingles(); };
-    ["#sq", "#smon", "#stier", "#ssig", "#ssort"].forEach((x) => $(x).addEventListener("input", upd));
+    const upd = () => { f.q = $("#sq").value; f.pokemon = $("#smon").value; f.tier = $("#stier").value; f.signal = $("#ssig").value; f.sort = $("#ssort").value; f.lang = $("#slang").value; f.limit = 48; drawSingles(); };
+    ["#sq", "#slang", "#smon", "#stier", "#ssig", "#ssort"].forEach((x) => $(x).addEventListener("input", upd));
     document.querySelectorAll("[data-band]").forEach((x) => x.onclick = () => { f.band = x.dataset.band; f.limit = 48; renderSingles(); });
     drawSingles();
   }
@@ -248,7 +249,7 @@
   function drawSingles() {
     const f = state.sFilters; const q = f.q.trim().toLowerCase();
     const rows = state.sRows.filter((r) => inBand(r) && (!q || (r.name + " " + r.setName).toLowerCase().includes(q)) &&
-      (!f.pokemon || r.pokemon === f.pokemon) && (!f.tier || r.tier === f.tier) && (!f.signal || r.signal === f.signal)).sort(S_SORTS[f.sort].fn);
+      (!f.lang || r.lang === f.lang) && (!f.pokemon || r.pokemon === f.pokemon) && (!f.tier || r.tier === f.tier) && (!f.signal || r.signal === f.signal)).sort(S_SORTS[f.sort].fn);
     const buys = rows.filter((r) => r.signal === "strong_buy" || r.signal === "buy").length;
     const checkFirst = rows.filter((r) => r.signal === "verify").length;
     $("#sgrid").innerHTML = rows.length
@@ -549,7 +550,7 @@
       <h2>Confidence</h2>
       <p>Every call checks five things: enough price history, a real release date, a known retail price, chase cards from the product's own set, and — for second-year sets — confirmed print status. <strong>Strong buy</strong> needs all five, and a price that isn't still drifting down. A second-year product above 2× retail is never a buy until its set is confirmed out of print. With thin history, the only calls made are against a known retail price, and they top out at Buy. Products in TCGplayer's catch-all groups (Miscellaneous, promos, POP series) aren't treated as part of a set; add their MSRP and release date under <code>productOverrides</code> in config.json.</p>
       <h2>Singles</h2>
-      <p><strong>The five-step framework.</strong> Every card is run through five steps: <strong>1. the ceiling</strong> — its highest sale, same card, language and version; the buy-under price stays at least 25% under it; <strong>2. distribution</strong> — event, winner and staff promos are scarcest, then pack pulls, prerelease and prize-pack stamps, box promos, mass giveaways and reprints; <strong>3. the top-6 characters</strong> — Charizard, Pikachu, Gengar, Umbreon, Mew and Mewtwo, which carry 40% of the score; <strong>4. Full Art / SIR</strong> — the card types that hold value; <strong>5. graded data</strong> — a big PSA 10 population is fine while the PSA 10 price holds, and a warning when it slides. A card needn't pass every step (a Buy needs three and must not fail the ceiling), but a Strong buy passes all five — and price is the final filter. Japanese cards aren't tracked; TCGplayer prices are English. Everything is re-run daily, so a play this month can be a pass next month. The settings live in <code>config.json</code> → <code>singles.framework</code>.</p>
+      <p><strong>The five-step framework.</strong> Every card is run through five steps: <strong>1. the ceiling</strong> — its highest sale, same card, language and version; the buy-under price stays at least 25% under it; <strong>2. distribution</strong> — event, winner and staff promos are scarcest, then pack pulls, prerelease and prize-pack stamps, box promos, mass giveaways and reprints; <strong>3. the top-6 characters</strong> — Charizard, Pikachu, Gengar, Umbreon, Mew and Mewtwo, which carry 40% of the score; <strong>4. Full Art / SIR</strong> — the card types that hold value; <strong>5. graded data</strong> — a big PSA 10 population is fine while the PSA 10 price holds, and a warning when it slides. A card needn't pass every step (a Buy needs three and must not fail the ceiling), but a Strong buy passes all five — and price is the final filter. Japanese promos are tracked too (only promo-type groups, for your chase Pokémon), and compared only with other Japanese cards; their prices are TCGplayer's US sales, not Japan's own market. Everything is re-run daily, so a play this month can be a pass next month. The settings live in <code>config.json</code> → <code>singles.framework</code>.</p>
       <p>The daily sync also tracks every single of your chase Pokémon priced roughly ${fmt$(settings().singles.budgetMin)}–${fmt$(settings().singles.budgetMax)} (a little wider, so cards drifting past your budget keep their history). Each card is scored on the checklist an experienced buyer runs through:</p>
       <ul class="reasons">
         <li><strong>Character (40%).</strong> Top-6 characters score 100; the rest score by their weight in your chase list.</li>

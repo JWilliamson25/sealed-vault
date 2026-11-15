@@ -46,11 +46,12 @@
     promo:     { label: "Promo",                        demand: 42 },
     base:      { label: "Regular rare",                 demand: 38 },
     classic:   { label: "Classic Collection reprint",   demand: 30 },
+    jp_promo:  { label: "Japanese promo",               demand: 72 },
   };
   // Lower-case names for use mid-sentence (keeps TG / GG / RC and V / VMAX capitalised).
   const NOUN = { sir: "special illustration rare", alt: "alternate art", ir: "illustration rare", gallery_v: "gallery V / VMAX / full art", vintage: "vintage holo",
     shiny: "shiny", rainbow: "rainbow rare", gallery: "gallery holo (TG / GG / RC)", secret: "secret rare", ultra: "ultra rare / full art", gold: "gold / hyper rare",
-    other: "special rare", promo: "promo", base: "regular rare", classic: "Classic Collection reprint" };
+    other: "special rare", promo: "promo", base: "regular rare", classic: "Classic Collection reprint", jp_promo: "Japanese promo" };
   const PILLARS = {
     character: { label: "Character", w: 0.40, what: "top-6 Pokémon carry the most weight" },
     cardType:  { label: "Card type", w: 0.12, what: "Full Art / SIR hold value best" },
@@ -67,6 +68,9 @@
   // How the card entered the market. Scores feed the distribution pillar; 55+ passes step 2.
   const DIST = {
     event_promo: { label: "event / winner / staff promo", score: 88 },
+    jp_exclusive: { label: "Japan-exclusive promo (Pokémon Center, campaign, special box)", score: 80 },
+    magazine:    { label: "magazine / book promo", score: 65 },
+    jp_promo:    { label: "Japanese promo (how it was given out not identified yet)", score: 60 },
     pack:        { label: "pulled from packs", score: 70 },
     prerelease:  { label: "prerelease / stamped promo", score: 55 },
     unknown:     { label: "distribution unknown", score: 50 },
@@ -77,12 +81,20 @@
   function distribution(c, F) {
     if (F?.dist && DIST[F.dist]) return F.dist;
     const t = `${c.name} ${c.group || ""} ${c.setName || ""}`;
+    if (c.lang === "ja") {
+      if (/\b(winner|staff|judge|trophy|prize|tournament|champions? league|battle (festa|road)|gym (challenge|battle)|world championships?|wcs|regional|city league|top \d+|finalist)\b/i.test(t)) return "event_promo";
+      if (/corocoro|v ?jump|magazine|famitsu|comic|manga|guide ?book|mook|book\b/i.test(t)) return "magazine";
+      if (/movie|mcdonald|7-?eleven|lawson|family ?mart|cereal|snack|vending|toy|ana\b|jal\b|stamp rally/i.test(t)) return "mass_promo";
+      if (/pokemon center|pokémon center|card gym|campaign|special (box|set)|premium|limited|exclusive|poncho|anniversary/i.test(t)) return "jp_exclusive";
+      return "jp_promo";
+    }
     if (c.tier === "classic" || /classic collection/i.test(t)) return "reprint";
     if (/mcdonald|general mills|burger king|trick or trade|calendar|movie promo|jumbo|cereal|toys ?r ?us|kids ?wb|blockbuster|7-eleven/i.test(t)) return "mass_promo";
     if (/\b(winner|staff|championship|regionals?|nationals|worlds|world championship|top \d+|finalist|judge)\b/i.test(c.name) || /league & championship/i.test(t)) return "event_promo";
     if (/prerelease|stamped|stamp\b|prize pack/i.test(t)) return "prerelease";
     if (c.tier === "promo" || /promo/i.test(c.group || c.setName || "")) return "box_promo";
     if (/miscellaneous/i.test(c.group || c.setName || "")) return "unknown";
+    // (Japanese cards are handled above.)
     return "pack";
   }
   /** Step 4: is it a Full Art / SIR-class card? */
@@ -465,7 +477,8 @@
       }
       R.push(`Framework: passes ${passes} of 5${fails.length ? `, fails ${fails.join(", ")}` : ""}${Object.values(steps).some((x) => x === null) ? `, can't tell yet on ${Object.entries(steps).filter(([, x]) => x === null).map(([k]) => STEPS[k]).join(", ")}` : ""}.`);
       R.push(`${c.pokemon} ${isTop6 ? "is one of the top 6 characters — the single biggest factor in long-term value" : "isn't in the top 6 characters (Charizard, Pikachu, Gengar, Umbreon, Mew, Mewtwo), so it carries less long-term demand"}. ${tl}: ${fullArt ? "a Full Art / SIR-class card, the type that holds value." : c.tier === "vintage" ? "a vintage holo — not a full art, but an older market with its own demand." : "not a Full Art or SIR, so demand rides mostly on the Pokémon."}`);
-      if (ceiling) R.push(ceilingKnown ? `Ceiling ${E.fmt$(ceiling)} (${ceilingSrc === "history" ? "highest tracked price" : ceilingSrc}${ceilingDate ? `, ${ceilingDate}` : ""}): today's price is ${Math.round((price / ceiling) * 100)}% of it. The buy-under stays at least ${Math.round(fw.ceilingDiscount * 100)}% under the ceiling.` : `Highest price in its ${Math.round(st.spanDays / 30.44)} months of history is ${E.fmt$(ceiling)}, but its real ceiling (all-time highest sale) isn't known yet.`);
+      if (ceiling) R.push(ceilingKnown ? `Ceiling ${E.fmt$(ceiling)} (${ceilingSrc === "history" ? "highest tracked price" : ceilingSrc}${ceilingDate ? `, ${ceilingDate}` : ""}): today's price is ${Math.round((price / ceiling) * 100)}% of it. The buy-under stays at least ${Math.round(fw.ceilingDiscount * 100)}% under the ceiling.` : `Highest price in its ${st.spanDays < 30 ? "few days" : `${Math.round(st.spanDays / 30.44)} months`} of history is ${E.fmt$(ceiling)}, but its real ceiling (all-time highest sale) isn't known yet.`);
+      if (c.lang === "ja") R.push(`Japanese card: Japanese promos often hold value well because collectors around the world chase them, but TCGplayer only shows US sales — check Japanese prices (Snkrdunk, Yuyu-tei, Mercari) too, and expect fewer buyers when you sell in the US.${lowGap != null && lowGap <= 0.8 ? "" : ""}`);
       R.push(`Distribution: ${DIST[dist].label}${dist === "mass_promo" ? " — handed out in huge numbers, so supply rarely tightens" : dist === "box_promo" ? " — sold in collection boxes, tins or blisters, often reprinted in later products" : dist === "event_promo" ? " — limited to an event or its players, the scarcest way a card enters the market" : dist === "reprint" ? " — collectors pay for the original" : ""}${F?.dist && fFresh ? " (researched)" : ""}.`);
       if (runup) {
         const lsrc = loSrc === "facts" ? " (researched)" : "";
@@ -526,7 +539,7 @@
         { k: "step_char", ok: isTop6, label: `3. Top-6 character — ${yn(isTop6)}: ${c.pokemon}` },
         { k: "step_art", ok: fullArt, label: `4. Full Art / SIR — ${yn(fullArt)}: ${tl}` },
         { k: "step_graded", ok: steps.graded === true, label: `5. Graded data — ${yn(steps.graded)}${psaNow ? `: PSA 10 ${E.fmt$(psaNow)}${psaTrend != null ? `, ${E.fmtPct(psaTrend)} in 90 days` : ""}${gem != null ? `, ${Math.round(gem * 100)}% gem rate` : ""}` : ": no PSA 10 data"}` },
-        { k: "language", ok: true, label: "Language: English (TCGplayer). Japanese versions aren't tracked" },
+        { k: "language", ok: true, label: c.lang === "ja" ? "Language: Japanese — compared only with Japanese cards; prices are TCGplayer (US) sales, not Japan's market" : "Language: English" },
         { k: "peers", ok: !!fair, label: fair ? `Compared with ${fair.n} like-for-like cards${fair.kind === "borrowed" ? " (other Pokémon, scaled)" : ""}` : "No like-for-like cards to compare with" },
         { k: "setmates", ok: !!mates, label: mates ? `Setmates: ${mates.n} ${tn} cards in ${c.group || c.setName}, median ${E.fmt$(mates.median)}` : "Setmate prices not synced yet" },
         { k: "range", ok: longKnown, label: longKnown ? `Long-run range ${E.fmt$(lo)}–${E.fmt$(hi)}${loSrc === "facts" || hiSrc === "facts" ? " (incl. researched prices)" : ""}` : `Only ${Math.round(st.spanDays / 30.44)} months of prices — 2-year low/high not researched` },
@@ -563,7 +576,7 @@
         set: { id: c.setId, name: c.setName }, stats: st, psa: { price: psaNow, stats: g }, mates, matePrem, monIdx: mi, mktIdx: mkt, monHot, spotlight: spot,
         ageMonths, phase, printStatus, fair, ratio, target, targetWhy, gap: target != null ? (price / target - 1) * 100 : null, breakeven,
         pillars, demand, value, momentum, budgetFit, score, steps, passes, fails, dist, distLabel: DIST[dist].label, ceiling, ceilingKnown, isTop6, fullArt, psaTrend, confidence, signal, flags, reasons: R,
-        headline: R[0], tierLabel: tl, eraLabel: ERAS[c.era],
+        headline: R[0], tierLabel: tl, eraLabel: ERAS[c.era], lang: c.lang || "en",
       });
     }
     return out;
@@ -575,7 +588,7 @@
     return [
       `Act as a veteran Pokémon TCG singles investor. I buy raw (sometimes PSA 10) singles of popular Pokémon to hold 4+ years. My budget is ${E.fmt$(b.budgetMin)}–${E.fmt$(b.budgetMax)} per card, sweet spot up to ${E.fmt$(b.sweetSpotMax)}. Search the web for recent sales and news on this card, then give me a second opinion.`,
       "",
-      `Card: ${r.name} — ${r.group || r.setName}${r.number ? ` #${r.number}` : ""} (my tracker classes it as: ${r.tierLabel}${r.sub ? `, ${r.sub}` : ""}), ${r.groupDate ? `release unknown to my tracker (${r.release || "no date"} is the promo group's start date)` : `released ${r.release || "unknown"}`}`,
+      `Card: ${r.lang === "ja" ? "[JAPANESE] " : ""}${r.name} — ${r.group || r.setName}${r.number ? ` #${r.number}` : ""} (my tracker classes it as: ${r.tierLabel}${r.sub ? `, ${r.sub}` : ""}), ${r.groupDate ? `release unknown to my tracker (${r.release || "no date"} is the promo group's start date)` : `released ${r.release || "unknown"}`}`,
       `TCGplayer market (raw, ${priceDate}): ${E.fmt$(r.price)} (lowest listing ${E.fmt$(r.low)}); 30d ${E.fmtPct(r.stats.ch30)}, 90d ${E.fmtPct(r.stats.ch90)}, 1y high ${E.fmt$(r.stats.high365)}`,
       r.histStart != null ? `My daily price history starts ${E.dayToDate(r.histStart).toISOString().slice(0, 10)}.${r.lowAll != null ? ` Known range ${E.fmt$(r.lowAll)}–${E.fmt$(r.highAll)}${r.runup ? " (a run-up)" : ""}.` : ""}` : "",
       r.psa.price ? `PSA 10: about ${E.fmt$(r.psa.price)}${r.psaConflict ? ` (Scrydex says ${E.fmt$(r.psaScrydex)} — sources disagree)` : ""}${r.psa9 ? `; PSA 9 about ${E.fmt$(r.psa9)}` : ""}` : "PSA 10: unknown",
@@ -587,6 +600,7 @@
       `My tracker says: ${E.SIGNALS[r.signal].label}${r.target != null ? `, buy under ${E.fmt$(r.target)} (${r.targetWhy})` : ""}, score ${r.score}/100 — ${Object.entries(PILLARS).map(([k, p]) => `${p.label.toLowerCase()} ${P[k]}`).join(", ")}.`,
       r.missing.length ? `What my tracker couldn't check: ${r.missing.join("; ")}.` : "",
       "",
+      r.lang === "ja" ? "This is a Japanese card. My prices are TCGplayer (US) sales — also check what it sells for in Japan (Snkrdunk, Yuyu-tei, Mercari) and how it was distributed (Pokémon Center, campaign, tournament prize, magazine, movie)." : "",
       "Where you disagree with my tracker, say which fact it's missing or getting wrong, so I can fix it. Is it actually undervalued or just a weaker card? Would you buy raw now, set a lower limit, buy a PSA 10 instead, or skip? Biggest risks (reprints, more copies coming, condition)?",
       "Finish with the facts for my tracker's research file, one per line, only those you found with a source: ceiling (all-time highest sale of this exact English card and version, price and month), how it was distributed (packs / event promo / prerelease / box promo / mass giveaway / reprint), 2-year low (price and month), 2-year high (price and month), recent raw sold range, PSA 10 sold range, PSA 9 price, PSA 10 and total population, reprint status (none / same art reprinted / announced / risk), and what's driving attention on this Pokémon right now.",
     ].filter(Boolean).join("\n");

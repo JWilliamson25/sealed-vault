@@ -40,6 +40,10 @@ The daily sync also tracks singles of your chase Pokémon (about $20–$450, a l
 
 PSA 10 prices and older raw history come from a one-time Scrydex import: **Actions → Import price history from Scrydex → mode `singles-dry-run`** (matches cards and saves today's PSA 10 and PSA 9 prices, ~40 credits), then **mode `singles`** (daily raw + PSA 10 history, roughly 25–35 credits per card). Scrydex history only reaches back about six months.
 
+### Japanese promos
+
+The sync also reads TCGplayer's **Pokemon Japan** category, but only promo-type groups (SV-P, S-P, Pokémon Center, campaign, tournament, magazine and similar), and keeps singles of your chase Pokémon in the same price band. They're tagged **JP**, filtered with the language menu on the Singles tab, and compared only with other Japanese cards. Step 2 of the framework sorts them into tournament/staff prizes, Japan-exclusive promos (Pokémon Center, campaigns, special boxes), magazine promos and mass giveaways (movie, convenience-store). Prices are what they sell for on TCGplayer in the US, not in Japan. `data/japan_groups.json` lists every Japanese group and whether it's included; tune `config.json` → `singles.japan.groupInclude` / `groupExclude`.
+
 ### Researched card facts
 
 A price feed can't see where a card traded two years ago, what copies actually sell for, the PSA population, or whether the art was reprinted. Those go in `data/card_facts.json`:
