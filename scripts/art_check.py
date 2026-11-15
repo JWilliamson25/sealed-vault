@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Is a Japanese promo's artwork also printed in English? Compares card images.
+"""Which tracked cards share their artwork with another printing? Compares card images.
+
+English cards: every tracked card is compared with every other English single of the same Pokemon
+(any set, any price, including promo groups the tracker doesn't follow, such as Burger King). A match
+is saved on the card as "artAlso" (e.g. Majestic Dawn Pikachu 70/100 and its Burger King "Platinum"
+stamped reprint), so the app can flag it and the prompt can ask which version the prices belong to.
 
 For every tracked Japanese card, the artwork area of its TCGplayer image is hashed and compared
 with every English card of the same Pokemon (any price). A close match means the same art was
@@ -93,16 +98,17 @@ def run(cfg: dict, english_singles: list[dict] | None = None) -> None:
     maybe = jc.get("artMaybeThreshold", DEFAULT_MAYBE)
     s = json.loads(SINGLES_PATH.read_text())
     jp = [c for c in s["cards"] if c.get("lang") == "ja"]
-    if not jp:
+    tracked_en = [c for c in s["cards"] if c.get("lang") != "ja"]
+    if not jp and not tracked_en:
         return
-    mons = {c["pokemon"] for c in jp}
+    mons = {c["pokemon"] for c in s["cards"]}
     rx = {m: re.compile(rf"\b{re.escape(m)}\b", re.I) for m in mons}
     # English candidates: every English single of these Pokemon the sync saw (any price), else the tracked ones.
     pool = english_singles if english_singles is not None else [c for c in s["cards"] if c.get("lang") != "ja"]
     en = [c for c in pool if c.get("lang") != "ja" and any(r.search(c["name"]) for r in rx.values())]
     cache = json.loads(HASHES.read_text()) if HASHES.exists() else {}
     t0, got, failed, streak = time.time(), 0, 0, 0
-    for c in jp + en:
+    for c in jp + tracked_en + en:
         k = str(c["id"])
         if k in cache or got >= MAX_DOWNLOADS or time.time() - t0 > TIME_BUDGET:
             continue
@@ -122,15 +128,51 @@ def run(cfg: dict, english_singles: list[dict] | None = None) -> None:
     write_json(HASHES, cache)
     print(f"Art check: {got} new images hashed ({failed} unusable), {len(cache)} cached")
 
+    # A hash shared exactly by several cards is TCGplayer's "no image" placeholder, not real artwork.
+    from collections import Counter  # noqa: PLC0415
+    seen = Counter(v for v in cache.values() if v)
+    placeholder = {v for v, n in seen.items() if n >= 4}
+    def h_of(cid):
+        v = cache.get(str(cid))
+        return None if (not v or v in placeholder) else v
+
+    # English: other printings of the same artwork (reprints, stamped promos, fast-food versions).
+    en_report, n_en = [], 0
+    for c in tracked_en:
+        h = h_of(c["id"])
+        c.pop("artAlso", None)
+        if not h:
+            c.pop("artChecked", None)
+            continue
+        r = rx.get(c["pokemon"])
+        same = []
+        for e in en:
+            if e["id"] == c["id"] or not (r and r.search(e["name"])):
+                continue
+            eh = h_of(e["id"])
+            if eh:
+                d = dist(h, eh)
+                if d <= threshold:
+                    same.append((d, e))
+        c["artChecked"] = True
+        if same:
+            same.sort(key=lambda x: x[0])
+            c["artAlso"] = [{"id": e["id"], "name": e["name"], "group": e.get("group") or e.get("setName"), "dist": d,
+                             "price": e.get("sprice") or e.get("price")} for d, e in same[:4]]
+            n_en += 1
+            en_report.append({"id": c["id"], "name": c["name"], "group": c.get("group"), "number": c.get("number"),
+                              "sameArt": c["artAlso"]})
+    print(f"Art check: {n_en} of {len(tracked_en)} tracked English cards share art with another printing")
+
     report, n_match = [], 0
     for c in jp:
-        h = cache.get(str(c["id"]))
+        h = h_of(c["id"])
         cands = []
         if h:
             for e in en:
                 if not rx[c["pokemon"]].search(e["name"]):
                     continue
-                eh = cache.get(str(e["id"]))
+                eh = h_of(e["id"])
                 if eh:
                     cands.append((dist(h, eh), e))
         cands.sort(key=lambda x: x[0])
@@ -148,9 +190,10 @@ def run(cfg: dict, english_singles: list[dict] | None = None) -> None:
                        "hashed": bool(h), "candidates": len(cands), "sameArtInEnglish": matched, "closest": best})
     report.sort(key=lambda r: (r["closest"][0]["dist"] if r["closest"] else 999))
     write_json(MATCHES, {"threshold": threshold, "note": "dist = bits that differ of 256; at or under the threshold counts as the same artwork",
-                         "maybeThreshold": maybe, "cards": report})
+                         "maybeThreshold": maybe, "cards": report, "english": en_report})
     write_json(SINGLES_PATH, s)
-    print(f"Art check: {n_match} of {len(jp)} Japanese cards share art with an English card (threshold {threshold})")
+    if jp:
+        print(f"Art check: {n_match} of {len(jp)} Japanese cards share art with an English card (threshold {threshold})")
 
 
 if __name__ == "__main__":

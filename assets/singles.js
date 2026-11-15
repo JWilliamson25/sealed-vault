@@ -46,12 +46,14 @@
     promo:     { label: "Promo",                        demand: 42 },
     base:      { label: "Regular rare",                 demand: 38 },
     classic:   { label: "Classic Collection reprint",   demand: 30 },
+    common:    { label: "Common / uncommon",            demand: 34 },
     jp_promo:  { label: "Japanese promo",               demand: 72 },
   };
   // Lower-case names for use mid-sentence (keeps TG / GG / RC and V / VMAX capitalised).
   const NOUN = { sir: "special illustration rare", alt: "alternate art", ir: "illustration rare", gallery_v: "gallery V / VMAX / full art", vintage: "vintage holo",
     shiny: "shiny", rainbow: "rainbow rare", gallery: "gallery holo (TG / GG / RC)", secret: "secret rare", ultra: "ultra rare / full art", gold: "gold / hyper rare",
-    other: "special rare", promo: "promo", base: "regular rare", classic: "Classic Collection reprint", jp_promo: "Japanese promo" };
+    other: "special rare", promo: "promo", base: "regular rare", classic: "Classic Collection reprint", jp_promo: "Japanese promo",
+    common: "common / uncommon" };
   const PILLARS = {
     character: { label: "Character", w: 0.40, what: "top-6 Pokémon carry the most weight" },
     cardType:  { label: "Card type", w: 0.12, what: "Full Art / SIR hold value best" },
@@ -121,6 +123,9 @@
 
   /** Data synced before the gallery split still says "ir" for TG/GG/RC cards: sort them here too. */
   function refineTier(c, srarity) {
+    // Data synced before the common tier existed filed commons and uncommons (often priced as their
+    // reverse holo) under "vintage" or "base", next to holo rares.
+    if (["vintage", "base"].includes(c.tier) && /^(common|uncommon)$/i.test(String(c.rarity || "").trim())) return "common";
     const num = String(c.number || "").toUpperCase();
     if (c.tier !== "ir" || !/^(TG|GG|RC)\d/.test(num)) return c.tier;
     const r = String(c.rarity || "").toLowerCase(), sr = String(srarity || "").toLowerCase(), n = c.name || "";
@@ -250,8 +255,11 @@
       const soldMid = F?.sold ? F.sold.median ?? (F.sold.low + F.sold.high) / 2 : null;
 
       const st = E.seriesStats(history.series[String(c.id)], lastDay);
-      const g = E.seriesStats(history.series["g:" + c.id], lastDay);
-      const psaR = robustPsa(history.series["g:" + c.id], lastDay, psa[c.id]?.price);
+      // A Scrydex import that matched PSA prices to the exact printing (singles.psaStrict) and found none
+      // for this card means any older PSA series came from another printing of the card: ignore it.
+      const psaSeries = singles.psaStrict && !psa[c.id] ? null : history.series["g:" + c.id];
+      const g = E.seriesStats(psaSeries, lastDay);
+      const psaR = robustPsa(psaSeries, lastDay, psa[c.id]?.price);
       const psaF = F?.psa10Sold && ageDays(F.psa10Sold.date) <= 60 ? F.psa10Sold : null;
       const psaConflict = psaF && psaR.price && (psaR.price < psaF.low * 0.85 || psaR.price > psaF.high * 1.15);
       const psaNow = psaF ? (psaF.median ?? (psaF.low + psaF.high) / 2) : psaR.price;
@@ -366,6 +374,14 @@
       if (c.tier === "classic") supply -= 25;
       if (c.tier === "promo") supply -= 15;
       const reprint = fFresh ? F.reprint || null : null;
+      // Other printings of the same artwork, found by the image check (scripts/art_check.py). Until the
+      // reprint status is researched, they count against supply and the card needs checking first.
+      const artAlso = (c.artAlso || []).filter((x) => String(x.id) !== String(c.id));
+      // Printings in another product line (a promo, a deck, a fast-food or Classic reprint) are the ones
+      // that change supply and get mixed up with this card. A gold or stamped twin in the same set is noted only.
+      const artElsewhere = artAlso.filter((x) => (x.group || "") !== (c.group || c.setName || ""));
+      const artAuto = !reprint && artElsewhere.length > 0;
+      if (artAuto) supply -= 8;
       if (reprint === "none") supply += 5;
       if (reprint === "same_art") supply -= 25;
       if (reprint === "risk") supply -= 15;
@@ -388,7 +404,13 @@
       if (gem != null && gem < 0.1) grading -= 5;
       if (psa9Now && psa9Now <= price * 1.25) grading += 5;
       grading = clamp(grading, 0, 100);
-      const gradedPass = psaNow == null ? null : psaHolding == null ? (gem != null ? !(gem > 0.5 && !isTop6) : null) : psaHolding;
+      // A PSA 10 price on its own can't pass step 5: with a tiny population it's one sale or a guess, and
+      // it may belong to another printing. It passes only once the population or recent PSA 10 sales are researched.
+      const tooFewTens = !!pop && pop.psa10 < 5 && !psaF; // a PSA 10 "price" for a handful of slabs is a guess
+      const psaVerified = !!psaF || (gem != null && !tooFewTens);
+      if (!psaVerified) grading = Math.min(grading, 60);
+      if (pop && pop.psa10 < 5 && !psaF) grading = Math.min(grading, 50);
+      const gradedPass = psaNow == null || !psaVerified || tooFewTens ? null : psaHolding == null ? !(gem > 0.5 && !isTop6) : psaHolding;
 
       /* --- pillar 7: liquidity & costs --- */
       const budgetFit = price <= b.sweetSpotMax ? 100 : price <= b.budgetMax ? 65 : 0;
@@ -397,6 +419,10 @@
       const lowGap = c.low && c.low > 0 ? c.low / price : null;
       let liquidity = Math.round(0.75 * budgetFit + 25 * (price >= 30 ? 1 : 0.5));
       if (soldFresh && soldMid < price * 0.93) liquidity -= 10; // market overstates real sales
+      // Cheapest listing far above the market price: few copies for sale, and the market price is an
+      // average of old sales that you can't actually buy at.
+      const thin = lowGap != null && lowGap >= 1.5;
+      if (thin) liquidity -= 35;
       liquidity = clamp(liquidity, 0, 100);
 
       const pillars = { character, cardType, position, supply, grading, momentum, value, liquidity };
@@ -464,6 +490,14 @@
         signal = "verify";
         guard.push(`Looks like a buy on ${Math.round(st.spanDays / 30.44)} months of prices, but where it traded before that isn't known. Look up its ceiling (highest sale), its 2-year low and recent sold prices (Ask Claude), then record them in data/card_facts.json — the call updates on its own.`);
       }
+      if (buyish() && thin && !soldFresh && signal !== "verify") {
+        signal = "verify";
+        guard.push(`The cheapest copy listed is ${E.fmt$(c.low)}, ${lowGap.toFixed(1)}× the ${E.fmt$(price)} market price — the market price is probably stale. Check recent sold prices before trusting the buy-under.`);
+      }
+      if (buyish() && artAuto && signal !== "verify") {
+        signal = "verify";
+        guard.push(`The same artwork was also printed as ${artElsewhere.map((x) => `${x.name} (${x.group})`).join(", ")}. Check which version prices and PSA data belong to, then record reprint=same_art (or none) in data/card_facts.json.`);
+      }
       if (buyish() && c.lang === "ja" && c.artMaybe && F?.jpExclusive !== "yes" && signal !== "verify") {
         signal = "verify";
         guard.push(`Its artwork looks close to an English card (${c.artMaybe.name}, ${c.artMaybe.group}). If it's the same art, it isn't a Japan exclusive — compare the two, then record jpexclusive=yes or no.`);
@@ -493,6 +527,8 @@
       if (ceiling) R.push(ceilingKnown ? `Ceiling ${E.fmt$(ceiling)} (${ceilingSrc === "history" ? "highest tracked price" : ceilingSrc}${ceilingDate ? `, ${ceilingDate}` : ""}): today's price is ${Math.round((price / ceiling) * 100)}% of it. The buy-under stays at least ${Math.round(fw.ceilingDiscount * 100)}% under the ceiling.` : `Highest price in its ${st.spanDays < 30 ? "few days" : `${Math.round(st.spanDays / 30.44)} months`} of history is ${E.fmt$(ceiling)}, but its real ceiling (all-time highest sale) isn't known yet.`);
       if (c.lang === "ja") R.push(`Japanese card: Japanese promos often hold value well because collectors around the world chase them, but TCGplayer only shows US sales — check Japanese prices (Snkrdunk, Yuyu-tei, Mercari) too, and expect fewer buyers when you sell in the US.${lowGap != null && lowGap <= 0.8 ? "" : ""}`);
       R.push(`Distribution: ${DIST[dist].label}${dist === "mass_promo" ? " — handed out in huge numbers, so supply rarely tightens" : dist === "box_promo" ? " — sold in collection boxes, tins or blisters, often reprinted in later products" : dist === "event_promo" ? " — limited to an event or its players, the scarcest way a card enters the market" : dist === "reprint" ? " — collectors pay for the original" : ""}${F?.dist && fFresh ? " (researched)" : ""}.`);
+      if (artAlso.length) R.push(`Same artwork also printed as ${artAlso.map((x) => `${x.name} — ${x.group}${x.price ? ` (${E.fmt$(x.price)})` : ""}`).join("; ")}. Make sure you're buying (and pricing) this version — check the set symbol and any stamp.`);
+      if (thin) R.push(`Few copies for sale: the cheapest listing (${E.fmt$(c.low)}) is ${lowGap.toFixed(1)}× the market price, so the market price is likely out of date.`);
       if (runup) {
         const lsrc = loSrc === "facts" ? " (researched)" : "";
         R.push(price > runAnchor
@@ -527,12 +563,16 @@
       if (psaNow) {
         if (psaNow > b.budgetMax) R.push(`PSA 10 runs about ${E.fmt$(psaNow)} (${m.toFixed(m >= 10 ? 0 : 1)}× raw) — over your ${E.fmt$(b.budgetMax)} max, so raw is the only way in. ${m >= 12 ? "A premium that steep tends to shrink as more copies get graded." : ""}`.trim());
         else if (m >= 12) R.push(`PSA 10 runs about ${E.fmt$(psaNow)}, ${m.toFixed(0)}× raw. A premium that steep tends to shrink as more copies get graded — raw is the better long hold.`);
-        else if (m <= 2.5) R.push(`A PSA 10 is only ${m.toFixed(1)}× raw (${E.fmt$(psaNow)}) and within budget — the slab removes condition risk for little extra and is likely the better buy.`);
+        else if (m <= 2.5 && psaVerified) R.push(`A PSA 10 is only ${m.toFixed(1)}× raw (${E.fmt$(psaNow)}) and within budget — the slab removes condition risk for little extra and is likely the better buy.`);
+        else if (m <= 2.5) R.push(`Scrydex puts a PSA 10 at about ${E.fmt$(psaNow)} (${m.toFixed(1)}× raw), but that isn't backed by recent sales or a population check — a PSA 10 this close to raw often means the estimate is for another printing or there are hardly any 10s to buy. Verify before treating a slab as the better buy.`);
         else R.push(`A PSA 10 runs about ${E.fmt$(psaNow)} (${m.toFixed(1)}× raw).`);
       }
-      if (psa9Now) R.push(psa9Now <= price * 1.25 ? `PSA 9 sells for about ${E.fmt$(psa9Now)}, barely above raw — a 9 removes condition risk for little extra.` : `PSA 9 about ${E.fmt$(psa9Now)} vs PSA 10 ${E.fmt$(psaNow)}: ${psaNow && psaNow / psa9Now >= 4 ? "a steep 9-to-10 cliff, so a raw copy is only worth grading if it's clearly perfect." : "a modest 9-to-10 gap."}`);
+      if (psa9Now && psaNow && psa9Now > psaNow) R.push(`PSA 9s (about ${E.fmt$(psa9Now)}) sell for more than the PSA 10 estimate (${E.fmt$(psaNow)}) — the PSA 10 figure can't be right for this printing; ignore it.`);
+      else if (psa9Now) R.push(psa9Now <= price * 1.25 ? `PSA 9 sells for about ${E.fmt$(psa9Now)}, barely above raw — a 9 removes condition risk for little extra.` : `PSA 9 about ${E.fmt$(psa9Now)} vs PSA 10 ${E.fmt$(psaNow)}: ${psaNow && psaNow / psa9Now >= 4 ? "a steep 9-to-10 cliff, so a raw copy is only worth grading if it's clearly perfect." : "a modest 9-to-10 gap."}`);
+      if (tooFewTens) R.push(`Only ${pop.psa10} PSA 10${pop.psa10 === 1 ? "" : "s"} graded — there's no real PSA 10 market, so any PSA 10 price is a guess. Judge it raw (and on PSA 9s).`);
       if (gem != null) R.push(`PSA population: ${pop.psa10.toLocaleString()} 10s of ${pop.total.toLocaleString()} graded (${Math.round(gem * 100)}% gem rate${pop.date ? `, ${pop.date}` : ""}). ${gem < 0.1 ? "10s are scarce — raw copies often have flaws; buy with clear photos." : psaHolding === false ? "Plenty of 10s and the PSA 10 price is sliding — supply is outrunning demand." : gem > 0.5 ? "Plenty of 10s, but a big population is only a problem if demand can't absorb it — watch the PSA 10 price." : ""}`.trim());
-      if (psaTrend != null && psaNow) R.push(psaHolding ? `PSA 10 price ${E.fmtPct(psaTrend)} over 90 days — demand is absorbing the graded supply${isTop6 ? ", as it usually does for top-6 characters" : ""}.` : `PSA 10 price ${E.fmtPct(psaTrend)} over 90 days — graded supply is outpacing demand.`);
+      if (psaTrend != null && psaNow && !psaVerified) R.push(`Scrydex's PSA 10 price moved ${E.fmtPct(psaTrend)} over 90 days, but with no researched population or sales that's not enough to pass the graded-data step.`);
+      else if (psaTrend != null && psaNow) R.push(psaHolding ? `PSA 10 price ${E.fmtPct(psaTrend)} over 90 days — demand is absorbing the graded supply${isTop6 ? ", as it usually does for top-6 characters" : ""}.` : `PSA 10 price ${E.fmtPct(psaTrend)} over 90 days — graded supply is outpacing demand.`);
       else if (m != null && m >= 4 && !psa9Now && price <= b.sweetSpotMax) R.push("Worth grading only if your copy is clearly well centered and clean (grading costs ~$20–25+ per card, and many modern pulls don't get a 10).");
       // Liquidity & costs
       if (soldFresh) R.push(soldMid < price * 0.93 ? `Recent sales center on ${E.fmt$(soldMid)} (${E.fmt$(F.sold.low)}–${E.fmt$(F.sold.high)}), under the TCGplayer market — don't pay market.` : `Recent sales ${E.fmt$(F.sold.low)}–${E.fmt$(F.sold.high)} back up the market price.`);
@@ -558,10 +598,11 @@
         { k: "setmates", ok: !!mates, label: mates ? `Setmates: ${mates.n} ${tn} cards in ${c.group || c.setName}, median ${E.fmt$(mates.median)}` : "Setmate prices not synced yet" },
         { k: "range", ok: longKnown, label: longKnown ? `Long-run range ${E.fmt$(lo)}–${E.fmt$(hi)}${loSrc === "facts" || hiSrc === "facts" ? " (incl. researched prices)" : ""}` : `Only ${Math.round(st.spanDays / 30.44)} months of prices — 2-year low/high not researched` },
         { k: "sold", ok: soldFresh, label: soldFresh ? `Recent sold ${E.fmt$(F.sold.low)}–${E.fmt$(F.sold.high)} (${F.sold.date})` : F?.sold ? `Sold prices are ${soldAge} days old` : "Recent sold prices not checked (TCGplayer market can run high)" },
-        { k: "psa", ok: !!psaNow && !psaConflict && !(psaR.jump && !psaF), label: psaNow ? `PSA 10 ${E.fmt$(psaNow)}${psaF ? " (recent sales)" : " (Scrydex)"}${psaConflict ? " — sources disagree" : ""}` : "No PSA 10 price" },
+        { k: "psa", ok: !!psaNow && !psaConflict && !(psaR.jump && !psaF) && psaVerified, label: psaNow ? `PSA 10 ${E.fmt$(psaNow)}${psaF ? " (recent sales)" : " (Scrydex estimate — not checked against sales or population)"}${psaConflict ? " — sources disagree" : ""}` : "No PSA 10 price" },
         { k: "psa9", ok: !!psa9Now, label: psa9Now ? `PSA 9 ${E.fmt$(psa9Now)}` : "No PSA 9 price" },
         { k: "pop", ok: gem != null, label: gem != null ? `Gem rate ${Math.round(gem * 100)}%` : "PSA population not checked" },
-        { k: "reprint", ok: !!reprint || c.tier === "classic", label: reprint ? `Reprint check: ${reprint.replace("_", " ")} (${F.verified})` : c.tier === "classic" ? "Is itself a reprint" : "Reprints of this art not checked" },
+        { k: "reprint", ok: !!reprint || c.tier === "classic", label: reprint ? `Reprint check: ${reprint.replace("_", " ")} (${F.verified})` : c.tier === "classic" ? "Is itself a reprint" : artAlso.length ? `Same art also printed as ${artAlso.map((x) => `${x.name} (${x.group})`).join(", ")} — not researched` : `Reprints of this art not checked${c.artChecked ? " (image check found no other printing)" : ""}` },
+        { k: "listings", ok: !thin, label: thin ? `Cheapest listing ${E.fmt$(c.low)} is ${lowGap.toFixed(1)}× market — few copies for sale, market price may be stale` : "Listings in line with the market price" },
         { k: "print", ok: !!printStatus || (ageMonths != null && ageMonths >= 48), label: printStatus ? `Set ${printStatus.replace(/_/g, " ")}` : ageMonths != null && ageMonths >= 48 ? "Set long out of print" : "Set print status not recorded" },
         { k: "release", ok: !!c.release && !groupDate, label: groupDate ? "Release date unknown (promo or catch-all group)" : c.release ? `Released ${c.release}` : "Release date unknown" },
         { k: "hype", ok: !monHot, label: monHot ? `${c.pokemon} in a hype cycle (${E.fmtPct(mi.d180)} in 6 mo)` : mi.d180 != null ? `${c.pokemon} cards ${E.fmtPct(mi.d180)} in 6 mo (market ${E.fmtPct(mkt.d180)})` : `Not enough ${c.pokemon} cards to read a trend` },
@@ -590,6 +631,7 @@
         set: { id: c.setId, name: c.setName }, stats: st, psa: { price: psaNow, stats: g }, mates, matePrem, monIdx: mi, mktIdx: mkt, monHot, spotlight: spot,
         ageMonths, phase, printStatus, fair, ratio, target, targetWhy, gap: target != null ? (price / target - 1) * 100 : null, breakeven,
         pillars, demand, value, momentum, budgetFit, score, steps, passes, fails, dist, distLabel: DIST[dist].label, ceiling, ceilingKnown, isTop6, fullArt, psaTrend, confidence, signal, flags, reasons: R,
+        artAlso, thin, psaVerified,
         headline: R[0], tierLabel: tl, eraLabel: ERAS[c.era], lang: c.lang || "en",
       });
     }
@@ -602,10 +644,11 @@
     return [
       `Act as a veteran Pokémon TCG singles investor. I buy raw (sometimes PSA 10) singles of popular Pokémon to hold 4+ years. My budget is ${E.fmt$(b.budgetMin)}–${E.fmt$(b.budgetMax)} per card, sweet spot up to ${E.fmt$(b.sweetSpotMax)}. Search the web for recent sales and news on this card, then give me a second opinion.`,
       "",
-      `Card: ${r.lang === "ja" ? "[JAPANESE] " : ""}${r.name} — ${r.group || r.setName}${r.number ? ` #${r.number}` : ""} (my tracker classes it as: ${r.tierLabel}${r.sub ? `, ${r.sub}` : ""}), ${r.groupDate ? `release unknown to my tracker (${r.release || "no date"} is the promo group's start date)` : `released ${r.release || "unknown"}`}`,
+      `Card: ${r.lang === "ja" ? "[JAPANESE] " : ""}${r.name} — ${r.group || r.setName}${r.number ? ` #${r.number}` : ""} (rarity: ${r.rarity || "unknown"}; printing priced: ${r.sub || "unknown"}; my tracker classes it as: ${r.tierLabel}), ${r.groupDate ? `release unknown to my tracker (${r.release || "no date"} is the promo group's start date)` : `released ${r.release || "unknown"}`}`,
       `TCGplayer market (raw, ${priceDate}): ${E.fmt$(r.price)} (lowest listing ${E.fmt$(r.low)}); 30d ${E.fmtPct(r.stats.ch30)}, 90d ${E.fmtPct(r.stats.ch90)}, 1y high ${E.fmt$(r.stats.high365)}`,
       r.histStart != null ? `My daily price history starts ${E.dayToDate(r.histStart).toISOString().slice(0, 10)}.${r.lowAll != null ? ` Known range ${E.fmt$(r.lowAll)}–${E.fmt$(r.highAll)}${r.runup ? " (a run-up)" : ""}.` : ""}` : "",
-      r.psa.price ? `PSA 10: about ${E.fmt$(r.psa.price)}${r.psaConflict ? ` (Scrydex says ${E.fmt$(r.psaScrydex)} — sources disagree)` : ""}${r.psa9 ? `; PSA 9 about ${E.fmt$(r.psa9)}` : ""}` : "PSA 10: unknown",
+      r.artAlso?.length ? `Other printings of the same artwork (image match): ${r.artAlso.map((x) => `${x.name} — ${x.group}${x.price ? `, ${E.fmt$(x.price)}` : ""}`).join("; ")}` : "",
+      r.psa.price ? `PSA 10: about ${E.fmt$(r.psa.price)}${r.psaVerified ? "" : " (database estimate — may be for another printing; not checked against sales or population)"}${r.psaConflict ? ` (Scrydex says ${E.fmt$(r.psaScrydex)} — sources disagree)` : ""}${r.psa9 ? `; PSA 9 about ${E.fmt$(r.psa9)}` : ""}` : "PSA 10: unknown",
       r.fair ? `Like-for-like cards${r.fair.kind === "borrowed" ? " (borrowed estimate)" : ""}: ${r.fair.how}, median ${E.fmt$(r.fair.value)} (this card is ${r.ratio >= 1 ? Math.round((1 - 1 / r.ratio) * 100) + "% under" : Math.round((1 / r.ratio - 1) * 100) + "% over"} that)` : "Like-for-like cards: none to compare with yet",
       r.mates ? `Setmates (same card type in the same set, any Pokémon): median ${E.fmt$(r.mates.median)} across ${r.mates.n} cards; this card is ${r.matePrem.toFixed(1)}× that` : "",
       r.monIdx?.d180 != null ? `${r.pokemon}'s tracked cards: ${E.fmtPct(r.monIdx.d180)} over 6 months (median tracked card ${E.fmtPct(r.mktIdx.d180)})${r.monHot ? " — my tracker calls this a hype cycle" : ""}` : "",
@@ -615,6 +658,7 @@
       r.missing.length ? `What my tracker couldn't check: ${r.missing.join("; ")}.` : "",
       "",
       r.lang === "ja" ? "This is a Japanese card. My prices are TCGplayer (US) sales — also check what it sells for in Japan (Snkrdunk, Yuyu-tei, Mercari) and how it was distributed (Pokémon Center, campaign, tournament prize, magazine, movie)." : "",
+      "Before anything else, pin down the exact printing: the rarity, holo / reverse holo / non-holo, set symbol, and any stamp. Check that every price, PSA sale and population you cite is for this printing, not another version or another set's card with the same number, and list other printings of the same artwork (promos, stamped versions, reprints) separately with their own prices.",
       "Where you disagree with my tracker, say which fact it's missing or getting wrong, so I can fix it. Is it actually undervalued or just a weaker card? Would you buy raw now, set a lower limit, buy a PSA 10 instead, or skip? Biggest risks (reprints, more copies coming, condition)?",
       "Finish with the facts for my tracker's research file, one per line, only those you found with a source: ceiling (all-time highest sale of this exact English card and version, price and month), how it was distributed (packs / event promo / prerelease / box promo / mass giveaway / reprint), 2-year low (price and month), 2-year high (price and month), recent raw sold range, PSA 10 sold range, PSA 9 price, PSA 10 and total population, reprint status (none / same art reprinted / announced / risk), and what's driving attention on this Pokémon right now.",
     ].filter(Boolean).join("\n");

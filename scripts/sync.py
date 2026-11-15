@@ -324,7 +324,7 @@ def sync_singles(cfg, groups, parent_of, singles, old_singles, price_date, today
     h = cfg["history"]
     compact_history(hist, today, h["dailyWindowDays"], h["olderBucketDays"], keep)
     hist["lastDay"] = today
-    out = {**{k: v for k, v in old_singles.items() if k in ("psa10", "psa10Date", "scrydex", "srarity")},
+    out = {**{k: v for k, v in old_singles.items() if k in ("psa10", "psa9", "psa10Date", "psaStrict", "scrydex", "srarity")},
            "priceDate": price_date, "cards": cards, "peers": peers, "setTiers": set_tiers, "spotlight": spotlight}
     write_json(SINGLES_PATH, out)
     write_json(SINGLES_HISTORY_PATH, hist)
