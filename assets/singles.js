@@ -202,12 +202,13 @@
     const weights = Object.fromEntries(settings.chasePokemon.map((c) => [c.name.toLowerCase(), c.weight ?? 1]));
     const legacy = !singles.setTiers; // synced before the gallery split
     const srar = singles.srarity || {};
-    const cards = singles.cards.map((c) => ({ ...c, tier: TIERS[refineTier(c, srar[c.id])] ? refineTier(c, srar[c.id]) : "other" }));
+    const fw = { top6: ["Charizard", "Pikachu", "Gengar", "Umbreon", "Mew", "Mewtwo"], ceilingDiscount: 0.25, minPasses: 3, ...(settings.singles.framework || {}) };
+    const top6 = new Set(fw.top6.map((x) => x.toLowerCase()));
+    // Singles cover only the top-6 characters (config.json → singles.framework.top6).
+    const cards = singles.cards.filter((c) => top6.has(String(c.pokemon).toLowerCase())).map((c) => ({ ...c, tier: TIERS[refineTier(c, srar[c.id])] ? refineTier(c, srar[c.id]) : "other" }));
     const model = fairModel(singles.peers, legacy);
     const psa = singles.psa10 || {}, psa9 = singles.psa9 || {};
     const b = settings.singles;
-    const fw = { top6: ["Charizard", "Pikachu", "Gengar", "Umbreon", "Mew", "Mewtwo"], ceilingDiscount: 0.25, minPasses: 3, ...(b.framework || {}) };
-    const top6 = new Set(fw.top6.map((x) => x.toLowerCase()));
     const setOv = settings.setOverrides || {};
 
     const setSealed90 = {};

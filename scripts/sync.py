@@ -244,7 +244,11 @@ def sync_singles(cfg, groups, parent_of, singles, old_singles, price_date, today
     """Track singles of the chase Pokemon inside the configured price band, plus peer medians."""
     sc = cfg.get("singles") or {}
     lo, hi = sc.get("trackMin", 20), sc.get("trackMax", 450)
-    rx = chase_regexes(cfg["chasePokemon"])
+    # Singles cover only the framework's top-6 characters; the full chase list still feeds the peer
+    # medians (more cards to compare with) and the sealed side. Top 6 are matched first, so a card
+    # naming two Pokemon ("Poncho-wearing Pikachu (Rayquaza)") counts as the top-6 one.
+    top6 = {n.lower() for n in ((sc.get("framework") or {}).get("top6") or [c["name"] for c in cfg["chasePokemon"]])}
+    rx = sorted(chase_regexes(cfg["chasePokemon"]), key=lambda t: t[0].lower() not in top6)
     gby = {g["groupId"]: g for g in groups}
     was_tracked = {c["id"] for c in old_singles.get("cards", [])}
     srarity = old_singles.get("srarity") or {}  # Scrydex rarity per card, from the singles import
@@ -278,6 +282,8 @@ def sync_singles(cfg, groups, parent_of, singles, old_singles, price_date, today
                                                           "price": price, "release": release, "tier": tier})
             if price and price >= 3:  # peers use every price, so the band doesn't skew them
                 peers_raw.setdefault(f"{mon}|{tier}{'_ja' if ja and tier != 'jp_promo' else ''}|{era}", []).append(price)
+            if mon.lower() not in top6:
+                continue
             in_band = lo <= price <= hi
             keep_band = c["id"] in was_tracked and lo * 0.5 <= price <= hi * 2
             if not (in_band or keep_band):

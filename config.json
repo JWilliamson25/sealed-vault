@@ -102,7 +102,7 @@
     "trackMin": 20,
     "trackMax": 450,
     "framework": {
-      "_comment": "The five-step singles framework. top6: the characters that carry 40% of a card's score (others score by their chasePokemon weight). ceilingDiscount: never pay more than this far below the card's ceiling (its highest sale, same card, language and version) — 0.25 means at most 75% of the ceiling. minPasses: how many of the five steps a card must pass to be a Buy (the rule of exceptions); a Strong buy must pass all five. Price is always the final filter.",
+      "_comment": "The five-step singles framework. top6: the only Pokemon whose singles (English and Japanese) are tracked, and 40% of a card's score. The full chasePokemon list still drives sealed products and the peer comparisons. ceilingDiscount: never pay more than this far below the card's ceiling (its highest sale, same card, language and version) — 0.25 means at most 75% of the ceiling. minPasses: how many of the five steps a card must pass to be a Buy (the rule of exceptions); a Strong buy must pass all five. Price is always the final filter.",
       "top6": [
         "Charizard",
         "Pikachu",
