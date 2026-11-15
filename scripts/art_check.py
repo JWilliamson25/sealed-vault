@@ -30,7 +30,8 @@ HASHES = DATA / "art_hashes.json"
 MATCHES = DATA / "art_matches.json"
 # Bits that may differ (of 256) for two images to count as the same artwork. Same art in another
 # language differs mostly in text and frame, which the crop avoids. Tuned on the calibration report.
-DEFAULT_THRESHOLD = 52
+DEFAULT_THRESHOLD = 62  # same art: everything up to here matched the right English card in calibration
+DEFAULT_MAYBE = 80      # 63-80: possibly the same art (crop/scan differences) — shown, flagged to verify
 MAX_DOWNLOADS = 3000  # per run; the cache fills up over a few runs if there's more
 TIME_BUDGET = 15 * 60  # seconds
 
@@ -89,6 +90,7 @@ def run(cfg: dict, english_singles: list[dict] | None = None) -> None:
         return
     jc = (cfg.get("singles") or {}).get("japan") or {}
     threshold = jc.get("artMatchThreshold", DEFAULT_THRESHOLD)
+    maybe = jc.get("artMaybeThreshold", DEFAULT_MAYBE)
     s = json.loads(SINGLES_PATH.read_text())
     jp = [c for c in s["cards"] if c.get("lang") == "ja"]
     if not jp:
@@ -135,15 +137,18 @@ def run(cfg: dict, english_singles: list[dict] | None = None) -> None:
         best = [{"id": e["id"], "name": e["name"], "group": e.get("group") or e.get("setName"), "dist": d} for d, e in cands[:3]]
         matched = bool(best) and best[0]["dist"] <= threshold
         c.pop("artEn", None)
+        c.pop("artMaybe", None)
         c["artChecked"] = bool(h) and bool(cands)
         if matched:
             c["artEn"] = best[0]
             n_match += 1
+        elif best and best[0]["dist"] <= maybe:
+            c["artMaybe"] = best[0]
         report.append({"id": c["id"], "name": c["name"], "group": c.get("group"), "price": c["price"],
                        "hashed": bool(h), "candidates": len(cands), "sameArtInEnglish": matched, "closest": best})
     report.sort(key=lambda r: (r["closest"][0]["dist"] if r["closest"] else 999))
     write_json(MATCHES, {"threshold": threshold, "note": "dist = bits that differ of 256; at or under the threshold counts as the same artwork",
-                         "cards": report})
+                         "maybeThreshold": maybe, "cards": report})
     write_json(SINGLES_PATH, s)
     print(f"Art check: {n_match} of {len(jp)} Japanese cards share art with an English card (threshold {threshold})")
 

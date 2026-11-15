@@ -464,6 +464,10 @@
         signal = "verify";
         guard.push(`Looks like a buy on ${Math.round(st.spanDays / 30.44)} months of prices, but where it traded before that isn't known. Look up its ceiling (highest sale), its 2-year low and recent sold prices (Ask Claude), then record them in data/card_facts.json — the call updates on its own.`);
       }
+      if (buyish() && c.lang === "ja" && c.artMaybe && F?.jpExclusive !== "yes" && signal !== "verify") {
+        signal = "verify";
+        guard.push(`Its artwork looks close to an English card (${c.artMaybe.name}, ${c.artMaybe.group}). If it's the same art, it isn't a Japan exclusive — compare the two, then record jpexclusive=yes or no.`);
+      }
       if (buyish() && fair?.kind === "borrowed" && ratio >= 2 && !soldFresh && signal !== "verify") {
         signal = "verify";
         guard.push("Far under a borrowed comparison — that usually means the comparison group is off. Confirm with recent sold listings.");
@@ -548,7 +552,7 @@
         { k: "step_char", ok: isTop6, label: `3. Top-6 character — ${yn(isTop6)}: ${c.pokemon}` },
         { k: "step_art", ok: fullArt, label: `4. Full Art / SIR — ${yn(fullArt)}: ${tl}` },
         { k: "step_graded", ok: steps.graded === true, label: `5. Graded data — ${yn(steps.graded)}${psaNow ? `: PSA 10 ${E.fmt$(psaNow)}${psaTrend != null ? `, ${E.fmtPct(psaTrend)} in 90 days` : ""}${gem != null ? `, ${Math.round(gem * 100)}% gem rate` : ""}` : ": no PSA 10 data"}` },
-        ...(c.lang === "ja" ? [{ k: "jpart", ok: c.artChecked || F?.jpExclusive === "yes", label: F?.jpExclusive === "yes" ? "Japan-exclusive art (researched)" : c.artChecked ? "Japan-exclusive art: no English card with the same artwork (image check)" : "Artwork not yet checked against English cards" }] : []),
+        ...(c.lang === "ja" ? [{ k: "jpart", ok: F?.jpExclusive === "yes" || (c.artChecked && !c.artMaybe), label: F?.jpExclusive === "yes" ? "Japan-exclusive art (researched)" : c.artMaybe ? `Art may match an English card (${c.artMaybe.name}, ${c.artMaybe.group}) — check before buying` : c.artChecked ? "Japan-exclusive art: no English card with the same artwork (image check)" : "Artwork not yet checked against English cards (no image)" }] : []),
         { k: "language", ok: true, label: c.lang === "ja" ? "Language: Japanese — compared only with Japanese cards; prices are TCGplayer (US) sales, not Japan's market" : "Language: English" },
         { k: "peers", ok: !!fair, label: fair ? `Compared with ${fair.n} like-for-like cards${fair.kind === "borrowed" ? " (other Pokémon, scaled)" : ""}` : "No like-for-like cards to compare with" },
         { k: "setmates", ok: !!mates, label: mates ? `Setmates: ${mates.n} ${tn} cards in ${c.group || c.setName}, median ${E.fmt$(mates.median)}` : "Setmate prices not synced yet" },
