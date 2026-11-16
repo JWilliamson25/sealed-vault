@@ -88,6 +88,7 @@ def jp_group_ids(col: dict | None) -> set[int]:
 def record_prices(col: dict, catalogs: dict, price_date: str, day: int):
     items = col.get("items", [])
     if not items:
+        print("Collection: connected; no items yet.")
         return
     try:
         hist, sha = read_file("price_history.json")
