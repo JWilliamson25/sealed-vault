@@ -91,6 +91,8 @@
       state.sById = new Map(state.sRows.map((r) => [String(r.id), r]));
     }
   }
+  // Load your collection in the background (if set up) so product pages can show what you own.
+  setTimeout(() => { if (window.Collection?.conf()) window.Collection.loadCollection(); }, 0);
   const anyById = (id) => state.byId.get(String(id)) || state.sById.get(String(id));
 
   /* ------------------------------------------------------------ router --- */
@@ -103,7 +105,7 @@
     renderView(view);
   }
   function renderView(view) {
-    const views = { picks: renderPicks, singles: renderSingles, products: renderProducts, sets: renderSets, portfolio: renderPortfolio, settings: renderSettings, about: renderAbout };
+    const views = { picks: renderPicks, singles: renderSingles, products: renderProducts, sets: renderSets, portfolio: renderPortfolio, collection: renderCollection, settings: renderSettings, about: renderAbout };
     const fn = views[view] || renderPicks;
     $("#main").dataset.view = view;
     document.querySelectorAll(".tabs a").forEach((a) => { if (a.dataset.view === view) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
@@ -317,11 +319,9 @@
           <p class="small muted" style="margin:0 0 8px">${esc(r.pokemon)} · ${esc(r.tierLabel)} · ${esc(r.eraLabel)}${r.fair ? `. Like-for-like median: ${fmt$(r.fair.value)}` : ""}</p>
           <table class="peers"><tbody>${peers.map((x) => `<tr class="${x.id === r.id ? "me" : ""}" data-open-single="${x.id}"><td>${esc(x.name)} <span class="muted small">${esc(x.setName)}</span></td><td class="num">${fmt$(x.price)}</td><td>${sigPill(x.signal)}</td></tr>`).join("")}</tbody></table>
         </div>` : ""}
-        <div class="card"><h3>Holdings</h3>
-          ${lots.length ? `<p class="small">${lots.map((l, i) => `${l.qty} × ${fmt$(l.cost)}${l.note ? ` (${esc(l.note)})` : ""} <button class="btn ghost small" data-rmlot="${i}">Remove</button>`).join("<br>")}</p>` : ""}
-          <div class="form-grid"><label class="field">Quantity<input type="number" id="hq" min="1" value="1"></label><label class="field">Paid each<input type="number" id="hc" min="0" step="0.01" value="${r.price.toFixed(2)}"></label>
-            <label class="field">Copy<select id="hn"><option value="">Raw</option><option>PSA 10</option><option>PSA 9</option><option>Other grade</option></select></label></div>
-          <div class="actions" style="margin-top:10px"><button class="btn" id="addlot">Add to holdings</button></div>
+        <div class="card"><h3>Your collection</h3>
+          ${(() => { const own = (C.S.col?.items || []).filter((x) => String(x.id) === String(r.id)); return own.length ? `<p class="small" style="margin:0 0 8px">You have ${own.reduce((a, x) => a + x.qty, 0)} (${own.map((x) => `${x.qty}${x.grade ? " " + esc(x.grade) : ""}${x.cost != null ? " @ " + fmt$(x.cost) : ""}`).join(", ")}). Edit them on the <a href="#collection">Collection</a> tab.</p>` : ""; })()}
+          <div class="actions"><button class="btn" id="addcol">Add to collection</button></div>
         </div>
         <div class="actions">
           <button class="btn primary" id="ask">Ask Claude for a second opinion</button>
@@ -343,11 +343,7 @@
       const k = String(r.id); state.watch.has(k) ? state.watch.delete(k) : state.watch.add(k); store.set(LS.watch, [...state.watch]);
       e.currentTarget.setAttribute("aria-pressed", state.watch.has(k)); toast(state.watch.has(k) ? "Added to watchlist." : "Removed from watchlist.");
     };
-    $("#addlot").onclick = () => {
-      const qty = parseInt($("#hq").value, 10), cost = parseFloat($("#hc").value), note = $("#hn").value;
-      if (!(qty > 0) || !(cost >= 0)) { toast("Enter a quantity and the price you paid."); return; }
-      (state.holdings[r.id] ||= []).push({ qty, cost, note, date: state.meta.priceDate }); store.set(LS.hold, state.holdings); toast("Added to holdings."); openSingle(r.id);
-    };
+    $("#addcol").onclick = () => openCollectionAdd({ pick: { lang: r.lang === "ja" ? "ja" : "en", id: r.id } });
     panel.querySelectorAll("[data-rmlot]").forEach((x) => x.onclick = () => { state.holdings[r.id].splice(+x.dataset.rmlot, 1); if (!state.holdings[r.id].length) delete state.holdings[r.id]; store.set(LS.hold, state.holdings); openSingle(r.id); });
     $("#ask").onclick = () => askClaude(S.claudePrompt(r, state.singles.priceDate, b));
   }
@@ -442,15 +438,10 @@
     });
     const watchRows = rows.filter((r) => state.watch.has(String(r.id)));
     $("#main").innerHTML = `
-      <h1>My vault</h1>
-      <p class="lede">Holdings and watchlist live in this browser only. Export a backup now and then, or import it on another device.</p>
+      <h1>Watchlist</h1>
+      <p class="lede">Your watchlist lives in this browser only. What you own is now in <a href="#collection">Collection</a>, saved privately and synced between devices.</p>
       <div class="controls"><button class="btn" id="exp">Export backup</button><label class="btn">Import backup<input type="file" id="imp" accept="application/json" hidden></label></div>
-      <section class="section"><div class="section-head"><h2>Holdings</h2>${holdRows.length ? `<span class="small">Cost ${fmt$(cost)} · Value ${fmt$(value)} · ${pct((value / cost - 1) * 100)}</span>` : ""}</div>
-        ${holdRows.length ? `<div class="table-wrap"><table><thead><tr><th>Product</th><th class="num">Qty</th><th class="num">Avg cost</th><th class="num">Market</th><th class="num">Value</th><th class="num">Gain</th><th>Add more?</th></tr></thead><tbody>
-          ${holdRows.map(({ r, qty, c, v }) => `<tr ${openAttr(r)}><td><div class="pname">${esc(r.name)}</div><div class="pset">${esc(r.set.name)}</div></td><td class="num">${qty}</td><td class="num">${fmt$(c / qty)}</td><td class="num">${fmt$(r.price)}</td><td class="num">${fmt$(v)}</td><td class="num">${pct((v / c - 1) * 100)}</td><td>${sigPill(r.signal)}</td></tr>`).join("")}
-          </tbody></table></div>` : `<div class="empty">No holdings yet. Open any product and use “Add to holdings” to log what you paid.</div>`}
-      </section>
-      <section class="section"><div class="section-head"><h2>Watchlist</h2></div>
+      <section class="section">
         ${watchRows.length ? `<div class="slabs">${watchRows.filter((r) => r.kind !== "single").map(slab).join("")}</div>${watchRows.some((r) => r.kind === "single") ? `<div class="slabs cards" style="margin-top:16px">${watchRows.filter((r) => r.kind === "single").map(cardSlab).join("")}</div>` : ""}` : `<div class="empty">Star products from their detail view to watch them. Watched items that drop under target show at the top of Picks.</div>`}
       </section>`;
     $("#exp").onclick = () => {
@@ -465,6 +456,255 @@
         recompute(); renderPortfolio(); toast("Backup imported.");
       } catch { toast("That file isn't a Sealed Vault backup."); }
     };
+  }
+
+  /* -------------------------------------------------------- collection --- */
+  const C = window.Collection;
+  const colCtx = () => ({ psa10: state.singles?.psa10 || {}, publicSeries: (id) => state.history?.series?.[String(id)] || state.singlesHistory?.series?.[String(id)] || null });
+  const GRADES = ["", "PSA 10", "PSA 9", "PSA 8", "PSA 7", "BGS 10", "BGS 9.5", "BGS 9", "CGC 10", "CGC 9.5", "CGC 9", "TAG 10", "Other graded"];
+  const langBadge = (l) => (l === "ja" ? '<span class="lang-ja">JP</span> ' : "");
+  let colLoaded = false;
+
+  async function renderCollection() {
+    const main = $("#main");
+    if (!C.conf()) { renderCollectionSetup(); return; }
+    if (!colLoaded) {
+      main.innerHTML = `<h1>Collection</h1><p class="lede">Loading your collection…</p>`;
+      colLoaded = true;
+      await Promise.all([C.loadCollection(), C.loadCatalog("en")]);
+      if ((C.S.col?.items || []).some((i) => i.lang === "ja")) await C.loadCatalog("ja");
+      if ($("#main").dataset.view === "collection") renderCollection();
+      return;
+    }
+    const items = C.S.col?.items || [];
+    const ctx = colCtx();
+    const t = C.totals(items, ctx);
+    const q = (state.colQ || "").toLowerCase();
+    const shown = items.filter((it) => !q || `${it.name} ${it.number || ""} ${it.set || ""}`.toLowerCase().includes(q));
+    // Group by set (TCGplayer group), oldest set first; cards by number, sealed after cards.
+    const sets = new Map();
+    for (const it of shown) {
+      const k = `${it.lang || "en"}:${it.groupId}`;
+      const g = C.S.catalog[it.lang || "en"]?.groups.get(Number(it.groupId));
+      if (!sets.has(k)) sets.set(k, { name: g?.name || it.set || "Unknown set", release: g?.release || "", lang: it.lang || "en", items: [] });
+      sets.get(k).items.push(it);
+    }
+    const nk = (it) => { const k = C.numKey(it.number); return k ? `${k.pre}${String(k.n).padStart(4, "0")}${k.suf}` : "zzzz"; };
+    const setList = [...sets.values()].sort((a, b) => (a.release || "9999").localeCompare(b.release || "9999") || a.name.localeCompare(b.name));
+    for (const s of setList) s.items.sort((a, b) => (a.kind === b.kind ? 0 : a.kind === "sealed" ? 1 : -1) || nk(a).localeCompare(nk(b)) || a.name.localeCompare(b.name));
+    const profitPct = t.cost > 0 ? (t.profit / t.cost) * 100 : null;
+    const oldLots = Object.values(state.holdings || {}).reduce((a, l) => a + l.length, 0);
+    main.innerHTML = `
+      <div class="section-head" style="margin-top:0"><h1 style="margin:0">Collection</h1>
+        <div class="actions"><button class="btn primary" id="col-add">Add cards or sealed</button><button class="btn" id="col-refresh" title="Reload from GitHub">Refresh</button></div></div>
+      ${C.S.error ? `<div class="card warn-card" role="alert" style="margin-top:12px">${esc(C.S.error)}</div>` : ""}
+      <div class="kv col-totals" style="margin-top:14px">
+        <div>Market value<strong>${fmt$(t.value)}</strong></div>
+        <div>You paid<strong>${fmt$(t.cost)}</strong></div>
+        <div>Profit<strong class="${t.profit >= 0 ? "up" : "down"}">${t.profit >= 0 ? "+" : "−"}${fmt$(Math.abs(t.profit))}${profitPct != null ? ` <span class="small">(${fmtPct(profitPct)})</span>` : ""}</strong></div>
+        <div>Items<strong>${items.reduce((a, i) => a + i.qty, 0)}</strong></div>
+        ${t.sealedPaid > 0 ? `<div>Sealed: paid → now<strong>${fmt$(t.sealedPaid)} → ${fmt$(t.sealedValue)}</strong></div>` : ""}
+      </div>
+      <p class="small muted" style="margin:8px 0 0">Cards with no price entered count as pulled ($0 cost).${t.sealedNoCost ? ` <strong>${t.sealedNoCost} sealed item${t.sealedNoCost === 1 ? " has" : "s have"} no price paid</strong> — left out of profit until you add it.` : ""}${t.missing ? ` ${t.missing} item${t.missing === 1 ? " has" : "s have"} no market price on TCGplayer.` : ""}</p>
+      ${oldLots ? `<div class="card" style="margin-top:12px"><p style="margin:0 0 8px">${oldLots} holding${oldLots === 1 ? "" : "s"} from the old “My vault” list are saved in this browser only.</p><button class="btn" id="col-import">Move them into your collection</button></div>` : ""}
+      ${items.length ? `<div class="card" style="margin-top:16px">
+        <div class="section-head" style="margin:0 0 8px"><h3 style="margin:0">Value over time</h3>
+          <div class="seg" role="group" aria-label="What to chart"><button data-cv="all" aria-pressed="${state.colChart !== "added"}">What it's all worth</button><button data-cv="added" aria-pressed="${state.colChart === "added"}">Since I added each</button></div></div>
+        <div id="col-chart"></div>
+        <p class="small muted" style="margin:6px 0 0">Market value of what's in your collection now, from daily prices. Graded items are left out of the chart. Items without older prices count at their first known price.</p>
+      </div>` : ""}
+      <div class="controls" style="margin-top:16px"><input type="search" id="col-q" placeholder="Search your collection" value="${esc(state.colQ || "")}" aria-label="Search your collection"></div>
+      ${items.length ? setList.map((s) => {
+        const sv = s.items.reduce((a, it) => a + (C.itemValue(it, ctx).total || 0), 0);
+        return `<section class="col-set"><div class="section-head"><h2>${langBadge(s.lang)}${esc(s.name)} <span class="muted small">${esc((s.release || "").slice(0, 4))}</span></h2><span class="small">${s.items.reduce((a, i) => a + i.qty, 0)} · ${fmt$(sv)}</span></div>
+          <div class="table-wrap"><table class="col-table"><thead><tr><th>Item</th><th class="num">Qty</th><th class="num">Paid each</th><th class="num">Market each</th><th class="num">Value</th><th class="num">Gain</th></tr></thead><tbody>
+          ${s.items.map((it) => { const v = C.itemValue(it, ctx), cb = C.costBasis(it); const gain = v.total != null && cb.known ? v.total - cb.total : null;
+            return `<tr class="col-row" data-col-edit="${esc(it.uid)}" tabindex="0"><td><div class="col-item"><img src="${C.IMG(it.id)}" alt="" loading="lazy"><div><div class="pname">${esc(it.name)}</div><div class="pset">${it.number ? esc(it.number) + " · " : ""}${esc(it.kind === "sealed" ? "Sealed" : it.sub || "")}${it.grade ? ` · <strong>${esc(it.grade)}</strong>` : ""}</div></div></div></td>
+              <td class="num">${it.qty}</td><td class="num">${it.cost != null ? fmt$(it.cost) : it.kind === "single" ? '<span class="muted">pulled</span>' : '<span class="down small">add price</span>'}</td>
+              <td class="num">${v.unit != null ? fmt$(v.unit) : "—"}${it.grade && v.how !== "market" ? `<div class="muted small">${esc(v.how)}</div>` : ""}</td><td class="num">${v.total != null ? fmt$(v.total) : "—"}</td>
+              <td class="num">${gain == null ? "—" : `<span class="${gain >= 0 ? "up" : "down"}">${gain >= 0 ? "+" : "−"}${fmt$(Math.abs(gain))}</span>`}</td></tr>`; }).join("")}
+          </tbody></table></div></section>`; }).join("") : `<div class="empty">Nothing here yet. Use “Add cards or sealed” to search, or scan a card with your phone's camera.</div>`}
+      <p class="small muted" style="margin-top:20px">Saved to <code>${esc(C.conf().repo)}</code> (private). <button class="btn ghost small" id="col-setup">Connection settings</button></p>`;
+    $("#col-add").onclick = () => openCollectionAdd();
+    $("#col-refresh").onclick = async () => { colLoaded = false; await C.loadCollection(true); renderCollection(); };
+    $("#col-setup").onclick = () => renderCollectionSetup();
+    $("#col-q").oninput = (e) => { state.colQ = e.target.value; const pos = e.target.selectionStart; renderCollection(); const n = $("#col-q"); n.focus(); n.setSelectionRange(pos, pos); };
+    document.querySelectorAll("[data-col-edit]").forEach((tr) => { tr.onclick = () => openCollectionEdit(tr.dataset.colEdit); tr.onkeydown = (e) => { if (e.key === "Enter") tr.click(); }; });
+    document.querySelectorAll("[data-cv]").forEach((b) => b.onclick = () => { state.colChart = b.dataset.cv; renderCollection(); });
+    if ($("#col-import")) $("#col-import").onclick = importOldHoldings;
+    if (items.length) Charts.priceChart($("#col-chart"), C.valueSeries(items, ctx, state.colChart === "added"), []);
+  }
+  window.addEventListener("collection:history", () => { if ($("#main").dataset.view === "collection") renderCollection(); });
+
+  async function importOldHoldings() {
+    const add = [];
+    for (const [id, lots] of Object.entries(state.holdings || {})) {
+      const r = anyById(id); if (!r) continue;
+      for (const l of lots) add.push({ uid: C.uid(), id: Number(id), lang: r.lang === "ja" ? "ja" : "en", kind: r.kind === "single" ? "single" : "sealed", groupId: r.kind === "single" ? (r.groupId ?? null) : r.groupId ?? r.set?.id, name: r.name, number: r.number || "", set: r.group || r.set?.name || "", sub: r.sub || null, qty: l.qty, cost: l.cost ?? null, grade: null, added: l.date || C.today(), note: l.note || "" });
+    }
+    // Fill missing group ids from the catalog.
+    await C.loadCatalog("en"); await C.loadCatalog("ja");
+    for (const a of add) { const c = C.catItem(a); if (c) { a.groupId = c.gid; a.set = c.set; } }
+    const ok = await C.mutate((col) => col.items.push(...add), `Import ${add.length} holdings`);
+    if (ok) { state.holdings = {}; store.set(LS.hold, {}); }
+    toast(ok ? `Moved ${add.length} holdings into your collection.` : "Couldn't save to GitHub — try again.");
+    renderCollection();
+  }
+
+  function renderCollectionSetup() {
+    const c = C.conf() || {};
+    $("#main").innerHTML = `
+      <h1>Collection</h1>
+      <p class="lede">Your collection is saved in a <strong>private</strong> GitHub repo, so nobody visiting this site can see what you own or what you paid. One-time setup, about five minutes:</p>
+      <div class="card" style="margin-top:16px"><ol class="setup-steps">
+        <li><strong>Create a private repo.</strong> <a href="https://github.com/new?name=sealed-vault-collection&visibility=private" target="_blank" rel="noopener">Open github.com/new</a>, name it <code>sealed-vault-collection</code>, choose <strong>Private</strong>, and create it.</li>
+        <li><strong>Create a token.</strong> <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Open the fine-grained token page</a>. Name it “Sealed Vault”, pick an expiration (up to a year), under <em>Repository access</em> choose <strong>Only select repositories</strong> → <code>sealed-vault-collection</code>, and under <em>Permissions → Repository permissions</em> set <strong>Contents: Read and write</strong>. Generate it and copy it.</li>
+        <li><strong>Paste it below</strong> and press Connect. Do the same on your phone (or on your computer) — the token is only kept in the browser you paste it into.</li>
+        <li><strong>Turn on daily value history.</strong> In <a href="https://github.com/JWilliamson25/sealed-vault/settings/secrets/actions/new" target="_blank" rel="noopener">sealed-vault → Settings → Secrets and variables → Actions</a>, add a secret named <code>COLLECTION_TOKEN</code> with the same token. ${c.repo && c.repo !== C.DEFAULT_REPO ? `Since your repo isn't the default name, also add a <em>variable</em> <code>COLLECTION_REPO</code> = <code>${esc(c.repo)}</code>.` : ""}</li>
+      </ol></div>
+      <div class="card" style="margin-top:16px"><div class="form-grid">
+        <label class="field">Private repo (owner/name)<input id="cs-repo" value="${esc(c.repo || C.DEFAULT_REPO)}" autocomplete="off" spellcheck="false"></label>
+        <label class="field">Token<input id="cs-token" type="password" value="${esc(c.token || "")}" autocomplete="off" spellcheck="false" placeholder="github_pat_…"></label>
+      </div>
+      <div class="actions" style="margin-top:12px"><button class="btn primary" id="cs-save">Connect</button>${c.token ? '<button class="btn" id="cs-forget">Forget on this device</button>' : ""}${C.conf() ? '<button class="btn ghost" id="cs-back">Back to collection</button>' : ""}</div>
+      <p class="small muted" style="margin:10px 0 0" id="cs-msg"></p></div>`;
+    $("#cs-save").onclick = async () => {
+      const repo = $("#cs-repo").value.trim().replace(/^https:\/\/github\.com\//, "").replace(/\/$/, ""), token = $("#cs-token").value.trim();
+      if (!/^[\w.-]+\/[\w.-]+$/.test(repo) || !token) { $("#cs-msg").textContent = "Enter the repo as owner/name and paste the token."; return; }
+      $("#cs-msg").textContent = "Checking…";
+      const prev = C.conf(); C.setConf({ repo, token });
+      try {
+        const { json } = await C.readFile("collection.json");
+        if (!json) await C.mutate(() => {}, "Start collection");
+        colLoaded = false; toast("Connected."); renderCollection();
+      } catch (e) {
+        if (prev) C.setConf(prev); else C.clearConf();
+        $("#cs-msg").textContent = e.status === 401 ? "GitHub refused that token. Copy it again (it starts with github_pat_)." : e.status === 403 ? "That token can't use this repo. Give it Contents: Read and write on the repo." : `Couldn't reach the repo (${e.message}). Check the name and that the token has access to it.`;
+      }
+    };
+    if ($("#cs-forget")) $("#cs-forget").onclick = () => { C.clearConf(); colLoaded = false; toast("Token removed from this device."); renderCollectionSetup(); };
+    if ($("#cs-back")) $("#cs-back").onclick = () => renderCollection();
+  }
+
+  /* add / scan / edit sheet */
+  function showSheet(html) {
+    const sheet = $("#sheet"), panel = $("#sheet-panel");
+    panel.innerHTML = html;
+    if (sheet.getAttribute("aria-hidden") !== "false") { sheet.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden"; }
+    return panel;
+  }
+  function hideSheet() { const sheet = $("#sheet"); sheet.setAttribute("aria-hidden", "true"); document.body.style.overflow = ""; }
+
+  function resultList(list) {
+    if (!list.length) return `<p class="muted small">No matches. Try fewer words, or the card number like <code>TG06</code> or <code>4/102</code>.</p>`;
+    return `<div class="pick-list">${list.map((it) => `<button class="pick" data-pick="${it.lang}:${it.id}">
+      <img src="${C.IMG(it.id)}" alt="" loading="lazy"><span class="pick-text"><span class="pname">${langBadge(it.lang)}${esc(it.name)}</span>
+      <span class="pset">${esc(it.set)}${it.number ? ` · ${esc(it.number)}` : ""}${it.kind === "p" ? " · Sealed" : ""}</span></span>
+      <span class="price">${it.best != null ? fmt$(it.best) : "—"}</span></button>`).join("")}</div>`;
+  }
+
+  async function openCollectionAdd(opts = {}) {
+    if (!C.conf()) { location.hash = "#collection"; toast("Set up your collection first."); return; }
+    const st = state.colAdd ||= { mode: "search", q: "", lang: "en", kind: "all" };
+    const panel = showSheet(`
+      <div class="sheet-head"><div><h2 id="sheet-title">Add to collection</h2></div><button class="btn ghost" id="ca-close" aria-label="Close">Close</button></div>
+      <div class="sheet-body">
+        <div class="seg" role="group" aria-label="How to add"><button data-mode="search" aria-pressed="${st.mode === "search"}">Search</button><button data-mode="scan" aria-pressed="${st.mode === "scan"}">Scan a card</button></div>
+        <div id="ca-body" style="margin-top:12px"></div>
+      </div>`);
+    panel.querySelector("#ca-close").onclick = () => { hideSheet(); if ($("#main").dataset.view === "collection") renderCollection(); };
+    panel.querySelectorAll("[data-mode]").forEach((b) => b.onclick = () => { st.mode = b.dataset.mode; openCollectionAdd(); });
+    const body = panel.querySelector("#ca-body");
+    if (opts.pick) { await C.loadCatalog(opts.pick.lang); const it = C.S.catalog[opts.pick.lang]?.byId.get(Number(opts.pick.id)); if (it) return itemForm(body, it, null); }
+    if (st.mode === "search") {
+      body.innerHTML = `<div class="controls" style="margin:0">
+          <input type="search" id="ca-q" placeholder="Name, number or set — e.g. gengar tg06, charizard delta, 151 booster box" value="${esc(st.q)}" aria-label="Search for a card or product" style="flex:1 1 260px">
+          <select id="ca-lang" aria-label="Language"><option value="en" ${st.lang === "en" ? "selected" : ""}>English</option><option value="ja" ${st.lang === "ja" ? "selected" : ""}>Japanese</option><option value="both" ${st.lang === "both" ? "selected" : ""}>Both</option></select>
+          <select id="ca-kind" aria-label="Type"><option value="all">Cards & sealed</option><option value="single" ${st.kind === "single" ? "selected" : ""}>Cards</option><option value="sealed" ${st.kind === "sealed" ? "selected" : ""}>Sealed</option></select></div>
+        <p class="small muted" id="ca-status" style="margin:8px 0">Loading the card list…</p><div id="ca-results"></div>`;
+      const run = async () => {
+        st.q = $("#ca-q").value; st.lang = $("#ca-lang").value; st.kind = $("#ca-kind").value;
+        const langs = st.lang === "both" ? ["en", "ja"] : [st.lang];
+        await Promise.all(langs.map(C.loadCatalog));
+        const res = st.q.trim().length >= 2 ? C.search(st.q, { lang: st.lang, kind: st.kind }) : [];
+        $("#ca-status").textContent = st.q.trim().length < 2 ? "Type at least two letters. Every word has to match; numbers match the card number." : `${res.length === 40 ? "Top 40" : res.length} possible match${res.length === 1 ? "" : "es"} — pick yours:`;
+        $("#ca-results").innerHTML = st.q.trim().length >= 2 ? resultList(res) : "";
+        bindPicks(body);
+      };
+      let tm; $("#ca-q").oninput = () => { clearTimeout(tm); tm = setTimeout(run, 200); };
+      $("#ca-lang").onchange = run; $("#ca-kind").onchange = run;
+      $("#ca-q").focus(); run();
+    } else {
+      body.innerHTML = `<p class="small" style="margin:0 0 10px">Take a photo of the card straight on, in good light, with the name and the number in the bottom corner readable. You'll get a list of possible matches to pick from.</p>
+        <label class="btn primary">Take or choose a photo<input type="file" id="ca-photo" accept="image/*" capture="environment" hidden></label>
+        <div id="ca-scan" style="margin-top:12px"></div>`;
+      $("#ca-photo").onchange = async (e) => {
+        const f = e.target.files[0]; if (!f) return;
+        const out = $("#ca-scan");
+        out.innerHTML = `<img src="${URL.createObjectURL(f)}" alt="Your photo" class="scan-preview"><p class="small muted" id="ca-sstat">Loading…</p>`;
+        try {
+          await Promise.all([C.loadCatalog("en"), C.loadCatalog("ja")]);
+          const r = await C.scan(f, (m) => { const s = $("#ca-sstat"); if (s) s.textContent = m; });
+          out.innerHTML = `<img src="${URL.createObjectURL(f)}" alt="Your photo" class="scan-preview">
+            <p class="small" style="margin:8px 0">${r.nums.length || r.nameWords.length ? `Read: <strong>${esc([...r.nameWords, ...r.nums].join(", "))}</strong>.` : "Couldn't read the name or number — try another photo, or search below."} Not right? Edit the search:</p>
+            <div class="controls" style="margin:0"><input type="search" id="ca-sq" value="${esc(r.query)}" aria-label="Search" style="flex:1"><button class="btn" id="ca-sgo">Search</button></div>
+            <div id="ca-sres" style="margin-top:10px">${resultList(r.results)}</div>`;
+          bindPicks(body);
+          $("#ca-sgo").onclick = () => { $("#ca-sres").innerHTML = resultList(C.search($("#ca-sq").value, { lang: "both" })); bindPicks(body); };
+        } catch (err) { out.innerHTML = `<p class="down">Scanning didn't work here (${esc(err.message)}). Use Search instead.</p>`; }
+      };
+    }
+  }
+  function bindPicks(body) {
+    body.querySelectorAll("[data-pick]").forEach((b) => b.onclick = () => { const [l, id] = b.dataset.pick.split(":"); itemForm(body, C.S.catalog[l].byId.get(Number(id)), null); });
+  }
+
+  function itemForm(body, it, existing) {
+    const subs = Object.entries(it.prices);
+    const e = existing || {};
+    const defSub = e.sub || (subs.length ? subs.sort((a, b) => b[1] - a[1])[0][0] : "");
+    const owned = (C.S.col?.items || []).filter((x) => x.id === it.id && x.uid !== e.uid).reduce((a, x) => a + x.qty, 0);
+    body.innerHTML = `
+      <div class="col-form-head"><img src="${C.IMG(it.id)}" alt=""><div><div class="pname">${langBadge(it.lang)}${esc(it.name)}</div><div class="pset">${esc(it.set)}${it.number ? ` · ${esc(it.number)}` : ""}</div>
+        <div class="small muted">${it.kind === "p" ? "Sealed product" : "Card"}${owned ? ` · you already have ${owned}` : ""}</div></div></div>
+      <div class="form-grid" style="margin-top:12px">
+        ${subs.length > 1 ? `<label class="field">Printing<select id="cf-sub">${subs.map(([s, p]) => `<option value="${esc(s)}" ${s === defSub ? "selected" : ""}>${esc(s)} — ${fmt$(p)}</option>`).join("")}</select></label>` : `<input type="hidden" id="cf-sub" value="${esc(defSub)}">`}
+        <label class="field">Quantity<input type="number" id="cf-qty" min="1" step="1" value="${e.qty || 1}"></label>
+        <label class="field">Price paid each <span class="muted small">(optional)</span><input type="number" id="cf-cost" min="0" step="0.01" value="${e.cost ?? ""}" placeholder="${it.kind === "p" ? "What you paid" : "Blank = pulled it"}"></label>
+        ${it.kind === "s" ? `<label class="field">Condition<select id="cf-grade">${GRADES.map((g) => `<option value="${g}" ${g === (e.grade || "") ? "selected" : ""}>${g || "Raw"}</option>`).join("")}</select></label>
+        <label class="field" id="cf-gv-wrap" ${e.grade ? "" : "hidden"}>Graded value each <span class="muted small">(optional)</span><input type="number" id="cf-gv" min="0" step="0.01" value="${e.gradedValue ?? ""}" placeholder="Leave blank for PSA 10 price"></label>` : ""}
+        <label class="field">Date you got it<input type="date" id="cf-date" value="${e.added || C.today()}"></label>
+        <label class="field" style="grid-column:1/-1">Note <span class="muted small">(optional)</span><input id="cf-note" value="${esc(e.note || "")}" maxlength="200"></label>
+      </div>
+      <p class="small muted" style="margin:8px 0 0">${it.kind === "p" ? "What you paid is subtracted from your profit. Leave it blank and this item stays out of the profit total until you add it." : "Leave the price blank if you pulled it — it counts as $0 cost."}</p>
+      <div class="actions" style="margin-top:12px"><button class="btn primary" id="cf-save">${existing ? "Save changes" : "Add to collection"}</button>${existing ? '<button class="btn" id="cf-del">Remove from collection</button>' : '<button class="btn ghost" id="cf-back">Back to results</button>'}</div>`;
+    const gsel = $("#cf-grade"); if (gsel) gsel.onchange = () => { $("#cf-gv-wrap").hidden = !gsel.value; };
+    if ($("#cf-back")) $("#cf-back").onclick = () => openCollectionAdd();
+    $("#cf-save").onclick = async () => {
+      const qty = parseInt($("#cf-qty").value, 10);
+      if (!(qty > 0)) { toast("Enter how many you have."); return; }
+      const num = (id) => { const v = $(id)?.value; return v === "" || v == null ? null : Math.max(0, parseFloat(v)); };
+      const rec = { uid: e.uid || C.uid(), id: it.id, lang: it.lang, kind: it.kind === "p" ? "sealed" : "single", groupId: it.gid, name: it.name, number: it.number || "", set: it.set,
+        sub: $("#cf-sub")?.value || null, qty, cost: num("#cf-cost"), grade: $("#cf-grade")?.value || null, gradedValue: $("#cf-grade")?.value ? num("#cf-gv") : null,
+        added: $("#cf-date").value || C.today(), note: $("#cf-note").value.trim() };
+      $("#cf-save").disabled = true;
+      const ok = await C.mutate((col) => { const i = col.items.findIndex((x) => x.uid === rec.uid); if (i >= 0) col.items[i] = rec; else col.items.push(rec); }, `${existing ? "Edit" : "Add"} ${rec.name}`);
+      toast(ok ? (existing ? "Saved." : `Added ${rec.name}.`) : "Saved on this device; GitHub save failed — it'll retry.");
+      if (existing) { hideSheet(); renderCollection(); } else { state.colAdd.q = ""; openCollectionAdd(); }
+    };
+    if ($("#cf-del")) $("#cf-del").onclick = async () => {
+      await C.mutate((col) => { col.items = col.items.filter((x) => x.uid !== e.uid); }, `Remove ${e.name}`);
+      toast("Removed."); hideSheet(); renderCollection();
+    };
+  }
+
+  async function openCollectionEdit(u) {
+    const e = (C.S.col?.items || []).find((x) => x.uid === u); if (!e) return;
+    await C.loadCatalog(e.lang || "en");
+    const it = C.catItem(e) || { id: e.id, lang: e.lang || "en", name: e.name, number: e.number, set: e.set, kind: e.kind === "sealed" ? "p" : "s", prices: {}, gid: e.groupId };
+    const panel = showSheet(`<div class="sheet-head"><div><h2 id="sheet-title">Edit</h2></div><button class="btn ghost" id="ce-close" aria-label="Close">Close</button></div><div class="sheet-body" id="ce-body"></div>`);
+    panel.querySelector("#ce-close").onclick = () => hideSheet();
+    itemForm(panel.querySelector("#ce-body"), it, e);
   }
 
   /* ---------------------------------------------------------- settings --- */
@@ -564,6 +804,8 @@
       </ul>
       <p><strong>What it takes to be a buy.</strong> The buy-under price is the lowest of every anchor that applies: the card's own recent history, its pre-run-up level, like-for-like cards' median, and recent sold prices. It's never worked out from today's price. ${sigPill("verify")} means a card looks like a buy on its recent prices, but its price history is under a year and nobody has looked up where it traded before — exactly the case where a run-up giving some back looks like a discount. Once its ceiling or two-year low and high are recorded in <code>data/card_facts.json</code> (Ask Claude lists them; a weekly task can fill them in), the call updates on its own. <strong>Strong buy</strong> needs the long-run range, like-for-like peers, no hype cycle on the Pokémon, and agreeing PSA 10 prices.</p>
       <p>PSA 10 prices come from a one-time Scrydex import plus researched sales; when the two disagree, the sales win. Raw cards carry condition risk; buy clean near-mint copies with photos.</p>
+      <h2>Collection</h2>
+      <p>The Collection tab keeps what you own, grouped by set and sorted oldest set first. It's saved in a private GitHub repo using a token stored only in your browser, so visitors to this site can't see it. Add items by searching (every word must match; numbers match the card number) or by scanning a card with your phone — the photo is read on your device, never uploaded, and you pick the right card from the matches. Price paid is optional: a card with none counts as pulled ($0 cost); sealed with none stays out of profit until you add it. Values use today's TCGplayer price for the exact printing you picked; graded cards use the PSA 10 price when known or a value you enter. With the <code>COLLECTION_TOKEN</code> secret set, the daily sync records your items' prices so the value chart builds over time; anything the tracker already follows has history from the start.</p>
       <h2>What it can't see</h2>
       <p>Reprint announcements, Pokémon Center restocks, print-run sizes, sales volume, and — for singles — anything older than about six months unless it's been researched. Use “Ask Claude” on any product for a second opinion that checks current news. This isn't financial advice; prices can and do fall.</p>
       <p class="small muted">Data: TCGplayer prices via the free tcgcsv.com daily mirror. Not affiliated with TCGplayer, Nintendo, or The Pokémon Company.</p>
@@ -615,10 +857,9 @@
         ${r.chaseSrc === "set" ? `<div class="card"><h3>What's carrying the set</h3>
           <table><tbody>${r.set.topSingles.slice(0, 8).map((c) => `<tr><td>${c.url ? `<a href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.name)}</a>` : esc(c.name)} <span class="muted small">${esc(c.number || "")}</span></td><td class="num">${fmt$(c.price)}</td></tr>`).join("")}</tbody></table>
         </div>` : ""}
-        <div class="card"><h3>Holdings</h3>
-          ${lots.length ? `<p class="small">${lots.map((l, i) => `${l.qty} × ${fmt$(l.cost)} <button class="btn ghost small" data-rmlot="${i}">Remove</button>`).join("<br>")}</p>` : ""}
-          <div class="form-grid"><label class="field">Quantity<input type="number" id="hq" min="1" value="1"></label><label class="field">Paid each<input type="number" id="hc" min="0" step="0.01" value="${r.price.toFixed(2)}"></label></div>
-          <div class="actions" style="margin-top:10px"><button class="btn" id="addlot">Add to holdings</button></div>
+        <div class="card"><h3>Your collection</h3>
+          ${(() => { const own = (C.S.col?.items || []).filter((x) => String(x.id) === String(r.id)); return own.length ? `<p class="small" style="margin:0 0 8px">You have ${own.reduce((a, x) => a + x.qty, 0)} (${own.map((x) => `${x.qty}${x.grade ? " " + esc(x.grade) : ""}${x.cost != null ? " @ " + fmt$(x.cost) : ""}`).join(", ")}). Edit them on the <a href="#collection">Collection</a> tab.</p>` : ""; })()}
+          <div class="actions"><button class="btn" id="addcol">Add to collection</button></div>
         </div>
         <div class="actions">
           <button class="btn primary" id="ask">Ask Claude for a second opinion</button>
@@ -639,11 +880,7 @@
       const k = String(r.id); state.watch.has(k) ? state.watch.delete(k) : state.watch.add(k); store.set(LS.watch, [...state.watch]);
       e.currentTarget.setAttribute("aria-pressed", state.watch.has(k)); toast(state.watch.has(k) ? "Added to watchlist." : "Removed from watchlist.");
     };
-    $("#addlot").onclick = () => {
-      const qty = parseInt($("#hq").value, 10), cost = parseFloat($("#hc").value);
-      if (!(qty > 0) || !(cost >= 0)) { toast("Enter a quantity and the price you paid."); return; }
-      (state.holdings[r.id] ||= []).push({ qty, cost, date: state.meta.priceDate }); store.set(LS.hold, state.holdings); toast("Added to holdings."); openDetail(r.id);
-    };
+    $("#addcol").onclick = () => openCollectionAdd({ pick: { lang: r.lang === "ja" ? "ja" : "en", id: r.id } });
     panel.querySelectorAll("[data-rmlot]").forEach((b) => b.onclick = () => { state.holdings[r.id].splice(+b.dataset.rmlot, 1); if (!state.holdings[r.id].length) delete state.holdings[r.id]; store.set(LS.hold, state.holdings); openDetail(r.id); });
     $("#ask").onclick = () => askClaude(E.claudePrompt(r, state.meta));
 

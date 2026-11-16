@@ -23,6 +23,8 @@ from common import (  # noqa: E402
     http_get, is_single, load_config, load_history, parent_name, parse_ts, put_point, write_json,
 )
 from common import DATA, HISTORY_PATH  # noqa: E402
+import collection_sync  # noqa: E402
+from catalog import Catalog  # noqa: E402
 from common import (  # noqa: E402
     SINGLE_EXCLUDE_RE, SINGLES_HISTORY_PATH, SINGLES_PATH, card_era, card_tier, chase_regexes, single_price,
 )
@@ -86,6 +88,8 @@ def main():
     old_sub = {c["id"]: c.get("sub") for c in old_singles.get("cards", [])}
     sealed: list[dict] = []
     excluded = set(tr.get("excludeGroupIds") or [])
+    cat_en = Catalog("en", price_date)  # every English product, for the Collection tab
+    collection = collection_sync.load_collection()  # your private collection (needs COLLECTION_TOKEN)
 
     for i, g in enumerate(groups, 1):
         gid = g["groupId"]
@@ -99,6 +103,8 @@ def main():
         for r in prices_rows:
             by_pid.setdefault(r["productId"], []).append(r)
         pgid = parent_of.get(gid, gid)
+        cat_en.add_group(g)
+        cat_en.add_products(gid, products, by_pid)
         for p in products:
             bp = best_price(by_pid.get(p["productId"], []))
             if is_single(p):
@@ -190,7 +196,10 @@ def main():
     write_json(HISTORY_PATH, history)
     print(f"Wrote {META_PATH.name} and {HISTORY_PATH.name} for {price_date}")
 
-    jp_groups = fetch_japan_promos(cfg, singles, old_sub)
+    cat_en.save()
+    cat_ja, jp_groups = fetch_japan(cfg, singles, old_sub, price_date, collection_sync.jp_group_ids(collection))
+    if collection:
+        collection_sync.record_prices(collection, {"en": cat_en, "ja": cat_ja}, price_date, today)
     sync_singles(cfg, groups + jp_groups, parent_of, singles, old_singles, price_date, today)
     # Hide Japanese promos whose artwork was also printed in English (scripts/art_check.py).
     try:
@@ -201,30 +210,46 @@ def main():
         print(f"Art check failed, skipped: {e}")
 
 
-def fetch_japan_promos(cfg, singles, old_sub) -> list[dict]:
-    """Japanese promo-type singles from TCGplayer's Pokemon Japan category. Adds them to `singles`
-    (tagged lang=ja) and returns the groups used. Writes data/japan_groups.json so the group filter
-    can be tuned."""
+def fetch_japan(cfg, singles, old_sub, price_date, extra_groups: set[int]):
+    """Japanese category: promo-type singles for the Singles tab (added to `singles`, tagged lang=ja),
+    plus the Japanese catalog for the Collection tab. The full catalog (every group) is rebuilt weekly;
+    on other days only promo groups and groups holding your collection's Japanese items are fetched.
+    Returns (catalog or None, promo groups used). Writes data/japan_groups.json."""
     jc = (cfg.get("singles") or {}).get("japan") or {}
-    if not jc.get("enabled"):
-        return []
     cat = jc.get("categoryId", 85)
+    groups = results(fetch(f"/tcgplayer/{cat}/groups"))
+    if not groups:
+        return Catalog.load("ja"), []
     inc = re.compile(jc.get("groupInclude") or "promo", re.I)
     exc = re.compile(jc.get("groupExclude") or "$^", re.I)
-    groups = results(fetch(f"/tcgplayer/{cat}/groups"))
-    picked = [g for g in groups if inc.search(g["name"]) and not exc.search(g["name"])]
+    picked = [g for g in groups if jc.get("enabled") and inc.search(g["name"]) and not exc.search(g["name"])]
+    picked_ids = {g["groupId"] for g in picked}
     write_json(DATA / "japan_groups.json", {"categoryId": cat, "groups": sorted(
-        [{"id": g["groupId"], "name": g["name"], "published": parse_ts(g.get("publishedOn")), "included": g in picked} for g in groups],
+        [{"id": g["groupId"], "name": g["name"], "published": parse_ts(g.get("publishedOn")), "included": g["groupId"] in picked_ids} for g in groups],
         key=lambda x: (not x["included"], x["name"]))})
-    print(f"Japanese: {len(groups)} groups, {len(picked)} promo-type groups included")
+
+    old = Catalog.load("ja")
+    full_date = (old.full if old and hasattr(old, "full") else None)
+    stale = not old or not full_date or (datetime.fromisoformat(price_date) - datetime.fromisoformat(full_date)).days >= 7
+    cat_ja = Catalog("ja", price_date)
+    if old and not stale:
+        cat_ja.subs, cat_ja.groups, cat_ja.items = old.subs, old.groups, old.items
+    for g in groups:
+        cat_ja.add_group(g)
+    todo = groups if stale else [g for g in groups if g["groupId"] in picked_ids or g["groupId"] in extra_groups]
+    print(f"Japanese: {len(groups)} groups, {len(picked)} promo-type groups for singles; fetching {len(todo)}"
+          f"{' (weekly full catalog refresh)' if stale else ''}")
     n = 0
-    for g in picked:
+    for g in todo:
         gid = g["groupId"]
         products = results(fetch(f"/tcgplayer/{cat}/{gid}/products"))
         prices_rows = results(fetch(f"/tcgplayer/{cat}/{gid}/prices"))
         by_pid: dict[int, list] = {}
         for r in prices_rows:
             by_pid.setdefault(r["productId"], []).append(r)
+        cat_ja.add_products(gid, products, by_pid)
+        if gid not in picked_ids:
+            continue
         for p in products:
             bp = best_price(by_pid.get(p["productId"], []))
             if not (bp and is_single(p)):
@@ -238,8 +263,10 @@ def fetch_japan_promos(cfg, singles, old_sub) -> list[dict]:
                 "group": g["name"], "sub": sp["sub"], "sprice": sp["price"], "low": sp["low"],
             })
             n += 1
-    print(f"Japanese: {n} priced singles in those groups")
-    return [{**g, "lang": "ja"} for g in picked]
+    cat_ja.full = price_date if stale else full_date
+    cat_ja.save()
+    print(f"Japanese: {n} priced promo singles; catalog has {len(cat_ja.items)} products")
+    return cat_ja, [{**g, "lang": "ja"} for g in picked]
 
 
 def group_release(g: dict, price_date: str) -> str | None:

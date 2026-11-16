@@ -33,6 +33,10 @@ jobs:
       - name: Install Pillow (artwork check for Japanese promos)
         run: pip install --quiet pillow
       - name: Pull prices
+        env:
+          # Your private collection (Collection tab). Optional: without the secret this step is skipped.
+          COLLECTION_TOKEN: ${{ secrets.COLLECTION_TOKEN }}
+          COLLECTION_REPO: ${{ vars.COLLECTION_REPO }}
         run: python scripts/sync.py ${{ inputs.force && '--force' || '' }}
       - name: Commit data
         run: |

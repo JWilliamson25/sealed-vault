@@ -34,6 +34,17 @@ TCGplayer closed its API to new developers, and the free mirror (tcgcsv.com) blo
 
 After that the daily sync runs on its own. If a GitHub repo has no activity for 60 days, GitHub pauses scheduled workflows; the daily data commits count as activity, so this normally isn't an issue.
 
+## Collection
+
+The **Collection** tab keeps what you own — cards and sealed, English and Japanese — sorted by set (oldest first), with market value, what you paid, profit, and value over time.
+
+- **Private:** it's saved to `collection.json` in a *private* repo (default `JWilliamson25/sealed-vault-collection`), read and written straight from your browser with a fine-grained token kept only on that device. This public site never contains it. Setup steps are on the Collection tab.
+- **Adding:** search by name, number or set (`gengar tg06`, `charizard delta`, `151 booster box`) and pick from the possible matches, or **Scan a card** with your phone's camera — the app reads the name and collector number (on-device text recognition) and lists the likely matches. Sealed is added by search.
+- **Cost:** price paid is optional. A card with no price counts as pulled ($0). Sealed with no price stays out of the profit total until you add what you paid.
+- **Graded:** pick the grade; value uses the PSA 10 price when known, or a graded value you enter.
+- **Catalog:** the daily sync writes `data/catalog/en.json` (every English Pokémon product, rebuilt daily) and `data/catalog/ja.json` (Japanese, rebuilt weekly).
+- **Daily value history:** add the same token as the `COLLECTION_TOKEN` secret on this repo (and a `COLLECTION_REPO` variable if your private repo has another name). Each sync then appends your items' prices to `price_history.json` in the private repo. Action logs only print counts.
+
 ## Singles
 
 The daily sync also tracks singles of the top-6 characters (`singles.framework.top6`: Charizard, Pikachu, Gengar, Umbreon, Mew, Mewtwo — your full chase list still drives sealed products) (about $20–$450, a little wider than the default $30–$300 budget so cards drifting past it keep their history). The **Singles** tab runs each card through a five-step framework — **the ceiling** (its highest sale; never pay within 25% of it), **distribution** (event promo, pack pull, stamp, box promo, mass giveaway, reprint), **top-6 character** (Charizard, Pikachu, Gengar, Umbreon, Mew, Mewtwo — 40% of the score), **Full Art / SIR**, and **graded data** (PSA 10 population judged against whether the PSA 10 price holds). A Buy needs 3 of 5 and must not fail the ceiling; a Strong buy needs all 5; price is the final filter. Settings: `config.json` → `singles.framework`. It also scores each card on an investor checklist — demand (Pokémon × card type), value against like-for-like cards, price position in its long-run range, momentum against the market and the Pokémon, supply and reprints, grading, and liquidity and costs — then applies hard rules so a guess never becomes a buy. The full rules are at the top of `assets/singles.js` and on the site's How it works page. Budget and sweet spot are in Settings and in `config.json` → `singles`.

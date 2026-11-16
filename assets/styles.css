@@ -293,3 +293,23 @@ tbody tr:last-child td { border-bottom: 0; }
 .steps .step-fail span[aria-hidden] { color: var(--bad); }
 .steps .step-unknown span[aria-hidden] { color: var(--ink-3); }
 .lang-ja { display: inline-block; font-size: .6875rem; font-weight: 800; padding: 0 5px; border-radius: 4px; background: var(--ink); color: var(--surface, #fff); vertical-align: 1px; }
+
+/* ---- collection ---- */
+.col-totals { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.col-set { margin-top: 22px; }
+.col-set h2 { font-size: 1.125rem; }
+.col-row { cursor: pointer; }
+.col-row:hover { background: var(--surface-2); }
+.col-item { display: flex; align-items: center; gap: 10px; min-width: 200px; }
+.col-item img { width: 36px; height: 50px; object-fit: contain; border-radius: 3px; background: var(--surface-2); flex: none; }
+.pick-list { display: grid; gap: 6px; }
+.pick { display: grid; grid-template-columns: 44px 1fr auto; gap: 10px; align-items: center; text-align: left; border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius-ctl); padding: 6px 10px; cursor: pointer; color: inherit; font: inherit; }
+.pick:hover, .pick:focus-visible { background: var(--surface-2); }
+.pick img { width: 44px; height: 61px; object-fit: contain; border-radius: 3px; background: var(--surface-2); }
+.pick-text { display: grid; gap: 2px; min-width: 0; }
+.pick .price { font-weight: 700; }
+.col-form-head { display: flex; gap: 12px; align-items: center; }
+.col-form-head img { width: 72px; height: 100px; object-fit: contain; border-radius: 4px; background: var(--surface-2); }
+.scan-preview { max-width: 180px; max-height: 240px; border-radius: 6px; display: block; }
+.setup-steps { margin: 0; padding-left: 1.2em; display: grid; gap: 10px; }
+.warn-card { background: var(--warn-bg); }
